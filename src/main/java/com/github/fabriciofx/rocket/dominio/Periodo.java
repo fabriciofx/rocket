@@ -15,17 +15,12 @@ public final class Periodo implements Intervalo<ChronoLocalDateTime<?>> {
 
 	public Periodo(final String dataInicio, final String horaInicio,
 			final String dataTermino, final String horaTermino) {
-		this(LocalDateTime.parse(dataInicio + " " + horaInicio,
-				DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
-				LocalDateTime.parse(dataTermino + " " + horaTermino,
-						DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+		this(toLocalDateTime(dataInicio, horaInicio),
+				toLocalDateTime(dataTermino, horaTermino));
 	}
 
 	public Periodo(final String dataInicio, final String dataTermino) {
-		this(LocalDate.parse(dataInicio,
-				DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-				LocalDate.parse(dataTermino,
-						DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		this(toLocalDate(dataInicio), toLocalDate(dataTermino));
 	}
 
 	public Periodo(final LocalDate inicio, final LocalDate termino) {
@@ -70,6 +65,17 @@ public final class Periodo implements Intervalo<ChronoLocalDateTime<?>> {
 		final DateTimeFormatter formato = DateTimeFormatter
 				.ofPattern("dd/MM/yyyy HH:mm");
 
-		return inicio.format(formato) + " a " + termino.format(formato);
+		return String.format("%s a %s", inicio.format(formato),
+				termino.format(formato));
+	}
+
+	private static LocalDateTime toLocalDateTime(final String data,
+			final String hora) {
+		return LocalDateTime.parse(String.format("%s %s", data, hora),
+				DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+	}
+
+	private static LocalDate toLocalDate(final String data) {
+		return LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 }
