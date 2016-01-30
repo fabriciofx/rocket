@@ -8,8 +8,8 @@ import org.junit.Test;
 public class TesteIntervalo {
 	@Test
 	public void deNumerosReaisPositivos() {
-		final Intervalo<Double> intervalo = new Intervalo<>(new Limite<>(2.15),
-				new Limite<>(7.34));
+		final Intervalo<Double> intervalo = new Intervalo.Padrao<>(
+				new Limite<>(2.15), new Limite<>(7.34));
 
 		assertFalse(intervalo.contem(2.14));
 		assertTrue(intervalo.contem(2.15));
@@ -22,8 +22,8 @@ public class TesteIntervalo {
 
 	@Test
 	public void deNumerosReaisNegativos() {
-		final Intervalo<Double> intervalo = new Intervalo<>(new Limite<>(-2.15),
-				new Limite<>(0.0));
+		final Intervalo<Double> intervalo = new Intervalo.Padrao<>(
+				new Limite<>(-2.15), new Limite<>(0.0));
 
 		assertFalse(intervalo.contem(-2.16));
 		assertTrue(intervalo.contem(-2.15));
