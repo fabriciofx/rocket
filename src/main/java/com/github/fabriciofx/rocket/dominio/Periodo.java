@@ -3,10 +3,13 @@ package com.github.fabriciofx.rocket.dominio;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public final class Periodo {
+import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
+
+public final class Periodo implements Intervalo<ChronoLocalDateTime<?>> {
 	private final LocalDateTime inicio;
 	private final LocalDateTime termino;
 
@@ -56,14 +59,10 @@ public final class Periodo {
 		return termino;
 	}
 
-	public boolean contem(final LocalDateTime dataHora) {
+	@Override
+	public boolean contem(final ChronoLocalDateTime<?> dataHora) {
 		return inicio.compareTo(dataHora) <= 0
 				&& termino.compareTo(dataHora) >= 0;
-	}
-
-	public boolean contem(final LocalDate data) {
-		return inicio.toLocalDate().compareTo(data) <= 0
-				&& termino.toLocalDate().compareTo(data) >= 0;
 	}
 
 	@Override
