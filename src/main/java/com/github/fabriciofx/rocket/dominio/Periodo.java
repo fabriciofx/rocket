@@ -2,80 +2,117 @@ package com.github.fabriciofx.rocket.dominio;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDate;
 import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Objects;
 
 import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
 
-public final class Periodo implements Intervalo<ChronoLocalDateTime<?>> {
-	private final LocalDateTime inicio;
-	private final LocalDateTime termino;
+public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
+	T inicio();
 
-	public Periodo(final String dataInicio, final String horaInicio,
-			final String dataTermino, final String horaTermino) {
-		this(toLocalDateTime(dataInicio, horaInicio),
-				toLocalDateTime(dataTermino, horaTermino));
-	}
+	T termino();
 
-	public Periodo(final String dataInicio, final String dataTermino) {
-		this(toLocalDate(dataInicio), toLocalDate(dataTermino));
-	}
+	final public class DataHora implements Periodo<ChronoLocalDateTime<?>> {
+		private final LocalDateTime inicio;
+		private final LocalDateTime termino;
 
-	public Periodo(final LocalDate inicio, final LocalDate termino) {
-		this(LocalDateTime.of(inicio, LocalTime.of(0, 0, 0)),
-				LocalDateTime.of(termino, LocalTime.of(23, 59, 59)));
-	}
+		public DataHora(final String dataInicio, final String horaInicio,
+				final String dataTermino, final String horaTermino) {
+			this(toLocalDateTime(dataInicio, horaInicio),
+					toLocalDateTime(dataTermino, horaTermino));
+		}
 
-	public Periodo(final LocalDate dataInicio, final LocalTime horaInicio,
-			final LocalDate dataTermino, final LocalTime horaTermino) {
-		this(LocalDateTime.of(dataInicio, horaInicio),
-				LocalDateTime.of(dataTermino, horaTermino));
-	}
+		public DataHora(final LocalDateTime inicio,
+				final LocalDateTime termino) {
+			this.inicio = Objects.requireNonNull(inicio,
+					"data/hora de início não pode ser NULL");
+			this.termino = Objects.requireNonNull(termino,
+					"data/hora de término não pode ser NULL");
 
-	public Periodo(final LocalDateTime inicio, final LocalDateTime termino) {
-		this.inicio = Objects.requireNonNull(inicio,
-				"data/hora de início não pode ser NULL");
-		this.termino = Objects.requireNonNull(termino,
-				"data/hora de término não pode ser NULL");
+			if (this.inicio.isAfter(this.termino)) {
+				throw new IllegalArgumentException(
+						"a data/hora de início deve ser anterior a data/hora de término");
+			}
+		}
 
-		if (this.inicio.isAfter(this.termino)) {
-			throw new IllegalArgumentException(
-					"a data/hora de início deve ser anterior a data/hora de término");
+		public ChronoLocalDateTime<?> inicio() {
+			return inicio;
+		}
+
+		public ChronoLocalDateTime<?> termino() {
+			return termino;
+		}
+
+		@Override
+		public boolean contem(final ChronoLocalDateTime<?> dataHora) {
+			return inicio.compareTo(dataHora) <= 0
+					&& termino.compareTo(dataHora) >= 0;
+		}
+
+		@Override
+		public String toString() {
+			final DateTimeFormatter formato = DateTimeFormatter
+					.ofLocalizedDateTime(FormatStyle.SHORT);
+
+			return String.format("%s a %s", inicio.format(formato),
+					termino.format(formato));
+		}
+
+		private static LocalDateTime toLocalDateTime(final String data,
+				final String hora) {
+			return LocalDateTime.parse(String.format("%s %s", data, hora),
+					DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 		}
 	}
 
-	public LocalDateTime inicio() {
-		return inicio;
-	}
+	final public class Data implements Periodo<ChronoLocalDate> {
+		private final LocalDate inicio;
+		private final LocalDate termino;
 
-	public LocalDateTime termino() {
-		return termino;
-	}
+		public Data(final String dataInicio, final String dataTermino) {
+			this(toLocalDate(dataInicio), toLocalDate(dataTermino));
+		}
 
-	@Override
-	public boolean contem(final ChronoLocalDateTime<?> dataHora) {
-		return inicio.compareTo(dataHora) <= 0
-				&& termino.compareTo(dataHora) >= 0;
-	}
+		public Data(final LocalDate inicio, final LocalDate termino) {
+			this.inicio = Objects.requireNonNull(inicio,
+					"data de início não pode ser NULL");
+			this.termino = Objects.requireNonNull(termino,
+					"data de término não pode ser NULL");
 
-	@Override
-	public String toString() {
-		final DateTimeFormatter formato = DateTimeFormatter
-				.ofPattern("dd/MM/yyyy HH:mm");
+			if (this.inicio.isAfter(this.termino)) {
+				throw new IllegalArgumentException(
+						"a data/hora de início deve ser anterior a data/hora de término");
+			}
+		}
 
-		return String.format("%s a %s", inicio.format(formato),
-				termino.format(formato));
-	}
+		public ChronoLocalDate inicio() {
+			return inicio;
+		}
 
-	private static LocalDateTime toLocalDateTime(final String data,
-			final String hora) {
-		return LocalDateTime.parse(String.format("%s %s", data, hora),
-				DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-	}
+		public ChronoLocalDate termino() {
+			return termino;
+		}
 
-	private static LocalDate toLocalDate(final String data) {
-		return LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		@Override
+		public boolean contem(final ChronoLocalDate data) {
+			return inicio.compareTo(data) <= 0 && termino.compareTo(data) >= 0;
+		}
+
+		@Override
+		public String toString() {
+			final DateTimeFormatter formato = DateTimeFormatter
+					.ofLocalizedDate(FormatStyle.SHORT);
+
+			return String.format("%s a %s", inicio.format(formato),
+					termino.format(formato));
+		}
+
+		private static LocalDate toLocalDate(final String data) {
+			return LocalDate.parse(data,
+					DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		}
 	}
 }
