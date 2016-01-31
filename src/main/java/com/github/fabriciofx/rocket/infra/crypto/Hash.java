@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.infraestrutura.crypto;
+package com.github.fabriciofx.rocket.infra.crypto;
 
 import java.io.File;
 import java.nio.file.Files;

@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.infraestrutura.repositorio;
+package com.github.fabriciofx.rocket.infra.repositorio;
 
 import java.util.List;
 import java.util.Objects;

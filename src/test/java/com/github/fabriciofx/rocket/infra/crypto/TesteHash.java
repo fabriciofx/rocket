@@ -1,12 +1,12 @@
-package com.github.fabriciofx.rocket.infraestrutura.crypto;
+package com.github.fabriciofx.rocket.infra.crypto;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.infraestrutura.crypto.Md5;
-import com.github.fabriciofx.rocket.infraestrutura.crypto.Sha1;
-import com.github.fabriciofx.rocket.infraestrutura.crypto.Sha256;
+import com.github.fabriciofx.rocket.infra.crypto.Md5;
+import com.github.fabriciofx.rocket.infra.crypto.Sha1;
+import com.github.fabriciofx.rocket.infra.crypto.Sha256;
 
 public class TesteHash {
 	final String data = "08a67fde-5a33-4063-8873-1c3933dc54fe";

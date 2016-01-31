@@ -15,7 +15,7 @@ import com.github.fabriciofx.rocket.dominio.financeiro.TesteDinheiro;
 import com.github.fabriciofx.rocket.dominio.intervalo.TesteIntervalo;
 import com.github.fabriciofx.rocket.dominio.repositorio.TesteDataId;
 import com.github.fabriciofx.rocket.dominio.repositorio.TesteHashId;
-import com.github.fabriciofx.rocket.infraestrutura.crypto.TesteHash;
+import com.github.fabriciofx.rocket.infra.crypto.TesteHash;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
