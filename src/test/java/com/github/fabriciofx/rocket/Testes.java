@@ -13,11 +13,9 @@ import com.github.fabriciofx.rocket.dominio.endereco.TesteEndereco;
 import com.github.fabriciofx.rocket.dominio.financeiro.TesteConta;
 import com.github.fabriciofx.rocket.dominio.financeiro.TesteDinheiro;
 import com.github.fabriciofx.rocket.dominio.intervalo.TesteIntervalo;
-import com.github.fabriciofx.rocket.dominio.intervalo.TesteMax;
-import com.github.fabriciofx.rocket.dominio.intervalo.TesteMin;
 import com.github.fabriciofx.rocket.dominio.repositorio.TesteDataId;
 import com.github.fabriciofx.rocket.dominio.repositorio.TesteHashId;
-import com.github.fabriciofx.rocket.infraestrutura.crypto.TesteHash;
+import com.github.fabriciofx.rocket.infra.crypto.TesteHash;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -31,8 +29,6 @@ import com.github.fabriciofx.rocket.infraestrutura.crypto.TesteHash;
 	TesteConta.class,
 	TesteDinheiro.class,
 	TesteIntervalo.class,
-	TesteMax.class,
-	TesteMin.class,
 	TesteDataId.class,
 	TesteHashId.class,
 	TesteHash.class

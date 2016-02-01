@@ -54,7 +54,7 @@ public final class Conta {
 		return resultado;
 	}
 
-	public Dinheiro saques(final Periodo periodo) {
+	public Dinheiro saques(final Periodo.Data periodo) {
 		Dinheiro resultado = new Dinheiro();
 
 		for (final Lancamento lancamento : lancamentos) {
@@ -68,7 +68,7 @@ public final class Conta {
 		return resultado;
 	}
 
-	public Dinheiro depositos(final Periodo periodo) {
+	public Dinheiro depositos(final Periodo.Data periodo) {
 		Dinheiro resultado = new Dinheiro();
 
 		for (final Lancamento lancamento : lancamentos) {
