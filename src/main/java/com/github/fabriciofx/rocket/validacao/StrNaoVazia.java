@@ -1,22 +1,22 @@
 package com.github.fabriciofx.rocket.validacao;
 
-public final class NumPositivo<T extends Number> implements Restricao<T> {
+public final class StrNaoVazia<T extends CharSequence> implements Restricao<T> {
 	private final Restricao<T> restricao;
 
-	public NumPositivo() {
+	public StrNaoVazia() {
 		this(new Restricao.Terminal<T>());
 	}
 
-	public NumPositivo(final Restricao<T> restricao) {
+	public StrNaoVazia(final Restricao<T> restricao) {
 		this.restricao = restricao;
 	}
 
 	@Override
 	public void valida(final T objeto) {
-		if (objeto.doubleValue() > 0) {
-			throw new IllegalArgumentException("número positivo");
+		if (objeto.length() <= 0) {
+			throw new IllegalArgumentException("vazia");
 		}
-		
+
 		restricao.valida(objeto);
 	}
 }
