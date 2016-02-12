@@ -1,22 +1,15 @@
 package com.github.fabriciofx.rocket.validacao;
 
-public final class ValidacaoNumPos<T extends Number> implements Validacao<T> {
-	private final Validacao<T> validacao;
-
-	public ValidacaoNumPos() {
-		this(new Validacao.Terminal<T>());
+public final class ValidacaoNumPos<T extends Number> extends Validacao<T> {
+	public ValidacaoNumPos(final ValidacaoNaoNulo<T> validacao) {
+		super(valida(validacao.objeto()));
 	}
 
-	public ValidacaoNumPos(final Validacao<T> validacao) {
-		this.validacao = validacao;
-	}
-
-	@Override
-	public void valida(final T objeto) {
-		if (objeto.doubleValue() < 0) {
+	private static <T> T valida(final T objeto) {
+		if (Number.class.cast(objeto).doubleValue() < 0) {
 			throw new IllegalArgumentException("número negativo");
 		}
 
-		validacao.valida(objeto);
+		return objeto;
 	}
 }

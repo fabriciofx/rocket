@@ -7,38 +7,28 @@ import java.util.Map;
 
 import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
 
-public final class ValidacaoTamanho<T> implements Validacao<T> {
-	private final Validacao<T> validacao;
-	private final Intervalo.Padrao<Integer> tamanho;
-
-	public ValidacaoTamanho() {
-		this(new Validacao.Terminal<>(), null);
-	}
-
-	public ValidacaoTamanho(final Validacao<T> restricao,
+public final class ValidacaoTamanho<T> extends Validacao<T> {
+	public ValidacaoTamanho(final Validacao<T> validacao,
 			final Intervalo.Padrao<Integer> tamanho) {
-		this.validacao = restricao;
-		this.tamanho = tamanho;
+		super(valida(validacao.objeto(), tamanho));
 	}
 
-	@Override
-	public void valida(final T objeto) {
-		if (objeto == null) {
-			new IllegalArgumentException("tamanho fora do intervalo");
-		} else if (objeto instanceof Collection
+	private static <T> T valida(final T objeto,
+			final Intervalo.Padrao<Integer> tamanho) {
+		if (objeto instanceof Collection
 				&& !tamanho.contem(Collection.class.cast(objeto).size())) {
-			new IllegalArgumentException("tamanho fora do intervalo");
+			throw new IllegalArgumentException("tamanho fora do intervalo");
 		} else if (objeto instanceof CharSequence && !tamanho.contem(
 				CharSequence.class.cast(objeto).toString().trim().length())) {
-			new IllegalArgumentException("tamanho fora do intervalo");
+			throw new IllegalArgumentException("tamanho fora do intervalo");
 		} else if (objeto instanceof Map
 				&& !tamanho.contem(Map.class.cast(objeto).size())) {
-			new IllegalArgumentException("tamanho fora do intervalo");
+			throw new IllegalArgumentException("tamanho fora do intervalo");
 		} else if (objeto instanceof Enumeration && !tamanho.contem(
 				Collections.list(Enumeration.class.cast(objeto)).size())) {
-			new IllegalArgumentException("tamanho fora do intervalo");
+			throw new IllegalArgumentException("tamanho fora do intervalo");
 		}
 
-		validacao.valida(objeto);
+		return objeto;
 	}
 }

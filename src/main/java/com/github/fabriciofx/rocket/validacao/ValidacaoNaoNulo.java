@@ -1,22 +1,15 @@
 package com.github.fabriciofx.rocket.validacao;
 
-public final class ValidacaoNaoNulo<T> implements Validacao<T> {
-	private final Validacao<T> validacao;
-
-	public ValidacaoNaoNulo() {
-		this(new Validacao.Terminal<T>());
+public final class ValidacaoNaoNulo<T> extends Validacao<T> {
+	public ValidacaoNaoNulo(final T objeto) {
+		super(valida(objeto));
 	}
 
-	public ValidacaoNaoNulo(final Validacao<T> validacao) {
-		this.validacao = validacao;
-	}
-
-	@Override
-	public void valida(final T objeto) {
+	private static <T> T valida(final T objeto) {
 		if (objeto == null) {
 			throw new IllegalArgumentException("nulo");
 		}
 
-		validacao.valida(objeto);
+		return objeto;
 	}
 }
