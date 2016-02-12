@@ -6,6 +6,10 @@ public final class StrEmail<T> implements Restricao<T> {
 
 	private final Restricao<T> restricao;
 
+	public StrEmail() {
+		this(new Restricao.Terminal<T>());
+	}
+	
 	public StrEmail(final Restricao<T> restricao) {
 		this.restricao = restricao;
 	}
