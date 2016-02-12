@@ -3,7 +3,7 @@ package com.github.fabriciofx.rocket.validacao;
 public final class TesteValidacao {
 	public static void main(String[] args) throws Exception {
 		final String fone = "999993456";
-		final Restricao<String> restricao = new NaoNulo<>(
+		final Restricao<String> restricao = new ValidacaoNaoNulo<>(
 				new ValidacaoNaoVazia<>(new StrNumerica<>()));
 		restricao.valida(fone);
 	}

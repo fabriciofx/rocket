@@ -1,13 +1,13 @@
 package com.github.fabriciofx.rocket.validacao;
 
-public final class NaoNulo<T> implements Restricao<T> {
+public final class ValidacaoNaoNulo<T> implements Restricao<T> {
 	private final Restricao<T> restricao;
 
-	public NaoNulo() {
+	public ValidacaoNaoNulo() {
 		this(new Restricao.Terminal<T>());
 	}
 	
-	public NaoNulo(final Restricao<T> restricao) {
+	public ValidacaoNaoNulo(final Restricao<T> restricao) {
 		this.restricao = restricao;
 	}
 
