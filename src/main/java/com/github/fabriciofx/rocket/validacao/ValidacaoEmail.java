@@ -1,7 +1,7 @@
 package com.github.fabriciofx.rocket.validacao;
 
 public final class ValidacaoEmail<T extends CharSequence>
-		implements Restricao<T> {
+		implements Validacao<T> {
 	private final String EMAIL_REGEX =
 			"^[\\w\\-]+(\\.[\\w\\-]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
 

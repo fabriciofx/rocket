@@ -1,19 +1,19 @@
 package com.github.fabriciofx.rocket.validacao;
 
-public final class ValidacaoRegEx<T> implements Restricao<T> {
-	private final Restricao<T> restricao;
+public final class ValidacaoRegEx<T> implements Validacao<T> {
+	private final Validacao<T> validacao;
 	private final String regEx;
 
 	public ValidacaoRegEx() {
-		this(new Restricao.Terminal<T>(), "null");
+		this(new Validacao.Terminal<T>(), "null");
 	}
 
 	public ValidacaoRegEx(final String regEx) {
-		this(new Restricao.Terminal<T>(), regEx);
+		this(new Validacao.Terminal<T>(), regEx);
 	}
 
-	public ValidacaoRegEx(final Restricao<T> restricao, final String regEx) {
-		this.restricao = restricao;
+	public ValidacaoRegEx(final Validacao<T> restricao, final String regEx) {
+		this.validacao = restricao;
 		this.regEx = regEx;
 	}
 
@@ -24,6 +24,6 @@ public final class ValidacaoRegEx<T> implements Restricao<T> {
 					"não casa com a expressão regular");
 		}
 
-		restricao.valida(objeto);
+		validacao.valida(objeto);
 	}
 }

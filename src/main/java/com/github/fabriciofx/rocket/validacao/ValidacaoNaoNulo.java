@@ -1,14 +1,14 @@
 package com.github.fabriciofx.rocket.validacao;
 
-public final class ValidacaoNaoNulo<T> implements Restricao<T> {
-	private final Restricao<T> restricao;
+public final class ValidacaoNaoNulo<T> implements Validacao<T> {
+	private final Validacao<T> validacao;
 
 	public ValidacaoNaoNulo() {
-		this(new Restricao.Terminal<T>());
+		this(new Validacao.Terminal<T>());
 	}
-	
-	public ValidacaoNaoNulo(final Restricao<T> restricao) {
-		this.restricao = restricao;
+
+	public ValidacaoNaoNulo(final Validacao<T> validacao) {
+		this.validacao = validacao;
 	}
 
 	@Override
@@ -16,7 +16,7 @@ public final class ValidacaoNaoNulo<T> implements Restricao<T> {
 		if (objeto == null) {
 			throw new IllegalArgumentException("nulo");
 		}
-		
-		restricao.valida(objeto);
+
+		validacao.valida(objeto);
 	}
 }

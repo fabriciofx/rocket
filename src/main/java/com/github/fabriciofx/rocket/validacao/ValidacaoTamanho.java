@@ -7,17 +7,17 @@ import java.util.Map;
 
 import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
 
-public final class ValidacaoTamanho<T> implements Restricao<T> {
-	private final Restricao<T> restricao;
+public final class ValidacaoTamanho<T> implements Validacao<T> {
+	private final Validacao<T> validacao;
 	private final Intervalo.Padrao<Integer> tamanho;
 
 	public ValidacaoTamanho() {
-		this(new Restricao.Terminal<>(), null);
+		this(new Validacao.Terminal<>(), null);
 	}
 
-	public ValidacaoTamanho(final Restricao<T> restricao,
+	public ValidacaoTamanho(final Validacao<T> restricao,
 			final Intervalo.Padrao<Integer> tamanho) {
-		this.restricao = restricao;
+		this.validacao = restricao;
 		this.tamanho = tamanho;
 	}
 
@@ -39,6 +39,6 @@ public final class ValidacaoTamanho<T> implements Restricao<T> {
 			new IllegalArgumentException("tamanho fora do intervalo");
 		}
 
-		restricao.valida(objeto);
+		validacao.valida(objeto);
 	}
 }

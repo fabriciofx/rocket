@@ -1,14 +1,14 @@
 package com.github.fabriciofx.rocket.validacao;
 
-public final class ValidacaoNumNeg<T extends Number> implements Restricao<T> {
-	private final Restricao<T> restricao;
+public final class ValidacaoNumNeg<T extends Number> implements Validacao<T> {
+	private final Validacao<T> validacao;
 
 	public ValidacaoNumNeg() {
-		this(new Restricao.Terminal<T>());
+		this(new Validacao.Terminal<T>());
 	}
 
-	public ValidacaoNumNeg(final Restricao<T> restricao) {
-		this.restricao = restricao;
+	public ValidacaoNumNeg(final Validacao<T> restricao) {
+		this.validacao = restricao;
 	}
 
 	@Override
@@ -16,7 +16,7 @@ public final class ValidacaoNumNeg<T extends Number> implements Restricao<T> {
 		if (objeto.doubleValue() >= 0) {
 			throw new IllegalArgumentException("número positivo");
 		}
-		
-		restricao.valida(objeto);
+
+		validacao.valida(objeto);
 	}
 }
