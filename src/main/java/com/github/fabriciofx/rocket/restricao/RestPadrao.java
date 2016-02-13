@@ -1,7 +1,7 @@
 package com.github.fabriciofx.rocket.restricao;
 
 public final class RestPadrao<T> extends Restricao<T> {
-	public RestPadrao(final RestNaoNulo<T> restricao, final String regEx) {
+	public RestPadrao(final RestNaoVazia<T> restricao, final String regEx) {
 		super(valida(restricao.objeto(), regEx));
 	}
 

@@ -8,11 +8,12 @@ import java.util.Map;
 import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
 
 public final class RestTamanho<T> extends Restricao<T> {
-	public RestTamanho(final Restricao<T> restricao,
+	public RestTamanho(final RestNaoVazia<T> restricao,
 			final Intervalo.Padrao<Integer> tamanho) {
 		super(valida(restricao.objeto(), tamanho));
 	}
 
+	@SuppressWarnings("unchecked")
 	private static <T> T valida(final T objeto,
 			final Intervalo.Padrao<Integer> tamanho) {
 		if (objeto instanceof Collection
