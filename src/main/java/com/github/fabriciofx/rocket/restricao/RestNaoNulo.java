@@ -1,7 +1,7 @@
-package com.github.fabriciofx.rocket.validacao;
+package com.github.fabriciofx.rocket.restricao;
 
-public final class ValidacaoNaoNulo<T> extends Validacao<T> {
-	public ValidacaoNaoNulo(final T objeto) {
+public final class RestNaoNulo<T> extends Restricao<T> {
+	public RestNaoNulo(final T objeto) {
 		super(valida(objeto));
 	}
 

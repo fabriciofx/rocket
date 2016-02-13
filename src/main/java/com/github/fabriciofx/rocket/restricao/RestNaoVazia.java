@@ -1,13 +1,13 @@
-package com.github.fabriciofx.rocket.validacao;
+package com.github.fabriciofx.rocket.restricao;
 
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 
-public final class ValidacaoNaoVazia<T> extends Validacao<T> {
-	public ValidacaoNaoVazia(final ValidacaoNaoNulo<T> validacao) {
-		super(valida(validacao.objeto()));
+public final class RestNaoVazia<T> extends Restricao<T> {
+	public RestNaoVazia(final RestNaoNulo<T> restricao) {
+		super(valida(restricao.objeto()));
 	}
 
 	private static <T> T valida(final T objeto) {

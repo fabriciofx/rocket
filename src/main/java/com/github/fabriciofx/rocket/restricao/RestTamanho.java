@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.validacao;
+package com.github.fabriciofx.rocket.restricao;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -7,10 +7,10 @@ import java.util.Map;
 
 import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
 
-public final class ValidacaoTamanho<T> extends Validacao<T> {
-	public ValidacaoTamanho(final Validacao<T> validacao,
+public final class RestTamanho<T> extends Restricao<T> {
+	public RestTamanho(final Restricao<T> restricao,
 			final Intervalo.Padrao<Integer> tamanho) {
-		super(valida(validacao.objeto(), tamanho));
+		super(valida(restricao.objeto(), tamanho));
 	}
 
 	private static <T> T valida(final T objeto,
