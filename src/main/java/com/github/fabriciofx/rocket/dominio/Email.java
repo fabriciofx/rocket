@@ -1,13 +1,15 @@
 package com.github.fabriciofx.rocket.dominio;
 
-import java.util.Objects;
+import com.github.fabriciofx.rocket.restricao.RestEmail;
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class Email {
 	private final String endereco;
 
 	public Email(final String endereco) {
-		valida(endereco);
-		this.endereco = endereco;
+		this.endereco = new RestEmail<>(
+				new RestNaoVazia<>(new RestNaoNulo<>(endereco))).objeto();
 	}
 
 	@Override
@@ -24,16 +26,5 @@ public final class Email {
 	@Override
 	public String toString() {
 		return endereco;
-	}
-
-	private void valida(final String endereco) {
-		Objects.requireNonNull(endereco,
-				"argumento 'endereco' não pode ser NULL");
-
-		if (!endereco.matches(
-				"^[\\w\\-]+(\\.[\\w\\-]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$")) {
-			throw new IllegalArgumentException(
-					"argumento 'endereco' de e-mail contém caracteres inválidos");
-		}
 	}
 }
