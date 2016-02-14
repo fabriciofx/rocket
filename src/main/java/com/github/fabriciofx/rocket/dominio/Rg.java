@@ -7,7 +7,7 @@ import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Rg {
-	public enum OrgaoEmissor {
+	public enum Emissor {
 		ABNC, CGPI, CGPMAF, CNIG, CNT, COREN, CORECON, CRA, CRAS, CRB, CRC, CRE,
 		CREA, CRECI, CREFIT, CRF, CRM, CRMV, CRN, CRO, CRP, CRPRE, CRQ, CRRC,
 		CSC, CTPS, DETRAN, DIC, DIREX, DPF, DPMAF, DPT, DST, DUREX, EST, FGTS,
@@ -17,22 +17,21 @@ public final class Rg {
 	}
 
 	private final String numero;
-	private final OrgaoEmissor orgaoEmissor;
+	private final Emissor emissor;
 	private final String estado;
 	private final int via;
 	private final LocalDate expedicao;
 
 	public Rg(final String numero) {
-		this(numero, OrgaoEmissor.SSP, "PB", 1, null);
+		this(numero, Emissor.SSP, "PB", 1, null);
 	}
 
-	public Rg(final String numero, final OrgaoEmissor orgaoEmissor,
-			final String estado, final int via, final LocalDate expedicao) {
+	public Rg(final String numero, final Emissor emissor, final String estado,
+			final int via, final LocalDate expedicao) {
 		this.numero = new RestPadrao<String>(
 				new RestNaoVazia<>(new RestNaoNulo<>(numero)), "[0-9]+")
 						.objeto().toUpperCase();
-		this.orgaoEmissor = new RestNaoNulo<OrgaoEmissor>(orgaoEmissor)
-				.objeto();
+		this.emissor = new RestNaoNulo<Emissor>(emissor).objeto();
 		this.estado = new RestNaoVazia<String>(new RestNaoNulo<>(estado))
 				.objeto().toUpperCase();
 		this.via = via;
@@ -43,8 +42,8 @@ public final class Rg {
 		return numero;
 	}
 
-	public OrgaoEmissor orgaoEmissor() {
-		return orgaoEmissor;
+	public Emissor emissor() {
+		return emissor;
 	}
 
 	public String estado() {
@@ -61,7 +60,7 @@ public final class Rg {
 
 	@Override
 	public String toString() {
-		return numero + " " + orgaoEmissor.toString() + "/" + estado
+		return numero + " " + emissor.toString() + "/" + estado
 				+ (via > 1 ? " - " + via + "ª via" : "");
 	}
 }

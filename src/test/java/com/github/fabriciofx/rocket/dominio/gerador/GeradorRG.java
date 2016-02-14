@@ -19,8 +19,8 @@ public final class GeradorRG {
 	public Rg get() {
 		final String numero = String.valueOf(
 				aleatorio.numero(100000000L, 999999999L));
-		final Rg.OrgaoEmissor[] emissores = Rg.OrgaoEmissor.values();
-		final Rg.OrgaoEmissor emissor = emissores[aleatorio.numero(0,
+		final Rg.Emissor[] emissores = Rg.Emissor.values();
+		final Rg.Emissor emissor = emissores[aleatorio.numero(0,
 				emissores.length - 1)];
 		final String estado = ESTADOS[aleatorio.numero(0,
 				ESTADOS.length - 1)];
