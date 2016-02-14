@@ -1,10 +1,13 @@
 package com.github.fabriciofx.rocket.dominio;
 
-import java.util.Objects;
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Fone {
 	public enum Operadora {
-		TIM, OI, CLARO, AEIOU, GVT, EMBRATEL, TELEFONICA, NEXTEL, VIVO, DESCONHECIDO;
+		TIM, OI, CLARO, AEIOU, GVT, EMBRATEL, TELEFONICA, NEXTEL, VIVO,
+		DESCONHECIDO;
 	}
 
 	public enum Tipo {
@@ -17,19 +20,12 @@ public final class Fone {
 
 	public Fone(final String numero, final Tipo tipo,
 			final Operadora operadora) {
-		Objects.requireNonNull(numero,
-				"argumento 'numero' de telefone não pode ser NULL");
-
-		if (!numero.matches("[0-9]+")) {
-			throw new IllegalArgumentException(
-					"argumento 'numero' de telefone só pode possuir números");
-		}
-
-		this.numero = numero;
-		this.tipo = Objects.requireNonNull(tipo,
-				"argumento 'tipo' de telefone não pode ser NULL");
-		this.operadora = Objects.requireNonNull(operadora,
-				"argumento 'operadora' de telefone não pode ser NULL");
+		this.numero = new RestPadrao<String>(new RestNaoVazia<>(
+					new RestNaoNulo<>(numero)
+					), "[0-9]+"
+				).objeto();
+		this.tipo = new RestNaoNulo<Tipo>(tipo).objeto();
+		this.operadora = new RestNaoNulo<Operadora>(operadora).objeto();
 	}
 
 	public String numero() {

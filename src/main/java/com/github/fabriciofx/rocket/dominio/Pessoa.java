@@ -2,11 +2,12 @@ package com.github.fabriciofx.rocket.dominio;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.repositorio.Identificador;
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class Pessoa {
 	private final Identificador id;
@@ -21,14 +22,11 @@ public final class Pessoa {
 
 	public Pessoa(final Identificador id, final Nome nome,
 			final Endereco endereco, final Set<Fone> fones) {
-		this.id = Objects.requireNonNull(id,
-				"identificador de pessoa não pode ser NULL");
-		this.nome = Objects.requireNonNull(nome,
-				"nome de pessoa não pode ser NULL");
-		this.endereco = Objects.requireNonNull(endereco,
-				"endereço de pessoa não pode ser NULL");
-		this.fones = Objects.requireNonNull(fones,
-				"telefone(s) de pessoa não pode ser NULL");
+		this.id = new RestNaoNulo<Identificador>(id).objeto();
+		this.nome = new RestNaoNulo<Nome>(nome).objeto();
+		this.endereco = new RestNaoNulo<Endereco>(endereco).objeto();
+		this.fones = new RestNaoVazia<Set<Fone>>(new RestNaoNulo<>(fones))
+				.objeto();
 	}
 
 	public Identificador id() {

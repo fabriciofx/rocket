@@ -1,25 +1,14 @@
 package com.github.fabriciofx.rocket.dominio;
 
-import java.util.Objects;
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class Nome {
 	private final String completo;
 
 	public Nome(final String completo) {
-		Objects.requireNonNull(completo,
-				"argumento 'completo' do nome não pode ser NULL");
-
-		if (completo.isEmpty()) {
-			throw new IllegalArgumentException(
-					"argumento 'completo' não pode ser string vazia");
-		}
-
-		if (completo.matches(".*?(-?\\d+).*")) {
-			throw new IllegalArgumentException(
-					"argumento 'completo' do nome possui caracteres inválidos");
-		}
-
-		this.completo = completo.trim().replaceAll("\\s+", " ");
+		this.completo = new RestNaoVazia<>(new RestNaoNulo<>(completo)).objeto()
+				.trim().replaceAll("\\s+", " ");
 	}
 
 	public String completo() {

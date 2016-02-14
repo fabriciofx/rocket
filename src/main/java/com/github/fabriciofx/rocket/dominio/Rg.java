@@ -2,6 +2,10 @@ package com.github.fabriciofx.rocket.dominio;
 
 import java.time.LocalDate;
 
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.restricao.RestPadrao;
+
 public final class Rg {
 	public enum OrgaoEmissor {
 		ABNC, CGPI, CGPMAF, CNIG, CNT, COREN, CORECON, CRA, CRAS, CRB, CRC, CRE,
@@ -24,11 +28,15 @@ public final class Rg {
 
 	public Rg(final String numero, final OrgaoEmissor orgaoEmissor,
 			final String estado, final int via, final LocalDate expedicao) {
-		this.numero = numero;
-		this.orgaoEmissor = orgaoEmissor;
-		this.estado = estado.toUpperCase();
+		this.numero = new RestPadrao<String>(
+				new RestNaoVazia<>(new RestNaoNulo<>(numero)), "[0-9]+")
+						.objeto().toUpperCase();
+		this.orgaoEmissor = new RestNaoNulo<OrgaoEmissor>(orgaoEmissor)
+				.objeto();
+		this.estado = new RestNaoVazia<String>(new RestNaoNulo<>(estado))
+				.objeto().toUpperCase();
 		this.via = via;
-		this.expedicao = expedicao;
+		this.expedicao = new RestNaoNulo<LocalDate>(expedicao).objeto();
 	}
 
 	public String numero() {

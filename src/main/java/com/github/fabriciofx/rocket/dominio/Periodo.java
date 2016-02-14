@@ -9,6 +9,7 @@ import java.time.format.FormatStyle;
 import java.util.Objects;
 
 import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 	T inicio();
@@ -27,14 +28,12 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 
 		public DataHora(final LocalDateTime inicio,
 				final LocalDateTime termino) {
-			this.inicio = Objects.requireNonNull(inicio,
-					"data/hora de início não pode ser NULL");
-			this.termino = Objects.requireNonNull(termino,
-					"data/hora de término não pode ser NULL");
+			this.inicio = new RestNaoNulo<>(inicio).objeto();
+			this.termino = new RestNaoNulo<>(termino).objeto();
 
 			if (this.inicio.isAfter(this.termino)) {
 				throw new IllegalArgumentException(
-						"a data/hora de início deve ser anterior a data/hora de término");
+			"a data/hora de início deve ser anterior a data/hora de término");
 			}
 		}
 
@@ -77,14 +76,12 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 		}
 
 		public Data(final LocalDate inicio, final LocalDate termino) {
-			this.inicio = Objects.requireNonNull(inicio,
-					"data de início não pode ser NULL");
-			this.termino = Objects.requireNonNull(termino,
-					"data de término não pode ser NULL");
+			this.inicio = new RestNaoNulo<>(inicio).objeto();
+			this.termino = new RestNaoNulo<>(termino).objeto();
 
 			if (this.inicio.isAfter(this.termino)) {
 				throw new IllegalArgumentException(
-						"a data/hora de início deve ser anterior a data/hora de término");
+			"a data/hora de início deve ser anterior a data/hora de término");
 			}
 		}
 

@@ -1,15 +1,14 @@
 package com.github.fabriciofx.rocket.dominio;
 
-import java.util.Objects;
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public final class PessoaFisica {
 	private final Pessoa pessoa;
 	private final Rg rg;
 
 	public PessoaFisica(final Pessoa pessoa, final Rg rg) {
-		this.pessoa = Objects.requireNonNull(pessoa,
-				"pessoa não pode ser NULL");
-		this.rg = Objects.requireNonNull(rg, "RG não pode ser NULL");
+		this.pessoa = new RestNaoNulo<Pessoa>(pessoa).objeto();
+		this.rg = new RestNaoNulo<Rg>(rg).objeto();
 	}
 
 	public Pessoa comoPessoa() {

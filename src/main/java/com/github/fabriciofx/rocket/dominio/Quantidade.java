@@ -1,6 +1,6 @@
 package com.github.fabriciofx.rocket.dominio;
 
-import java.util.Objects;
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public final class Quantidade {
 	private final double valor;
@@ -8,8 +8,7 @@ public final class Quantidade {
 
 	public Quantidade(final double valor, final Unidade unidade) {
 		this.valor = valor;
-		this.unidade = Objects.requireNonNull(unidade,
-				"argumento 'unidade' da quantidade não pode ser NULL");
+		this.unidade = new RestNaoNulo<Unidade>(unidade).objeto();
 	}
 
 	public double valor() {

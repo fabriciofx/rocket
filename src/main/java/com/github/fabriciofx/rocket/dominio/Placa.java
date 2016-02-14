@@ -1,14 +1,17 @@
 package com.github.fabriciofx.rocket.dominio;
 
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.restricao.RestPadrao;
+
 public final class Placa {
 	private final String numero;
 
 	public Placa(final String numero) {
-		if (numero == null || !numero.matches("^[a-zA-Z]{3}\\d{4}$")) {
-			throw new IllegalArgumentException("número de placa inválido");
-		}
-
-		this.numero = numero.toUpperCase();
+		this.numero = new RestPadrao<String>(new RestNaoVazia<>(
+				new RestNaoNulo<>(numero)
+				), "^[a-zA-Z]{3}\\d{4}$"
+			).objeto().toUpperCase();
 	}
 
 	public String numero() {
