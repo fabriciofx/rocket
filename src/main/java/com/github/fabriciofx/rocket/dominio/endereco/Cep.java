@@ -1,19 +1,17 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
-import java.util.Objects;
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Cep {
 	private final String numero;
 
 	public Cep(final String numero) {
-		Objects.requireNonNull(numero, "número de CEP não pode ser NULL");
-
-		if (!numero.matches("[0-9]{8}")) {
-			throw new IllegalArgumentException(
-					"número de CEP deve ser composto apenas por números");
-		}
-
-		this.numero = numero;
+		this.numero = new RestPadrao<String>(new RestNaoVazia<>(
+				new RestNaoNulo<>(numero)
+				), "[0-9]{8}"
+			).objeto();
 	}
 
 	public String numero() {
