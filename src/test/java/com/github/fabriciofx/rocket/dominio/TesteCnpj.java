@@ -8,7 +8,7 @@ public class TesteCnpj {
 		new Cnpj("33014556000196");
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void invalidoComNull() {
 		new Cnpj(null);
 	}
