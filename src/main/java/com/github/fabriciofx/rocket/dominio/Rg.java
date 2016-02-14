@@ -60,7 +60,7 @@ public final class Rg {
 
 	@Override
 	public String toString() {
-		return numero + " " + emissor.toString() + "/" + estado
-				+ (via > 1 ? " - " + via + "ª via" : "");
+		final String v = via > 1 ? " - " + via + "ª via" : "";
+		return String.format("%s %s/%s %s", numero, emissor, estado, v).trim();
 	}
 }
