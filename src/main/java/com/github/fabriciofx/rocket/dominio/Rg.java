@@ -2,6 +2,7 @@ package com.github.fabriciofx.rocket.dominio;
 
 import java.time.LocalDate;
 
+import com.github.fabriciofx.rocket.dominio.endereco.Estado;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
@@ -18,22 +19,21 @@ public final class Rg {
 
 	private final String numero;
 	private final Emissor emissor;
-	private final String estado;
+	private final Estado estado;
 	private final int via;
 	private final LocalDate expedicao;
 
 	public Rg(final String numero) {
-		this(numero, Emissor.SSP, "PB", 1, null);
+		this(numero, Emissor.SSP, Estado.PB, 1, null);
 	}
 
-	public Rg(final String numero, final Emissor emissor, final String estado,
+	public Rg(final String numero, final Emissor emissor, final Estado estado,
 			final int via, final LocalDate expedicao) {
 		this.numero = new RestPadrao<String>(
 				new RestNaoVazia<>(new RestNaoNulo<>(numero)), "[0-9]+")
 						.objeto().toUpperCase();
 		this.emissor = new RestNaoNulo<Emissor>(emissor).objeto();
-		this.estado = new RestNaoVazia<String>(new RestNaoNulo<>(estado))
-				.objeto().toUpperCase();
+		this.estado = new RestNaoNulo<>(estado).objeto();
 		this.via = via;
 		this.expedicao = new RestNaoNulo<LocalDate>(expedicao).objeto();
 	}
@@ -46,7 +46,7 @@ public final class Rg {
 		return emissor;
 	}
 
-	public String estado() {
+	public Estado estado() {
 		return estado;
 	}
 
