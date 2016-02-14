@@ -6,7 +6,6 @@ import java.time.chrono.ChronoLocalDate;
 import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Objects;
 
 import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
