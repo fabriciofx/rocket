@@ -22,12 +22,12 @@ public class TesteCpf {
 	public void invalidoComDezDigitos() {
 		new Cpf("2479315580");
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void invalidoComDozeDigitos() {
 		new Cpf("247293105580");
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void invalido() {
 		new Cpf("24793205580");

@@ -6,40 +6,25 @@ public final class RestModulo11<T extends CharSequence> extends Restricao<T> {
 	}
 
 	private static <T> T valida(final T objeto) {
-		final int[] digitos = new int[11];
-		final String digitosStr = objeto.toString();
+		final String digitos = objeto.toString();
+		final int tamanho = digitos.length();
+		final int tamanho1 = tamanho - 1;
+		final int tamanho2 = tamanho - 2;
+		final int dv1 = digitos.charAt(tamanho2) - '0';
+		final int dv2 = digitos.charAt(tamanho1) - '0';
+		int v1 = 0, v2 = 0;
+
+		for (int i = 0; i < tamanho2; i++) {
+			final int digito = digitos.charAt(tamanho2 - 1 - i) - '0';
+			v1 = v1 + digito * (tamanho2 - (i % tamanho1));
+			v2 = v2 + digito * (tamanho2 - ((i + 1) % tamanho1));
+		}
 		
-		for (int i = 0; i < digitos.length; i++) {
-			digitos[i] = digitosStr.charAt(i) - '0';
-		}
+		v1 = (v1 % tamanho) % tamanho1;
+		v2 = v2 + v1 * tamanho2;
+		v2 = (v2 % tamanho) % tamanho1;
 
-		// 4. Realiza o cálculo do 1o digito verificador.
-		int digitoVerificador1 = 10 * digitos[0] + 9 * digitos[1]
-				+ 8 * digitos[2] + 7 * digitos[3] + 6 * digitos[4]
-				+ 5 * digitos[5] + 4 * digitos[6] + 3 * digitos[7]
-				+ 2 * digitos[8];
-		digitoVerificador1 = 11 - digitoVerificador1 % 11;
-
-		if (digitoVerificador1 >= 10) {
-			digitoVerificador1 = 0;
-		}
-
-		// 5. Realiza o cálculo do 2o digito verificador.
-		int digitoVerificador2 = 11 * digitos[0] + 10 * digitos[1]
-				+ 9 * digitos[2] + 8 * digitos[3] + 7 * digitos[4]
-				+ 6 * digitos[5] + 5 * digitos[6] + 4 * digitos[7]
-				+ 3 * digitos[8];
-
-		digitoVerificador2 += 2 * digitoVerificador1;
-		digitoVerificador2 = 11 - digitoVerificador2 % 11;
-
-		if (digitoVerificador2 >= 10) {
-			digitoVerificador2 = 0;
-		}
-
-		// 6. Verifica se os dígitos verificadores estão corretos.
-		if (digitoVerificador1 != digitos[9]
-				&& digitoVerificador2 != digitos[10]) {
+		if (v1 != dv1 && v2 != dv2) {
 			throw new IllegalArgumentException(
 					"o número não confere com os dígitos verificadores");
 		}
