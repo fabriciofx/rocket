@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.github.fabriciofx.rocket.dominio.gerador.GeradorNome;
 
 public class TesteNome {
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void invalidoSeNulo() {
 		new Nome(null);
 	}
