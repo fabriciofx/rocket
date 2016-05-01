@@ -5,9 +5,8 @@ import java.time.LocalDateTime;
 
 import com.github.fabriciofx.rocket.misc.Aleatorio;
 
-public final class DataId
-		implements Identificador, Serializable, Comparable<DataId> {
-	private static final long serialVersionUID = 8432137023318843920L;
+public final class DataId implements Id, Serializable, Comparable<DataId> {
+	private static final long serialVersionUID = -7584863143398126900L;
 
 	private final long numero;
 

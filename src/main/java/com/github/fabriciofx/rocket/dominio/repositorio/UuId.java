@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public final class UuId
-		implements Identificador, Serializable, Comparable<UuId> {
-	private static final long serialVersionUID = -6517363452810841857L;
+public final class UuId implements Id, Serializable, Comparable<UuId> {
+	private static final long serialVersionUID = 5856999591152433138L;
 
 	private final UUID uuid;
 

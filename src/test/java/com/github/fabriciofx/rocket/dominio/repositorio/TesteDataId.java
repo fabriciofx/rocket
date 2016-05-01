@@ -6,13 +6,10 @@ import java.time.LocalDateTime;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.repositorio.DataId;
-
 public final class TesteDataId {
 	@Test
 	public void comUmNumero() {
 		final DataId id = new DataId(2015122920514373623L);
-
 		assertEquals(2015122920514373623L, id.toLong());
 	}
 
@@ -20,7 +17,6 @@ public final class TesteDataId {
 	public void comDataHoraAtual() {
 		final LocalDateTime agora = LocalDateTime.now();
 		final DataId id = new DataId(agora);
-
 		assertEquals(agora, id.dataHora());
 	}
 }

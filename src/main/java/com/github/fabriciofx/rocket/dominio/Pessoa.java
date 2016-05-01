@@ -5,31 +5,31 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
-import com.github.fabriciofx.rocket.dominio.repositorio.Identificador;
+import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class Pessoa {
-	private final Identificador id;
+	private final Id id;
 	private final Nome nome;
 	private final Endereco endereco;
 	private final Set<Fone> fones;
 
-	public Pessoa(final Identificador id, final Nome nome,
+	public Pessoa(final Id id, final Nome nome,
 			final Endereco endereco, final Fone... fones) {
 		this(id, nome, endereco, new HashSet<>(Arrays.asList(fones)));
 	}
 
-	public Pessoa(final Identificador id, final Nome nome,
+	public Pessoa(final Id id, final Nome nome,
 			final Endereco endereco, final Set<Fone> fones) {
-		this.id = new RestNaoNulo<Identificador>(id).objeto();
+		this.id = new RestNaoNulo<Id>(id).objeto();
 		this.nome = new RestNaoNulo<Nome>(nome).objeto();
 		this.endereco = new RestNaoNulo<Endereco>(endereco).objeto();
 		this.fones = new RestNaoVazia<Set<Fone>>(new RestNaoNulo<>(fones))
 				.objeto();
 	}
 
-	public Identificador id() {
+	public Id id() {
 		return id;
 	}
 

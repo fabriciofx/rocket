@@ -3,9 +3,8 @@ package com.github.fabriciofx.rocket.dominio.repositorio;
 import java.io.Serializable;
 import java.util.Objects;
 
-public final class HashId
-		implements Identificador, Serializable, Comparable<HashId> {
-	private static final long serialVersionUID = 7647835760601201811L;
+public final class HashId implements Id, Serializable, Comparable<HashId> {
+	private static final long serialVersionUID = 626612574061974733L;
 
 	private final String hash;
 
