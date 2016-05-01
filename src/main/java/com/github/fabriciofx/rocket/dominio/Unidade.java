@@ -1,9 +1,17 @@
 package com.github.fabriciofx.rocket.dominio;
 
 public enum Unidade {
-	MILIGRAMA("mg"), GRAMA("g"), QUILO("kg"), TONELADA("T"), MILIMETRO("mm"),
-	CENTIMETRO("cm"), METRO("m"), QUILOMETRO("km"), POLEGADA("\""),
-	MILILITRO("ml"), LITRO("l");
+	MILIGRAMA("mg"),
+	GRAMA("g"),
+	QUILO("kg"),
+	TONELADA("T"),
+	MILIMETRO("mm"),
+	CENTIMETRO("cm"),
+	METRO("m"),
+	QUILOMETRO("km"),
+	POLEGADA("\""),
+	MILILITRO("ml"),
+	LITRO("l");
 
 	private final String simbolo;
 

@@ -1,8 +1,12 @@
 package com.github.fabriciofx.rocket.dominio;
 
 public enum Titulacao {
-	MESTRE("M.e"), MESTRA("M.a"), DOUTOR("D.r"), DOUTORA("D.ra"), DOUTORES(
-			"Drs."), DOUTORAS("Dr.as");
+	MESTRE("M.e"),
+	MESTRA("M.a"),
+	DOUTOR("D.r"),
+	DOUTORA("D.ra"),
+	DOUTORES("Drs."),
+	DOUTORAS("Dr.as");
 
 	private final String abreviatura;
 
