@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public final class TesteCpf {
 	@Test
-	public void cpfValido() {
+	public void valido() {
 		new Cpf("24793105580");
 	}
 
