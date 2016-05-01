@@ -95,7 +95,7 @@ public final class GeradorNome {
 			"Ferreira", "Ferro", "Figueira", "Figueiredo", "de Figueiredo",
 			"Flores", "das Flores", "Fonseca", "Fournier", "Fontes", "Fraga",
 			"Fragoso", "França", "Franco", "Furtado", "Freitas", "Freire",
-			"Furtado", "Fortunato", "Godinho", "Gois,", "Gomes", "Gonçalves",
+			"Furtado", "Fortunato", "Godinho", "Gois", "Gomes", "Gonçalves",
 			"Goulart", "Gouveia", "Guedes", "Guerra", "Guilherme", "Guimarães",
 			"Gusmão", "Guterres", "Henriques", "Hipólito", "Horta", "Inácio",
 			"Jardim", "Jesus", "de Jesus", "Junqueira", "de Junqueira", "Lima",
