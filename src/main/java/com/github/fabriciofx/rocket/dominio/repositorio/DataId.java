@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import com.github.fabriciofx.rocket.misc.Aleatorio;
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public final class DataId implements Id, Serializable, Comparable<DataId> {
 	private static final long serialVersionUID = -7584863143398126900L;
@@ -78,12 +79,13 @@ public final class DataId implements Id, Serializable, Comparable<DataId> {
 	}
 
 	private static long localDateTimeParaLong(final LocalDateTime dataHora) {
-		return dataHora.getYear() * 1000000000000000L
-				+ dataHora.getMonthValue() * 10000000000000L
-				+ dataHora.getDayOfMonth() * 100000000000L
-				+ dataHora.getHour() * 1000000000L
-				+ dataHora.getMinute() * 10000000L
-				+ dataHora.getSecond() * 100000L
-				+ (dataHora.getNano() / 10000L);
+		final LocalDateTime dh = new RestNaoNulo<>(dataHora).objeto();
+		return dh.getYear() * 1000000000000000L
+				+ dh.getMonthValue() * 10000000000000L
+				+ dh.getDayOfMonth() * 100000000000L
+				+ dh.getHour() * 1000000000L
+				+ dh.getMinute() * 10000000L
+				+ dh.getSecond() * 100000L
+				+ (dh.getNano() / 10000L);
 	}
 }

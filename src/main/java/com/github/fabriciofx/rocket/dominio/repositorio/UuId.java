@@ -1,8 +1,10 @@
 package com.github.fabriciofx.rocket.dominio.repositorio;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.UUID;
+
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class UuId implements Id, Serializable, Comparable<UuId> {
 	private static final long serialVersionUID = 5856999591152433138L;
@@ -18,8 +20,7 @@ public final class UuId implements Id, Serializable, Comparable<UuId> {
 	}
 
 	public UuId(final UUID uuid) {
-		this.uuid = Objects.requireNonNull(uuid,
-				"argumento 'uuid' não pode ser NULL");
+		this.uuid = new RestNaoVazia<>(new RestNaoNulo<>(uuid)).objeto();
 	}
 
 	@Override

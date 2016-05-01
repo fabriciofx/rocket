@@ -1,7 +1,9 @@
 package com.github.fabriciofx.rocket.dominio.repositorio;
 
 import java.io.Serializable;
-import java.util.Objects;
+
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class HashId implements Id, Serializable, Comparable<HashId> {
 	private static final long serialVersionUID = 626612574061974733L;
@@ -9,8 +11,7 @@ public final class HashId implements Id, Serializable, Comparable<HashId> {
 	private final String hash;
 
 	public HashId(final String hash) {
-		this.hash = Objects.requireNonNull(hash,
-				"argumento 'hash' não pode ser NULL");
+		this.hash = new RestNaoVazia<>(new RestNaoNulo<>(hash)).objeto();
 	}
 
 	@Override
