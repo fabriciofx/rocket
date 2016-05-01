@@ -8,7 +8,7 @@ public final class RestPadrao<T> extends Restricao<T> {
 	private static <T> T valida(final T objeto, final String regEx) {
 		if (!objeto.toString().matches(regEx)) {
 			throw new IllegalArgumentException(
-					"não casa com a expressão regular");
+					"não casa com a expressão regular: " + objeto.toString());
 		}
 
 		return objeto;
