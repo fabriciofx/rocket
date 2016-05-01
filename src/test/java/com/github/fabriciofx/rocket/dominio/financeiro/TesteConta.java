@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.github.fabriciofx.rocket.dominio.financeiro.Conta;
 import com.github.fabriciofx.rocket.dominio.financeiro.Dinheiro;
 
-public class TesteConta {
+public final class TesteConta {
 	@Test
 	public void criaContaComCreditoDeCemReais() {
 		final Conta c = new Conta(new Dinheiro("100.00"));

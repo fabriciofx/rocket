@@ -3,7 +3,7 @@ package com.github.fabriciofx.rocket.dominio.gerador;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.misc.Aleatorio;
 
-public class GeradorNome {
+public final class GeradorNome {
 	private static final int MIN_SOBRENOMES = 2;
 
 	private static final String[] NOMES = { "Abel", "Abelardo", "Abrahão",

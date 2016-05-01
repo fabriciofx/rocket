@@ -9,7 +9,7 @@ import com.github.fabriciofx.rocket.infra.crypto.Sha1;
 import com.github.fabriciofx.rocket.infra.crypto.Sha256;
 import com.github.fabriciofx.rocket.misc.Hex;
 
-public class TesteHash {
+public final class TesteHash {
 	private static final String DADOS = "08a67fde-5a33-4063-8873-1c3933dc54fe";
 
 	@Test

@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import com.github.fabriciofx.rocket.dominio.endereco.Cep;
 
-public class TesteCep {
+public final class TesteCep {
 	@Test(expected = NullPointerException.class)
 	public void invalidoSeNulo() {
 		new Cep(null);

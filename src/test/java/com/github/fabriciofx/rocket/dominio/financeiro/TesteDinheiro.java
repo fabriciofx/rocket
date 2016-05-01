@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.github.fabriciofx.rocket.dominio.financeiro.Dinheiro;
 import com.jcabi.immutable.Array;
 
-public class TesteDinheiro {
+public final class TesteDinheiro {
 	@Test(expected = IllegalArgumentException.class)
 	public void invalido1() {
 		new Dinheiro("", "");

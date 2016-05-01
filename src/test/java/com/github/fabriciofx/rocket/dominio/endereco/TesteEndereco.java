@@ -8,7 +8,7 @@ import com.github.fabriciofx.rocket.dominio.endereco.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.endereco.FmtEndereco;
 
-public class TesteEndereco {
+public final class TesteEndereco {
 	@Test
 	public void criaUmEndereco() {
 		/*

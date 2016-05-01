@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.dominio;
 
 import org.junit.Test;
 
-public class TesteCpf {
+public final class TesteCpf {
 	@Test
 	public void cpfValido() {
 		new Cpf("24793105580");

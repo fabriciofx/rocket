@@ -13,7 +13,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class TestePlaca {
+public final class TestePlaca {
 	private String numero;
 	private Class<? extends Throwable> excecao;
 	private String mensagem;

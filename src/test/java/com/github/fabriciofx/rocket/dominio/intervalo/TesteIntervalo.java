@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class TesteIntervalo {
+public final class TesteIntervalo {
 	@Test
 	public void deNumerosReaisPositivos() {
 		final Intervalo<Double> intervalo = new Intervalo.Padrao<>(

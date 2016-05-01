@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 import org.junit.Test;
 
-public class TestePeriodo {
+public final class TestePeriodo {
 	@Test
 	public void contemDataHora() {
 		final Periodo.DataHora periodo = new Periodo.DataHora(

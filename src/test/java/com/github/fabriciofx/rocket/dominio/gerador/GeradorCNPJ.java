@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.github.fabriciofx.rocket.dominio.Cnpj;
 
-public class GeradorCNPJ {
+public final class GeradorCNPJ {
 	private GeradorCNPJ() {
 	}
 

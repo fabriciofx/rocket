@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.dominio;
 
 import org.junit.Test;
 
-public class TesteCnpj {
+public final class TesteCnpj {
 	@Test
 	public void cnpjValido() {
 		new Cnpj("33014556000196");
