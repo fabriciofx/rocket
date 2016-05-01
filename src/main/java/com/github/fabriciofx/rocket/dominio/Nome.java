@@ -2,13 +2,18 @@ package com.github.fabriciofx.rocket.dominio;
 
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Nome {
 	private final String completo;
 
 	public Nome(final String completo) {
-		this.completo = new RestNaoVazia<>(new RestNaoNulo<>(completo)).objeto()
-				.trim().replaceAll("\\s+", " ");
+		this.completo = new RestPadrao<>(
+			new RestNaoVazia<>(
+				new RestNaoNulo<>(completo)
+			),
+			"^[\\p{L} .'-]+$"
+		).objeto().trim().replaceAll("\\s+", " ");
 	}
 
 	public String completo() {
