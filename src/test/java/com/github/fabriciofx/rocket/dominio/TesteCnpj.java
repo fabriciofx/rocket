@@ -4,27 +4,27 @@ import org.junit.Test;
 
 public final class TesteCnpj {
 	@Test
-	public void cnpjValido() {
+	public void valido() {
 		new Cnpj("33014556000196");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void invalidoComNull() {
+	public void invalidoSeNulo() {
 		new Cnpj(null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void invalidoComStringVazia() {
+	public void invalidoSeVazio() {
 		new Cnpj("");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void invalidoComTrezeDigitos() {
+	public void invalidoSeTiverTrezeDigitos() {
 		new Cnpj("3014556000196");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void invalidoComQuinzeDigitos() {
+	public void invalidoSeTiverQuinzeDigitos() {
 		new Cnpj("301455600019612");
 	}
 	
