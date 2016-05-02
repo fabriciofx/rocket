@@ -4,14 +4,16 @@ import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Cep {
+public final class Cep implements Selo {
 	private final String numero;
 
 	public Cep(final String numero) {
-		this.numero = new RestPadrao<String>(new RestNaoVazia<>(
+		this.numero = new RestPadrao<>(
+			new RestNaoVazia<>(
 				new RestNaoNulo<>(numero)
-				), "[0-9]{8}"
-			).objeto();
+			),
+			"[0-9]{8}"
+		).objeto();
 	}
 
 	public String numero() {

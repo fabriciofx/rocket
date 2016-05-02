@@ -48,6 +48,11 @@
 			<artifactId>jcabi-immutable</artifactId>
 			<version>1.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.jcabi.incubator</groupId>
+			<artifactId>xembly</artifactId>
+			<version>0.22</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

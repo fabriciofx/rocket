@@ -4,32 +4,53 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.Cep;
+import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
+import com.github.fabriciofx.rocket.dominio.endereco.Complemento;
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
-import com.github.fabriciofx.rocket.dominio.endereco.FmtEndereco;
+import com.github.fabriciofx.rocket.dominio.endereco.Estado;
+import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
+import com.github.fabriciofx.rocket.dominio.endereco.Numero;
+import com.github.fabriciofx.rocket.infra.media.TextMedia;
+import com.github.fabriciofx.rocket.infra.media.XmlMedia;
 
 public final class TesteEndereco {
-	@Test
-	public void criaUmEndereco() {
-		/*
-		 * Av Gov Torquato Nepomuceno Neves, 123
-		 * AP 101
-		 * Vila Madalena
-		 * 48035-120   São Paulo-SP
-		 */
-		final Endereco endereco = new Endereco()
-				.comAtributo("logradouro", "Av Gov Torquato Nepomuceno Neves")
-				.comAtributo("numero", 123)
-				.comAtributo("complemento", "AP 101")
-				.comAtributo("bairro", "Vila Madalena")
-				.comAtributo("cep", new Cep("48035120"))
-				.comAtributo("cidade", "São Paulo")
-				.comAtributo("estado", "SP");
+	private final String LS = System.lineSeparator();
+	private final Endereco endereco = new Endereco.Simples(
+		new Logradouro("Av Gov Torquato Nepomuceno Neves"),
+		new Numero("123"),
+		new Complemento("AP 101"),
+		new Bairro("Vila Madalena"),
+		new Cidade("São Paulo", Estado.SP),
+		new Cep("48035120")
+	);
 
-		final String saida = "Av Gov Torquato Nepomuceno Neves, 123\n"
-				+ "AP 101\n" + "Vila Madalena\n" + "48035-120   São Paulo-SP";
-		
-		final FmtEndereco formatado = new FmtEndereco(endereco);
-		assertEquals(saida, formatado.toString());
+	@Test
+	public void texto() {
+		final String txt = 
+			"Av Gov Torquato Nepomuceno Neves" + LS +
+			"123" + LS +
+			"AP 101" + LS +
+			"Vila Madalena" + LS +
+			"São Paulo-SP" + LS +
+			"48035120" + LS;
+		assertEquals(txt, endereco.imprime(new TextMedia()).toString());
+	}
+	
+	@Test
+	public void xml() {
+		final String xml = 
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" + LS+
+			"<endereco>" + LS +
+			"<logradouro>Av Gov Torquato Nepomuceno Neves</logradouro>" + LS +
+			"<numero>123</numero>" + LS +
+			"<complemento>AP 101</complemento>" + LS +
+			"<bairro>Vila Madalena</bairro>" + LS +
+			"<cidade>São Paulo-SP</cidade>" + LS +
+			"<cep>48035120</cep>" + LS +
+			"</endereco>" + LS;
+		assertEquals(xml, endereco.imprime(new XmlMedia("endereco")).
+				toString());
 	}
 }
