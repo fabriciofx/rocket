@@ -1,6 +1,8 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import static org.junit.Assert.assertEquals;
+
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -24,7 +26,7 @@ import com.github.fabriciofx.rocket.infra.media.XmlMedia;
 
 public final class TestePessoa {
 	private final String LS = System.lineSeparator();
-	private final Pessoa p = new Pessoa.Simples(
+	private final Pessoa pessoa = new Pessoa.Simples(
 			new DataId(2015123101325444663L),
 			new Nome("José de Alencar"),
 			new Fone("999918967", Fone.Tipo.CELULAR, Fone.Operadora.TIM),
@@ -56,6 +58,12 @@ public final class TestePessoa {
 			"<rg>12345678 SSP/PB</rg>" + LS +
 			"<simples>Av Gov Torquato Nepomuceno Neves;123;AP 101;Vila Madalena;São Paulo-SP;48035120;</simples>" + LS +
 			"</pessoa>" + LS;
-		assertEquals(xml, p.imprime(new XmlMedia("pessoa")).toString());
+		assertEquals(xml, pessoa.imprime(new XmlMedia("pessoa")).toString());
+	}
+	
+	@Test
+	public void obtemCpf() throws IOException {
+		final Cpf cpf = pessoa.elemento(Cpf.class);
+		assertEquals("03247407430", cpf.toString());
 	}
 }

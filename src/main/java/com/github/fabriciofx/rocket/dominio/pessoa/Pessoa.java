@@ -1,5 +1,6 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import com.github.fabriciofx.rocket.infra.media.Media;
 import com.jcabi.immutable.Array;
 
 public interface Pessoa {
+	<T> T elemento(Class<T> tipo) throws IOException;
+
 	Media imprime(Media media);
 
 	public final class Simples implements Pessoa, Identificavel<Id> {
@@ -28,6 +31,18 @@ public interface Pessoa {
 		@Override
 		public Id id() {
 			return id;
+		}
+
+		@Override
+		public <T> T elemento(final Class<T> tipo) throws IOException {
+			for (final Elemento e : elementos) {
+				if (e.getClass().equals(tipo)) {
+					return tipo.cast(e);
+				}
+			}
+			throw new IOException(
+					String.format("elemento do tipo %s não encontrado",
+							tipo.getSimpleName()));
 		}
 
 		@Override
