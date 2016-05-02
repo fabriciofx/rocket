@@ -3,7 +3,7 @@ package com.github.fabriciofx.rocket.misc;
 import java.util.Random;
 
 public final class Aleatorio {
-	private final Random random;
+	private final transient Random random;
 
 	public Aleatorio() {
 		random = new Random();

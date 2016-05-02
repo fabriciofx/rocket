@@ -6,8 +6,8 @@ import java.util.Objects;
 import com.jcabi.immutable.Array;
 
 public final class Pagina<T> {
-	private final Array<T> itens;
-	private final long numero;
+	private final transient Array<T> itens;
+	private final transient long numero;
 
 	public Pagina(final List<T> itens, final long numero) {
 		this(new Array<T>(itens), numero);

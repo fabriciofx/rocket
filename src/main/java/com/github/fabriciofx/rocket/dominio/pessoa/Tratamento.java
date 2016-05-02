@@ -32,7 +32,7 @@ public enum Tratamento implements Serializable {
 	MAJESTADES_IMPERIAIS("VV.MM.II."),
 	ONIPOTECIA("V.O.");
 
-	private final String abreviatura;
+	private final transient String abreviatura;
 
 	Tratamento(final String abreviatura) {
 		this.abreviatura = abreviatura;

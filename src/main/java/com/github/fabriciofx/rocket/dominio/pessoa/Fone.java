@@ -7,6 +7,8 @@ import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Fone implements Serializable {
+	private static final long serialVersionUID = -2913895837141655442L;
+
 	public enum Operadora {
 		TIM, OI, CLARO, AEIOU, GVT, EMBRATEL, TELEFONICA, NEXTEL, VIVO,
 		DESCONHECIDO;
@@ -16,16 +18,15 @@ public final class Fone implements Serializable {
 		CELULAR, FIXO, RADIO, DESCONHECIDO;
 	}
 
-	private final String numero;
-	private final Tipo tipo;
-	private final Operadora operadora;
+	private final transient String numero;
+	private final transient Tipo tipo;
+	private final transient Operadora operadora;
 
 	public Fone(final String numero, final Tipo tipo,
 			final Operadora operadora) {
-		this.numero = new RestPadrao<String>(new RestNaoVazia<>(
-					new RestNaoNulo<>(numero)
-					), "[0-9]+"
-				).objeto();
+		this.numero = new RestPadrao<String>(
+				new RestNaoVazia<>(new RestNaoNulo<>(numero)), "[0-9]+")
+						.objeto();
 		this.tipo = new RestNaoNulo<Tipo>(tipo).objeto();
 		this.operadora = new RestNaoNulo<Operadora>(operadora).objeto();
 	}

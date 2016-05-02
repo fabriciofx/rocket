@@ -10,7 +10,7 @@ public final class Hex {
 			'8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
 	};
 	
-	private final Hash hash;
+	private final transient Hash hash;
 	
 	public Hex(final Hash hash) {
 		this.hash = hash;

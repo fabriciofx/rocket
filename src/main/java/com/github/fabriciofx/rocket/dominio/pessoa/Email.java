@@ -7,7 +7,8 @@ import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class Email implements Serializable {
-	private final String endereco;
+	private static final long serialVersionUID = 5430188459299704462L;
+	private final transient String endereco;
 
 	public Email(final String endereco) {
 		this.endereco = new RestEmail<>(

@@ -8,12 +8,14 @@ import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Cnpj implements Serializable {
-	private final String numero;
+	private static final long serialVersionUID = -568323010729794501L;
+	private final transient String numero;
 
 	public Cnpj(final String numero) {
 		this.numero = new RestModulo13<String>(new RestPadrao<String>(
 				new RestNaoVazia<>(new RestNaoNulo<>(numero)), "^[\\d]{14}$"))
-						.objeto();	}
+						.objeto();
+	}
 
 	@Override
 	public boolean equals(final Object o) {

@@ -8,7 +8,7 @@ import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 public final class HashId implements Id, Serializable, Comparable<HashId> {
 	private static final long serialVersionUID = 626612574061974733L;
 
-	private final String hash;
+	private final transient String hash;
 
 	public HashId(final String hash) {
 		this.hash = new RestNaoVazia<>(new RestNaoNulo<>(hash)).objeto();

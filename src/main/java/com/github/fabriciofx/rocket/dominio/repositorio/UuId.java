@@ -9,7 +9,7 @@ import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 public final class UuId implements Id, Serializable, Comparable<UuId> {
 	private static final long serialVersionUID = 5856999591152433138L;
 
-	private final UUID uuid;
+	private final transient UUID uuid;
 
 	public UuId() {
 		this(UUID.randomUUID());

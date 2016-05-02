@@ -10,7 +10,7 @@ public enum Titulacao implements Serializable {
 	DOUTORES("Drs."),
 	DOUTORAS("Dr.as");
 
-	private final String abreviatura;
+	private final transient String abreviatura;
 
 	Titulacao(final String abreviatura) {
 		this.abreviatura = abreviatura;

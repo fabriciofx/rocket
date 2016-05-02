@@ -3,8 +3,8 @@ package com.github.fabriciofx.rocket.infra.repositorio;
 import java.util.Objects;
 
 public final class Paginas<T> {
-	private final Paginavel<T> paginavel;
-	private final long quantidade;
+	private final transient Paginavel<T> paginavel;
+	private final transient long quantidade;
 
 	public Paginas(final Paginavel<T> paginavel, final long quantidade) {
 		this.paginavel = Objects.requireNonNull(paginavel,

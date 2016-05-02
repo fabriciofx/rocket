@@ -7,7 +7,8 @@ import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Nome implements Serializable {
-	private final String completo;
+	private static final long serialVersionUID = -5162852351020977318L;
+	private final transient String completo;
 
 	public Nome(final String completo) {
 		this.completo = new RestPadrao<>(

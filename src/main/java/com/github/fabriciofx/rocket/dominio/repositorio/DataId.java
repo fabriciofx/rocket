@@ -9,7 +9,7 @@ import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 public final class DataId implements Id, Serializable, Comparable<DataId> {
 	private static final long serialVersionUID = -7584863143398126900L;
 
-	private final long numero;
+	private final transient long numero;
 
 	public DataId() {
 		this(LocalDateTime.now());

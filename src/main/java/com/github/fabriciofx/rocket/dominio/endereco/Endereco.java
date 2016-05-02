@@ -15,6 +15,7 @@ public interface Endereco {
 	Media imprime(Media media);
 
 	public final class Simples implements Endereco, Serializable {
+		private static final long serialVersionUID = -1871463941164800L;
 		private final transient Array<Selo> selos;
 
 		public Simples(final Selo... selos) {
@@ -55,6 +56,7 @@ public interface Endereco {
 
 	public final class Entidade
 			implements Identificavel<Id>, Endereco, Serializable {
+		private static final long serialVersionUID = 2047968036171696009L;
 		private final transient Id id;
 		private final transient Endereco.Simples origem;
 

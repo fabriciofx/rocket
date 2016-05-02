@@ -8,7 +8,8 @@ import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Cpf implements Serializable {
-	private final String numero;
+	private static final long serialVersionUID = -5209151784187126372L;
+	private final transient String numero;
 
 	public Cpf(final String numero) {
 		this.numero = new RestModulo11<String>(new RestPadrao<String>(
