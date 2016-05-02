@@ -1,6 +1,6 @@
 package com.github.fabriciofx.rocket.dominio;
 
-public enum Unidade {
+public enum Unidade implements Elemento {
 	MILIGRAMA("mg"),
 	GRAMA("g"),
 	QUILO("kg"),

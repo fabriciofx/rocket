@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.dominio;
 
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
-public final class Quantidade {
+public final class Quantidade implements Elemento {
 	private final transient double valor;
 	private final transient Unidade unidade;
 

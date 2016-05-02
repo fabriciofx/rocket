@@ -15,7 +15,8 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 
 	T termino();
 
-	final public class DataHora implements Periodo<ChronoLocalDateTime<?>> {
+	final public class DataHora
+			implements Elemento, Periodo<ChronoLocalDateTime<?>> {
 		private final transient LocalDateTime inicio;
 		private final transient LocalDateTime termino;
 
@@ -32,7 +33,7 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 
 			if (this.inicio.isAfter(this.termino)) {
 				throw new IllegalArgumentException(
-			"a data/hora de início deve ser anterior a data/hora de término");
+					"a data/hora de início deve ser anterior a data/hora de término");
 			}
 		}
 
@@ -54,7 +55,6 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 		public String toString() {
 			final DateTimeFormatter formato = DateTimeFormatter
 					.ofLocalizedDateTime(FormatStyle.SHORT);
-
 			return String.format("%s a %s", inicio.format(formato),
 					termino.format(formato));
 		}
@@ -66,7 +66,7 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 		}
 	}
 
-	final public class Data implements Periodo<ChronoLocalDate> {
+	final public class Data implements Elemento, Periodo<ChronoLocalDate> {
 		private final transient LocalDate inicio;
 		private final transient LocalDate termino;
 
@@ -80,7 +80,7 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 
 			if (this.inicio.isAfter(this.termino)) {
 				throw new IllegalArgumentException(
-			"a data/hora de início deve ser anterior a data/hora de término");
+					"a data/hora de início deve ser anterior a data/hora de término");
 			}
 		}
 
@@ -101,7 +101,6 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 		public String toString() {
 			final DateTimeFormatter formato = DateTimeFormatter
 					.ofLocalizedDate(FormatStyle.SHORT);
-
 			return String.format("%s a %s", inicio.format(formato),
 					termino.format(formato));
 		}
