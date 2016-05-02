@@ -9,7 +9,7 @@ import org.junit.Test;
 public final class TesteDataId {
 	@Test
 	public void comUmNumero() {
-		final DataId id = new DataId(2015122920514373623L);
+		final Id id = new DataId(2015122920514373623L);
 		assertEquals(2015122920514373623L, id.toLong());
 	}
 
