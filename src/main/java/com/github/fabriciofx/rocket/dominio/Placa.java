@@ -8,10 +8,11 @@ public final class Placa implements Elemento {
 	private final transient String numero;
 
 	public Placa(final String numero) {
-		this.numero = new RestPadrao<String>(new RestNaoVazia<>(
+		this.numero = new RestPadrao<>(
+			new RestNaoVazia<>(
 				new RestNaoNulo<>(numero)
-				), "^[a-zA-Z]{3}\\d{4}$"
-			).objeto().toUpperCase();
+			), "^[a-zA-Z]{3}\\d{4}$"
+		).objeto().toUpperCase();
 	}
 
 	public String numero() {
@@ -20,7 +21,7 @@ public final class Placa implements Elemento {
 
 	@Override
 	public String toString() {
-		return numero.substring(0, 3) + "-"
-				+ numero.substring(3, numero.length());
+		return String.format("%s-%s", numero.substring(0, 3),
+				numero.substring(3, numero.length()));
 	}
 }
