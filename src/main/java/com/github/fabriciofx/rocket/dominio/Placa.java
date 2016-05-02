@@ -5,7 +5,7 @@ import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Placa {
-	private final String numero;
+	private final transient String numero;
 
 	public Placa(final String numero) {
 		this.numero = new RestPadrao<String>(new RestNaoVazia<>(

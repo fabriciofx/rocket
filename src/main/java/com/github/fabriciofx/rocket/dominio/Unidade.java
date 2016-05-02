@@ -13,7 +13,7 @@ public enum Unidade {
 	MILILITRO("ml"),
 	LITRO("l");
 
-	private final String simbolo;
+	private final transient String simbolo;
 
 	private Unidade(final String simbolo) {
 		this.simbolo = simbolo;

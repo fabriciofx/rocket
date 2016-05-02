@@ -16,8 +16,8 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 	T termino();
 
 	final public class DataHora implements Periodo<ChronoLocalDateTime<?>> {
-		private final LocalDateTime inicio;
-		private final LocalDateTime termino;
+		private final transient LocalDateTime inicio;
+		private final transient LocalDateTime termino;
 
 		public DataHora(final String dataInicio, final String horaInicio,
 				final String dataTermino, final String horaTermino) {
@@ -67,8 +67,8 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 	}
 
 	final public class Data implements Periodo<ChronoLocalDate> {
-		private final LocalDate inicio;
-		private final LocalDate termino;
+		private final transient LocalDate inicio;
+		private final transient LocalDate termino;
 
 		public Data(final String dataInicio, final String dataTermino) {
 			this(toLocalDate(dataInicio), toLocalDate(dataTermino));
