@@ -1,5 +1,8 @@
 package com.github.fabriciofx.rocket.dominio;
 
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+
 public enum Unidade implements Elemento {
 	MILIGRAMA("mg"),
 	GRAMA("g"),
@@ -16,7 +19,7 @@ public enum Unidade implements Elemento {
 	private final transient String simbolo;
 
 	private Unidade(final String simbolo) {
-		this.simbolo = simbolo;
+		this.simbolo = new RestNaoVazia<>(new RestNaoNulo<>(simbolo)).objeto();
 	}
 
 	@Override
