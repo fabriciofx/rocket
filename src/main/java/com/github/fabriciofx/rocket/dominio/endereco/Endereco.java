@@ -1,44 +1,31 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
 import com.github.fabriciofx.rocket.infra.media.Media;
 import com.jcabi.immutable.Array;
 
 public interface Endereco {
-	Selo selo(Class<?> tipo);
-
 	Media imprime(Media media);
 
-	public final class Simples implements Endereco, Serializable {
-		private static final long serialVersionUID = -1871463941164800L;
-		private final transient Array<Selo> selos;
+	public final class Simples implements Endereco, Elemento {
+		private final transient Array<Elemento> elementos;
 
-		public Simples(final Selo... selos) {
-			this(Arrays.asList(selos));
+		public Simples(final Elemento... elementos) {
+			this(Arrays.asList(elementos));
 		}
 
-		public Simples(final List<Selo> selos) {
-			this.selos = new Array<>(selos);
-		}
-
-		@Override
-		public Selo selo(final Class<?> tipo) {
-			for (final Selo s : selos) {
-				if (s.getClass().equals(tipo)) {
-					return s;
-				}
-			}
-			throw new IllegalArgumentException("selo inexistente");
+		public Simples(final List<Elemento> elementos) {
+			this.elementos = new Array<>(elementos);
 		}
 
 		@Override
 		public Media imprime(final Media midia) {
-			for (final Selo s : selos) {
+			for (final Elemento s : elementos) {
 				midia.with(s.getClass().getSimpleName(), s.toString());
 			}
 			return midia;
@@ -47,7 +34,7 @@ public interface Endereco {
 		@Override
 		public String toString() {
 			final StringBuilder sb = new StringBuilder();
-			for (final Selo s : selos) {
+			for (final Elemento s : elementos) {
 				sb.append(s.toString()).append(";");
 			}
 			return sb.toString();
@@ -55,8 +42,7 @@ public interface Endereco {
 	}
 
 	public final class Entidade
-			implements Identificavel<Id>, Endereco, Serializable {
-		private static final long serialVersionUID = 2047968036171696009L;
+			implements Identificavel<Id>, Endereco, Elemento {
 		private final transient Id id;
 		private final transient Endereco.Simples origem;
 
@@ -68,11 +54,6 @@ public interface Endereco {
 		@Override
 		public Id id() {
 			return id;
-		}
-
-		@Override
-		public Selo selo(final Class<?> tipo) {
-			return origem.selo(tipo);
 		}
 
 		@Override

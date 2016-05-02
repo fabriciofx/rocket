@@ -1,14 +1,12 @@
 package com.github.fabriciofx.rocket.dominio.repositorio;
 
-import java.io.Serializable;
 import java.util.UUID;
 
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class UuId implements Id, Serializable, Comparable<UuId> {
-	private static final long serialVersionUID = 5856999591152433138L;
-
+public final class UuId implements Id, Elemento, Comparable<UuId> {
 	private final transient UUID uuid;
 
 	public UuId() {

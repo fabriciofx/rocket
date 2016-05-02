@@ -1,14 +1,12 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import java.io.Serializable;
-
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestModulo11;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Cpf implements Serializable {
-	private static final long serialVersionUID = -5209151784187126372L;
+public final class Cpf implements Elemento {
 	private final transient String numero;
 
 	public Cpf(final String numero) {

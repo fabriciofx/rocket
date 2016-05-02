@@ -1,13 +1,10 @@
 package com.github.fabriciofx.rocket.dominio.repositorio;
 
-import java.io.Serializable;
-
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class HashId implements Id, Serializable, Comparable<HashId> {
-	private static final long serialVersionUID = 626612574061974733L;
-
+public final class HashId implements Id, Elemento, Comparable<HashId> {
 	private final transient String hash;
 
 	public HashId(final String hash) {

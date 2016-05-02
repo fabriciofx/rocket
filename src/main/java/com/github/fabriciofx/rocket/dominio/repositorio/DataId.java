@@ -1,14 +1,12 @@
 package com.github.fabriciofx.rocket.dominio.repositorio;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.misc.Aleatorio;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
-public final class DataId implements Id, Serializable, Comparable<DataId> {
-	private static final long serialVersionUID = -7584863143398126900L;
-
+public final class DataId implements Id, Elemento, Comparable<DataId> {
 	private final transient long numero;
 
 	public DataId() {

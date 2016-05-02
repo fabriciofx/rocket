@@ -1,14 +1,11 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import java.io.Serializable;
-
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Fone implements Serializable {
-	private static final long serialVersionUID = -2913895837141655442L;
-
+public final class Fone implements Elemento {
 	public enum Operadora {
 		TIM, OI, CLARO, AEIOU, GVT, EMBRATEL, TELEFONICA, NEXTEL, VIVO,
 		DESCONHECIDO;

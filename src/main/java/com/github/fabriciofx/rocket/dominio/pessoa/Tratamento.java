@@ -1,8 +1,8 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import java.io.Serializable;
+import com.github.fabriciofx.rocket.dominio.Elemento;
 
-public enum Tratamento implements Serializable {
+public enum Tratamento implements Elemento {
 	// http://www.academia.org.br/nossa-lingua/reducoes
 	VOCE("V."),
 	VOCES("V.V."),

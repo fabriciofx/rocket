@@ -1,10 +1,11 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Cep implements Selo {
+public final class Cep implements Elemento {
 	private final String numero;
 
 	public Cep(final String numero) {

@@ -1,9 +1,9 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
 import com.github.fabriciofx.rocket.infra.media.Media;
@@ -14,15 +14,15 @@ public interface Pessoa {
 
 	public final class Simples implements Pessoa, Identificavel<Id> {
 		private final transient Id id;
-		private final transient Array<Serializable> atributos;
+		private final transient Array<Elemento> elementos;
 
-		public Simples(final Id id, final Serializable... atributos) {
-			this(id, Arrays.asList(atributos));
+		public Simples(final Id id, final Elemento... elementos) {
+			this(id, Arrays.asList(elementos));
 		}
 
-		public Simples(final Id id, final List<Serializable> atributos) {
+		public Simples(final Id id, final List<Elemento> elementos) {
 			this.id = id;
-			this.atributos = new Array<>(atributos);
+			this.elementos = new Array<>(elementos);
 		}
 
 		@Override
@@ -33,8 +33,8 @@ public interface Pessoa {
 		@Override
 		public Media imprime(Media media) {
 			media = media.with("id", id.toString());
-			for (final Serializable a : atributos) {
-				media.with(a.getClass().getSimpleName(), a.toString());
+			for (final Elemento e : elementos) {
+				media.with(e.getClass().getSimpleName(), e.toString());
 			}
 			return media;
 		}

@@ -1,8 +1,8 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import java.io.Serializable;
+import com.github.fabriciofx.rocket.dominio.Elemento;
 
-public enum Sexo implements Serializable {
+public enum Sexo implements Elemento {
 	MASCULINO,
 	FEMININO;
 }

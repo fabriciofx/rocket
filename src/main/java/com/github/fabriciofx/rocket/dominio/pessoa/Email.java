@@ -1,13 +1,11 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import java.io.Serializable;
-
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestEmail;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class Email implements Serializable {
-	private static final long serialVersionUID = 5430188459299704462L;
+public final class Email implements Elemento {
 	private final transient String endereco;
 
 	public Email(final String endereco) {

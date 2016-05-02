@@ -1,14 +1,12 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import java.io.Serializable;
-
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestModulo13;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Cnpj implements Serializable {
-	private static final long serialVersionUID = -568323010729794501L;
+public final class Cnpj implements Elemento {
 	private final transient String numero;
 
 	public Cnpj(final String numero) {

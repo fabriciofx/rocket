@@ -1,13 +1,11 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import java.io.Serializable;
-
+import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Nome implements Serializable {
-	private static final long serialVersionUID = -5162852351020977318L;
+public final class Nome implements Elemento {
 	private final transient String completo;
 
 	public Nome(final String completo) {
