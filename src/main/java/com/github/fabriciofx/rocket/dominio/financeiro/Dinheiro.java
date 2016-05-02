@@ -7,11 +7,12 @@ import java.util.Locale;
 import java.util.Objects;
 
 import com.github.fabriciofx.rocket.dominio.Elemento;
+import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.jcabi.immutable.Array;
 
 public final class Dinheiro implements Elemento, Comparable<Dinheiro> {
-	private final Currency moeda;
-	private final BigDecimal quantia;
+	private final transient Currency moeda;
+	private final transient BigDecimal quantia;
 
 	public Dinheiro() {
 		this("0");
@@ -34,10 +35,8 @@ public final class Dinheiro implements Elemento, Comparable<Dinheiro> {
 	}
 
 	public Dinheiro(final BigDecimal quantia, final Currency moeda) {
-		this.quantia = Objects.requireNonNull(quantia,
-				"argumento 'quantia' não pode ser NULL");
-		this.moeda = Objects.requireNonNull(moeda,
-				"argumento 'moeda' não pode ser NULL");
+		this.quantia = new RestNaoNulo<>(quantia).objeto();
+		this.moeda = new RestNaoNulo<>(moeda).objeto();
 	}
 
 	public Currency moeda() {
@@ -64,7 +63,6 @@ public final class Dinheiro implements Elemento, Comparable<Dinheiro> {
 			throw new IllegalArgumentException(
 					"não é possivel realizar Dinheiro#soma com moedas diferentes");
 		}
-
 		return new Dinheiro(quantia.add(dinheiro.quantia), moeda);
 	}
 
