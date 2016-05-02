@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
@@ -16,7 +17,6 @@ import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.Numero;
 import com.github.fabriciofx.rocket.dominio.pessoa.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.Fone;
-import com.github.fabriciofx.rocket.dominio.pessoa.Nome;
 import com.github.fabriciofx.rocket.dominio.pessoa.Pessoa;
 import com.github.fabriciofx.rocket.dominio.pessoa.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.Sexo;

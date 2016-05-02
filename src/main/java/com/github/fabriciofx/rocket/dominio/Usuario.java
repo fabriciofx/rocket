@@ -2,8 +2,6 @@ package com.github.fabriciofx.rocket.dominio;
 
 import java.io.IOException;
 
-import com.github.fabriciofx.rocket.dominio.pessoa.Nome;
-
 public interface Usuario {
 	Nome nome() throws IOException;
 

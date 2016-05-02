@@ -6,8 +6,6 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.pessoa.Nome;
-
 public final class TesteUsuario {
 	@Test
 	public void padrao() throws IOException {
