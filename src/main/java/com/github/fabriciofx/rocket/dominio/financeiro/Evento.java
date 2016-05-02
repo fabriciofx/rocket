@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 
 public interface Evento<Origem, Destino> {
 	// Quando o evento ocorreu
-	public LocalDateTime ocorrido();
+	LocalDateTime ocorrido();
 
 	// Quando o evento foi observado
-	public LocalDateTime observado();
+	LocalDateTime observado();
 
 	// Quem originou o evento
-	public Origem origem();
+	Origem origem();
 
 	// Quem recebeu o evento
-	public Destino destino();
+	Destino destino();
 }
