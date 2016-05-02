@@ -5,15 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
+import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
 import com.github.fabriciofx.rocket.infra.media.Media;
 import com.jcabi.immutable.Array;
 
 public interface Pessoa {
-	Id id();
-
 	Media imprime(Media media);
 
-	public final class Simples implements Pessoa {
+	public final class Simples implements Pessoa, Identificavel<Id> {
 		private final transient Id id;
 		private final transient Array<Serializable> atributos;
 
@@ -26,6 +25,7 @@ public interface Pessoa {
 			this.atributos = new Array<>(atributos);
 		}
 
+		@Override
 		public Id id() {
 			return id;
 		}
