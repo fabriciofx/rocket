@@ -1,6 +1,5 @@
-package com.github.fabriciofx.rocket.dominio.pessoa;
+package com.github.fabriciofx.rocket.dominio;
 
-import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestEmail;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
