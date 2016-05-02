@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.dominio.gerador.GeradorNome;
+import com.github.fabriciofx.rocket.dominio.pessoa.Nome;
 
 public final class TesteNome {
 	@Test(expected = IllegalArgumentException.class)

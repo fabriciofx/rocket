@@ -1,10 +1,12 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.dominio.pessoa;
+
+import java.io.Serializable;
 
 import com.github.fabriciofx.rocket.restricao.RestEmail;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class Email {
+public final class Email implements Serializable {
 	private final String endereco;
 
 	public Email(final String endereco) {

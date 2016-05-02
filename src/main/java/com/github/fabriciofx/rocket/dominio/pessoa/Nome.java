@@ -1,10 +1,12 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.dominio.pessoa;
+
+import java.io.Serializable;
 
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Nome {
+public final class Nome implements Serializable {
 	private final String completo;
 
 	public Nome(final String completo) {

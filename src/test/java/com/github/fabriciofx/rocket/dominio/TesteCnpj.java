@@ -2,6 +2,8 @@ package com.github.fabriciofx.rocket.dominio;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.dominio.pessoa.Cnpj;
+
 public final class TesteCnpj {
 	@Test
 	public void valido() {

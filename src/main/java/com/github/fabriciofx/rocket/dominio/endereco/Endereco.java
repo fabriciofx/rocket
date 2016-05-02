@@ -1,9 +1,9 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-import com.github.fabriciofx.rocket.dominio.pessoa.Atributo;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
 import com.github.fabriciofx.rocket.infra.media.Media;
@@ -14,7 +14,7 @@ public interface Endereco {
 
 	Media imprime(Media media);
 
-	public final class Simples implements Endereco, Atributo {
+	public final class Simples implements Endereco, Serializable {
 		private final transient Array<Selo> selos;
 
 		public Simples(final Selo... selos) {
@@ -42,10 +42,19 @@ public interface Endereco {
 			}
 			return midia;
 		}
+
+		@Override
+		public String toString() {
+			final StringBuilder sb = new StringBuilder();
+			for (final Selo s : selos) {
+				sb.append(s.toString()).append(";");
+			}
+			return sb.toString();
+		}
 	}
 
 	public final class Entidade
-			implements Identificavel<Id>, Endereco, Atributo {
+			implements Identificavel<Id>, Endereco, Serializable {
 		private final transient Id id;
 		private final transient Endereco.Simples origem;
 

@@ -1,53 +1,42 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.dominio.pessoa;
 
+import java.io.Serializable;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.infra.media.Media;
+import com.jcabi.immutable.Array;
 
-public final class Pessoa {
-	private final Id id;
-	private final Nome nome;
-	private final Endereco endereco;
-	private final Set<Fone> fones;
+public interface Pessoa {
+	Id id();
 
-	public Pessoa(final Id id, final Nome nome,
-			final Endereco endereco, final Fone... fones) {
-		this(id, nome, endereco, new HashSet<>(Arrays.asList(fones)));
-	}
+	Media imprime(Media media);
 
-	public Pessoa(final Id id, final Nome nome,
-			final Endereco endereco, final Set<Fone> fones) {
-		this.id = new RestNaoNulo<Id>(id).objeto();
-		this.nome = new RestNaoNulo<Nome>(nome).objeto();
-		this.endereco = new RestNaoNulo<Endereco>(endereco).objeto();
-		this.fones = new RestNaoVazia<Set<Fone>>(new RestNaoNulo<>(fones))
-				.objeto();
-	}
+	public final class Simples implements Pessoa {
+		private final transient Id id;
+		private final transient Array<Serializable> atributos;
 
-	public Id id() {
-		return id;
-	}
+		public Simples(final Id id, final Serializable... atributos) {
+			this(id, Arrays.asList(atributos));
+		}
 
-	public Nome nome() {
-		return nome;
-	}
+		public Simples(final Id id, final List<Serializable> atributos) {
+			this.id = id;
+			this.atributos = new Array<>(atributos);
+		}
 
-	public Endereco endereco() {
-		return endereco;
-	}
+		public Id id() {
+			return id;
+		}
 
-	public Set<Fone> fones() {
-		return fones;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("Pessoa {id=%s, nome=%s, endereco=%s, fones=%s}",
-				id, nome, endereco, Arrays.toString(fones.toArray()));
+		@Override
+		public Media imprime(Media media) {
+			media = media.with("id", id.toString());
+			for (final Serializable a : atributos) {
+				media.with(a.getClass().getSimpleName(), a.toString());
+			}
+			return media;
+		}
 	}
 }

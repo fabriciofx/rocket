@@ -1,5 +1,6 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.dominio.pessoa;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.github.fabriciofx.rocket.dominio.endereco.Estado;
@@ -7,7 +8,7 @@ import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Rg {
+public final class Rg implements Serializable {
 	public enum Emissor {
 		ABNC, CGPI, CGPMAF, CNIG, CNT, COREN, CORECON, CRA, CRAS, CRB, CRC, CRE,
 		CREA, CRECI, CREFIT, CRF, CRM, CRMV, CRN, CRO, CRP, CRPRE, CRQ, CRRC,
@@ -24,18 +25,18 @@ public final class Rg {
 	private final LocalDate expedicao;
 
 	public Rg(final String numero) {
-		this(numero, Emissor.SSP, Estado.PB, 1, null);
+		this(numero, Emissor.SSP, Estado.PB, 1, LocalDate.now());
 	}
 
 	public Rg(final String numero, final Emissor emissor, final Estado estado,
 			final int via, final LocalDate expedicao) {
-		this.numero = new RestPadrao<String>(
+		this.numero = new RestPadrao<>(
 				new RestNaoVazia<>(new RestNaoNulo<>(numero)), "[0-9]+")
 						.objeto().toUpperCase();
-		this.emissor = new RestNaoNulo<Emissor>(emissor).objeto();
+		this.emissor = new RestNaoNulo<>(emissor).objeto();
 		this.estado = new RestNaoNulo<>(estado).objeto();
 		this.via = via;
-		this.expedicao = new RestNaoNulo<LocalDate>(expedicao).objeto();
+		this.expedicao = new RestNaoNulo<>(expedicao).objeto();
 	}
 
 	public String numero() {

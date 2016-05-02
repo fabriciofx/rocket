@@ -1,11 +1,13 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.dominio.pessoa;
+
+import java.io.Serializable;
 
 import com.github.fabriciofx.rocket.restricao.RestModulo13;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Cnpj {
+public final class Cnpj implements Serializable {
 	private final String numero;
 
 	public Cnpj(final String numero) {

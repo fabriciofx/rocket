@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.dominio.gerador;
 
 import java.util.Random;
 
-import com.github.fabriciofx.rocket.dominio.Cnpj;
+import com.github.fabriciofx.rocket.dominio.pessoa.Cnpj;
 
 public final class GeradorCNPJ {
 	private GeradorCNPJ() {

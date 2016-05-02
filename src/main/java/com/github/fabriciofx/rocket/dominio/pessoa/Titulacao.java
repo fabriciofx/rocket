@@ -1,6 +1,8 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.dominio.pessoa;
 
-public enum Titulacao {
+import java.io.Serializable;
+
+public enum Titulacao implements Serializable {
 	MESTRE("M.e"),
 	MESTRA("M.a"),
 	DOUTOR("D.r"),

@@ -1,11 +1,13 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.dominio.pessoa;
+
+import java.io.Serializable;
 
 import com.github.fabriciofx.rocket.restricao.RestModulo11;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Cpf {
+public final class Cpf implements Serializable {
 	private final String numero;
 
 	public Cpf(final String numero) {
