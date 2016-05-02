@@ -46,9 +46,9 @@ public interface Endereco {
 		private final transient Id id;
 		private final transient Endereco.Simples origem;
 
-		public Entidade(final Id id, final Endereco.Simples origem) {
-			this.id = id;
+		public Entidade(final Endereco.Simples origem, final Id id) {
 			this.origem = origem;
+			this.id = id;
 		}
 
 		@Override
@@ -57,8 +57,9 @@ public interface Endereco {
 		}
 
 		@Override
-		public Media imprime(final Media media) {
-			return origem.imprime(media).with("Id: ", id.toString());
+		public Media imprime(Media media) {
+			media = media.with("id", id.toString());
+			return origem.imprime(media);
 		}
 	}
 }
