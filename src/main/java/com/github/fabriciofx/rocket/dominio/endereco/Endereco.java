@@ -24,18 +24,18 @@ public interface Endereco {
 		}
 
 		@Override
-		public Media imprime(final Media midia) {
-			for (final Elemento s : elementos) {
-				midia.with(s.getClass().getSimpleName(), s.toString());
+		public Media imprime(final Media media) {
+			for (final Elemento e : elementos) {
+				media.with(e.getClass().getSimpleName(), e.toString());
 			}
-			return midia;
+			return media;
 		}
 
 		@Override
 		public String toString() {
 			final StringBuilder sb = new StringBuilder();
-			for (final Elemento s : elementos) {
-				sb.append(s.toString()).append(";");
+			for (final Elemento e : elementos) {
+				sb.append(e.toString()).append(";");
 			}
 			return sb.toString();
 		}
@@ -57,8 +57,8 @@ public interface Endereco {
 		}
 
 		@Override
-		public Media imprime(final Media midia) {
-			return origem.imprime(midia).with("Id: ", id.toString());
+		public Media imprime(final Media media) {
+			return origem.imprime(media).with("Id: ", id.toString());
 		}
 	}
 }
