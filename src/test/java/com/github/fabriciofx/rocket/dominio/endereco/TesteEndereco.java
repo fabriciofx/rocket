@@ -2,16 +2,10 @@ package com.github.fabriciofx.rocket.dominio.endereco;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
-import com.github.fabriciofx.rocket.dominio.endereco.Cep;
-import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
-import com.github.fabriciofx.rocket.dominio.endereco.Complemento;
-import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
-import com.github.fabriciofx.rocket.dominio.endereco.Estado;
-import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
-import com.github.fabriciofx.rocket.dominio.endereco.Numero;
 import com.github.fabriciofx.rocket.infra.media.TextMedia;
 import com.github.fabriciofx.rocket.infra.media.XmlMedia;
 
@@ -52,5 +46,11 @@ public final class TesteEndereco {
 			"</endereco>" + LS;
 		assertEquals(xml, endereco.imprime(new XmlMedia("endereco")).
 				toString());
+	}
+	
+	@Test
+	public void cep() throws IOException {
+		final Cep cep = endereco.elemento(Cep.class);
+		assertEquals("48035120", cep.toString());
 	}
 }

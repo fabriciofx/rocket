@@ -1,5 +1,6 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import com.github.fabriciofx.rocket.infra.media.Media;
 import com.jcabi.immutable.Array;
 
 public interface Endereco {
+	<T> T elemento(Class<T> tipo) throws IOException;
+
 	Media imprime(Media media);
 
 	public final class Simples implements Endereco, Elemento {
@@ -29,6 +32,18 @@ public interface Endereco {
 				media.with(e.getClass().getSimpleName(), e.toString());
 			}
 			return media;
+		}
+
+		@Override
+		public <T> T elemento(final Class<T> tipo) throws IOException {
+			for (final Elemento e : elementos) {
+				if (e.getClass().equals(tipo)) {
+					return tipo.cast(e);
+				}
+			}
+			throw new IOException(
+					String.format("elemento do tipo %s não encontrado",
+							tipo.getSimpleName()));
 		}
 
 		@Override
@@ -54,6 +69,11 @@ public interface Endereco {
 		@Override
 		public Id id() {
 			return id;
+		}
+
+		@Override
+		public <T> T elemento(final Class<T> tipo) throws IOException {
+			return origem.elemento(tipo);
 		}
 
 		@Override
