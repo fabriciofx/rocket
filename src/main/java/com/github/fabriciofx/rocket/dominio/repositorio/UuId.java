@@ -18,7 +18,7 @@ public final class UuId implements Id, Elemento, Comparable<UuId> {
 	}
 
 	public UuId(final UUID uuid) {
-		this.uuid = new RestNaoVazia<>(new RestNaoNulo<>(uuid)).objeto();
+		this.uuid = new RestNaoVazia<UUID>(new RestNaoNulo<>()).valido(uuid);
 	}
 
 	@Override

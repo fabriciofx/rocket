@@ -77,7 +77,8 @@ public final class DataId implements Id, Elemento, Comparable<DataId> {
 	}
 
 	private static long localDateTimeParaLong(final LocalDateTime dataHora) {
-		final LocalDateTime dh = new RestNaoNulo<>(dataHora).objeto();
+		final LocalDateTime dh = new RestNaoNulo<LocalDateTime>()
+				.valido(dataHora);
 		return dh.getYear() * 1000000000000000L
 				+ dh.getMonthValue() * 10000000000000L
 				+ dh.getDayOfMonth() * 100000000000L

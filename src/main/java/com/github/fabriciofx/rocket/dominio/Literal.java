@@ -7,8 +7,8 @@ public abstract class Literal {
 	private final transient String conteudo;
 
 	public Literal(final String conteudo) {
-		this.conteudo = new RestNaoVazia<>(new RestNaoNulo<>(conteudo))
-				.objeto();
+		this.conteudo = new RestNaoVazia<String>(new RestNaoNulo<>())
+				.valido(conteudo);
 	}
 
 	@Override

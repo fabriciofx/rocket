@@ -28,12 +28,11 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 
 		public DataHora(final LocalDateTime inicio,
 				final LocalDateTime termino) {
-			this.inicio = new RestNaoNulo<>(inicio).objeto();
-			this.termino = new RestNaoNulo<>(termino).objeto();
-
+			this.inicio = new RestNaoNulo<LocalDateTime>().valido(inicio);
+			this.termino = new RestNaoNulo<LocalDateTime>().valido(termino);
 			if (this.inicio.isAfter(this.termino)) {
 				throw new IllegalArgumentException(
-					"a data/hora de início deve ser anterior a data/hora de término");
+					"a data/hora de início deve ser anterior a de término");
 			}
 		}
 
@@ -75,12 +74,11 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 		}
 
 		public Data(final LocalDate inicio, final LocalDate termino) {
-			this.inicio = new RestNaoNulo<>(inicio).objeto();
-			this.termino = new RestNaoNulo<>(termino).objeto();
-
+			this.inicio = new RestNaoNulo<LocalDate>().valido(inicio);
+			this.termino = new RestNaoNulo<LocalDate>().valido(termino);
 			if (this.inicio.isAfter(this.termino)) {
 				throw new IllegalArgumentException(
-					"a data/hora de início deve ser anterior a data/hora de término");
+					"a data de início deve ser anterior a de término");
 			}
 		}
 

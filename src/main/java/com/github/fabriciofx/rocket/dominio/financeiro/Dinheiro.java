@@ -35,8 +35,8 @@ public final class Dinheiro implements Elemento, Comparable<Dinheiro> {
 	}
 
 	public Dinheiro(final BigDecimal quantia, final Currency moeda) {
-		this.quantia = new RestNaoNulo<>(quantia).objeto();
-		this.moeda = new RestNaoNulo<>(moeda).objeto();
+		this.quantia = new RestNaoNulo<BigDecimal>().valido(quantia);
+		this.moeda = new RestNaoNulo<Currency>().valido(moeda);
 	}
 
 	public Currency moeda() {

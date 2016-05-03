@@ -9,12 +9,12 @@ public final class Cep implements Elemento {
 	private final String numero;
 
 	public Cep(final String numero) {
-		this.numero = new RestPadrao<>(
+		this.numero = new RestPadrao<String>(
 			new RestNaoVazia<>(
-				new RestNaoNulo<>(numero)
+				new RestNaoNulo<>()
 			),
 			"[0-9]{8}"
-		).objeto();
+		).valido(numero);
 	}
 
 	public String numero() {

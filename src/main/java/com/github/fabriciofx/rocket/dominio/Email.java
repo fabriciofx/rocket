@@ -8,8 +8,8 @@ public final class Email implements Elemento {
 	private final transient String endereco;
 
 	public Email(final String endereco) {
-		this.endereco = new RestEmail<>(
-				new RestNaoVazia<>(new RestNaoNulo<>(endereco))).objeto();
+		this.endereco = new RestEmail<String>(
+				new RestNaoVazia<>(new RestNaoNulo<>())).valido(endereco);
 	}
 
 	@Override

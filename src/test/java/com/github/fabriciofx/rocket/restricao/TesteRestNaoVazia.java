@@ -4,64 +4,61 @@ import java.util.Collections;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
-
 public final class TesteRestNaoVazia {
 	@Test(expected = IllegalArgumentException.class)
 	public void stringNula() {
-		new RestNaoVazia<String>(new RestNaoNulo<>(null));
+		new RestNaoVazia<String>(new RestNaoNulo<>()).valido(null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void stringVazia() {
-		new RestNaoVazia<String>(new RestNaoNulo<>(""));
+		new RestNaoVazia<String>(new RestNaoNulo<>()).valido("");
 	}
 
 	@Test
 	public void stringNaoVazia() {
-		new RestNaoVazia<String>(new RestNaoNulo<>("Pedro"));
+		new RestNaoVazia<String>(new RestNaoNulo<>()).valido("Pedro");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void arrayVazio() {
-		Object[] a = {};
-		new RestNaoVazia<Object>(new RestNaoNulo<>(a));
+		final Object[] a = {};
+		new RestNaoVazia<Object>(new RestNaoNulo<>()).valido(a);
 	}
 
 	@Test
 	public void arrayNaoVazio() {
-		Object[] a = { 1 };
-		new RestNaoVazia<Object>(new RestNaoNulo<>(a));
+		final Object[] a = { 1 };
+		new RestNaoVazia<Object>(new RestNaoNulo<>()).valido(a);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void enumerationVazia() {
-		new RestNaoVazia<Object>(
-				new RestNaoNulo<>(Collections.emptyEnumeration()));
+		new RestNaoVazia<Object>(new RestNaoNulo<>())
+				.valido(Collections.emptyEnumeration());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void listaVazia() {
-		new RestNaoVazia<Object>(
-				new RestNaoNulo<>(Collections.emptyList()));
+		new RestNaoVazia<Object>(new RestNaoNulo<>())
+				.valido(Collections.emptyList());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void iteratorVazio() {
-		new RestNaoVazia<Object>(
-				new RestNaoNulo<>(Collections.emptyIterator()));
+		new RestNaoVazia<Object>(new RestNaoNulo<>())
+				.valido(Collections.emptyIterator());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void mapaVazio() {
-		new RestNaoVazia<Object>(
-				new RestNaoNulo<>(Collections.emptyMap()));
+		new RestNaoVazia<Object>(new RestNaoNulo<>())
+				.valido(Collections.emptyMap());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void setVazio() {
-		new RestNaoVazia<Object>(
-				new RestNaoNulo<>(Collections.emptySet()));
+		new RestNaoVazia<Object>(new RestNaoNulo<>())
+				.valido(Collections.emptySet());
 	}
 }

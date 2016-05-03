@@ -4,15 +4,13 @@ import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestModulo13;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
-import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Cnpj implements Elemento {
 	private final transient String numero;
 
 	public Cnpj(final String numero) {
-		this.numero = new RestModulo13<String>(new RestPadrao<String>(
-				new RestNaoVazia<>(new RestNaoNulo<>(numero)), "^[\\d]{14}$"))
-						.objeto();
+		this.numero = new RestModulo13<String>(
+				new RestNaoVazia<>(new RestNaoNulo<>())).valido(numero);
 	}
 
 	@Override

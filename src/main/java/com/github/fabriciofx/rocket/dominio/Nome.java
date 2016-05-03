@@ -8,12 +8,12 @@ public final class Nome implements Elemento {
 	private final transient String completo;
 
 	public Nome(final String completo) {
-		this.completo = new RestPadrao<>(
+		this.completo = new RestPadrao<String>(
 			new RestNaoVazia<>(
-				new RestNaoNulo<>(completo)
+				new RestNaoNulo<>()
 			),
 			"^[\\p{L} .'-]+$"
-		).objeto().trim().replaceAll("\\s+", " ");
+		).valido(completo).trim().replaceAll("\\s+", " ");
 	}
 
 	public String completo() {

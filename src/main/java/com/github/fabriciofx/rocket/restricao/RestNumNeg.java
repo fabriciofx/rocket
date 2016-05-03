@@ -1,15 +1,18 @@
 package com.github.fabriciofx.rocket.restricao;
 
-public final class RestNumNeg<T extends Number> extends Restricao<T> {
-	public RestNumNeg(final RestNaoNulo<T> restricao) {
-		super(valida(restricao.objeto()));
+public final class RestNumNeg<T extends Number> implements Restricao<T> {
+	private final transient RestNaoNulo<T> origem;
+	
+	public RestNumNeg(final RestNaoNulo<T> origem) {
+		this.origem = origem;
 	}
 
-	private static <T> T valida(final T objeto) {
+	@Override
+	public T valido(final T objeto) {
+		origem.valido(objeto);
 		if (Number.class.cast(objeto).doubleValue() >= 0) {
 			throw new IllegalArgumentException("número positivo");
 		}
-
 		return objeto;
 	}
 }

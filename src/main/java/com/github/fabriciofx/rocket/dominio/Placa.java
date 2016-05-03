@@ -8,11 +8,11 @@ public final class Placa implements Elemento {
 	private final transient String numero;
 
 	public Placa(final String numero) {
-		this.numero = new RestPadrao<>(
+		this.numero = new RestPadrao<String>(
 			new RestNaoVazia<>(
-				new RestNaoNulo<>(numero)
+				new RestNaoNulo<>()
 			), "^[a-zA-Z]{3}\\d{4}$"
-		).objeto().toUpperCase();
+		).valido(numero).toUpperCase();
 	}
 
 	public String numero() {

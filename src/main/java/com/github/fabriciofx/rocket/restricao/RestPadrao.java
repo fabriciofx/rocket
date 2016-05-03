@@ -1,16 +1,22 @@
 package com.github.fabriciofx.rocket.restricao;
 
-public final class RestPadrao<T> extends Restricao<T> {
-	public RestPadrao(final RestNaoVazia<T> restricao, final String regEx) {
-		super(valida(restricao.objeto(), regEx));
+public final class RestPadrao<T> implements Restricao<T> {
+	private final transient RestNaoVazia<T> origem;
+	private final transient String regex;
+
+	public RestPadrao(final RestNaoVazia<T> origem, final String regex) {
+		this.origem = origem;
+		this.regex = new RestNaoVazia<String>(new RestNaoNulo<>())
+				.valido(regex);
 	}
 
-	private static <T> T valida(final T objeto, final String regEx) {
-		if (!objeto.toString().matches(regEx)) {
+	@Override
+	public T valido(final T objeto) {
+		origem.valido(objeto);
+		if (!objeto.toString().matches(regex)) {
 			throw new IllegalArgumentException(
 					"não casa com a expressão regular: " + objeto.toString());
 		}
-
 		return objeto;
 	}
 }

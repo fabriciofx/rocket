@@ -5,12 +5,16 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 
-public final class RestNaoVazia<T> extends Restricao<T> {
-	public RestNaoVazia(final RestNaoNulo<T> restricao) {
-		super(valida(restricao.objeto()));
+public final class RestNaoVazia<T> implements Restricao<T> {
+	private final transient RestNaoNulo<T> origem;
+	
+	public RestNaoVazia(final RestNaoNulo<T> origem) {
+		this.origem = origem;
 	}
 
-	private static <T> T valida(final T objeto) {
+	@Override
+	public T valido(final T objeto) {
+		origem.valido(objeto);
 		if (objeto instanceof CharSequence && CharSequence.class.cast(objeto)
 				.toString().trim().length() == 0) {
 			throw new IllegalArgumentException("vazio");
@@ -29,7 +33,6 @@ public final class RestNaoVazia<T> extends Restricao<T> {
 				&& !Enumeration.class.cast(objeto).hasMoreElements()) {
 			throw new IllegalArgumentException("vazio");
 		}
-
 		return objeto;
 	}
 }

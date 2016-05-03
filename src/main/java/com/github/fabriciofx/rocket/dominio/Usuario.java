@@ -17,9 +17,9 @@ public interface Usuario {
 		private final transient Senha senha;
 
 		public Padrao(final Nome nome, final Email email, final Senha senha) {
-			this.nome = new RestNaoNulo<>(nome).objeto();
-			this.email = new RestNaoNulo<>(email).objeto();
-			this.senha = new RestNaoNulo<>(senha).objeto();
+			this.nome = new RestNaoNulo<Nome>().valido(nome);
+			this.email = new RestNaoNulo<Email>().valido(email);
+			this.senha = new RestNaoNulo<Senha>().valido(senha);
 		}
 
 		@Override

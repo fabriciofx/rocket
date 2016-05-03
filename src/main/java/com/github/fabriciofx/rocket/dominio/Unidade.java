@@ -19,7 +19,8 @@ public enum Unidade implements Elemento {
 	private final transient String simbolo;
 
 	private Unidade(final String simbolo) {
-		this.simbolo = new RestNaoVazia<>(new RestNaoNulo<>(simbolo)).objeto();
+		this.simbolo = new RestNaoVazia<String>(new RestNaoNulo<>())
+				.valido(simbolo);
 	}
 
 	@Override

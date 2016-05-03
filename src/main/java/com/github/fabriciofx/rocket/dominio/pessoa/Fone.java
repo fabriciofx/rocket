@@ -22,10 +22,12 @@ public final class Fone implements Elemento {
 	public Fone(final String numero, final Tipo tipo,
 			final Operadora operadora) {
 		this.numero = new RestPadrao<String>(
-				new RestNaoVazia<>(new RestNaoNulo<>(numero)), "[0-9]+")
-						.objeto();
-		this.tipo = new RestNaoNulo<Tipo>(tipo).objeto();
-		this.operadora = new RestNaoNulo<Operadora>(operadora).objeto();
+			new RestNaoVazia<>(
+				new RestNaoNulo<>()
+			), "[0-9]+"
+		).valido(numero);
+		this.tipo = new RestNaoNulo<Tipo>().valido(tipo);
+		this.operadora = new RestNaoNulo<Operadora>().valido(operadora);
 	}
 
 	public String numero() {

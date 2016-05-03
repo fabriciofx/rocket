@@ -8,7 +8,7 @@ public final class HashId implements Id, Elemento, Comparable<HashId> {
 	private final transient String hash;
 
 	public HashId(final String hash) {
-		this.hash = new RestNaoVazia<>(new RestNaoNulo<>(hash)).objeto();
+		this.hash = new RestNaoVazia<String>(new RestNaoNulo<>()).valido(hash);
 	}
 
 	@Override

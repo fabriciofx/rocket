@@ -30,13 +30,13 @@ public final class Rg implements Elemento {
 
 	public Rg(final String numero, final Emissor emissor, final Estado estado,
 			final int via, final LocalDate expedicao) {
-		this.numero = new RestPadrao<>(
-				new RestNaoVazia<>(new RestNaoNulo<>(numero)), "[0-9]+")
-						.objeto().toUpperCase();
-		this.emissor = new RestNaoNulo<>(emissor).objeto();
-		this.estado = new RestNaoNulo<>(estado).objeto();
+		this.numero = new RestPadrao<String>(
+				new RestNaoVazia<>(new RestNaoNulo<>()), "[0-9]+")
+						.valido(numero).toUpperCase();
+		this.emissor = new RestNaoNulo<Emissor>().valido(emissor);
+		this.estado = new RestNaoNulo<Estado>().valido(estado);
 		this.via = via;
-		this.expedicao = new RestNaoNulo<>(expedicao).objeto();
+		this.expedicao = new RestNaoNulo<LocalDate>().valido(expedicao);
 	}
 
 	public String numero() {

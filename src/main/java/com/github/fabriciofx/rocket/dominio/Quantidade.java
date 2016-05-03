@@ -8,7 +8,7 @@ public final class Quantidade implements Elemento {
 
 	public Quantidade(final double valor, final Unidade unidade) {
 		this.valor = valor;
-		this.unidade = new RestNaoNulo<>(unidade).objeto();
+		this.unidade = new RestNaoNulo<Unidade>().valido(unidade);
 	}
 
 	public double valor() {

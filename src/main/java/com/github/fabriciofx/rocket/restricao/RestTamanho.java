@@ -7,15 +7,21 @@ import java.util.Map;
 
 import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
 
-public final class RestTamanho<T> extends Restricao<T> {
-	public RestTamanho(final RestNaoVazia<T> restricao,
+public final class RestTamanho<T> implements Restricao<T> {
+	private final transient RestNaoVazia<T> origem;
+	private final transient Intervalo.Padrao<Integer> tamanho;
+
+	public RestTamanho(final RestNaoVazia<T> origem,
 			final Intervalo.Padrao<Integer> tamanho) {
-		super(valida(restricao.objeto(), tamanho));
+		this.origem = origem;
+		this.tamanho = new RestNaoNulo<Intervalo.Padrao<Integer>>()
+				.valido(tamanho);
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <T> T valida(final T objeto,
-			final Intervalo.Padrao<Integer> tamanho) {
+	@Override
+	public T valido(final T objeto) {
+		origem.valido(objeto);
 		if (objeto instanceof Collection
 				&& !tamanho.contem(Collection.class.cast(objeto).size())) {
 			throw new IllegalArgumentException("tamanho fora do intervalo");
@@ -29,7 +35,6 @@ public final class RestTamanho<T> extends Restricao<T> {
 				Collections.list(Enumeration.class.cast(objeto)).size())) {
 			throw new IllegalArgumentException("tamanho fora do intervalo");
 		}
-
 		return objeto;
 	}
 }
