@@ -28,10 +28,11 @@ public interface Endereco {
 
 		@Override
 		public Media imprime(final Media media) {
+			Media m = media;
 			for (final Elemento e : elementos) {
-				media.with(e.getClass().getSimpleName(), e.toString());
+				m = m.with(e.getClass().getSimpleName(), e.toString());
 			}
-			return media;
+			return m;
 		}
 
 		@Override
@@ -77,9 +78,12 @@ public interface Endereco {
 		}
 
 		@Override
-		public Media imprime(Media media) {
-			media = media.with("id", id.toString());
-			return origem.imprime(media);
+		public Media imprime(final Media media) {
+			return origem.imprime(
+				media.with("id",
+				id.toString()
+				)
+			);
 		}
 	}
 }
