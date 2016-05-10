@@ -57,7 +57,7 @@ public final class TestePessoa {
 	
 	@Test
 	public void obtemCpf() throws IOException {
-		final String cpf = pessoa.elemento("cpf");
+		final String cpf = pessoa.documento("cpf");
 		assertEquals("03247407430", cpf);
 	}
 }

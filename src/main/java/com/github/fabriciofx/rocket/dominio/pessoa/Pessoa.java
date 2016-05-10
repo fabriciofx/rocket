@@ -10,21 +10,21 @@ import com.github.fabriciofx.rocket.infra.media.Media;
 import com.jcabi.immutable.Array;
 
 public interface Pessoa {
-	String elemento(String nome) throws IOException;
+	String documento(String nome) throws IOException;
 
 	Media imprime(Media media);
 
 	public final class Simples implements Pessoa, Identificavel<Id> {
 		private final transient Id id;
-		private final transient Array<Object> elementos;
+		private final transient Array<Object> documentos;
 
-		public Simples(final Id id, final Object... elementos) {
-			this(id, Arrays.asList(elementos));
+		public Simples(final Id id, final Object... documentos) {
+			this(id, Arrays.asList(documentos));
 		}
 
-		public Simples(final Id id, final List<Object> elementos) {
+		public Simples(final Id id, final List<Object> documentos) {
 			this.id = id;
-			this.elementos = new Array<>(elementos);
+			this.documentos = new Array<>(documentos);
 		}
 
 		@Override
@@ -33,21 +33,21 @@ public interface Pessoa {
 		}
 
 		@Override
-		public String elemento(final String nome) throws IOException {
-			for (final Object o : elementos) {
-				if (o.getClass().getSimpleName().toLowerCase().equals(nome)) {
-					return o.toString();
+		public String documento(final String nome) throws IOException {
+			for (final Object d : documentos) {
+				if (d.getClass().getSimpleName().toLowerCase().equals(nome)) {
+					return d.toString();
 				}
 			}
 			throw new IOException(
-					String.format("elemento do tipo %s não encontrado", nome));
+					String.format("documento %s não encontrado", nome));
 		}		
 
 		@Override
 		public Media imprime(final Media media) {
 			Media m = media.with("id", id.toString());
-			for (final Object o : elementos) {
-				m = m.with(o.getClass().getSimpleName(), o.toString());
+			for (final Object d : documentos) {
+				m = m.with(d.getClass().getSimpleName(), d.toString());
 			}
 			return m;
 		}
