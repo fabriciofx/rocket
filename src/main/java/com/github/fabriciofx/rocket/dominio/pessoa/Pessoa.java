@@ -46,12 +46,12 @@ public interface Pessoa {
 		}
 
 		@Override
-		public Media imprime(Media media) {
-			media = media.with("id", id.toString());
+		public Media imprime(final Media media) {
+			Media m = media.with("id", id.toString());
 			for (final Elemento e : elementos) {
-				media.with(e.getClass().getSimpleName(), e.toString());
+				m = m.with(e.getClass().getSimpleName(), e.toString());
 			}
-			return media;
+			return m;
 		}
 	}
 }
