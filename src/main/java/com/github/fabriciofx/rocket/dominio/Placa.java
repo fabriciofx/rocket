@@ -4,7 +4,7 @@ import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Placa implements Elemento {
+public final class Placa {
 	private final transient String numero;
 
 	public Placa(final String numero) {

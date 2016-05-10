@@ -6,7 +6,7 @@ import com.github.fabriciofx.rocket.infra.crypto.Hash;
 import com.github.fabriciofx.rocket.infra.crypto.Sha256;
 import com.github.fabriciofx.rocket.misc.Hex;
 
-public final class Senha extends Literal implements Elemento {
+public final class Senha extends Literal {
 	private final transient Hash hash;
 
 	public Senha(final String conteudo) {

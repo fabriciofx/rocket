@@ -4,7 +4,7 @@ import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Nome implements Elemento {
+public final class Nome {
 	private final transient String completo;
 
 	public Nome(final String completo) {

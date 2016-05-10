@@ -4,7 +4,7 @@ import com.github.fabriciofx.rocket.restricao.RestEmail;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class Email implements Elemento {
+public final class Email {
 	private final transient String endereco;
 
 	public Email(final String endereco) {

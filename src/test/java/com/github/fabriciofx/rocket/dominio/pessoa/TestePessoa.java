@@ -15,12 +15,6 @@ import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.endereco.Estado;
 import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.Numero;
-import com.github.fabriciofx.rocket.dominio.pessoa.Cpf;
-import com.github.fabriciofx.rocket.dominio.pessoa.Fone;
-import com.github.fabriciofx.rocket.dominio.pessoa.Pessoa;
-import com.github.fabriciofx.rocket.dominio.pessoa.Rg;
-import com.github.fabriciofx.rocket.dominio.pessoa.Sexo;
-import com.github.fabriciofx.rocket.dominio.pessoa.Tratamento;
 import com.github.fabriciofx.rocket.dominio.repositorio.DataId;
 import com.github.fabriciofx.rocket.infra.media.XmlMedia;
 
@@ -63,7 +57,7 @@ public final class TestePessoa {
 	
 	@Test
 	public void obtemCpf() throws IOException {
-		final Cpf cpf = pessoa.elemento(Cpf.class);
-		assertEquals("03247407430", cpf.toString());
+		final String cpf = pessoa.elemento("cpf");
+		assertEquals("03247407430", cpf);
 	}
 }

@@ -2,11 +2,10 @@ package com.github.fabriciofx.rocket.dominio.repositorio;
 
 import java.util.UUID;
 
-import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class UuId implements Id, Elemento, Comparable<UuId> {
+public final class UuId implements Id, Comparable<UuId> {
 	private final transient UUID uuid;
 
 	public UuId() {

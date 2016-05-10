@@ -1,11 +1,10 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestModulo11;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class Cpf implements Elemento {
+public final class Cpf  {
 	private final transient String numero;
 
 	public Cpf(final String numero) {

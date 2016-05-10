@@ -1,11 +1,10 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Fone implements Elemento {
+public final class Fone  {
 	public enum Operadora {
 		TIM, OI, CLARO, AEIOU, GVT, EMBRATEL, TELEFONICA, NEXTEL, VIVO,
 		DESCONHECIDO;

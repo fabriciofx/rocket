@@ -50,7 +50,7 @@ public final class TesteEndereco {
 	
 	@Test
 	public void cep() throws IOException {
-		final Cep cep = endereco.elemento(Cep.class);
-		assertEquals("48035120", cep.toString());
+		final String cep = endereco.elemento("cep");
+		assertEquals("48035120", cep);
 	}
 }
