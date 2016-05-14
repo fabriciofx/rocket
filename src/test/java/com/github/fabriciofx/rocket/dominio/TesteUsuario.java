@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.infra.sistema.Usuario;
+
 public final class TesteUsuario {
 	@Test
 	public void padrao() throws IOException {

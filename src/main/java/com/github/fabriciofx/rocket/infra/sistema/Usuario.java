@@ -1,7 +1,10 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.infra.sistema;
 
 import java.io.IOException;
 
+import com.github.fabriciofx.rocket.dominio.Email;
+import com.github.fabriciofx.rocket.dominio.Nome;
+import com.github.fabriciofx.rocket.dominio.Senha;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public interface Usuario {
