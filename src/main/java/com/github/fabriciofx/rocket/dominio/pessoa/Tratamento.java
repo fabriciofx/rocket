@@ -1,8 +1,6 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import com.github.fabriciofx.rocket.dominio.Elemento;
-
-public enum Tratamento implements Elemento {
+public enum Tratamento  {
 	// http://www.academia.org.br/nossa-lingua/reducoes
 	VOCE("V."),
 	VOCES("V.V."),

@@ -2,11 +2,10 @@ package com.github.fabriciofx.rocket.dominio.repositorio;
 
 import java.time.LocalDateTime;
 
-import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.misc.Aleatorio;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
-public final class DataId implements Id, Elemento, Comparable<DataId> {
+public final class DataId implements Id, Comparable<DataId> {
 	private final transient long numero;
 
 	public DataId() {

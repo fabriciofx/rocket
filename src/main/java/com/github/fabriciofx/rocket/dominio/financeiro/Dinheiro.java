@@ -6,11 +6,10 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
 
-import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.jcabi.immutable.Array;
 
-public final class Dinheiro implements Elemento, Comparable<Dinheiro> {
+public final class Dinheiro implements Comparable<Dinheiro> {
 	private final transient Currency moeda;
 	private final transient BigDecimal quantia;
 

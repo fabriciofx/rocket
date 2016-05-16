@@ -1,10 +1,9 @@
 package com.github.fabriciofx.rocket.dominio.repositorio;
 
-import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class HashId implements Id, Elemento, Comparable<HashId> {
+public final class HashId implements Id, Comparable<HashId> {
 	private final transient String hash;
 
 	public HashId(final String hash) {

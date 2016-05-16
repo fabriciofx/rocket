@@ -1,8 +1,6 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import com.github.fabriciofx.rocket.dominio.Elemento;
-
-public enum Titulacao implements Elemento {
+public enum Titulacao  {
 	MESTRE("M.e"),
 	MESTRA("M.a"),
 	DOUTOR("D.r"),

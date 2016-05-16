@@ -3,7 +3,7 @@ package com.github.fabriciofx.rocket.dominio;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public enum Unidade implements Elemento {
+public enum Unidade {
 	MILIGRAMA("mg"),
 	GRAMA("g"),
 	QUILO("kg"),

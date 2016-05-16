@@ -15,8 +15,7 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 
 	T termino();
 
-	final public class DataHora
-			implements Elemento, Periodo<ChronoLocalDateTime<?>> {
+	final public class DataHora implements Periodo<ChronoLocalDateTime<?>> {
 		private final transient LocalDateTime inicio;
 		private final transient LocalDateTime termino;
 
@@ -32,7 +31,7 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 			this.termino = new RestNaoNulo<LocalDateTime>().valido(termino);
 			if (this.inicio.isAfter(this.termino)) {
 				throw new IllegalArgumentException(
-					"a data/hora de início deve ser anterior a de término");
+						"a data/hora de início deve ser anterior a de término");
 			}
 		}
 
@@ -65,7 +64,7 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 		}
 	}
 
-	final public class Data implements Elemento, Periodo<ChronoLocalDate> {
+	final public class Data implements Periodo<ChronoLocalDate> {
 		private final transient LocalDate inicio;
 		private final transient LocalDate termino;
 
@@ -78,7 +77,7 @@ public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
 			this.termino = new RestNaoNulo<LocalDate>().valido(termino);
 			if (this.inicio.isAfter(this.termino)) {
 				throw new IllegalArgumentException(
-					"a data de início deve ser anterior a de término");
+						"a data de início deve ser anterior a de término");
 			}
 		}
 

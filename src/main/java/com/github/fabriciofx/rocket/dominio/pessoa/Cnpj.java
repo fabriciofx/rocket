@@ -1,11 +1,10 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-import com.github.fabriciofx.rocket.dominio.Elemento;
 import com.github.fabriciofx.rocket.restricao.RestModulo13;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class Cnpj implements Elemento {
+public final class Cnpj {
 	private final transient String numero;
 
 	public Cnpj(final String numero) {
