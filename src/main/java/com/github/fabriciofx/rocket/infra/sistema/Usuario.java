@@ -13,6 +13,23 @@ public interface Usuario {
 	Email email() throws IOException;
 
 	Senha senha() throws IOException;
+	
+	Usuario ANONIMO = new Usuario() {
+		@Override
+		public Nome nome() throws IOException {
+			return new Nome("ANONIMO");
+		}
+
+		@Override
+		public Email email() throws IOException {
+			return new Email("anonimo@anonimo.com");
+		}
+
+		@Override
+		public Senha senha() throws IOException {
+			return new Senha("anonimo");
+		}		
+	};
 
 	public final class Padrao implements Usuario {
 		private final transient Nome nome;

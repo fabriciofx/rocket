@@ -8,7 +8,10 @@ import com.github.fabriciofx.rocket.dominio.Senha;
 
 public interface UsuarioLogado extends Usuario {
 	boolean logado() throws IOException;
-	
+
+	UsuarioLogado USUARIO_LOGADO = new UsuarioLogado.Simples(Usuario.ANONIMO,
+			false);
+
 	public class Simples implements UsuarioLogado {
 		private final transient Usuario origem;
 		private final transient boolean logado;
@@ -17,7 +20,7 @@ public interface UsuarioLogado extends Usuario {
 			this.origem = origem;
 			this.logado = logado;
 		}
-		
+
 		@Override
 		public Nome nome() throws IOException {
 			return origem.nome();
@@ -36,6 +39,6 @@ public interface UsuarioLogado extends Usuario {
 		@Override
 		public boolean logado() throws IOException {
 			return logado;
-		}		
+		}
 	}
 }
