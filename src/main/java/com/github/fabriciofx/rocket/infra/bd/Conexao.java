@@ -25,6 +25,10 @@ public final class Conexao {
 		return conn.prepareStatement(sql);
 	}
 
+	public void autoCommit(final boolean auto) throws SQLException {
+		conn.setAutoCommit(auto);
+	}
+	
 	public void commit() throws SQLException {
 		conn.commit();
 	}
