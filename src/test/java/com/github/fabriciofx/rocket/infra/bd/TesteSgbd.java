@@ -2,6 +2,7 @@ package com.github.fabriciofx.rocket.infra.bd;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,11 +13,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public final class TesteSgbd {
+	private final String NOME_BD = "logdb";
 	private Conexao conexao;
 
 	@Before
 	public void inicializa() throws IOException {
-		conexao = new Conexao(new H2(), "logdb", new Usuario("sa", ""));
+		conexao = new Conexao(new H2(), NOME_BD, new Usuario("sa", ""));
 	}
 
 	@After
@@ -33,7 +35,8 @@ public final class TesteSgbd {
 	@Test
 	public void novo() {
 		final Path path = Paths.get(".").toAbsolutePath().normalize();
-		assertEquals("jdbc:h2:" + path + "\\logdb", conexao.url());
+		assertEquals(String.format("jdbc:h2:%s%s%s", path, File.separator,
+				NOME_BD), conexao.url());
 	}
 
 	@Test
