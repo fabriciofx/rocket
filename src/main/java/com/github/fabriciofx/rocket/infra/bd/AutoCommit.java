@@ -20,7 +20,7 @@ public final class AutoCommit implements Comando {
 		try {
 			for (final Comando comando : comandos) {
 				comando.execute(conexao);
-				conexao.efetiva();
+				conexao.commit();
 			}
 		} catch (final Exception e) {
 			throw new IOException(e);

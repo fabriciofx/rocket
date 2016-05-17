@@ -25,7 +25,7 @@ public final class Conexao {
 		return conn.prepareStatement(sql);
 	}
 
-	public void efetiva() throws SQLException {
+	public void commit() throws SQLException {
 		conn.commit();
 	}
 	
