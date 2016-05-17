@@ -28,6 +28,10 @@ public final class Conexao {
 	public void efetiva() throws SQLException {
 		conn.commit();
 	}
+	
+	public void rollback() throws SQLException {
+		conn.rollback();
+	}
 
 	public String url() {
 		return url;
