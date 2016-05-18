@@ -35,8 +35,7 @@ public final class TesteTransacao {
 	@After
 	public void finaliza() {
 		try {
-			new AutoCommit(new Update("DROP TABLE IF EXISTS log"))
-					.execute(conexao);
+			new Update("DROP TABLE IF EXISTS log").execute(conexao);
 			conexao.fecha();
 		} catch (final IOException e) {
 			e.printStackTrace();

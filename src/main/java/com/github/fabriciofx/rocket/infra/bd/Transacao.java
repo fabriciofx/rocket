@@ -38,5 +38,6 @@ public final class Transacao<T> {
 
 	private void rollback() throws SQLException {
 		conexao.rollback();
+		conexao.autoCommit(true);
 	}
 }
