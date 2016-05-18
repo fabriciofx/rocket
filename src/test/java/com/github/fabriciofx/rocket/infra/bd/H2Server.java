@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.infra.bd.h2;
+package com.github.fabriciofx.rocket.infra.bd;
 
 import java.io.IOException;
 import java.sql.SQLException;

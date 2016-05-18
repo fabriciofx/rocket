@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.infra.bd.mysql;
+package com.github.fabriciofx.rocket.infra.bd;
 
 import static org.junit.Assert.assertEquals;
 
