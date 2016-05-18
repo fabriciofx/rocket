@@ -42,7 +42,7 @@ public final class TesteSgbd {
 	@Test
 	public void cria() throws IOException {
 		new AutoCommit(new Update("CREATE TABLE IF NOT EXISTS"
-				+ " log(id LONG PRIMARY KEY, info VARCHAR(255))"))
+				+ " log(id BIGINT PRIMARY KEY, info VARCHAR(255))"))
 						.execute(conexao);
 	}
 
@@ -52,7 +52,7 @@ public final class TesteSgbd {
 		final String msg = "Uma mensagem de log qualquer";
 		new AutoCommit(
 				new Update("CREATE TABLE IF NOT EXISTS"
-						+ " log(id LONG PRIMARY KEY, info VARCHAR(255))"),
+						+ " log(id BIGINT PRIMARY KEY, info VARCHAR(255))"),
 				new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id, msg))
 						.execute(conexao);
 		final Dados logs = new Select("SELECT * FROM log").execute(conexao);
@@ -66,7 +66,7 @@ public final class TesteSgbd {
 		final String msg = "Uma mensagem de log qualquer";
 		new AutoCommit(
 			new Update("CREATE TABLE IF NOT EXISTS"
-					+ " log(id LONG PRIMARY KEY, info VARCHAR(255))"),
+					+ " log(id BIGINT PRIMARY KEY, info VARCHAR(255))"),
 			new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id, msg),
 			new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id + 1,
 					msg + "1"),

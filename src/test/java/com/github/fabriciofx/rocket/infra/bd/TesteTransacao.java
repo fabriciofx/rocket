@@ -19,7 +19,7 @@ public final class TesteTransacao {
 
 	private void dados(final Conexao conexao) throws IOException {
 		new Update("CREATE TABLE IF NOT EXISTS"
-				+ " log(id LONG PRIMARY KEY, info VARCHAR(255))")
+				+ " log(id BIGINT PRIMARY KEY, info VARCHAR(255))")
 						.execute(conexao);
 		new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id, msg)
 				.execute(conexao);
