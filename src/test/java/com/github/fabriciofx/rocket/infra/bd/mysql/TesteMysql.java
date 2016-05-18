@@ -10,24 +10,24 @@ import org.junit.Test;
 import com.github.fabriciofx.rocket.infra.bd.Conexao;
 import com.github.fabriciofx.rocket.infra.bd.Dados;
 import com.github.fabriciofx.rocket.infra.bd.Insert;
-import com.github.fabriciofx.rocket.infra.bd.MySQL;
+import com.github.fabriciofx.rocket.infra.bd.Mysql;
 import com.github.fabriciofx.rocket.infra.bd.Select;
 import com.github.fabriciofx.rocket.infra.bd.Sgbd;
 import com.github.fabriciofx.rocket.infra.bd.Update;
 import com.github.fabriciofx.rocket.infra.bd.Usuario;
 
-public final class TesteMySQL {
+public final class TesteMysql {
 	private final static transient String NOME_BD = "testebd";
 
 	@Test
 	public void url() {
-		final Sgbd mysql = new MySQL(NOME_BD);
+		final Sgbd mysql = new Mysql(NOME_BD);
 		assertEquals("jdbc:mysql://localhost:3306/testebd", mysql.url());
 	}
 
 	@Test
 	public void servidor() throws IOException, InterruptedException {
-		final Sgbd mysql = new MySQL(NOME_BD);
+		final Sgbd mysql = new Mysql(NOME_BD);
 		criaBD();
 		final Conexao conexao = new Conexao(mysql,
 				new Usuario("root", "admin"));
@@ -62,7 +62,7 @@ public final class TesteMySQL {
 	}
 
 	private void criaBD() throws IOException {
-		final Sgbd mysql = new MySQL("");
+		final Sgbd mysql = new Mysql("");
 		final Conexao conexao = new Conexao(mysql,
 				new Usuario("root", "admin"));
 		new Update("CREATE DATABASE IF NOT EXISTS testebd").execute(conexao);

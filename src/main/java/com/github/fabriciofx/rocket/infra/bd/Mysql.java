@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class MySQL implements Sgbd {
+public final class Mysql implements Sgbd {
 	private final static String DRIVER_PADRAO = "com.mysql.jdbc.Driver";
 	private final static String HOST_PADRAO = "localhost";
 	private final static int PORTA_PADRAO = 3306;
@@ -15,19 +15,19 @@ public final class MySQL implements Sgbd {
 	private final transient int porta;
 	private final transient String banco;
 
-	public MySQL(final String banco) {
+	public Mysql(final String banco) {
 		this(HOST_PADRAO, banco);
 	}
 
-	public MySQL(final String host, final String banco) {
+	public Mysql(final String host, final String banco) {
 		this(host, PORTA_PADRAO, banco);
 	}
 
-	public MySQL(final String host, final int porta, final String banco) {
+	public Mysql(final String host, final int porta, final String banco) {
 		this(DRIVER_PADRAO, host, porta, banco);
 	}
 
-	public MySQL(final String driver, final String host, final int porta,
+	public Mysql(final String driver, final String host, final int porta,
 			final String banco) {
 		this.driver = new RestNaoVazia<String>(new RestNaoNulo<>())
 				.valido(driver);
