@@ -1,6 +1,7 @@
 package com.github.fabriciofx.rocket.infra.bd;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -52,10 +53,14 @@ public final class H2 implements Sgbd {
 	}
 
 	@Override
-	public String driver() {
-		return driver;
+	public void init() throws IOException {
+		try {
+			Class.forName(driver);
+		} catch (final ClassNotFoundException e) {
+			throw new IOException(e);
+		}
 	}
-	
+
 	@Override
 	public String url() {
 		final Path path = Paths.get(".").toAbsolutePath().normalize();

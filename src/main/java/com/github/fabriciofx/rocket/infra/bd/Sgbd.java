@@ -1,7 +1,9 @@
 package com.github.fabriciofx.rocket.infra.bd;
 
+import java.io.IOException;
+
 public interface Sgbd {
-	String driver();
+	void init() throws IOException;
 	
 	String url();
 }

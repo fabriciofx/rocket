@@ -1,5 +1,7 @@
 package com.github.fabriciofx.rocket.infra.bd;
 
+import java.io.IOException;
+
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
@@ -35,8 +37,12 @@ public final class MySQL implements Sgbd {
 	}
 
 	@Override
-	public String driver() {
-		return driver;
+	public void init() throws IOException {
+		try {
+			Class.forName(driver);
+		} catch (final ClassNotFoundException e) {
+			throw new IOException(e);
+		}
 	}
 
 	@Override

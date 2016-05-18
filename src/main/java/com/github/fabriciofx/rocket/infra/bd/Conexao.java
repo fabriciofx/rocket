@@ -11,13 +11,9 @@ public final class Conexao {
 	private final transient Sgbd sgbd;
 
 	public Conexao(final Sgbd sgbd, final Usuario usuario) throws IOException {
-		try {
-			Class.forName(sgbd.driver());
-			this.sgbd = sgbd;
-			this.conn = connection(sgbd.url(), usuario);
-		} catch (final ClassNotFoundException e) {
-			throw new IOException(e);
-		}
+		sgbd.init();
+		this.sgbd = sgbd;
+		this.conn = connection(sgbd.url(), usuario);
 	}
 
 	public PreparedStatement statement(final String sql) throws SQLException {
