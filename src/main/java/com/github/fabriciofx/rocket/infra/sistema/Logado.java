@@ -6,13 +6,12 @@ import com.github.fabriciofx.rocket.dominio.Email;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.Senha;
 
-public interface UsuarioLogado extends Usuario {
+public interface Logado extends Usuario {
 	boolean logado() throws IOException;
 
-	UsuarioLogado USUARIO_LOGADO = new UsuarioLogado.Simples(Usuario.ANONIMO,
-			false);
+	Logado USUARIO = new Logado.Simples(Usuario.ANONIMO, false);
 
-	public class Simples implements UsuarioLogado {
+	public class Simples implements Logado {
 		private final transient Usuario origem;
 		private final transient boolean logado;
 
