@@ -14,11 +14,12 @@ import org.junit.Test;
 
 public final class TesteSgbd {
 	private final String NOME_BD = "logdb";
+	private final transient Sgbd sgbd = new H2(NOME_BD);
 	private Conexao conexao;
 
 	@Before
 	public void inicializa() throws IOException {
-		conexao = new Conexao(new H2(NOME_BD), new Usuario("sa", ""));
+		conexao = new Conexao(sgbd, new Usuario("sa", ""));
 	}
 
 	@After
@@ -36,7 +37,7 @@ public final class TesteSgbd {
 	public void novo() {
 		final Path path = Paths.get(".").toAbsolutePath().normalize();
 		assertEquals(String.format("jdbc:h2:%s%s%s", path, File.separator,
-				NOME_BD), conexao.url());
+				NOME_BD), sgbd.url());
 	}
 
 	@Test

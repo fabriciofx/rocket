@@ -8,11 +8,9 @@ import java.sql.SQLException;
 
 public final class Conexao {
 	private final transient Connection conn;
-	private final transient Sgbd sgbd;
 
 	public Conexao(final Sgbd sgbd, final Usuario usuario) throws IOException {
 		sgbd.init();
-		this.sgbd = sgbd;
 		this.conn = connection(sgbd.url(), usuario);
 	}
 
@@ -30,10 +28,6 @@ public final class Conexao {
 
 	public void rollback() throws SQLException {
 		conn.rollback();
-	}
-
-	public String url() {
-		return sgbd.url();
 	}
 
 	public void fecha() throws IOException {
