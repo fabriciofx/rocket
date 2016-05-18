@@ -8,14 +8,13 @@ import java.sql.SQLException;
 
 public final class Conexao {
 	private final transient Connection conn;
-	private final transient String url;
+	private final transient Sgbd sgbd;
 
-	public Conexao(final Sgbd sgbd, final String banco, final Usuario usuario)
-			throws IOException {
+	public Conexao(final Sgbd sgbd, final Usuario usuario) throws IOException {
 		try {
 			Class.forName(sgbd.driver());
-			this.url = sgbd.url(banco);
-			this.conn = connection(this.url, usuario);
+			this.sgbd = sgbd;
+			this.conn = connection(sgbd.url(), usuario);
 		} catch (final ClassNotFoundException e) {
 			throw new IOException(e);
 		}
@@ -28,17 +27,17 @@ public final class Conexao {
 	public void autoCommit(final boolean auto) throws SQLException {
 		conn.setAutoCommit(auto);
 	}
-	
+
 	public void commit() throws SQLException {
 		conn.commit();
 	}
-	
+
 	public void rollback() throws SQLException {
 		conn.rollback();
 	}
 
 	public String url() {
-		return url;
+		return sgbd.url();
 	}
 
 	public void fecha() throws IOException {

@@ -21,15 +21,15 @@ public final class TesteMySQL {
 
 	@Test
 	public void url() {
-		final Sgbd mysql = new MySQL();
-		assertEquals("jdbc:mysql://localhost:3306/testebd", mysql.url(NOME_BD));
+		final Sgbd mysql = new MySQL(NOME_BD);
+		assertEquals("jdbc:mysql://localhost:3306/testebd", mysql.url());
 	}
 
 	@Test
 	public void servidor() throws IOException, InterruptedException {
-		final Sgbd mysql = new MySQL();
-		criaBD(mysql);
-		final Conexao conexao = new Conexao(mysql, NOME_BD,
+		final Sgbd mysql = new MySQL(NOME_BD);
+		criaBD();
+		final Conexao conexao = new Conexao(mysql,
 				new Usuario("root", "admin"));
 		final long id = new Date().getTime();
 		final String msg = "Uma mensagem de log qualquer";
@@ -55,14 +55,15 @@ public final class TesteMySQL {
 	}
 
 	private void apagaBD(final Sgbd mysql) throws IOException {
-		final Conexao conexao = new Conexao(mysql, NOME_BD,
+		final Conexao conexao = new Conexao(mysql,
 				new Usuario("root", "admin"));
 		new Update("DROP DATABASE IF EXISTS testebd").execute(conexao);
 		conexao.fecha();
 	}
 
-	private void criaBD(final Sgbd mysql) throws IOException {
-		final Conexao conexao = new Conexao(mysql, "",
+	private void criaBD() throws IOException {
+		final Sgbd mysql = new MySQL("");
+		final Conexao conexao = new Conexao(mysql,
 				new Usuario("root", "admin"));
 		new Update("CREATE DATABASE IF NOT EXISTS testebd").execute(conexao);
 		conexao.fecha();

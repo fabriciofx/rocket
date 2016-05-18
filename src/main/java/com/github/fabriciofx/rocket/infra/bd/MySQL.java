@@ -11,24 +11,27 @@ public final class MySQL implements Sgbd {
 	private final transient String driver;
 	private final transient String host;
 	private final transient int porta;
+	private final transient String banco;
 
-	public MySQL() {
-		this(HOST_PADRAO);
+	public MySQL(final String banco) {
+		this(HOST_PADRAO, banco);
 	}
 
-	public MySQL(final String host) {
-		this(host, PORTA_PADRAO);
+	public MySQL(final String host, final String banco) {
+		this(host, PORTA_PADRAO, banco);
 	}
 
-	public MySQL(final String host, final int porta) {
-		this(DRIVER_PADRAO, host, porta);
+	public MySQL(final String host, final int porta, final String banco) {
+		this(DRIVER_PADRAO, host, porta, banco);
 	}
 
-	public MySQL(final String driver, final String host, final int porta) {
+	public MySQL(final String driver, final String host, final int porta,
+			final String banco) {
 		this.driver = new RestNaoVazia<String>(new RestNaoNulo<>())
 				.valido(driver);
 		this.host = new RestNaoVazia<String>(new RestNaoNulo<>()).valido(host);
 		this.porta = porta;
+		this.banco = new RestNaoNulo<String>().valido(banco);
 	}
 
 	@Override
@@ -37,17 +40,7 @@ public final class MySQL implements Sgbd {
 	}
 
 	@Override
-	public String host() {
-		return host;
-	}
-
-	@Override
-	public int porta() {
-		return porta;
-	}
-
-	@Override
-	public String url(final String banco) {
+	public String url() {
 		return String.format("jdbc:mysql://%s:%d/%s", host, porta, banco);
 	}
 }

@@ -21,30 +21,33 @@ public final class H2 implements Sgbd {
 	private final transient String driver;
 	private final transient String host;
 	private final transient int porta;
+	private final transient String banco;
 	private final transient Modo modo;
 
-	public H2() {
-		this(Modo.EMBEDDED);
+	public H2(final String banco) {
+		this(banco, Modo.EMBEDDED);
 	}
 
-	public H2(final Modo modo) {
-		this(HOST_PADRAO, modo);
+	public H2(final String banco, final Modo modo) {
+		this(HOST_PADRAO, banco, modo);
 	}
 
-	public H2(final String host, final Modo modo) {
-		this(host, PORTA_PADRAO, modo);
+	public H2(final String host, final String banco, final Modo modo) {
+		this(host, PORTA_PADRAO, banco, modo);
 	}
 
-	public H2(final String host, final int porta, final Modo modo) {
-		this(DRIVER_PADRAO, host, porta, modo);
+	public H2(final String host, final int porta, final String banco,
+			final Modo modo) {
+		this(DRIVER_PADRAO, host, porta, banco, modo);
 	}
 
 	public H2(final String driver, final String host, final int porta,
-			final Modo modo) {
+			final String banco, final Modo modo) {
 		this.driver = new RestNaoVazia<String>(new RestNaoNulo<>())
 				.valido(driver);
 		this.host = new RestNaoVazia<String>(new RestNaoNulo<>()).valido(host);
 		this.porta = porta;
+		this.banco = new RestNaoNulo<String>().valido(banco);
 		this.modo = new RestNaoNulo<H2.Modo>().valido(modo);
 	}
 
@@ -52,19 +55,9 @@ public final class H2 implements Sgbd {
 	public String driver() {
 		return driver;
 	}
-
+	
 	@Override
-	public String host() {
-		return host;
-	}
-
-	@Override
-	public int porta() {
-		return porta;
-	}
-
-	@Override
-	public String url(final String banco) {
+	public String url() {
 		final Path path = Paths.get(".").toAbsolutePath().normalize();
 		final String url;
 		switch (modo) {

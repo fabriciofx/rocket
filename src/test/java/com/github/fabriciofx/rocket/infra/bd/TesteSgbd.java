@@ -18,7 +18,7 @@ public final class TesteSgbd {
 
 	@Before
 	public void inicializa() throws IOException {
-		conexao = new Conexao(new H2(), NOME_BD, new Usuario("sa", ""));
+		conexao = new Conexao(new H2(NOME_BD), new Usuario("sa", ""));
 	}
 
 	@After

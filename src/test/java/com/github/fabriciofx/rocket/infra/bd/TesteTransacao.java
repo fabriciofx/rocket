@@ -45,7 +45,7 @@ public final class TesteTransacao {
 
 	@Test
 	public void sucesso() throws IOException {
-		conexao = new Conexao(new H2(), NOME_BD, new Usuario("sa", ""));
+		conexao = new Conexao(new H2(NOME_BD), new Usuario("sa", ""));
 		final Transacao<Integer> transacao = new Transacao<>(conexao);
 		transacao.execute(new Callable<Integer>() {
 			@Override
@@ -66,7 +66,7 @@ public final class TesteTransacao {
 	@Test
 	public void falha() {
 		try {
-			conexao = new Conexao(new H2(), NOME_BD, new Usuario("sa", ""));
+			conexao = new Conexao(new H2(NOME_BD), new Usuario("sa", ""));
 			final Transacao<Integer> transacao = new Transacao<>(conexao);
 			transacao.execute(new Callable<Integer>() {
 				@Override

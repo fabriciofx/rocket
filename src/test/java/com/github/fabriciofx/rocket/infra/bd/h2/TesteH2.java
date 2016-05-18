@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 
-import org.junit.After;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.infra.bd.AutoCommit;
@@ -24,38 +23,36 @@ public final class TesteH2 {
 	private final static transient String NOME_BD = "testebd";
 	private Conexao conexao;
 
-	@After
-	public void finaliza() {
-		try {
-			new AutoCommit(new Update("DROP TABLE IF EXISTS log"))
-					.execute(conexao);
-			conexao.fecha();
-		} catch (final IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	@After
+//	public void finaliza() {
+//		try {
+//			new Update("DROP TABLE IF EXISTS log").execute(conexao);
+//			conexao.fecha();
+//		} catch (final IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	@Test
 	public void embedded() {
 		final Path path = Paths.get(".").toAbsolutePath().normalize();
-		final Sgbd h2 = new H2();
-		assertEquals(
-				String.format("jdbc:h2:%s%s%s", path, File.separator, NOME_BD),
-				h2.url(NOME_BD));
+		final Sgbd h2 = new H2(NOME_BD);
+		assertEquals(String.format("jdbc:h2:%s%s%s", path, File.separator,
+				NOME_BD), h2.url());
 	}
 
 	@Test
 	public void memory() {
-		final Sgbd h2 = new H2(Modo.MEMORY);
-		assertEquals(String.format("jdbc:h2:mem:", NOME_BD), h2.url(NOME_BD));
+		final Sgbd h2 = new H2(NOME_BD, Modo.MEMORY);
+		assertEquals(String.format("jdbc:h2:mem:", NOME_BD), h2.url());
 	}
 
 	@Test
 	public void tcp() {
 		final Path path = Paths.get(".").toAbsolutePath().normalize();
-		final Sgbd h2 = new H2(Modo.TCP);
+		final Sgbd h2 = new H2(NOME_BD, Modo.TCP);
 		assertEquals(String.format("jdbc:h2:tcp://localhost:9092//%s/%s",
-				path.toString(), NOME_BD), h2.url(NOME_BD));
+				path.toString(), NOME_BD), h2.url());
 	}
 
 	@Test
@@ -63,8 +60,8 @@ public final class TesteH2 {
 		final H2Server server = new H2Server();
 		server.start();
 
-		final Sgbd h2 = new H2(Modo.TCP);
-		conexao = new Conexao(h2, NOME_BD, new Usuario("sa", ""));
+		final Sgbd h2 = new H2(NOME_BD, Modo.TCP);
+		conexao = new Conexao(h2, new Usuario("sa", ""));
 
 		final long id = new Date().getTime();
 		final String msg = "Uma mensagem de log qualquer";
