@@ -6,7 +6,7 @@ import com.github.fabriciofx.rocket.misc.Aleatorio;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public final class DataId implements Id, Comparable<DataId> {
-	private final transient long numero;
+	private final transient long milisegundos;
 
 	public DataId() {
 		this(LocalDateTime.now());
@@ -20,59 +20,59 @@ public final class DataId implements Id, Comparable<DataId> {
 		this(localDateTimeParaLong(dataHora) + sequencial);
 	}
 
-	public DataId(final long numero) {
-		this.numero = numero;
+	public DataId(final long milisegundos) {
+		this.milisegundos = milisegundos;
 	}
 
 	public LocalDateTime dataHora() {
-		final int ano = (int) (numero / 1000000000000000L);
-		final int mes = (int) ((numero / 10000000000000L)
-				- ((numero / 1000000000000000L) * 100L));
-		final int dia = (int) ((numero / 100000000000L)
-				- ((numero / 10000000000000L) * 100L));
-		final int hora = (int) ((numero / 1000000000L)
-				- ((numero / 100000000000L) * 100L));
-		final int minuto = (int) ((numero / 10000000L)
-				- ((numero / 1000000000L) * 100L));
-		final int segundo = (int) ((numero / 100000L)
-				- ((numero / 10000000L) * 100L));
-		final int nanosegundo = (int) ((numero / 100L)
-				- ((numero / 100000L) * 1000L));
+		final int ano = (int) (milisegundos / 1000000000000000L);
+		final int mes = (int) ((milisegundos / 10000000000000L)
+				- ((milisegundos / 1000000000000000L) * 100L));
+		final int dia = (int) ((milisegundos / 100000000000L)
+				- ((milisegundos / 10000000000000L) * 100L));
+		final int hora = (int) ((milisegundos / 1000000000L)
+				- ((milisegundos / 100000000000L) * 100L));
+		final int minuto = (int) ((milisegundos / 10000000L)
+				- ((milisegundos / 1000000000L) * 100L));
+		final int segundo = (int) ((milisegundos / 100000L)
+				- ((milisegundos / 10000000L) * 100L));
+		final int nanosegundo = (int) ((milisegundos / 100L)
+				- ((milisegundos / 100000L) * 1000L));
 
 		return LocalDateTime.of(ano, mes, dia, hora, minuto, segundo,
 				(nanosegundo * 1000000));
 	}
 
 	public int sequencial(final long n) {
-		return (int) (numero - ((numero / 100L) * 100L));
+		return (int) (milisegundos - ((milisegundos / 100L) * 100L));
 	}
 
 	// Ano.Mes.Dia.Hora.Minuto.Segundo.Nanosegundo.(RANDOM entre 0 e 99)
 	// Exemplo: 2015.12.28.22.52.13.123.45
 	@Override
 	public long toLong() {
-		return numero;
+		return milisegundos;
 	}
 
 	@Override
 	public String toString() {
-		return numero + "";
+		return milisegundos + "";
 	}
 
 	@Override
 	public int compareTo(final DataId dataId) {
-		return (int) (numero - dataId.numero);
+		return (int) (milisegundos - dataId.milisegundos);
 	}
 
 	@Override
 	public int hashCode() {
-		return (int) (31 * numero);
+		return (int) (31 * milisegundos);
 	}
 
 	@Override
 	public boolean equals(final Object o) {
 		return o != null && o instanceof DataId
-				&& numero == DataId.class.cast(o).numero;
+				&& milisegundos == DataId.class.cast(o).milisegundos;
 	}
 
 	private static long localDateTimeParaLong(final LocalDateTime dataHora) {
