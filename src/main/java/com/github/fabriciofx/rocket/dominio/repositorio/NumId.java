@@ -27,4 +27,9 @@ public final class NumId implements Id, Comparable<NumId> {
 	public long toLong() {
 		return numero;
 	}
+	
+	@Override
+	public String toString() {
+		return Long.toString(numero);
+	}
 }
