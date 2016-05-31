@@ -1,10 +1,12 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
+import com.github.fabriciofx.rocket.infra.media.Media;
+import com.github.fabriciofx.rocket.infra.media.Printer;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Cep {
+public final class Cep implements Printer {
 	private final String numero;
 
 	public Cep(final String numero) {
@@ -16,10 +18,6 @@ public final class Cep {
 		).valido(numero);
 	}
 
-	public String numero() {
-		return numero;
-	}
-
 	@Override
 	public int hashCode() {
 		return 31 + ((numero == null) ? 0 : numero.hashCode());
@@ -28,11 +26,16 @@ public final class Cep {
 	@Override
 	public boolean equals(final Object o) {
 		return o != null && o instanceof Cep
-				&& numero.equals(Cep.class.cast(o).numero());
+				&& numero.equals(Cep.class.cast(o).numero);
 	}
 
 	@Override
 	public String toString() {
 		return numero;
 	}
+	
+	@Override
+	public Media print(Media media) {
+		return media.with("cep", numero);
+	}	
 }

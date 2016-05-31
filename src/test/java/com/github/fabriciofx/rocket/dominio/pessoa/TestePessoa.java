@@ -11,10 +11,10 @@ import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
 import com.github.fabriciofx.rocket.dominio.endereco.Complemento;
-import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.endereco.Estado;
 import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.Numero;
+import com.github.fabriciofx.rocket.dominio.endereco.SimplesEndereco;
 import com.github.fabriciofx.rocket.dominio.repositorio.DataId;
 import com.github.fabriciofx.rocket.infra.media.XmlMedia;
 
@@ -28,7 +28,7 @@ public final class TestePessoa {
 			Tratamento.SENHOR,
 			new Cpf("03247407430"),
 			new Rg("12345678"),
-			new Endereco.Simples(
+			new SimplesEndereco(
 				new Logradouro("Av Gov Torquato Nepomuceno Neves"),
 				new Numero("123"),
 				new Complemento("AP 101"),
