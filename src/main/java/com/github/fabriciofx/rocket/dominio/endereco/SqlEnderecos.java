@@ -3,7 +3,6 @@ package com.github.fabriciofx.rocket.dominio.endereco;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -42,7 +41,7 @@ public final class SqlEnderecos implements Enderecos {
 	}
 
 	@Override
-	public Iterator<Endereco> iterate() throws IOException {
+	public Iterable<Endereco> iterate() throws IOException {
 		try {
 			final List<Endereco> enderecos = new JdbcSession(ds)
 				.sql("SELECT * FROM endereco")
@@ -62,7 +61,7 @@ public final class SqlEnderecos implements Enderecos {
 						}
 					})
 				);
-			return enderecos.iterator();
+			return enderecos;
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}
