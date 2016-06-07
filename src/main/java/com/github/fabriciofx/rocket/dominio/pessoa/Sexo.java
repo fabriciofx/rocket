@@ -1,6 +1,14 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-public enum Sexo {
+import com.github.fabriciofx.rocket.dominio.Documento;
+import com.github.fabriciofx.rocket.infra.media.Media;
+
+public enum Sexo implements Documento {
 	MASCULINO,
 	FEMININO;
+
+	@Override
+	public Media print(Media media) {
+		return media.with("sexo", this.toString());
+	}
 }

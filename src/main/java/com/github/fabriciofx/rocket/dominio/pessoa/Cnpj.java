@@ -1,10 +1,12 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
+import com.github.fabriciofx.rocket.dominio.Documento;
+import com.github.fabriciofx.rocket.infra.media.Media;
 import com.github.fabriciofx.rocket.restricao.RestModulo13;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class Cnpj {
+public final class Cnpj implements Documento {
 	private final transient String numero;
 
 	public Cnpj(final String numero) {
@@ -26,5 +28,10 @@ public final class Cnpj {
 	@Override
 	public String toString() {
 		return numero;
+	}
+
+	@Override
+	public Media print(Media media) {
+		return media.with("cnpj", numero);
 	}
 }

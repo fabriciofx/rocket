@@ -1,6 +1,9 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-public enum Tratamento  {
+import com.github.fabriciofx.rocket.dominio.Documento;
+import com.github.fabriciofx.rocket.infra.media.Media;
+
+public enum Tratamento implements Documento {
 	// http://www.academia.org.br/nossa-lingua/reducoes
 	VOCE("V."),
 	VOCES("V.V."),
@@ -36,8 +39,14 @@ public enum Tratamento  {
 		this.abreviatura = abreviatura;
 	}
 
+//	@Override
+//	public String toString() {
+//		return abreviatura;
+//	}
+//
 	@Override
-	public String toString() {
-		return abreviatura;
-	}
+	public Media print(Media media) {
+//		return media.with("tratamento", abreviatura);
+		return media.with("tratamento", this.toString());
+	}	
 }

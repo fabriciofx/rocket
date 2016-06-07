@@ -2,12 +2,14 @@ package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import java.time.LocalDate;
 
+import com.github.fabriciofx.rocket.dominio.Documento;
 import com.github.fabriciofx.rocket.dominio.endereco.Estado;
+import com.github.fabriciofx.rocket.infra.media.Media;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Rg  {
+public final class Rg implements Documento {
 	public enum Emissor {
 		ABNC, CGPI, CGPMAF, CNIG, CNT, COREN, CORECON, CRA, CRAS, CRB, CRC, CRE,
 		CREA, CRECI, CREFIT, CRF, CRM, CRMV, CRN, CRO, CRP, CRPRE, CRQ, CRRC,
@@ -24,7 +26,7 @@ public final class Rg  {
 	private final transient LocalDate expedicao;
 
 	public Rg(final String numero) {
-		this(numero, Emissor.SSP, Estado.PB, 1, LocalDate.now());
+		this(numero.split(" ")[0], Emissor.SSP, Estado.PB, 1, LocalDate.now());
 	}
 
 	public Rg(final String numero, final Emissor emissor, final Estado estado,
@@ -38,29 +40,32 @@ public final class Rg  {
 		this.expedicao = new RestNaoNulo<LocalDate>().valido(expedicao);
 	}
 
-	public String numero() {
-		return numero;
-	}
-
-	public Emissor emissor() {
-		return emissor;
-	}
-
-	public Estado estado() {
-		return estado;
-	}
-
-	public int via() {
-		return via;
-	}
-
-	public LocalDate expedicao() {
-		return expedicao;
-	}
-
 	@Override
 	public String toString() {
 		final String v = via > 1 ? " - " + via + "ª via" : "";
-		return String.format("%s %s/%s %s", numero, emissor, estado, v).trim();
+		return String.format("%s %s-%s %s", numero, emissor, estado, v);
+	}
+
+	@Override
+	public Media print(Media media) {
+		final String rg;
+		if (via == 1) {
+			rg = String.format("%s %s-%s", numero, emissor, estado);
+		} else {
+			rg = String.format("%s %s-%s %dª via", numero, emissor, estado,
+				via);
+		}
+		return media.with("rg", rg);
+	}
+	
+	private Media xml(Media media) {
+		media = media.with("rg-numero", numero)
+			.with("rg-emissor", emissor.toString())
+			.with("rg-estado", estado.toString())
+			.with("rg-expedicao", expedicao.toString());
+		if (via > 1) {
+			media = media.with("rg-via", Integer.toString(via));
+		}
+		return media;
 	}
 }

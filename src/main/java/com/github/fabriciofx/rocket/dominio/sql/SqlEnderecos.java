@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.endereco;
+package com.github.fabriciofx.rocket.dominio.sql;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -7,7 +7,16 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
+import com.github.fabriciofx.rocket.dominio.endereco.Cep;
+import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
+import com.github.fabriciofx.rocket.dominio.endereco.Complemento;
+import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
+import com.github.fabriciofx.rocket.dominio.endereco.Enderecos;
+import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
+import com.github.fabriciofx.rocket.dominio.endereco.Numero;
 import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
+import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.SingleOutcome;

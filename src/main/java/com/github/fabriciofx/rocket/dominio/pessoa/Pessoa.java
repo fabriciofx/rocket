@@ -1,55 +1,40 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
-import com.github.fabriciofx.rocket.dominio.repositorio.Id;
-import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
+import com.github.fabriciofx.rocket.dominio.Fone;
+import com.github.fabriciofx.rocket.dominio.Nome;
+import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.jcabi.immutable.Array;
 
 public interface Pessoa {
-	String documento(String nome) throws IOException;
+	Nome nome() throws IOException;
 
-	Media imprime(Media media);
+	void nome(Nome nome) throws IOException;
 
-	public final class Simples implements Pessoa, Identificavel<Id> {
-		private final transient Id id;
-		private final transient Array<Object> documentos;
+	Sexo sexo() throws IOException;
 
-		public Simples(final Id id, final Object... documentos) {
-			this(id, Arrays.asList(documentos));
-		}
+	void sexo(Sexo sexo) throws IOException;
 
-		public Simples(final Id id, final List<Object> documentos) {
-			this.id = id;
-			this.documentos = new Array<>(documentos);
-		}
+	Tratamento tratamento() throws IOException;
 
-		@Override
-		public Id id() {
-			return id;
-		}
+	void tratamento(Tratamento tratamento) throws IOException;
 
-		@Override
-		public String documento(final String nome) throws IOException {
-			for (final Object d : documentos) {
-				if (d.getClass().getSimpleName().toLowerCase().equals(nome)) {
-					return d.toString();
-				}
-			}
-			throw new IOException(
-					String.format("documento %s não encontrado", nome));
-		}		
+	Cpf cpf() throws IOException;
 
-		@Override
-		public Media imprime(final Media media) {
-			Media m = media.with("id", id.toString());
-			for (final Object d : documentos) {
-				m = m.with(d.getClass().getSimpleName(), d.toString());
-			}
-			return m;
-		}
-	}
+	void cpf(Cpf cpf) throws IOException;
+
+	Rg rg() throws IOException;
+
+	void rg(Rg rg) throws IOException;
+
+	Endereco endereco() throws IOException;
+
+	void endereco(Endereco endereco) throws IOException;
+
+	Iterable<Fone> fones() throws IOException;
+
+	void fones(Iterable<Fone> fones) throws IOException;
+	
+	Media print(Media media) throws IOException;
 }

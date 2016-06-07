@@ -1,10 +1,12 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
+import com.github.fabriciofx.rocket.dominio.Documento;
+import com.github.fabriciofx.rocket.infra.media.Media;
 import com.github.fabriciofx.rocket.restricao.RestModulo11;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class Cpf  {
+public final class Cpf implements Documento {
 	private final transient String numero;
 
 	public Cpf(final String numero) {
@@ -26,5 +28,10 @@ public final class Cpf  {
 	@Override
 	public String toString() {
 		return this.numero;
+	}
+
+	@Override
+	public Media print(Media media) {
+		return media.with("cpf", numero);
 	}
 }

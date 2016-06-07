@@ -1,6 +1,9 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
-public enum Titulacao  {
+import com.github.fabriciofx.rocket.dominio.Documento;
+import com.github.fabriciofx.rocket.infra.media.Media;
+
+public enum Titulacao implements Documento {
 	MESTRE("M.e"),
 	MESTRA("M.a"),
 	DOUTOR("D.r"),
@@ -17,5 +20,10 @@ public enum Titulacao  {
 	@Override
 	public String toString() {
 		return abreviatura;
+	}
+
+	@Override
+	public Media print(Media media) {
+		return media.with("titulacao", abreviatura);
 	}
 }

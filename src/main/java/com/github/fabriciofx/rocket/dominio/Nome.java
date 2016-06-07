@@ -1,10 +1,11 @@
 package com.github.fabriciofx.rocket.dominio;
 
+import com.github.fabriciofx.rocket.infra.media.Media;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
-public final class Nome {
+public final class Nome implements Documento {
 	private final transient String completo;
 
 	public Nome(final String completo) {
@@ -57,5 +58,10 @@ public final class Nome {
 	@Override
 	public final String toString() {
 		return completo;
+	}
+
+	@Override
+	public Media print(Media media) {
+		return media.with("nome", completo);
 	}
 }

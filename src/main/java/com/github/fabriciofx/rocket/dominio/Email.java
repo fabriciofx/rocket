@@ -1,10 +1,11 @@
 package com.github.fabriciofx.rocket.dominio;
 
+import com.github.fabriciofx.rocket.infra.media.Media;
 import com.github.fabriciofx.rocket.restricao.RestEmail;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
-public final class Email {
+public final class Email implements Documento {
 	private final transient String endereco;
 
 	public Email(final String endereco) {
@@ -26,5 +27,10 @@ public final class Email {
 	@Override
 	public String toString() {
 		return endereco;
+	}
+
+	@Override
+	public Media print(Media media) {
+		return media.with("email", endereco);
 	}
 }

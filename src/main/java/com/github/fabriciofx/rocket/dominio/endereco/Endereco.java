@@ -1,9 +1,29 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
-import java.io.IOException;
+import com.github.fabriciofx.rocket.dominio.Documento;
 
-import com.github.fabriciofx.rocket.infra.media.Media;
+public interface Endereco extends Documento {
+	Logradouro logradouro();
 
-public interface Endereco {
-	Media print(Media media) throws IOException;
+	void logradouro(Logradouro logradouro);
+
+	Numero numero();
+
+	void numero(Numero numero);
+
+	Complemento complemento();
+
+	void complemento(Complemento complemento);
+
+	Bairro bairro();
+
+	void bairro(Bairro bairro);
+
+	Cidade cidade();
+
+	void cidade(Cidade cidade);
+
+	Cep cep();
+
+	void cep(Cep cep);
 }

@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.endereco;
+package com.github.fabriciofx.rocket.dominio.sql;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -7,8 +7,16 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
+import com.github.fabriciofx.rocket.dominio.endereco.Cep;
+import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
+import com.github.fabriciofx.rocket.dominio.endereco.Complemento;
+import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
+import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
+import com.github.fabriciofx.rocket.dominio.endereco.Numero;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
+import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
 import com.github.fabriciofx.rocket.infra.media.Media;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.jcabi.jdbc.JdbcSession;
@@ -61,5 +69,77 @@ public final class SqlEndereco implements Endereco, Identificavel<Id> {
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}
+	}
+
+	@Override
+	public Logradouro logradouro() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void logradouro(Logradouro logradouro) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Numero numero() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void numero(Numero numero) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Complemento complemento() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void complemento(Complemento complemento) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Bairro bairro() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void bairro(Bairro bairro) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Cidade cidade() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void cidade(Cidade cidade) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Cep cep() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void cep(Cep cep) {
+		// TODO Auto-generated method stub
+		
 	}
 }
