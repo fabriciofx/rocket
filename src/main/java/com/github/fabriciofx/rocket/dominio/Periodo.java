@@ -7,7 +7,6 @@ import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
-import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {

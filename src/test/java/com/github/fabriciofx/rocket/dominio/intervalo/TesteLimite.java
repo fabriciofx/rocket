@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.dominio.Limite;
+
 public final class TesteLimite {
 	@Test
 	public void limiteMaximo() {

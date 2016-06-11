@@ -5,16 +5,16 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Map;
 
-import com.github.fabriciofx.rocket.dominio.intervalo.Intervalo;
+import com.github.fabriciofx.rocket.dominio.IntervaloPadrao;
 
 public final class RestTamanho<T> implements Restricao<T> {
 	private final transient RestNaoVazia<T> origem;
-	private final transient Intervalo.Padrao<Integer> tamanho;
+	private final transient IntervaloPadrao<Integer> tamanho;
 
 	public RestTamanho(final RestNaoVazia<T> origem,
-			final Intervalo.Padrao<Integer> tamanho) {
+			final IntervaloPadrao<Integer> tamanho) {
 		this.origem = origem;
-		this.tamanho = new RestNaoNulo<Intervalo.Padrao<Integer>>()
+		this.tamanho = new RestNaoNulo<IntervaloPadrao<Integer>>()
 				.valido(tamanho);
 	}
 

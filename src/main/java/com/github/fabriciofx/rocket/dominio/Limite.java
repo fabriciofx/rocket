@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.intervalo;
+package com.github.fabriciofx.rocket.dominio;
 
 public final class Limite<T extends Comparable<T>> {
 	private final T valor;
