@@ -5,6 +5,7 @@ import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import com.github.fabriciofx.rocket.infra.media.Media;
 import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public final class PeriodoDataHora implements Periodo<ChronoLocalDateTime<?>> {
@@ -47,6 +48,14 @@ public final class PeriodoDataHora implements Periodo<ChronoLocalDateTime<?>> {
 				.ofLocalizedDateTime(FormatStyle.SHORT);
 		return String.format("%s a %s", inicio.format(formato),
 				termino.format(formato));
+	}
+
+	@Override
+	public Media print(Media media) {
+		final DateTimeFormatter formato = DateTimeFormatter
+				.ofLocalizedDate(FormatStyle.SHORT);
+		return media.with("inicio", inicio.format(formato))
+				.with("termino", termino.format(formato));
 	}
 
 	private static LocalDateTime toLocalDateTime(final String data,
