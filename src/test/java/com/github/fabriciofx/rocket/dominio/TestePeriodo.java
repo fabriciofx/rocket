@@ -12,7 +12,7 @@ import org.junit.Test;
 public final class TestePeriodo {
 	@Test
 	public void contemDataHora() {
-		final Periodo.DataHora periodo = new Periodo.DataHora(
+		final PeriodoDataHora periodo = new PeriodoDataHora(
 				LocalDateTime.of(2015, 1, 1, 8, 0, 0),
 				LocalDateTime.of(2015, 1, 31, 8, 0, 0));
 
@@ -25,7 +25,7 @@ public final class TestePeriodo {
 
 	@Test
 	public void contemData() {
-		final Periodo.Data periodo = new Periodo.Data(LocalDate.of(2015, 1, 1),
+		final PeriodoData periodo = new PeriodoData(LocalDate.of(2015, 1, 1),
 				LocalDate.of(2015, 1, 3));
 
 		assertFalse(periodo.contem(LocalDate.of(2014, 12, 31)));
@@ -37,14 +37,14 @@ public final class TestePeriodo {
 
 	@Test
 	public void contemDataHoraComoString() {
-		final Periodo.DataHora periodo = new Periodo.DataHora("10/10/2015",
+		final PeriodoDataHora periodo = new PeriodoDataHora("10/10/2015",
 				"08:00", "20/10/2015", "15:00");
 		assertEquals("10/10/15 08:00 a 20/10/15 15:00", periodo.toString());
 	}
 
 	@Test
 	public void contemDataComoString() {
-		final Periodo.Data periodo = new Periodo.Data("10/10/2015",
+		final PeriodoData periodo = new PeriodoData("10/10/2015",
 				"20/10/2015");
 		assertEquals("10/10/15 a 20/10/15", periodo.toString());
 	}
