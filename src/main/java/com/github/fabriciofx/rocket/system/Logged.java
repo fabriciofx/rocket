@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.github.fabriciofx.rocket.dominio.Email;
 import com.github.fabriciofx.rocket.dominio.Nome;
-import com.github.fabriciofx.rocket.dominio.Password;
+import com.github.fabriciofx.rocket.security.Password;
 
 public interface Logged extends User {
 	boolean logged() throws IOException;

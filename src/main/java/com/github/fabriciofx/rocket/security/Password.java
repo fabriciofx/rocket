@@ -1,11 +1,9 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.security;
 
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.misc.Hex;
-import com.github.fabriciofx.rocket.security.Hash;
-import com.github.fabriciofx.rocket.security.Sha256;
 
 public final class Password {
 	private final transient Hash hash;
