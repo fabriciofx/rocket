@@ -44,9 +44,13 @@ public final class TesteSqlMedia {
 				new SimplesFone("999918967", Fone.Tipo.CELULAR, Fone.Operadora.TIM)
 			);
 		assertEquals(
-			"INSERT INTO pessoa (nome, sexo, tratamento, cpf, rg, " +
-			"logradouro, numero, complemento, bairro, cidade, cep, numero, " +
-			"tipo, operadora) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			"INSERT INTO pessoa (nome, sexo, tratamento, cpf, rg, "
+			+ "logradouro, numero, complemento, bairro, cidade, cep, numero, "
+			+ "tipo, operadora) VALUES ('José de Alencar', 'MASCULINO', "
+			+ "'SENHOR', '60840226772', '12345678 SSP-PB', "
+			+ "'Av Gov Torquato Nepomuceno Neves', '123', 'AP 101', "
+			+ "'Vila Madalena', 'São Paulo-SP', '48035120', '999918967', '"
+			+ "CELULAR', 'TIM')",
 			pessoa.print(new SqlMedia("pessoa")).toString()
 		);
 	}
