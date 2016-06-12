@@ -7,15 +7,15 @@ import com.github.fabriciofx.rocket.misc.Hex;
 import com.github.fabriciofx.rocket.security.Hash;
 import com.github.fabriciofx.rocket.security.Sha256;
 
-public final class Senha {
+public final class Password {
 	private final transient Hash hash;
 	private final transient String conteudo;
 
-	public Senha(final String conteudo) throws IOException {
+	public Password(final String conteudo) throws IOException {
 		this(new Sha256(), conteudo);
 	}
 
-	public Senha(final Hash hash, final String conteudo) throws IOException {
+	public Password(final Hash hash, final String conteudo) throws IOException {
 		this.hash = new NotNull<Hash>().valid(hash);
 		this.conteudo = new Hex(hash).conteudo(
 				new NotNull<String>().valid(conteudo).getBytes());
