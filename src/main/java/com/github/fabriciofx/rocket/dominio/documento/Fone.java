@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.dominio.documento;
 
 public interface Fone extends Documento {
 	enum Operadora {

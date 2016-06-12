@@ -3,8 +3,8 @@ package com.github.fabriciofx.rocket.system;
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
-import com.github.fabriciofx.rocket.dominio.Email;
-import com.github.fabriciofx.rocket.dominio.Nome;
+import com.github.fabriciofx.rocket.dominio.documento.Email;
+import com.github.fabriciofx.rocket.dominio.documento.Nome;
 import com.github.fabriciofx.rocket.security.Password;
 
 public final class DefaultUser implements User {

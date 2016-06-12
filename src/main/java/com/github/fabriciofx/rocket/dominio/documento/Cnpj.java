@@ -1,9 +1,8 @@
-package com.github.fabriciofx.rocket.dominio.pessoa;
+package com.github.fabriciofx.rocket.dominio.documento;
 
 import com.github.fabriciofx.rocket.constraint.Mod13;
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
-import com.github.fabriciofx.rocket.dominio.Documento;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class Cnpj implements Documento {

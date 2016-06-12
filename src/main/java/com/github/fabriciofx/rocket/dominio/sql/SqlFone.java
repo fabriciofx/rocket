@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import com.github.fabriciofx.rocket.dominio.Fone;
+import com.github.fabriciofx.rocket.dominio.documento.Fone;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesFone;

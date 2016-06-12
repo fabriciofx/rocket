@@ -8,15 +8,15 @@ import java.util.concurrent.Callable;
 
 import javax.sql.DataSource;
 
-import com.github.fabriciofx.rocket.dominio.Fone;
-import com.github.fabriciofx.rocket.dominio.Nome;
+import com.github.fabriciofx.rocket.dominio.documento.Cpf;
+import com.github.fabriciofx.rocket.dominio.documento.Fone;
+import com.github.fabriciofx.rocket.dominio.documento.Nome;
+import com.github.fabriciofx.rocket.dominio.documento.Rg;
+import com.github.fabriciofx.rocket.dominio.documento.Sexo;
+import com.github.fabriciofx.rocket.dominio.documento.Tratamento;
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
-import com.github.fabriciofx.rocket.dominio.pessoa.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.Pessoa;
 import com.github.fabriciofx.rocket.dominio.pessoa.Pessoas;
-import com.github.fabriciofx.rocket.dominio.pessoa.Rg;
-import com.github.fabriciofx.rocket.dominio.pessoa.Sexo;
-import com.github.fabriciofx.rocket.dominio.pessoa.Tratamento;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
 import com.github.fabriciofx.rocket.repository.Transacao;

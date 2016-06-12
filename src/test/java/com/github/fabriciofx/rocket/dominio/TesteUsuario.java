@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.dominio.documento.Email;
+import com.github.fabriciofx.rocket.dominio.documento.Nome;
 import com.github.fabriciofx.rocket.security.Password;
 import com.github.fabriciofx.rocket.system.DefaultUser;
 import com.github.fabriciofx.rocket.system.User;

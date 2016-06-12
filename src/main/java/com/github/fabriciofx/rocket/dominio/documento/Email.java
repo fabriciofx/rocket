@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio;
+package com.github.fabriciofx.rocket.dominio.documento;
 
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;

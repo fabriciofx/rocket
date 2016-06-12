@@ -1,6 +1,6 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
-import com.github.fabriciofx.rocket.dominio.Documento;
+import com.github.fabriciofx.rocket.dominio.documento.Documento;
 
 public interface Endereco extends Documento {
 	Logradouro logradouro();

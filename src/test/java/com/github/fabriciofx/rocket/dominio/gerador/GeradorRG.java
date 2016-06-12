@@ -2,8 +2,8 @@ package com.github.fabriciofx.rocket.dominio.gerador;
 
 import java.time.LocalDate;
 
+import com.github.fabriciofx.rocket.dominio.documento.Rg;
 import com.github.fabriciofx.rocket.dominio.endereco.Estado;
-import com.github.fabriciofx.rocket.dominio.pessoa.Rg;
 import com.github.fabriciofx.rocket.misc.Aleatorio;
 
 public final class GeradorRG {

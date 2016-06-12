@@ -6,8 +6,12 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.Fone;
-import com.github.fabriciofx.rocket.dominio.Nome;
+import com.github.fabriciofx.rocket.dominio.documento.Cpf;
+import com.github.fabriciofx.rocket.dominio.documento.Fone;
+import com.github.fabriciofx.rocket.dominio.documento.Nome;
+import com.github.fabriciofx.rocket.dominio.documento.Rg;
+import com.github.fabriciofx.rocket.dominio.documento.Sexo;
+import com.github.fabriciofx.rocket.dominio.documento.Tratamento;
 import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
@@ -15,11 +19,7 @@ import com.github.fabriciofx.rocket.dominio.endereco.Complemento;
 import com.github.fabriciofx.rocket.dominio.endereco.Estado;
 import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.Numero;
-import com.github.fabriciofx.rocket.dominio.pessoa.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.Pessoa;
-import com.github.fabriciofx.rocket.dominio.pessoa.Rg;
-import com.github.fabriciofx.rocket.dominio.pessoa.Sexo;
-import com.github.fabriciofx.rocket.dominio.pessoa.Tratamento;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesFone;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesPessoa;

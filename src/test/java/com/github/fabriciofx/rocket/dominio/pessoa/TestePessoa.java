@@ -14,8 +14,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.Fone;
-import com.github.fabriciofx.rocket.dominio.Nome;
+import com.github.fabriciofx.rocket.dominio.documento.Cpf;
+import com.github.fabriciofx.rocket.dominio.documento.Fone;
+import com.github.fabriciofx.rocket.dominio.documento.Nome;
+import com.github.fabriciofx.rocket.dominio.documento.Rg;
+import com.github.fabriciofx.rocket.dominio.documento.Sexo;
+import com.github.fabriciofx.rocket.dominio.documento.Tratamento;
 import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.Cidade;

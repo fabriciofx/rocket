@@ -1,6 +1,6 @@
 package com.github.fabriciofx.rocket.dominio.gerador;
 
-import com.github.fabriciofx.rocket.dominio.Fone;
+import com.github.fabriciofx.rocket.dominio.documento.Fone;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesFone;
 import com.github.fabriciofx.rocket.misc.Aleatorio;
 
