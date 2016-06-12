@@ -3,10 +3,10 @@ package com.github.fabriciofx.rocket.dominio.financeiro;
 import java.util.Currency;
 import java.util.Objects;
 
-import com.github.fabriciofx.rocket.dominio.PeriodoData;
 import com.github.fabriciofx.rocket.dominio.financeiro.lancamento.Credito;
 import com.github.fabriciofx.rocket.dominio.financeiro.lancamento.Debito;
 import com.github.fabriciofx.rocket.dominio.financeiro.lancamento.Lancamento;
+import com.github.fabriciofx.rocket.range.DateRange;
 import com.jcabi.immutable.Array;
 
 public final class Conta {
@@ -54,7 +54,7 @@ public final class Conta {
 		return resultado;
 	}
 
-	public Dinheiro saques(final PeriodoData periodo) {
+	public Dinheiro saques(final DateRange periodo) {
 		Dinheiro resultado = new Dinheiro();
 
 		for (final Lancamento lancamento : lancamentos) {
@@ -68,7 +68,7 @@ public final class Conta {
 		return resultado;
 	}
 
-	public Dinheiro depositos(final PeriodoData periodo) {
+	public Dinheiro depositos(final DateRange periodo) {
 		Dinheiro resultado = new Dinheiro();
 
 		for (final Lancamento lancamento : lancamentos) {

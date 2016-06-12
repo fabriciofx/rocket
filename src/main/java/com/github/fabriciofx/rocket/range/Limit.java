@@ -18,4 +18,9 @@ public final class Limit<T extends Comparable<T>> {
 	public boolean less(final T valor) {
 		return this.value.compareTo(valor) < 0;
 	}
+	
+	@Override
+	public String toString() {
+		return value.toString();
+	}
 }
