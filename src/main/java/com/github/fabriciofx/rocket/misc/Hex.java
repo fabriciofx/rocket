@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.misc;
 
 import java.io.IOException;
 
-import com.github.fabriciofx.rocket.infra.crypto.Hash;
+import com.github.fabriciofx.rocket.security.Hash;
 
 public final class Hex {
 	private static final char[] HEX_CHARS = {

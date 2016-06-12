@@ -15,7 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.dominio.sql.SqlEnderecos;
-import com.github.fabriciofx.rocket.infra.media.XmlMedia;
+import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.jcabi.jdbc.JdbcSession;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

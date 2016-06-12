@@ -19,7 +19,7 @@ import com.github.fabriciofx.rocket.dominio.pessoa.Sexo;
 import com.github.fabriciofx.rocket.dominio.pessoa.Tratamento;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
-import com.github.fabriciofx.rocket.infra.repositorio.Transacao;
+import com.github.fabriciofx.rocket.repository.Transacao;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.Outcome;

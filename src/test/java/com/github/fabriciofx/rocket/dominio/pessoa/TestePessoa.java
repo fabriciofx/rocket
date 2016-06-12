@@ -27,7 +27,7 @@ import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesFone;
 import com.github.fabriciofx.rocket.dominio.sql.SqlPessoas;
-import com.github.fabriciofx.rocket.infra.media.XmlMedia;
+import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.jcabi.jdbc.JdbcSession;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

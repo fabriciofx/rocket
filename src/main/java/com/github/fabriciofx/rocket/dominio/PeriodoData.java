@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
-import com.github.fabriciofx.rocket.infra.media.Media;
+import com.github.fabriciofx.rocket.media.Media;
 
 public final class PeriodoData implements Periodo<ChronoLocalDate> {
 	private final transient LocalDate inicio;

@@ -4,7 +4,7 @@ import com.github.fabriciofx.rocket.constraint.Mod13;
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.dominio.Documento;
-import com.github.fabriciofx.rocket.infra.media.Media;
+import com.github.fabriciofx.rocket.media.Media;
 
 public final class Cnpj implements Documento {
 	private final transient String numero;

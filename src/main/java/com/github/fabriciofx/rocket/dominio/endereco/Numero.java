@@ -2,8 +2,8 @@ package com.github.fabriciofx.rocket.dominio.endereco;
 
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
-import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.infra.media.Printer;
+import com.github.fabriciofx.rocket.media.Media;
+import com.github.fabriciofx.rocket.media.Printer;
 
 public final class Numero implements Printer {
 	private final String numero;

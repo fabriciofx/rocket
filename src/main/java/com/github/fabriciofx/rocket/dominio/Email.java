@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.dominio;
 
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
-import com.github.fabriciofx.rocket.infra.media.Media;
+import com.github.fabriciofx.rocket.media.Media;
 
 public final class Email implements Documento {
 	private final transient String endereco;

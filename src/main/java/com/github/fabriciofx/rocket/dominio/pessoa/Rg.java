@@ -7,7 +7,7 @@ import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.constraint.Pattern;
 import com.github.fabriciofx.rocket.dominio.Documento;
 import com.github.fabriciofx.rocket.dominio.endereco.Estado;
-import com.github.fabriciofx.rocket.infra.media.Media;
+import com.github.fabriciofx.rocket.media.Media;
 
 public final class Rg implements Documento {
 	public enum Emissor {

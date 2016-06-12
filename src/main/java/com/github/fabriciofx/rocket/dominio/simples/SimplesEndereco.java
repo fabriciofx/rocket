@@ -10,7 +10,7 @@ import com.github.fabriciofx.rocket.dominio.endereco.Complemento;
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.Numero;
-import com.github.fabriciofx.rocket.infra.media.Media;
+import com.github.fabriciofx.rocket.media.Media;
 
 public final class SimplesEndereco implements Endereco {
 	private final transient Logradouro logradouro;

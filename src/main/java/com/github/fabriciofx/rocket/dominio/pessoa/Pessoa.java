@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.github.fabriciofx.rocket.dominio.Fone;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
-import com.github.fabriciofx.rocket.infra.media.Media;
+import com.github.fabriciofx.rocket.media.Media;
 
 public interface Pessoa {
 	Nome nome() throws IOException;

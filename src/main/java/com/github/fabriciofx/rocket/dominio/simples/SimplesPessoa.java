@@ -11,7 +11,7 @@ import com.github.fabriciofx.rocket.dominio.pessoa.Pessoa;
 import com.github.fabriciofx.rocket.dominio.pessoa.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.Sexo;
 import com.github.fabriciofx.rocket.dominio.pessoa.Tratamento;
-import com.github.fabriciofx.rocket.infra.media.Media;
+import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.immutable.Array;
 
 public final class SimplesPessoa implements Pessoa {

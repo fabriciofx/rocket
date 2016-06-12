@@ -18,7 +18,7 @@ import com.github.fabriciofx.rocket.dominio.endereco.Numero;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
-import com.github.fabriciofx.rocket.infra.media.Media;
+import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 
