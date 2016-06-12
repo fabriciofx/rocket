@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.misc.Hex;
 import com.github.fabriciofx.rocket.security.Md5;
 import com.github.fabriciofx.rocket.security.Sha1;
 import com.github.fabriciofx.rocket.security.Sha256;
@@ -15,7 +14,7 @@ public final class TesteHash {
 	@Test
 	public void md5() throws Exception {
 		final Hex hex = new Hex(new Md5());
-		final String digest = hex.conteudo(DADOS.getBytes());
+		final String digest = hex.content(DADOS.getBytes());
 
 		assertEquals("615fb9e70c7987dc9273cfd7381cc803", digest);
 	}
@@ -23,7 +22,7 @@ public final class TesteHash {
 	@Test
 	public void sha1() throws Exception {
 		final Hex hex = new Hex(new Sha1());
-		final String digest = hex.conteudo(DADOS.getBytes());
+		final String digest = hex.content(DADOS.getBytes());
 
 		assertEquals("de01f6613de12a6d8926a84c287f437ff019beac", digest);
 	}
@@ -31,7 +30,7 @@ public final class TesteHash {
 	@Test
 	public void sha256() throws Exception {
 		final Hex hex = new Hex(new Sha256());
-		final String digest = hex.conteudo(DADOS.getBytes());
+		final String digest = hex.content(DADOS.getBytes());
 
 		assertEquals(
 				"7fb67f59dff99f4527e67a40b78fcbcd265b166977bbf211bc136902365c30a5",

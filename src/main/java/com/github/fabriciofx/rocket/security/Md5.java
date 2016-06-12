@@ -6,10 +6,10 @@ import java.security.NoSuchAlgorithmException;
 
 public final class Md5 implements Hash {
 	@Override
-	public byte[] digest(final byte[] dados) throws IOException {
+	public byte[] digest(final byte[] data) throws IOException {
 		try {
 			final MessageDigest md = MessageDigest.getInstance("MD5");
-			return md.digest(dados);
+			return md.digest(data);
 		} catch (final NoSuchAlgorithmException e) {
 			throw new IOException(e);
 		}

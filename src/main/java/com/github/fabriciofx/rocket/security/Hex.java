@@ -1,8 +1,6 @@
-package com.github.fabriciofx.rocket.misc;
+package com.github.fabriciofx.rocket.security;
 
 import java.io.IOException;
-
-import com.github.fabriciofx.rocket.security.Hash;
 
 public final class Hex {
 	private static final char[] HEX_CHARS = {
@@ -16,8 +14,8 @@ public final class Hex {
 		this.hash = hash;
 	}
 
-	public String conteudo(final byte[] dados) throws IOException {
-		final byte[] digest = hash.digest(dados);
+	public String content(final byte[] data) throws IOException {
+		final byte[] digest = hash.digest(data);
 		final char[] hex = new char[digest.length * 2];
 		for (int c = 0, i = 0; i < digest.length; i++) {
 			final int v = 0xFF & digest[i];

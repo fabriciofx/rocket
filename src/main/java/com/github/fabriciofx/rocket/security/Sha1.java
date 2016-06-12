@@ -6,10 +6,10 @@ import java.security.NoSuchAlgorithmException;
 
 public final class Sha1 implements Hash {
 	@Override
-	public byte[] digest(final byte[] dados) throws IOException {
+	public byte[] digest(final byte[] data) throws IOException {
 		try {
 			final MessageDigest md = MessageDigest.getInstance("SHA-1");
-			return md.digest(dados);
+			return md.digest(data);
 		} catch (final NoSuchAlgorithmException e) {
 			throw new IOException(e);
 		}
