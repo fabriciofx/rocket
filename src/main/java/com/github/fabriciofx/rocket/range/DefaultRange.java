@@ -12,12 +12,12 @@ public final class DefaultRange<T extends Comparable<T>> implements Range<T> {
 	}
 
 	@Override
-	public boolean contains(T value) {
+	public boolean contains(final T value) {
 		return !min.greater(value) && !max.less(value);
 	}
 
 	@Override
-	public Media print(Media media) {
+	public Media print(final Media media) {
 		return media
 			.with("min", min.toString())
 			.with("max", max.toString());

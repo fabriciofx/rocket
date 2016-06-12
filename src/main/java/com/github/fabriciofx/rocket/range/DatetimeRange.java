@@ -12,8 +12,7 @@ public final class DatetimeRange implements Range<ChronoLocalDateTime<?>> {
 	private final transient LocalDateTime begin;
 	private final transient LocalDateTime end;
 
-	public DatetimeRange(final LocalDateTime begin,
-			final LocalDateTime end) {
+	public DatetimeRange(final LocalDateTime begin, final LocalDateTime end) {
 		this.begin = new NotNull<LocalDateTime>().valid(begin);
 		this.end = new NotNull<LocalDateTime>().valid(end);
 		if (this.begin.isAfter(this.end)) {
@@ -37,7 +36,7 @@ public final class DatetimeRange implements Range<ChronoLocalDateTime<?>> {
 	}
 
 	@Override
-	public Media print(Media media) {
+	public Media print(final Media media) {
 		final DateTimeFormatter format = DateTimeFormatter
 			.ofLocalizedDate(FormatStyle.SHORT);
 		return media.with("begin", begin.format(format))
