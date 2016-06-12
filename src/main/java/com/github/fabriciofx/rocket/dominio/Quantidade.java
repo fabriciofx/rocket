@@ -1,6 +1,6 @@
 package com.github.fabriciofx.rocket.dominio;
 
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 
 public final class Quantidade {
 	private final transient double valor;
@@ -8,7 +8,7 @@ public final class Quantidade {
 
 	public Quantidade(final double valor, final Unidade unidade) {
 		this.valor = valor;
-		this.unidade = new RestNaoNulo<Unidade>().valido(unidade);
+		this.unidade = new NotNull<Unidade>().valid(unidade);
 	}
 
 	public double valor() {

@@ -2,10 +2,10 @@ package com.github.fabriciofx.rocket.infra.sistema;
 
 import java.io.IOException;
 
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.dominio.Email;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.Senha;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public interface Usuario {
 	Nome nome() throws IOException;
@@ -37,9 +37,9 @@ public interface Usuario {
 		private final transient Senha senha;
 
 		public Padrao(final Nome nome, final Email email, final Senha senha) {
-			this.nome = new RestNaoNulo<Nome>().valido(nome);
-			this.email = new RestNaoNulo<Email>().valido(email);
-			this.senha = new RestNaoNulo<Senha>().valido(senha);
+			this.nome = new NotNull<Nome>().valid(nome);
+			this.email = new NotNull<Email>().valid(email);
+			this.senha = new NotNull<Senha>().valid(senha);
 		}
 
 		@Override

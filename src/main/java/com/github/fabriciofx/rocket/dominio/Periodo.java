@@ -1,8 +1,9 @@
 package com.github.fabriciofx.rocket.dominio;
 
 import com.github.fabriciofx.rocket.infra.media.Media;
+import com.github.fabriciofx.rocket.range.Range;
 
-public interface Periodo<T extends Comparable<T>> extends Intervalo<T> {
+public interface Periodo<T extends Comparable<T>> extends Range<T> {
 	T inicio();
 
 	T termino();

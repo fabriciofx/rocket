@@ -2,6 +2,7 @@ package com.github.fabriciofx.rocket.dominio.simples;
 
 import java.io.IOException;
 
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
@@ -10,7 +11,6 @@ import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.Numero;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public final class SimplesEndereco implements Endereco {
 	private final transient Logradouro logradouro;
@@ -23,12 +23,12 @@ public final class SimplesEndereco implements Endereco {
 	public SimplesEndereco(final Logradouro logradouro, final Numero numero,
 			final Complemento complemento, final Bairro bairro,
 			final Cidade cidade, final Cep cep) {
-		this.logradouro	= new RestNaoNulo<Logradouro>().valido(logradouro);
-		this.numero = new RestNaoNulo<Numero>().valido(numero);
-		this.complemento = new RestNaoNulo<Complemento>().valido(complemento);
-		this.bairro = new RestNaoNulo<Bairro>().valido(bairro);
-		this.cidade = new RestNaoNulo<Cidade>().valido(cidade);
-		this.cep = new RestNaoNulo<Cep>().valido(cep);
+		this.logradouro	= new NotNull<Logradouro>().valid(logradouro);
+		this.numero = new NotNull<Numero>().valid(numero);
+		this.complemento = new NotNull<Complemento>().valid(complemento);
+		this.bairro = new NotNull<Bairro>().valid(bairro);
+		this.cidade = new NotNull<Cidade>().valid(cidade);
+		this.cep = new NotNull<Cep>().valid(cep);
 	}
 	
 	@Override

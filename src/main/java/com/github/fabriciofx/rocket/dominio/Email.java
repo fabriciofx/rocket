@@ -1,16 +1,15 @@
 package com.github.fabriciofx.rocket.dominio;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.restricao.RestEmail;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class Email implements Documento {
 	private final transient String endereco;
 
 	public Email(final String endereco) {
-		this.endereco = new RestEmail<String>(
-				new RestNaoVazia<>(new RestNaoNulo<>())).valido(endereco);
+		this.endereco = new com.github.fabriciofx.rocket.constraint.Email<String>(
+				new NotEmpty<>(new NotNull<>())).valid(endereco);
 	}
 
 	@Override

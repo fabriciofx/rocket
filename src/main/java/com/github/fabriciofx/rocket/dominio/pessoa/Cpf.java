@@ -1,17 +1,17 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
+import com.github.fabriciofx.rocket.constraint.Mod11;
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.dominio.Documento;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.restricao.RestModulo11;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class Cpf implements Documento {
 	private final transient String numero;
 
 	public Cpf(final String numero) {
-		this.numero = new RestModulo11<String>(
-				new RestNaoVazia<>(new RestNaoNulo<>())).valido(numero);
+		this.numero = new Mod11<String>(
+				new NotEmpty<>(new NotNull<>())).valid(numero);
 	}
 
 	@Override

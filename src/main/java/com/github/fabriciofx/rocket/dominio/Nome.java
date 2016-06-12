@@ -1,20 +1,20 @@
 package com.github.fabriciofx.rocket.dominio;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
+import com.github.fabriciofx.rocket.constraint.Pattern;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
-import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Nome implements Documento {
 	private final transient String completo;
 
 	public Nome(final String completo) {
-		this.completo = new RestPadrao<String>(
-			new RestNaoVazia<>(
-				new RestNaoNulo<>()
+		this.completo = new Pattern<String>(
+			new NotEmpty<>(
+				new NotNull<>()
 			),
 			"^[\\p{L} .'-]+$"
-		).valido(completo).trim().replaceAll("\\s+", " ");
+		).valid(completo).trim().replaceAll("\\s+", " ");
 	}
 
 	public String completo() {

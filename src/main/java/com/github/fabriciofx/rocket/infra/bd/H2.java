@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 
 // H2 support concurrent transactions only in standalone mode, when you connect
 // through a TCP connection, but not in embedded mode.
@@ -44,12 +44,12 @@ public final class H2 implements Sgbd {
 
 	public H2(final String driver, final String host, final int porta,
 			final String banco, final Modo modo) {
-		this.driver = new RestNaoVazia<String>(new RestNaoNulo<>())
-				.valido(driver);
-		this.host = new RestNaoVazia<String>(new RestNaoNulo<>()).valido(host);
+		this.driver = new NotEmpty<String>(new NotNull<>())
+				.valid(driver);
+		this.host = new NotEmpty<String>(new NotNull<>()).valid(host);
 		this.porta = porta;
-		this.banco = new RestNaoNulo<String>().valido(banco);
-		this.modo = new RestNaoNulo<H2.Modo>().valido(modo);
+		this.banco = new NotNull<String>().valid(banco);
+		this.modo = new NotNull<H2.Modo>().valid(modo);
 	}
 
 	@Override

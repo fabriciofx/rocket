@@ -1,9 +1,9 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.infra.media.Media;
 import com.github.fabriciofx.rocket.infra.media.Printer;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class Cidade implements Printer {
 	private final String nome;
@@ -14,8 +14,8 @@ public final class Cidade implements Printer {
 	}
 
 	public Cidade(final String nome, final Estado estado) {
-		this.nome = new RestNaoVazia<String>(new RestNaoNulo<>()).valido(nome);
-		this.estado = new RestNaoNulo<Estado>().valido(estado);
+		this.nome = new NotEmpty<String>(new NotNull<>()).valid(nome);
+		this.estado = new NotNull<Estado>().valid(estado);
 	}
 
 	@Override
@@ -29,8 +29,8 @@ public final class Cidade implements Printer {
 	}
 
 	private static String parte(final String nome, final int n) {
-		final String[] partes = new RestNaoVazia<String>(new RestNaoNulo<>())
-				.valido(nome).split("-");
+		final String[] partes = new NotEmpty<String>(new NotNull<>())
+				.valid(nome).split("-");
 		if (partes.length < n) {
 			throw new IllegalArgumentException("nome de cidade incompleto");
 		}

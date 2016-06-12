@@ -16,11 +16,11 @@ public final class TestePeriodo {
 				LocalDateTime.of(2015, 1, 1, 8, 0, 0),
 				LocalDateTime.of(2015, 1, 31, 8, 0, 0));
 
-		assertTrue(periodo.contem(LocalDateTime.of(2015, 1, 1, 8, 0, 0)));
-		assertTrue(periodo.contem(LocalDateTime.of(2015, 1, 1, 8, 0, 1)));
-		assertTrue(periodo.contem(LocalDateTime.of(2015, 1, 1, 10, 0, 0)));
-		assertTrue(periodo.contem(LocalDateTime.of(2015, 1, 31, 7, 59, 59)));
-		assertTrue(periodo.contem(LocalDateTime.of(2015, 1, 31, 8, 0, 0)));
+		assertTrue(periodo.contains(LocalDateTime.of(2015, 1, 1, 8, 0, 0)));
+		assertTrue(periodo.contains(LocalDateTime.of(2015, 1, 1, 8, 0, 1)));
+		assertTrue(periodo.contains(LocalDateTime.of(2015, 1, 1, 10, 0, 0)));
+		assertTrue(periodo.contains(LocalDateTime.of(2015, 1, 31, 7, 59, 59)));
+		assertTrue(periodo.contains(LocalDateTime.of(2015, 1, 31, 8, 0, 0)));
 	}
 
 	@Test
@@ -28,11 +28,11 @@ public final class TestePeriodo {
 		final PeriodoData periodo = new PeriodoData(LocalDate.of(2015, 1, 1),
 				LocalDate.of(2015, 1, 3));
 
-		assertFalse(periodo.contem(LocalDate.of(2014, 12, 31)));
-		assertTrue(periodo.contem(LocalDate.of(2015, 1, 1)));
-		assertTrue(periodo.contem(LocalDate.of(2015, 1, 2)));
-		assertTrue(periodo.contem(LocalDate.of(2015, 1, 3)));
-		assertFalse(periodo.contem(LocalDate.of(2015, 1, 4)));
+		assertFalse(periodo.contains(LocalDate.of(2014, 12, 31)));
+		assertTrue(periodo.contains(LocalDate.of(2015, 1, 1)));
+		assertTrue(periodo.contains(LocalDate.of(2015, 1, 2)));
+		assertTrue(periodo.contains(LocalDate.of(2015, 1, 3)));
+		assertFalse(periodo.contains(LocalDate.of(2015, 1, 4)));
 	}
 
 	@Test

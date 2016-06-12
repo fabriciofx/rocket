@@ -1,64 +1,67 @@
-package com.github.fabriciofx.rocket.restricao;
+package com.github.fabriciofx.rocket.infra.constraint;
 
 import java.util.Collections;
 
 import org.junit.Test;
 
-public final class TesteRestNaoVazia {
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
+
+public final class TesteNotEmpty {
 	@Test(expected = IllegalArgumentException.class)
 	public void stringNula() {
-		new RestNaoVazia<String>(new RestNaoNulo<>()).valido(null);
+		new NotEmpty<String>(new NotNull<>()).valid(null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void stringVazia() {
-		new RestNaoVazia<String>(new RestNaoNulo<>()).valido("");
+		new NotEmpty<String>(new NotNull<>()).valid("");
 	}
 
 	@Test
 	public void stringNaoVazia() {
-		new RestNaoVazia<String>(new RestNaoNulo<>()).valido("Pedro");
+		new NotEmpty<String>(new NotNull<>()).valid("Pedro");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void arrayVazio() {
 		final Object[] a = {};
-		new RestNaoVazia<Object>(new RestNaoNulo<>()).valido(a);
+		new NotEmpty<Object>(new NotNull<>()).valid(a);
 	}
 
 	@Test
 	public void arrayNaoVazio() {
 		final Object[] a = { 1 };
-		new RestNaoVazia<Object>(new RestNaoNulo<>()).valido(a);
+		new NotEmpty<Object>(new NotNull<>()).valid(a);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void enumerationVazia() {
-		new RestNaoVazia<Object>(new RestNaoNulo<>())
-				.valido(Collections.emptyEnumeration());
+		new NotEmpty<Object>(new NotNull<>())
+				.valid(Collections.emptyEnumeration());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void listaVazia() {
-		new RestNaoVazia<Object>(new RestNaoNulo<>())
-				.valido(Collections.emptyList());
+		new NotEmpty<Object>(new NotNull<>())
+				.valid(Collections.emptyList());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void iteratorVazio() {
-		new RestNaoVazia<Object>(new RestNaoNulo<>())
-				.valido(Collections.emptyIterator());
+		new NotEmpty<Object>(new NotNull<>())
+				.valid(Collections.emptyIterator());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void mapaVazio() {
-		new RestNaoVazia<Object>(new RestNaoNulo<>())
-				.valido(Collections.emptyMap());
+		new NotEmpty<Object>(new NotNull<>())
+				.valid(Collections.emptyMap());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void setVazio() {
-		new RestNaoVazia<Object>(new RestNaoNulo<>())
-				.valido(Collections.emptySet());
+		new NotEmpty<Object>(new NotNull<>())
+				.valid(Collections.emptySet());
 	}
 }

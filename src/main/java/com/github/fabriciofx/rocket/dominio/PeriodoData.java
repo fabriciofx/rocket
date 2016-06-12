@@ -5,8 +5,8 @@ import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public final class PeriodoData implements Periodo<ChronoLocalDate> {
 	private final transient LocalDate inicio;
@@ -17,8 +17,8 @@ public final class PeriodoData implements Periodo<ChronoLocalDate> {
 	}
 
 	public PeriodoData(final LocalDate inicio, final LocalDate termino) {
-		this.inicio = new RestNaoNulo<LocalDate>().valido(inicio);
-		this.termino = new RestNaoNulo<LocalDate>().valido(termino);
+		this.inicio = new NotNull<LocalDate>().valid(inicio);
+		this.termino = new NotNull<LocalDate>().valid(termino);
 		if (this.inicio.isAfter(this.termino)) {
 			throw new IllegalArgumentException(
 					"a data de início deve ser anterior a de término");
@@ -34,7 +34,7 @@ public final class PeriodoData implements Periodo<ChronoLocalDate> {
 	}
 
 	@Override
-	public boolean contem(final ChronoLocalDate data) {
+	public boolean contains(final ChronoLocalDate data) {
 		return inicio.compareTo(data) <= 0 && termino.compareTo(data) >= 0;
 	}
 

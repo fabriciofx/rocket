@@ -2,8 +2,8 @@ package com.github.fabriciofx.rocket.dominio.repositorio;
 
 import java.time.LocalDateTime;
 
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.misc.Aleatorio;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 
 public final class DataId implements Id, Comparable<DataId> {
 	private final transient long milisegundos;
@@ -76,8 +76,8 @@ public final class DataId implements Id, Comparable<DataId> {
 	}
 
 	private static long localDateTimeParaLong(final LocalDateTime dataHora) {
-		final LocalDateTime dh = new RestNaoNulo<LocalDateTime>()
-				.valido(dataHora);
+		final LocalDateTime dh = new NotNull<LocalDateTime>()
+				.valid(dataHora);
 		return dh.getYear() * 1000000000000000L
 				+ dh.getMonthValue() * 10000000000000L
 				+ dh.getDayOfMonth() * 100000000000L

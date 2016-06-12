@@ -2,12 +2,12 @@ package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import java.time.LocalDate;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
+import com.github.fabriciofx.rocket.constraint.Pattern;
 import com.github.fabriciofx.rocket.dominio.Documento;
 import com.github.fabriciofx.rocket.dominio.endereco.Estado;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
-import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Rg implements Documento {
 	public enum Emissor {
@@ -31,13 +31,13 @@ public final class Rg implements Documento {
 
 	public Rg(final String numero, final Emissor emissor, final Estado estado,
 			final int via, final LocalDate expedicao) {
-		this.numero = new RestPadrao<String>(
-				new RestNaoVazia<>(new RestNaoNulo<>()), "[0-9]+")
-						.valido(numero).toUpperCase();
-		this.emissor = new RestNaoNulo<Emissor>().valido(emissor);
-		this.estado = new RestNaoNulo<Estado>().valido(estado);
+		this.numero = new Pattern<String>(
+				new NotEmpty<>(new NotNull<>()), "[0-9]+")
+						.valid(numero).toUpperCase();
+		this.emissor = new NotNull<Emissor>().valid(emissor);
+		this.estado = new NotNull<Estado>().valid(estado);
 		this.via = via;
-		this.expedicao = new RestNaoNulo<LocalDate>().valido(expedicao);
+		this.expedicao = new NotNull<LocalDate>().valid(expedicao);
 	}
 
 	@Override

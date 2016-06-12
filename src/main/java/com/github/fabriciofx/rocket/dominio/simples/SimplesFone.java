@@ -1,10 +1,10 @@
 package com.github.fabriciofx.rocket.dominio.simples;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
+import com.github.fabriciofx.rocket.constraint.Pattern;
 import com.github.fabriciofx.rocket.dominio.Fone;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
-import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class SimplesFone implements Fone {
 	private final transient String numero;
@@ -13,14 +13,14 @@ public final class SimplesFone implements Fone {
 
 	public SimplesFone(final String numero, final Tipo tipo,
 			final Operadora operadora) {
-		this.numero = new RestPadrao<String>(
-			new RestNaoVazia<>(
-				new RestNaoNulo<>()
+		this.numero = new Pattern<String>(
+			new NotEmpty<>(
+				new NotNull<>()
 			),
 			"[0-9]+"
-		).valido(numero);
-		this.tipo = new RestNaoNulo<Tipo>().valido(tipo);
-		this.operadora = new RestNaoNulo<Operadora>().valido(operadora);
+		).valid(numero);
+		this.tipo = new NotNull<Tipo>().valid(tipo);
+		this.operadora = new NotNull<Operadora>().valid(operadora);
 	}
 
 	@Override

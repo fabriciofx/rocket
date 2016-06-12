@@ -2,8 +2,8 @@ package com.github.fabriciofx.rocket.dominio.repositorio;
 
 import java.util.UUID;
 
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 
 public final class UuId implements Id, Comparable<UuId> {
 	private final transient UUID uuid;
@@ -17,7 +17,7 @@ public final class UuId implements Id, Comparable<UuId> {
 	}
 
 	public UuId(final UUID uuid) {
-		this.uuid = new RestNaoVazia<UUID>(new RestNaoNulo<>()).valido(uuid);
+		this.uuid = new NotEmpty<UUID>(new NotNull<>()).valid(uuid);
 	}
 
 	@Override

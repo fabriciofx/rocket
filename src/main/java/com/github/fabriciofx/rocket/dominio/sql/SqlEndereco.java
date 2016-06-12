@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
@@ -18,7 +19,6 @@ import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 
@@ -27,8 +27,8 @@ public final class SqlEndereco implements Endereco, Identificavel<Id> {
 	private final Id id;
 
 	public SqlEndereco(final DataSource ds, final Id id) {
-		this.ds = new RestNaoNulo<DataSource>().valido(ds);
-		this.id = new RestNaoNulo<Id>().valido(id);
+		this.ds = new NotNull<DataSource>().valid(ds);
+		this.id = new NotNull<Id>().valid(id);
 	}
 
 	@Override

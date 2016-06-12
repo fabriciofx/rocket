@@ -1,14 +1,14 @@
 package com.github.fabriciofx.rocket.dominio;
 
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 
 public abstract class Literal {
 	private final transient String conteudo;
 
 	public Literal(final String conteudo) {
-		this.conteudo = new RestNaoVazia<String>(new RestNaoNulo<>())
-				.valido(conteudo);
+		this.conteudo = new NotEmpty<String>(new NotNull<>())
+				.valid(conteudo);
 	}
 
 	@Override

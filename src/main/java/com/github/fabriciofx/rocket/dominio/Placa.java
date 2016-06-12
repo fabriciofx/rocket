@@ -1,18 +1,18 @@
 package com.github.fabriciofx.rocket.dominio;
 
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
-import com.github.fabriciofx.rocket.restricao.RestPadrao;
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
+import com.github.fabriciofx.rocket.constraint.Pattern;
 
 public final class Placa {
 	private final transient String numero;
 
 	public Placa(final String numero) {
-		this.numero = new RestPadrao<String>(
-			new RestNaoVazia<>(
-				new RestNaoNulo<>()
+		this.numero = new Pattern<String>(
+			new NotEmpty<>(
+				new NotNull<>()
 			), "^[a-zA-Z]{3}\\d{4}$"
-		).valido(numero).toUpperCase();
+		).valid(numero).toUpperCase();
 	}
 
 	public String numero() {

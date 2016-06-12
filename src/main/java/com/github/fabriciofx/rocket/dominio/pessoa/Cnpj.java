@@ -1,17 +1,17 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
+import com.github.fabriciofx.rocket.constraint.Mod13;
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.dominio.Documento;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.restricao.RestModulo13;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 
 public final class Cnpj implements Documento {
 	private final transient String numero;
 
 	public Cnpj(final String numero) {
-		this.numero = new RestModulo13<String>(
-				new RestNaoVazia<>(new RestNaoNulo<>())).valido(numero);
+		this.numero = new Mod13<String>(
+				new NotEmpty<>(new NotNull<>())).valid(numero);
 	}
 
 	@Override

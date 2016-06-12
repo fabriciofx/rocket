@@ -2,8 +2,8 @@ package com.github.fabriciofx.rocket.infra.bd;
 
 import java.io.IOException;
 
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 
 public final class Mysql implements Sgbd {
 	private final static String DRIVER_PADRAO = "com.mysql.jdbc.Driver";
@@ -29,11 +29,11 @@ public final class Mysql implements Sgbd {
 
 	public Mysql(final String driver, final String host, final int porta,
 			final String banco) {
-		this.driver = new RestNaoVazia<String>(new RestNaoNulo<>())
-				.valido(driver);
-		this.host = new RestNaoVazia<String>(new RestNaoNulo<>()).valido(host);
+		this.driver = new NotEmpty<String>(new NotNull<>())
+				.valid(driver);
+		this.host = new NotEmpty<String>(new NotNull<>()).valid(host);
 		this.porta = porta;
-		this.banco = new RestNaoNulo<String>().valido(banco);
+		this.banco = new NotNull<String>().valid(banco);
 	}
 
 	@Override

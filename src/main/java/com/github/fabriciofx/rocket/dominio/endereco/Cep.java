@@ -1,21 +1,21 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
+import com.github.fabriciofx.rocket.constraint.Pattern;
 import com.github.fabriciofx.rocket.infra.media.Media;
 import com.github.fabriciofx.rocket.infra.media.Printer;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
-import com.github.fabriciofx.rocket.restricao.RestPadrao;
 
 public final class Cep implements Printer {
 	private final String numero;
 
 	public Cep(final String numero) {
-		this.numero = new RestPadrao<String>(
-			new RestNaoVazia<>(
-				new RestNaoNulo<>()
+		this.numero = new Pattern<String>(
+			new NotEmpty<>(
+				new NotNull<>()
 			),
 			"[0-9]{8}"
-		).valido(numero);
+		).valid(numero);
 	}
 
 	@Override

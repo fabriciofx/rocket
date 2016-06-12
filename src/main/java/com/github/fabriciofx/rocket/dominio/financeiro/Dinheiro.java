@@ -6,7 +6,7 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
 
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.jcabi.immutable.Array;
 
 public final class Dinheiro implements Comparable<Dinheiro> {
@@ -34,8 +34,8 @@ public final class Dinheiro implements Comparable<Dinheiro> {
 	}
 
 	public Dinheiro(final BigDecimal quantia, final Currency moeda) {
-		this.quantia = new RestNaoNulo<BigDecimal>().valido(quantia);
-		this.moeda = new RestNaoNulo<Currency>().valido(moeda);
+		this.quantia = new NotNull<BigDecimal>().valid(quantia);
+		this.moeda = new NotNull<Currency>().valid(moeda);
 	}
 
 	public Currency moeda() {

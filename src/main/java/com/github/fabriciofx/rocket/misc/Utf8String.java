@@ -2,8 +2,8 @@ package com.github.fabriciofx.rocket.misc;
 
 import java.nio.charset.Charset;
 
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 
 public final class Utf8String implements Comparable<Utf8String>, CharSequence {
 	private static final String ENCODING = "UTF-8";
@@ -14,9 +14,9 @@ public final class Utf8String implements Comparable<Utf8String>, CharSequence {
 	}
 	
 	public Utf8String(final String string) {
-		this.origin = new RestNaoVazia<String>(
-			new RestNaoNulo<>()
-		).valido(string);
+		this.origin = new NotEmpty<String>(
+			new NotNull<>()
+		).valid(string);
 	}
 	
 	public byte[] bytes() {

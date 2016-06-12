@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.dominio.Fone;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
@@ -26,8 +28,6 @@ import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesPessoa;
 import com.github.fabriciofx.rocket.infra.media.Media;
-import com.github.fabriciofx.rocket.restricao.RestNaoNulo;
-import com.github.fabriciofx.rocket.restricao.RestNaoVazia;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.Outcome;
@@ -69,7 +69,7 @@ public final class SqlPessoa implements Pessoa, Identificavel<Id> {
 
 	@Override
 	public void nome(final Nome nome) throws IOException {
-		new RestNaoNulo<>().valido(nome);
+		new NotNull<>().valid(nome);
 		try {
 			new JdbcSession(ds)
 				.sql("UPDATE pessoa SET nome=? WHERE id=?")
@@ -104,7 +104,7 @@ public final class SqlPessoa implements Pessoa, Identificavel<Id> {
 
 	@Override
 	public void sexo(final Sexo sexo) throws IOException {
-		new RestNaoNulo<>().valido(sexo);
+		new NotNull<>().valid(sexo);
 		try {
 			new JdbcSession(ds)
 				.sql("UPDATE pessoa SET sexo=? WHERE id=?")
@@ -139,7 +139,7 @@ public final class SqlPessoa implements Pessoa, Identificavel<Id> {
 
 	@Override
 	public void tratamento(final Tratamento tratamento) throws IOException {
-		new RestNaoNulo<>().valido(tratamento);		
+		new NotNull<>().valid(tratamento);		
 		try {
 			new JdbcSession(ds)
 				.sql("UPDATE pessoa SET tratamento=? WHERE id=?")
@@ -174,7 +174,7 @@ public final class SqlPessoa implements Pessoa, Identificavel<Id> {
 
 	@Override
 	public void cpf(final Cpf cpf) throws IOException {
-		new RestNaoNulo<>().valido(cpf);		
+		new NotNull<>().valid(cpf);		
 		try {
 			new JdbcSession(ds)
 				.sql("UPDATE pessoa SET cpf=? WHERE id=?")
@@ -209,7 +209,7 @@ public final class SqlPessoa implements Pessoa, Identificavel<Id> {
 
 	@Override
 	public void rg(Rg rg) throws IOException {
-		new RestNaoNulo<>().valido(rg);		
+		new NotNull<>().valid(rg);		
 		try {
 			new JdbcSession(ds)
 				.sql("UPDATE pessoa SET rg=? WHERE id=?")
@@ -252,7 +252,7 @@ public final class SqlPessoa implements Pessoa, Identificavel<Id> {
 
 	@Override
 	public void endereco(final Endereco endereco) throws IOException {
-		new RestNaoNulo<>().valido(endereco);		
+		new NotNull<>().valid(endereco);		
 		try {
 			new JdbcSession(ds)
 				.sql("UPDATE pessoa SET logradouro=?, numero=?, complemento=?, "
@@ -293,9 +293,9 @@ public final class SqlPessoa implements Pessoa, Identificavel<Id> {
 
 	@Override
 	public void fones(final Iterable<Fone> fones) throws IOException {
-		new RestNaoVazia<>(
-			new RestNaoNulo<>()
-		).valido(fones);
+		new NotEmpty<>(
+			new NotNull<>()
+		).valid(fones);
 		try {
 			for (final Fone f : fones) {
 				new JdbcSession(ds)

@@ -59,7 +59,7 @@ public final class Conta {
 
 		for (final Lancamento lancamento : lancamentos) {
 			// veririca também se o lancamento possui um valor negativo
-			if (periodo.contem(lancamento.data())
+			if (periodo.contains(lancamento.data())
 					&& lancamento.valor().compareTo(new Dinheiro()) < 0) {
 				resultado = resultado.soma(lancamento.valor());
 			}
@@ -73,7 +73,7 @@ public final class Conta {
 
 		for (final Lancamento lancamento : lancamentos) {
 			// veririca também se o lancamento possui um valor positivo
-			if (periodo.contem(lancamento.data())
+			if (periodo.contains(lancamento.data())
 					&& lancamento.valor().compareTo(new Dinheiro()) > 0) {
 				resultado = resultado.soma(lancamento.valor());
 			}
