@@ -1,17 +1,16 @@
 package com.github.fabriciofx.rocket.db;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public final class Conexao {
-	private final transient Connection conn;
+public final class Connection {
+	private final transient java.sql.Connection conn;
 
-	public Conexao(final Sgbd sgbd, final Usuario usuario) throws IOException {
-		sgbd.init();
-		this.conn = connection(sgbd.url(), usuario);
+	public Connection(final Dbms dbms, final User user) throws IOException {
+		dbms.init();
+		this.conn = connection(dbms.url(), user);
 	}
 
 	public PreparedStatement statement(final String sql) throws SQLException {
@@ -30,11 +29,12 @@ public final class Conexao {
 		conn.rollback();
 	}
 
-	public void fecha() throws IOException {
+	public void close() throws IOException {
 		try {
 			if (conn.isClosed()) {
 				throw new IllegalStateException(
-						"não é possível fechar uma conexão já fechada");
+					"it's not possible close a connection already closed"
+				);
 			} else {
 				conn.close();
 			}
@@ -43,11 +43,11 @@ public final class Conexao {
 		}
 	}
 
-	private Connection connection(final String url, final Usuario usuario)
-			throws IOException {
+	private java.sql.Connection connection(final String url, final User user)
+		throws IOException {
 		try {
-			return DriverManager.getConnection(url, usuario.nome(),
-					usuario.senha());
+			return DriverManager.getConnection(url, user.name(),
+					user.password());
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}

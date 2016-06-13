@@ -10,23 +10,23 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.db.Conexao;
+import com.github.fabriciofx.rocket.db.Connection;
 import com.github.fabriciofx.rocket.db.H2;
 import com.github.fabriciofx.rocket.db.Insert;
-import com.github.fabriciofx.rocket.db.Sgbd;
+import com.github.fabriciofx.rocket.db.Dbms;
 import com.github.fabriciofx.rocket.db.Update;
-import com.github.fabriciofx.rocket.db.Usuario;
-import com.github.fabriciofx.rocket.db.H2.Modo;
+import com.github.fabriciofx.rocket.db.User;
+import com.github.fabriciofx.rocket.db.H2.Mode;
 
 public final class TesteH2 {
-	private final static transient String NOME_BD = "testebd";
-	private Conexao conexao;
+	private final static transient String DB_NAME = "testdb";
+	private Connection connection;
 
 	// @After
-	// public void finaliza() {
+	// public void finalize() {
 	// try {
-	// new Update("DROP TABLE IF EXISTS log").execute(conexao);
-	// conexao.fecha();
+	// new Update("DROP TABLE IF EXISTS log").execute(connection);
+	// connection.close();
 	// } catch (final IOException e) {
 	// e.printStackTrace();
 	// }
@@ -35,24 +35,25 @@ public final class TesteH2 {
 	@Test
 	public void embedded() {
 		final Path path = Paths.get(".").toAbsolutePath().normalize();
-		final Sgbd h2 = new H2(NOME_BD);
+		final Dbms h2 = new H2(DB_NAME);
 		assertEquals(
-				String.format("jdbc:h2:%s%s%s", path, File.separator, NOME_BD),
-				h2.url());
+			String.format("jdbc:h2:%s%s%s", path, File.separator, DB_NAME),
+			h2.url()
+		);
 	}
 
 	@Test
 	public void memory() {
-		final Sgbd h2 = new H2(NOME_BD, Modo.MEMORY);
-		assertEquals(String.format("jdbc:h2:mem:", NOME_BD), h2.url());
+		final Dbms h2 = new H2(DB_NAME, Mode.MEMORY);
+		assertEquals(String.format("jdbc:h2:mem:", DB_NAME), h2.url());
 	}
 
 	@Test
 	public void tcp() {
 		final Path path = Paths.get(".").toAbsolutePath().normalize();
-		final Sgbd h2 = new H2(NOME_BD, Modo.TCP);
+		final Dbms h2 = new H2(DB_NAME, Mode.TCP);
 		assertEquals(String.format("jdbc:h2:tcp://localhost:9092//%s/%s",
-				path.toString(), NOME_BD), h2.url());
+				path.toString(), DB_NAME), h2.url());
 	}
 
 	@Test
@@ -60,21 +61,21 @@ public final class TesteH2 {
 		final H2Server server = new H2Server();
 		server.start();
 
-		final Sgbd h2 = new H2(NOME_BD, Modo.TCP);
-		conexao = new Conexao(h2, new Usuario("sa", ""));
+		final Dbms h2 = new H2(DB_NAME, Mode.TCP);
+		connection = new Connection(h2, new User("sa", ""));
 
 		final long id = new Date().getTime();
-		final String msg = "Uma mensagem de log qualquer";
+		final String msg = "A log menssage";
 
 		new Update("CREATE TABLE IF NOT EXISTS"
 				+ " log(id BIGINT PRIMARY KEY, info VARCHAR(255))")
-						.execute(conexao);
+						.execute(connection);
 		new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id, msg)
-				.execute(conexao);
+				.execute(connection);
 		new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id + 1, msg + "1")
-				.execute(conexao);
+				.execute(connection);
 		new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id + 2, msg + "2")
-				.execute(conexao);
+				.execute(connection);
 		server.stop();
 	}
 }

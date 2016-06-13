@@ -7,49 +7,50 @@ import java.nio.file.Paths;
 
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
+import com.github.fabriciofx.rocket.constraint.Positive;
 
 // H2 support concurrent transactions only in standalone mode, when you connect
 // through a TCP connection, but not in embedded mode.
-public final class H2 implements Sgbd {
-	public enum Modo {
+public final class H2 implements Dbms {
+	public enum Mode {
 		EMBEDDED, MEMORY, TCP;
 	}
 
-	private final static String DRIVER_PADRAO = "org.h2.Driver";
-	private final static String HOST_PADRAO = "localhost";
-	private final static int PORTA_PADRAO = 9092;
+	private final static String DEFAULT_DRIVER = "org.h2.Driver";
+	private final static String DEFAULT_HOST = "localhost";
+	private final static int DEFAULT_PORT = 9092;
 
 	private final transient String driver;
 	private final transient String host;
-	private final transient int porta;
-	private final transient String banco;
-	private final transient Modo modo;
+	private final transient int port;
+	private final transient String base;
+	private final transient Mode mode;
 
-	public H2(final String banco) {
-		this(banco, Modo.EMBEDDED);
+	public H2(final String base) {
+		this(base, Mode.EMBEDDED);
 	}
 
-	public H2(final String banco, final Modo modo) {
-		this(HOST_PADRAO, banco, modo);
+	public H2(final String base, final Mode mode) {
+		this(DEFAULT_HOST, base, mode);
 	}
 
-	public H2(final String host, final String banco, final Modo modo) {
-		this(host, PORTA_PADRAO, banco, modo);
+	public H2(final String host, final String base, final Mode mode) {
+		this(host, DEFAULT_PORT, base, mode);
 	}
 
-	public H2(final String host, final int porta, final String banco,
-			final Modo modo) {
-		this(DRIVER_PADRAO, host, porta, banco, modo);
+	public H2(final String host, final int port, final String base,
+			final Mode mode) {
+		this(DEFAULT_DRIVER, host, port, base, mode);
 	}
 
-	public H2(final String driver, final String host, final int porta,
-			final String banco, final Modo modo) {
+	public H2(final String driver, final String host, final int port,
+			final String base, final Mode mode) {
 		this.driver = new NotEmpty<String>(new NotNull<>())
 				.valid(driver);
 		this.host = new NotEmpty<String>(new NotNull<>()).valid(host);
-		this.porta = porta;
-		this.banco = new NotNull<String>().valid(banco);
-		this.modo = new NotNull<H2.Modo>().valid(modo);
+		this.port = new Positive<Integer>(new NotNull<>()).valid(port);
+		this.base = new NotNull<String>().valid(base);
+		this.mode = new NotNull<H2.Mode>().valid(mode);
 	}
 
 	@Override
@@ -65,20 +66,20 @@ public final class H2 implements Sgbd {
 	public String url() {
 		final Path path = Paths.get(".").toAbsolutePath().normalize();
 		final String url;
-		switch (modo) {
+		switch (mode) {
 		case EMBEDDED:
 			url = String.format("jdbc:h2:%s%s%s", path.toString(),
-					File.separator, banco);
+					File.separator, base);
 			break;
 		case MEMORY:
-			url = String.format("jdbc:h2:mem:", banco);
+			url = String.format("jdbc:h2:mem:", base);
 			break;
 		case TCP:
-			url = String.format("jdbc:h2:tcp://%s:%d//%s/%s", host, porta,
-					path.toString(), banco);
+			url = String.format("jdbc:h2:tcp://%s:%d//%s/%s", host, port,
+					path.toString(), base);
 			break;
 		default:
-			throw new RuntimeException("Modo inválido de utilização do H2");
+			throw new RuntimeException("invalid mode for H2");
 		}
 		return url;
 	}

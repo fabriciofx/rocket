@@ -6,19 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-public abstract class Alteracao implements Comando {
+public abstract class BaseCommand implements Command {
 	private final transient String sql;
 	private final transient Object[] args;
 
-	public Alteracao(final String sql, final Object... args) {
+	public BaseCommand(final String sql, final Object... args) {
 		this.sql = sql;
 		this.args = Arrays.copyOf(args, args.length);
 	}
 
 	@Override
-	public void execute(final Conexao conexao) throws IOException {
+	public void execute(final Connection connection) throws IOException {
 		try {
-			final PreparedStatement pstmt = conexao.statement(sql);
+			final PreparedStatement pstmt = connection.statement(sql);
 			prepare(pstmt, args);
 			pstmt.executeUpdate();
 			pstmt.close();

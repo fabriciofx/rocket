@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.db;
 
 import java.io.IOException;
 
-public interface Sgbd {
+public interface Dbms {
 	void init() throws IOException;
 	
 	String url();

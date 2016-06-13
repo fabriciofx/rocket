@@ -12,79 +12,80 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.db.Conexao;
-import com.github.fabriciofx.rocket.db.Dados;
+import com.github.fabriciofx.rocket.db.Connection;
+import com.github.fabriciofx.rocket.db.Data;
 import com.github.fabriciofx.rocket.db.H2;
 import com.github.fabriciofx.rocket.db.Insert;
 import com.github.fabriciofx.rocket.db.Select;
-import com.github.fabriciofx.rocket.db.Sgbd;
+import com.github.fabriciofx.rocket.db.Dbms;
 import com.github.fabriciofx.rocket.db.Update;
-import com.github.fabriciofx.rocket.db.Usuario;
+import com.github.fabriciofx.rocket.db.User;
 
-public final class TesteSgbd {
-	private final String NOME_BD = "logdb";
-	private final transient Sgbd sgbd = new H2(NOME_BD);
-	private Conexao conexao;
+public final class TesteDbms {
+	private final String DB_NAME = "logdb";
+	private final transient Dbms dbms = new H2(DB_NAME);
+	private Connection connection;
 
 	@Before
-	public void inicializa() throws IOException {
-		conexao = new Conexao(sgbd, new Usuario("sa", ""));
+	public void init() throws IOException {
+		connection = new Connection(dbms, new User("sa", ""));
 	}
 
 	@After
-	public void finaliza() {
+	public void fini() {
 		try {
-			new Update("DROP TABLE IF EXISTS log").execute(conexao);
-			conexao.fecha();
+			new Update("DROP TABLE IF EXISTS log").execute(connection);
+			connection.close();
 		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void novo() {
+	public void url() {
 		final Path path = Paths.get(".").toAbsolutePath().normalize();
 		assertEquals(
-				String.format("jdbc:h2:%s%s%s", path, File.separator, NOME_BD),
-				sgbd.url());
+			String.format("jdbc:h2:%s%s%s", path, File.separator, DB_NAME),
+			dbms.url()
+		);
 	}
 
 	@Test
-	public void cria() throws IOException {
+	public void create() throws IOException {
 		new Update("CREATE TABLE IF NOT EXISTS"
 				+ " log(id BIGINT PRIMARY KEY, info VARCHAR(255))")
-						.execute(conexao);
+				.execute(connection);
 	}
 
 	@Test
-	public void insertUm() throws IOException {
+	public void insertOne() throws IOException {
 		final long id = new Date().getTime();
-		final String msg = "Uma mensagem de log qualquer";
+		final String msg = "A log message";
 		new Update("CREATE TABLE IF NOT EXISTS"
 				+ " log(id BIGINT PRIMARY KEY, info VARCHAR(255))")
-						.execute(conexao);
+				.execute(connection);
 		new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id, msg)
-				.execute(conexao);
-		final Dados logs = new Select("SELECT * FROM log").execute(conexao);
+			.execute(connection);
+		final Data logs = new Select("SELECT * FROM log").execute(connection);
 		assertEquals(logs.item(0, "id"), id);
 		assertEquals(logs.item(0, "info"), msg);
 	}
 
 	@Test
-	public void insertTres() throws IOException {
+	public void insertThree() throws IOException {
 		final long id = new Date().getTime();
-		final String msg = "Uma mensagem de log qualquer";
+		final String msg = "A log message";
 		new Update("CREATE TABLE IF NOT EXISTS"
 				+ " log(id BIGINT PRIMARY KEY, info VARCHAR(255))")
-						.execute(conexao);
+				.execute(connection);
 		new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id, msg)
-				.execute(conexao);
+			.execute(connection);
 		new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id + 1, msg + "1")
-				.execute(conexao);
+			.execute(connection);
 		new Insert("INSERT INTO log (id, info) VALUES(?, ?)", id + 2, msg + "2")
-				.execute(conexao);
+			.execute(connection);
 		final Select select = new Select("SELECT * FROM log");
-		final Dados logs = select.execute(conexao);
+		final Data logs = select.execute(connection);
 		assertEquals(logs.item(0, "id"), id);
 		assertEquals(logs.item(0, "info"), msg);
 		assertEquals(logs.item(1, "id"), id + 1);

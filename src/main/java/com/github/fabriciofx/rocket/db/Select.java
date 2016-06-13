@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public final class Select implements Consulta<Dados> {
+public final class Select implements Query<Data> {
 	private final transient String sql;
 	private final transient Object[] args;
 
@@ -22,14 +22,14 @@ public final class Select implements Consulta<Dados> {
 	}
 
 	@Override
-	public Dados execute(final Conexao conexao) throws IOException {
+	public Data execute(final Connection connection) throws IOException {
 		try {
-			final PreparedStatement pstmt = conexao.statement(sql);
+			final PreparedStatement pstmt = connection.statement(sql);
 			prepare(pstmt, args);
 			final ResultSet rs = pstmt.executeQuery();
-			final Dados dados = dados(rs);
+			final Data data = data(rs);
 			pstmt.close();
-			return dados;
+			return data;
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}
@@ -58,18 +58,18 @@ public final class Select implements Consulta<Dados> {
 		}
 	}
 
-	private Dados dados(final ResultSet rs) throws SQLException {
+	private Data data(final ResultSet rs) throws SQLException {
 		final ResultSetMetaData rsmd = rs.getMetaData();
-		final int colunas = rsmd.getColumnCount();
-		final List<Map<String, Object>> tabela = new LinkedList<>();
+		final int columns = rsmd.getColumnCount();
+		final List<Map<String, Object>> table = new LinkedList<>();
 		while (rs.next()) {
-			final Map<String, Object> linhas = new HashMap<>();
-			for (int col = 1; col <= colunas; col++) {
-				linhas.put(rsmd.getColumnName(col).toLowerCase(),
+			final Map<String, Object> lines = new HashMap<>();
+			for (int col = 1; col <= columns; col++) {
+				lines.put(rsmd.getColumnName(col).toLowerCase(),
 						rs.getObject(col));
 			}
-			tabela.add(linhas);
+			table.add(lines);
 		}
-		return new Dados(tabela);
+		return new Data(table);
 	}
 }

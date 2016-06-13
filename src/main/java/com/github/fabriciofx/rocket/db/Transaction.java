@@ -4,19 +4,19 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.concurrent.Callable;
 
-public final class Transacao<T> {
-	private final transient Conexao conexao;
+public final class Transaction<T> {
+	private final transient Connection connection;
 
-	public Transacao(final Conexao conexao) {
-		this.conexao = conexao;
+	public Transaction(final Connection connection) {
+		this.connection = connection;
 	}
 
 	public T execute(final Callable<T> callable) throws IOException {
 		try {
-			inicio();
-			T resultado = callable.call();
+			start();
+			T result = callable.call();
 			commit();
-			return resultado;
+			return result;
 		} catch (final Exception e) {
 			try {
 				rollback();
@@ -27,17 +27,17 @@ public final class Transacao<T> {
 		}
 	}
 
-	private void inicio() throws SQLException {
-		conexao.autoCommit(false);
+	private void start() throws SQLException {
+		connection.autoCommit(false);
 	}
 
 	private void commit() throws SQLException {
-		conexao.commit();
-		conexao.autoCommit(true);
+		connection.commit();
+		connection.autoCommit(true);
 	}
 
 	private void rollback() throws SQLException {
-		conexao.rollback();
-		conexao.autoCommit(true);
+		connection.rollback();
+		connection.autoCommit(true);
 	}
 }
