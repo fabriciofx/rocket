@@ -68,8 +68,7 @@ public final class TesteEndereco {
 			new Cep("48035120")
 		);
 		final String xml =
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"+ LS
-			+ "<endereco>" + LS
+			"<endereco>" + LS
 			+ "<logradouro>Av Gov Torquato Nepomuceno Neves</logradouro>" + LS
 			+ "<numero>123</numero>" + LS
 			+ "<complemento>AP 101</complemento>" + LS

@@ -111,8 +111,7 @@ public final class TestePessoa {
 		);
 		final Pessoa pessoa = pessoas.pessoa(new NumId(1));
 		final String xml = 
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" + LS
-			+ "<pessoa>" + LS
+			"<pessoa>" + LS
 			+ "<nome>José de Alencar</nome>" + LS
 			+ "<sexo>MASCULINO</sexo>" + LS
 			+ "<tratamento>SENHOR</tratamento>" + LS

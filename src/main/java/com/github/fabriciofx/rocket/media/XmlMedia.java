@@ -23,7 +23,9 @@ public final class XmlMedia implements Media {
 	@Override
 	public String toString() {
 		try {
-			return new Xembler(directives).xml();
+			return new Xembler(directives)
+				.xml()
+				.replaceAll("<\\?xml version.*\\?>[\r]*\n", "");
 		} catch (final ImpossibleModificationException e) {
 			throw new IllegalStateException(e);
 		}
