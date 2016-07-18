@@ -2,10 +2,7 @@ package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
@@ -28,27 +25,16 @@ import com.github.fabriciofx.rocket.dominio.doc.endereco.Estado;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Numero;
 import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
+import com.github.fabriciofx.rocket.ds.TestDataSource;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.jcabi.jdbc.JdbcSession;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 
-public final class TestePessoa {
-	private static DataSource ds() {
-		final Path path = Paths.get(".").toAbsolutePath().normalize();
-		final String url = String.format("jdbc:h2:%s%s%s", path.toString(),
-				File.separator, "pessoa");
-		final HikariConfig config = new HikariConfig();
-		config.setJdbcUrl(url);
-		config.setUsername("sa");
-		config.setPassword("");
-		return new HikariDataSource(config);
-	}
-	
+public final class TestePessoa {	
 	@Before
 	public void init() throws IOException {
 		try {
-			new JdbcSession(ds()).sql(
+			final DataSource ds = new TestDataSource("pessoa").dataSource();
+			new JdbcSession(ds).sql(
 					"CREATE TABLE IF NOT EXISTS pessoa ("
 					+ "id BIGINT PRIMARY KEY AUTO_INCREMENT,"
 					+ "nome VARCHAR(100),"
@@ -64,7 +50,7 @@ public final class TestePessoa {
 					+ "estado VARCHAR(2), "
 					+ "cep VARCHAR(9))"
 			).execute();
-			new JdbcSession(ds()).sql(
+			new JdbcSession(ds).sql(
 					"CREATE TABLE IF NOT EXISTS fone ("
 					+ "pessoa BIGINT PRIMARY KEY,"
 					+ "numero VARCHAR(20),"
@@ -80,8 +66,9 @@ public final class TestePessoa {
 	@After
 	public void finaliza() throws IOException {
 		try {
-			new JdbcSession(ds()).sql("DROP TABLE IF EXISTS fone").execute();
-			new JdbcSession(ds()).sql("DROP TABLE IF EXISTS pessoa").execute();
+			final DataSource ds = new TestDataSource("pessoa").dataSource();			
+			new JdbcSession(ds).sql("DROP TABLE IF EXISTS fone").execute();
+			new JdbcSession(ds).sql("DROP TABLE IF EXISTS pessoa").execute();
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}
@@ -89,6 +76,7 @@ public final class TestePessoa {
 	
 	@Test
 	public void xml() throws IOException {
+		final DataSource ds = new TestDataSource("pessoa").dataSource();
 		final String LS = System.lineSeparator();
 		final Pessoa pessoa = new SqlPessoa(
 			new SimplesPessoa(
@@ -108,7 +96,7 @@ public final class TestePessoa {
 			),
 			new NumId(1L)
 		);
-		pessoa.save(ds());
+		pessoa.save(ds);
 		final String xml = 
 			"<pessoa>" + LS
 			+ "<id>1</id>" + LS
@@ -125,7 +113,7 @@ public final class TestePessoa {
 			+ "<estado>SP</estado>" + LS
 			+ "<cep>48035120</cep>" + LS
 			+ "</pessoa>" + LS;
-		assertEquals(xml, pessoa.find(ds(), new NumId(1L))
+		assertEquals(xml, pessoa.find(ds, new NumId(1L))
 				.print(new XmlMedia("pessoa")).toString());
 	}
 }

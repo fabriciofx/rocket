@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.sql;
+package com.github.fabriciofx.rocket.dominio.doc.fone;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -7,17 +7,15 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import com.github.fabriciofx.rocket.dominio.doc.Documento;
-import com.github.fabriciofx.rocket.dominio.doc.Fone;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
+import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
 import com.github.fabriciofx.rocket.media.InsertSqlMedia;
 import com.github.fabriciofx.rocket.media.Media;
-import com.github.fabriciofx.rocket.repository.Repository;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.SingleOutcome;
 
-public final class SqlFone implements Repository<Fone>, Documento {
+public final class SqlFone implements Fone {
 	private final transient Fone origem;
 	private final transient Id id;
 
@@ -25,7 +23,12 @@ public final class SqlFone implements Repository<Fone>, Documento {
 		this.origem = origem;
 		this.id = id;
 	}
-	
+
+	@Override
+	public Id id() {
+		return id;
+	}
+
 	@Override
 	public Media print(final Media media) throws IOException { 
 		return origem.print(media.with("id", id.toString()));
@@ -54,10 +57,13 @@ public final class SqlFone implements Repository<Fone>, Documento {
 						@Override
 						public Fone map(final ResultSet rs) 
 							throws SQLException {
-								return new Fone(
+								return new SqlFone(
+									new SimplesFone(
 										rs.getString(2),
 										Fone.Tipo.valueOf(rs.getString(3)),
 										Fone.Operadora.valueOf(rs.getString(4))
+									),
+									new NumId(rs.getLong(1))
 								);
 							}
 						}

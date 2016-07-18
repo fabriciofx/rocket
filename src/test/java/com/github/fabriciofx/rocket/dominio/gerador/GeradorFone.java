@@ -1,6 +1,7 @@
 package com.github.fabriciofx.rocket.dominio.gerador;
 
-import com.github.fabriciofx.rocket.dominio.doc.Fone;
+import com.github.fabriciofx.rocket.dominio.doc.fone.Fone;
+import com.github.fabriciofx.rocket.dominio.doc.fone.SimplesFone;
 import com.github.fabriciofx.rocket.misc.Aleatorio;
 
 public final class GeradorFone {
@@ -18,7 +19,7 @@ public final class GeradorFone {
 		final Fone.Operadora operadora = operadoras[aleatorio.numero(0,
 				operadoras.length - 1)];
 
-		return new Fone(aleatorio.numeros2(8), tipo, operadora);
+		return new SimplesFone(aleatorio.numeros2(8), tipo, operadora);
 	}
 
 	public String getString() {

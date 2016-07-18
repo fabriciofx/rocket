@@ -60,7 +60,7 @@ public final class SqlPessoa implements Pessoa {
 	}
 
 	@Override
-	public SqlPessoa find(final DataSource ds, final Id id) throws IOException {
+	public Pessoa find(final DataSource ds, final Id id) throws IOException {
 		try {
 			final List<SqlPessoa> pessoas = new JdbcSession(ds)
 				.sql("SELECT * FROM pessoa WHERE id = ?")
