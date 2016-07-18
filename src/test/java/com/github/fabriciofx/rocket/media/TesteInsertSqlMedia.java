@@ -23,9 +23,8 @@ import com.github.fabriciofx.rocket.dominio.pessoa.Pessoa;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesFone;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesPessoa;
-import com.github.fabriciofx.rocket.media.SqlMedia;
 
-public final class TesteSqlMedia {
+public final class TesteInsertSqlMedia {
 	@Test
 	public void insert() throws IOException {
 		final Pessoa pessoa = new SimplesPessoa(
@@ -42,7 +41,11 @@ public final class TesteSqlMedia {
 					new Cidade("São Paulo", Estado.SP),
 					new Cep("48035120")
 				),			
-				new SimplesFone("999918967", Fone.Tipo.CELULAR, Fone.Operadora.TIM)
+				new SimplesFone(
+					"999918967",
+					Fone.Tipo.CELULAR,
+					Fone.Operadora.TIM
+				)
 			);
 		assertEquals(
 			"INSERT INTO pessoa (nome, sexo, tratamento, cpf, rg, "
@@ -52,7 +55,7 @@ public final class TesteSqlMedia {
 			+ "'Av Gov Torquato Nepomuceno Neves', '123', 'AP 101', "
 			+ "'Vila Madalena', 'São Paulo-SP', '48035120', '999918967', '"
 			+ "CELULAR', 'TIM')",
-			pessoa.print(new SqlMedia("pessoa")).toString()
+			pessoa.print(new InsertSqlMedia("pessoa")).toString()
 		);
 	}
 }
