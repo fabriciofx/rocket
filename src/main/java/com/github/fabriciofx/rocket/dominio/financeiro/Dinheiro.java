@@ -2,12 +2,14 @@ package com.github.fabriciofx.rocket.dominio.financeiro;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Currency;
+import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
-import com.jcabi.immutable.Array;
+import com.github.fabriciofx.rocket.constraint.Positive;
 
 public final class Dinheiro implements Comparable<Dinheiro> {
 	private final transient Currency moeda;
@@ -55,72 +57,59 @@ public final class Dinheiro implements Comparable<Dinheiro> {
 	}
 
 	public Dinheiro soma(final Dinheiro dinheiro) {
-		Objects.requireNonNull(dinheiro,
-				"argumento 'dinheiro' em Dinheiro#soma não pode ser NULL");
-
-		if (!moeda.equals(dinheiro.moeda)) {
-			throw new IllegalArgumentException(
-					"não é possivel realizar Dinheiro#soma com moedas diferentes");
-		}
+		verificaMoeda(dinheiro);
 		return new Dinheiro(quantia.add(dinheiro.quantia), moeda);
 	}
 
 	public Dinheiro subtraia(final Dinheiro dinheiro) {
-		Objects.requireNonNull(dinheiro,
-				"argumento 'dinheiro' em Dinheiro#subtraia não pode ser NULL");
-
-		if (!moeda.equals(dinheiro.moeda)) {
-			throw new IllegalArgumentException(
-					"não é possivel realizar Dinheiro#subtraia com moedas diferentes");
-		}
-
+		verificaMoeda(dinheiro);
 		return new Dinheiro(quantia.subtract(dinheiro.quantia), moeda);
 	}
 
 	public Dinheiro multiplica(final Number numero) {
-		Objects.requireNonNull(numero,
-				"argumento 'numero' em Dinheiro#multiplica não pode ser NULL");
-
 		return new Dinheiro(
-				quantia.multiply(new BigDecimal(numero.longValue())), moeda);
+			quantia.multiply(
+				new BigDecimal(new NotNull<Number>().valid(numero).longValue())
+			),
+			moeda
+		);
 	}
 
-	public Array<Dinheiro> parcela(final Number numero) {
-		Objects.requireNonNull(numero,
-				"argumento 'numero' em Dinheiro#parcela não pode ser NULL");
-
-		final long num = numero.longValue();
-
-		if (num <= 0) {
-			throw new IllegalArgumentException(
-					"argumento 'numero' em Dinheiro#parcela precisa ser maior que 0");
-		}
-
+	public List<Dinheiro> parcela(final Number numero) {
+		final long num = new Positive<Number>(
+			new NotNull<>()
+		).valid(numero).longValue();
 		final long centavos = deBigDecimalParaLong(quantia, moeda);
 		final long quociente = centavos / num;
 		final long resto = centavos % num;
-		Array<Dinheiro> parcelas = new Array<>();
-
+		final List<Dinheiro> parcelas = new ArrayList<>();
 		for (int i = 0; i < num - 1; i++) {
-			parcelas = parcelas.with(new Dinheiro(
-					deLongParaBigDecimal(quociente, moeda), moeda));
+			parcelas.add(
+				new Dinheiro(
+					deLongParaBigDecimal(quociente, moeda),
+					moeda
+				)
+			);
 		}
-
-		parcelas = parcelas.with(new Dinheiro(
-				deLongParaBigDecimal(quociente + resto, moeda), moeda));
-
-		return parcelas;
+		parcelas.add(
+			new Dinheiro(
+				deLongParaBigDecimal(quociente + resto, moeda),
+				moeda
+			)
+		);
+		return Collections.unmodifiableList(parcelas);
 	}
 
 	public String toString(final Locale localizacao) {
-		Objects.requireNonNull(localizacao,
-				"localização da moeda em Dinheiro#toString não pode ser NULL");
-
-		final NumberFormat formatoMoeda = NumberFormat.getInstance(localizacao);
+		final NumberFormat formatoMoeda = NumberFormat.getInstance(
+			new NotNull<Locale>().valid(localizacao)
+		);
 		formatoMoeda.setMinimumFractionDigits(moeda.getDefaultFractionDigits());
-
-		return moeda.getSymbol(localizacao) + " "
-				+ formatoMoeda.format(quantia());
+		return String.format(
+			"%s %s",
+			moeda.getSymbol(localizacao),
+			formatoMoeda.format(quantia)
+		);
 	}
 
 	@Override
@@ -143,15 +132,16 @@ public final class Dinheiro implements Comparable<Dinheiro> {
 
 	@Override
 	public int compareTo(final Dinheiro dinheiro) {
-		Objects.requireNonNull(dinheiro,
-				"argumento 'dinheiro' em Dinheiro#compareTo não pode ser NULL");
-
-		if (!moeda.equals(dinheiro.moeda)) {
+		return quantia.compareTo(verificaMoeda(dinheiro).quantia);
+	}
+	
+	private Dinheiro verificaMoeda(final Dinheiro dinheiro) {
+		if (!moeda.equals(new NotNull<Dinheiro>().valid(dinheiro).moeda)) {
 			throw new IllegalArgumentException(
-					"não é possivel realizar Dinheiro#compareTo com moedas diferentes");
+				"não é possivel comparar valores com moedas diferentes"
+			);
 		}
-
-		return quantia.compareTo(dinheiro.quantia);
+		return dinheiro;
 	}
 
 	private long deBigDecimalParaLong(final BigDecimal quantia,
