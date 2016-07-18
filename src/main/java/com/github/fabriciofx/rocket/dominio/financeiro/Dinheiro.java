@@ -46,11 +46,11 @@ public final class Dinheiro implements Comparable<Dinheiro> {
 		return quantia;
 	}
 
-	public Dinheiro inverte() {
+	public Dinheiro negativo() {
 		return multiplica(-1);
 	}
 
-	public boolean negativo() {
+	public boolean estaNegativo() {
 		return quantia.signum() == -1;
 	}
 

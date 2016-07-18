@@ -173,6 +173,6 @@ public final class TesteDinheiro {
 	public void negativaQuantia() {
 		final Dinheiro d1 = new Dinheiro("72738272.82");
 
-		assertTrue(d1.inverte().compareTo(new Dinheiro("0.00")) < 0);
+		assertTrue(d1.negativo().compareTo(new Dinheiro("0.00")) < 0);
 	}
 }

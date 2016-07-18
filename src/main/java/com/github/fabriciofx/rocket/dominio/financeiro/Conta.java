@@ -37,7 +37,7 @@ public final class Conta {
 	}
 
 	public Conta saque(final Dinheiro quantia) {
-		return adiciona(new Lancamento(Debito.class, quantia.inverte()));
+		return adiciona(new Lancamento(Debito.class, quantia.negativo()));
 	}
 
 	public Conta deposito(final Dinheiro quantia) {
