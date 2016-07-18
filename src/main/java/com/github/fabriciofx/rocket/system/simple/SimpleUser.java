@@ -1,27 +1,19 @@
-package com.github.fabriciofx.rocket.system;
+package com.github.fabriciofx.rocket.system.simple;
 
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.dominio.documento.Email;
-import com.github.fabriciofx.rocket.dominio.documento.Nome;
 import com.github.fabriciofx.rocket.security.Password;
+import com.github.fabriciofx.rocket.system.User;
 
-public final class DefaultUser implements User {
-	private final transient Nome name;
+public final class SimpleUser implements User {
 	private final transient Email email;
 	private final transient Password password;
 
-	public DefaultUser(final Nome name, final Email email,
-			final Password password) {
-		this.name = new NotNull<Nome>().valid(name);
+	public SimpleUser(final Email email, final Password password) {
 		this.email = new NotNull<Email>().valid(email);
 		this.password = new NotNull<Password>().valid(password);
-	}
-
-	@Override
-	public Nome name() throws IOException {
-		return name;
 	}
 
 	@Override

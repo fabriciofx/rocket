@@ -1,27 +1,23 @@
-package com.github.fabriciofx.rocket.system;
+package com.github.fabriciofx.rocket.system.simple;
 
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.dominio.documento.Email;
-import com.github.fabriciofx.rocket.dominio.documento.Nome;
 import com.github.fabriciofx.rocket.security.Password;
+import com.github.fabriciofx.rocket.system.LoggedUser;
+import com.github.fabriciofx.rocket.system.User;
 
-public class SimpleLogged implements Logged {
+public class SimpleLoggedUser implements LoggedUser {
 	private final transient User origin;
 	private final transient boolean logged;
 
-	public SimpleLogged(final User origin) {
+	public SimpleLoggedUser(final User origin) {
 		this(origin, true);
 	}
 	
-	public SimpleLogged(final User origin, final boolean logado) {
+	public SimpleLoggedUser(final User origin, final boolean logged) {
 		this.origin = origin;
-		this.logged = logado;
-	}
-
-	@Override
-	public Nome name() throws IOException {
-		return origin.name();
+		this.logged = logged;
 	}
 
 	@Override
