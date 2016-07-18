@@ -15,7 +15,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.dominio.documento.Cpf;
-import com.github.fabriciofx.rocket.dominio.documento.Fone;
 import com.github.fabriciofx.rocket.dominio.documento.Nome;
 import com.github.fabriciofx.rocket.dominio.documento.Rg;
 import com.github.fabriciofx.rocket.dominio.documento.Sexo;
@@ -24,13 +23,12 @@ import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
 import com.github.fabriciofx.rocket.dominio.endereco.Complemento;
+import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.endereco.Estado;
 import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.Numero;
 import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
-import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
-import com.github.fabriciofx.rocket.dominio.simples.SimplesFone;
-import com.github.fabriciofx.rocket.dominio.sql.SqlPessoas;
+import com.github.fabriciofx.rocket.dominio.sql.SqlPessoa;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.jcabi.jdbc.JdbcSession;
 import com.zaxxer.hikari.HikariConfig;
@@ -64,6 +62,7 @@ public final class TestePessoa {
 					+ "complemento VARCHAR(100),"
 					+ "bairro VARCHAR(100),"
 					+ "cidade VARCHAR(50),"
+					+ "estado VARCHAR(2), "
 					+ "cep VARCHAR(9))"
 			).execute();
 			new JdbcSession(ds()).sql(
@@ -92,26 +91,28 @@ public final class TestePessoa {
 	@Test
 	public void xml() throws IOException {
 		final String LS = System.lineSeparator();
-		final Pessoas pessoas = new SqlPessoas(ds());
-		pessoas.pessoa(
-			new Nome("José de Alencar"),
-			Sexo.MASCULINO,
-			Tratamento.SENHOR,
-			new Cpf("60840226772"),
-			new Rg("12345678"),
-			new SimplesEndereco(
-				new Logradouro("Av Gov Torquato Nepomuceno Neves"),
-				new Numero("123"),
-				new Complemento("AP 101"),
-				new Bairro("Vila Madalena"),
-				new Cidade("São Paulo", Estado.SP),
-				new Cep("48035120")
-			),			
-			new SimplesFone("999918967", Fone.Tipo.CELULAR, Fone.Operadora.TIM)
+		final SqlPessoa sqlPessoa = new SqlPessoa(
+			new Pessoa(
+				new Nome("José de Alencar"),
+				Sexo.MASCULINO,
+				Tratamento.SENHOR,
+				new Cpf("60840226772"),
+				new Rg("12345678"),
+				new Endereco(
+					new Logradouro("Av Gov Torquato Nepomuceno Neves"),
+					new Numero("123"),
+					new Complemento("AP 101"),
+					new Bairro("Vila Madalena"),
+					new Cidade("São Paulo", Estado.SP),
+					new Cep("48035120")
+				)			
+			),
+			new NumId(1L)
 		);
-		final Pessoa pessoa = pessoas.pessoa(new NumId(1));
+		sqlPessoa.save(ds());
 		final String xml = 
 			"<pessoa>" + LS
+			+ "<id>1</id>" + LS
 			+ "<nome>José de Alencar</nome>" + LS
 			+ "<sexo>MASCULINO</sexo>" + LS
 			+ "<tratamento>SENHOR</tratamento>" + LS
@@ -121,10 +122,11 @@ public final class TestePessoa {
 			+ "<numero>123</numero>" + LS
 			+ "<complemento>AP 101</complemento>" + LS
 			+ "<bairro>Vila Madalena</bairro>" + LS
-			+ "<cidade>São Paulo-SP</cidade>" + LS
+			+ "<cidade>São Paulo</cidade>" + LS
+			+ "<estado>SP</estado>" + LS
 			+ "<cep>48035120</cep>" + LS
-			+ "<id>1</id>" + LS
 			+ "</pessoa>" + LS;
-		assertEquals(xml, pessoa.print(new XmlMedia("pessoa")).toString());
+		assertEquals(xml, sqlPessoa.find(ds(), new NumId(1L))
+				.print(new XmlMedia("pessoa")).toString());
 	}
 }

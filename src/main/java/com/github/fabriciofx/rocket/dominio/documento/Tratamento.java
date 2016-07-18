@@ -39,12 +39,7 @@ public enum Tratamento implements Documento {
 	}
 
 	@Override
-	public String toString() {
-		return abreviatura;
-	}
-
-	@Override
 	public Media print(final Media media) {
-		return media.with("tratamento", abreviatura);
+		return media.with("tratamento", toString());
 	}	
 }

@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.dominio.repositorio;
 
 import java.util.List;
 
-import com.github.fabriciofx.rocket.repository.Paginas;
+import com.github.fabriciofx.rocket.repository.Pages;
 
 public interface Repositorio<T extends Identificavel<?>> {
 	public void adiciona(final T objeto);
@@ -11,5 +11,5 @@ public interface Repositorio<T extends Identificavel<?>> {
 
 	public List<T> todos();
 
-	public Paginas<T> paginas(final int numItens);
+	public Pages<T> paginas(final int numItens);
 }

@@ -2,8 +2,8 @@ package com.github.fabriciofx.rocket.repository;
 
 import java.util.List;
 
-public interface Paginavel<T> {
+public interface Paginable<T> {
 	public long total();
 
-	public List<T> itens(final long de, final long quantidade);
+	public List<T> itens(final long from, final long quantity);
 }

@@ -1,24 +1,34 @@
 package com.github.fabriciofx.rocket.dominio.documento;
 
-public interface Fone extends Documento {
-	enum Operadora {
+import java.io.IOException;
+
+import com.github.fabriciofx.rocket.media.Media;
+
+public final class Fone implements Documento {
+	public enum Operadora {
 		TIM, OI, CLARO, AEIOU, GVT, EMBRATEL, TELEFONICA, NEXTEL, VIVO,
 		DESCONHECIDO;
 	}
 
-	enum Tipo {
+	public enum Tipo {
 		CELULAR, FIXO, RADIO, DESCONHECIDO;
 	}
 	
-	String numero();
+	private final transient String numero;
+	private final transient Tipo tipo;
+	private final transient Operadora operadora;
 	
-	void numero(String numero);
+	public Fone(final String numero, final Tipo tipo,
+			final Operadora operadora) {
+		this.numero = numero;
+		this.tipo = tipo;
+		this.operadora = operadora;
+	}
 	
-	Tipo tipo();
-	
-	void tipo(Tipo tipo);
-	
-	Operadora operadora();
-	
-	void operadora(Operadora operadora);
+	@Override
+	public Media print(final Media media) throws IOException {
+		return media.with("numero", numero)
+			.with("tipo", tipo.toString())
+			.with("operadora", operadora.toString());
+	}
 }

@@ -8,10 +8,10 @@ import javax.sql.DataSource;
 
 import com.jcabi.jdbc.JdbcSession;
 
-public final class Transacao{
+public final class Transaction {
 	private final transient JdbcSession session;
 
-	public Transacao(final DataSource ds) {
+	public Transaction(final DataSource ds) {
 		this.session = new JdbcSession(ds);
 	}
 

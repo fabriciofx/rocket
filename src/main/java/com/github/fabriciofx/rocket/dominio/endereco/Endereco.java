@@ -1,29 +1,31 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.github.fabriciofx.rocket.dominio.documento.Documento;
+import com.github.fabriciofx.rocket.media.Media;
+import com.github.fabriciofx.rocket.media.Printer;
 
-public interface Endereco extends Documento {
-	Logradouro logradouro();
+public final class Endereco implements Documento {
+	private final List<Printer> printers;
 
-	void logradouro(Logradouro logradouro);
+	public Endereco(final Printer... printers) {
+		this(Arrays.asList(printers));
+	}
+	
+	public Endereco(final List<Printer> printers) {
+		this.printers = new ArrayList<>(printers);
+	}
 
-	Numero numero();
-
-	void numero(Numero numero);
-
-	Complemento complemento();
-
-	void complemento(Complemento complemento);
-
-	Bairro bairro();
-
-	void bairro(Bairro bairro);
-
-	Cidade cidade();
-
-	void cidade(Cidade cidade);
-
-	Cep cep();
-
-	void cep(Cep cep);
+	@Override
+	public Media print(final Media media) throws IOException {
+		Media m = media;
+		for (final Printer p : printers) {
+			m = p.print(m);
+		}
+		return m;
+	}
 }

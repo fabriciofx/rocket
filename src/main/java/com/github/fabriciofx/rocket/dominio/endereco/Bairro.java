@@ -1,7 +1,5 @@
 package com.github.fabriciofx.rocket.dominio.endereco;
 
-import com.github.fabriciofx.rocket.constraint.NotEmpty;
-import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
 import com.github.fabriciofx.rocket.media.Printer;
 
@@ -9,7 +7,7 @@ public final class Bairro implements Printer {
 	private final String nome;
 
 	public Bairro(final String nome) {
-		this.nome = new NotEmpty<String>(new NotNull<>()).valid(nome);
+		this.nome = nome;
 	}
 
 	@Override
@@ -18,7 +16,7 @@ public final class Bairro implements Printer {
 	}
 	
 	@Override
-	public Media print(Media media) {
+	public Media print(final Media media) {
 		return media.with("bairro", nome);
 	}
 }

@@ -7,34 +7,44 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.dominio.documento.Documento;
 import com.github.fabriciofx.rocket.dominio.documento.Fone;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
-import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
-import com.github.fabriciofx.rocket.dominio.simples.SimplesFone;
+import com.github.fabriciofx.rocket.media.InsertSqlMedia;
 import com.github.fabriciofx.rocket.media.Media;
+import com.github.fabriciofx.rocket.repository.Repository;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
+import com.jcabi.jdbc.SingleOutcome;
 
-public final class SqlFone implements Fone, Identificavel<Id> {
-	private final transient DataSource ds;
+public final class SqlFone implements Repository<Fone>, Documento {
+	private final transient Fone origem;
 	private final transient Id id;
 
-	public SqlFone(final DataSource ds, final Id id) {
-		this.ds = ds;
+	public SqlFone(final Fone origem, final Id id) {
+		this.origem = origem;
 		this.id = id;
 	}
-
+	
 	@Override
-	public Id id() {
-		return id;
+	public Media print(final Media media) throws IOException { 
+		return origem.print(media.with("id", id.toString()));
 	}
 	
 	@Override
-	public Media print(Media media) throws IOException { 
-		return fone(id).print(media);
+	public void save(final DataSource ds) throws IOException {
+		final String sql = print(new InsertSqlMedia("fone")).toString();
+		try {
+			new JdbcSession(ds)
+				.sql(sql)
+				.insert(new SingleOutcome<Long>(Long.class, true));
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}		
 	}
 	
-	private Fone fone(final Id id) throws IOException {
+	@Override
+	public Fone find(final DataSource ds, final Id id) throws IOException {
 		try {
 			final List<Fone> fones = new JdbcSession(ds)
 				.sql("SELECT * FROM fone WHERE pessoa = ?")
@@ -44,10 +54,10 @@ public final class SqlFone implements Fone, Identificavel<Id> {
 						@Override
 						public Fone map(final ResultSet rs) 
 							throws SQLException {
-								return new SimplesFone(
+								return new Fone(
 										rs.getString(2),
-										Tipo.valueOf(rs.getString(3)),
-										Operadora.valueOf(rs.getString(4))
+										Fone.Tipo.valueOf(rs.getString(3)),
+										Fone.Operadora.valueOf(rs.getString(4))
 								);
 							}
 						}
@@ -56,42 +66,6 @@ public final class SqlFone implements Fone, Identificavel<Id> {
 			return fones.get(0);
 		} catch (final SQLException e) {
 			throw new IOException(e);
-		}			
-	}
-
-	@Override
-	public String numero() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void numero(String numero) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Tipo tipo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void tipo(Tipo tipo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Operadora operadora() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void operadora(Operadora operadora) {
-		// TODO Auto-generated method stub
-		
+		}		
 	}
 }

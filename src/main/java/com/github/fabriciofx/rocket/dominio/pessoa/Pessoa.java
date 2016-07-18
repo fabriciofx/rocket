@@ -1,44 +1,31 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import com.github.fabriciofx.rocket.dominio.documento.Cpf;
-import com.github.fabriciofx.rocket.dominio.documento.Fone;
-import com.github.fabriciofx.rocket.dominio.documento.Nome;
-import com.github.fabriciofx.rocket.dominio.documento.Rg;
-import com.github.fabriciofx.rocket.dominio.documento.Sexo;
-import com.github.fabriciofx.rocket.dominio.documento.Tratamento;
-import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
+import com.github.fabriciofx.rocket.dominio.documento.Documento;
 import com.github.fabriciofx.rocket.media.Media;
+import com.github.fabriciofx.rocket.media.Printer;
 
-public interface Pessoa {
-	Nome nome() throws IOException;
-
-	void nome(Nome nome) throws IOException;
-
-	Sexo sexo() throws IOException;
-
-	void sexo(Sexo sexo) throws IOException;
-
-	Tratamento tratamento() throws IOException;
-
-	void tratamento(Tratamento tratamento) throws IOException;
-
-	Cpf cpf() throws IOException;
-
-	void cpf(Cpf cpf) throws IOException;
-
-	Rg rg() throws IOException;
-
-	void rg(Rg rg) throws IOException;
-
-	Endereco endereco() throws IOException;
-
-	void endereco(Endereco endereco) throws IOException;
-
-	Iterable<Fone> fones() throws IOException;
-
-	void fones(Iterable<Fone> fones) throws IOException;
+public final class Pessoa implements Printer {
+	private final List<Documento> documentos; 
 	
-	Media print(Media media) throws IOException;
+	public Pessoa(final Documento... documentos) {
+		this(Arrays.asList(documentos));
+	}
+
+	public Pessoa(final List<Documento> documentos) {
+		this.documentos = new ArrayList<>(documentos);
+	}
+	
+	@Override
+	public Media print(final Media media) throws IOException {
+		Media m = media;
+		for (final Documento d : documentos) {
+			m = d.print(m);
+		}
+		return m;
+	}
 }
