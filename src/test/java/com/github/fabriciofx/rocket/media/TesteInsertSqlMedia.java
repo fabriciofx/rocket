@@ -20,6 +20,7 @@ import com.github.fabriciofx.rocket.dominio.doc.endereco.Estado;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Numero;
 import com.github.fabriciofx.rocket.dominio.doc.fone.Fone;
+import com.github.fabriciofx.rocket.dominio.doc.fone.SimplesFone;
 import com.github.fabriciofx.rocket.dominio.pessoa.Pessoa;
 import com.github.fabriciofx.rocket.dominio.pessoa.SimplesPessoa;
 
@@ -40,7 +41,7 @@ public final class TesteInsertSqlMedia {
 				new Cidade("São Paulo", Estado.SP),
 				new Cep("48035120")
 			),			
-			new Fone(
+			new SimplesFone(
 				"999918967",
 				Fone.Tipo.CELULAR,
 				Fone.Operadora.TIM
