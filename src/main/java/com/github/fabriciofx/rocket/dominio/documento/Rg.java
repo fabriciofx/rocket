@@ -46,7 +46,7 @@ public final class Rg implements Documento {
 	}
 
 	@Override
-	public Media print(Media media) {
+	public Media print(final Media media) {
 		final String rg;
 		if (via == 1) {
 			rg = String.format("%s %s-%s", numero, emissor, estado);
@@ -55,16 +55,5 @@ public final class Rg implements Documento {
 				via);
 		}
 		return media.with("rg", rg);
-	}
-	
-	private Media xml(Media media) {
-		media = media.with("rg-numero", numero)
-			.with("rg-emissor", emissor.toString())
-			.with("rg-estado", estado.toString())
-			.with("rg-expedicao", expedicao.toString());
-		if (via > 1) {
-			media = media.with("rg-via", Integer.toString(via));
-		}
-		return media;
 	}
 }

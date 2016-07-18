@@ -61,7 +61,7 @@ public final class Nome implements Documento {
 	}
 
 	@Override
-	public Media print(Media media) {
+	public Media print(final Media media) {
 		return media.with("nome", completo);
 	}
 }

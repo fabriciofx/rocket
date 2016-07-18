@@ -10,7 +10,10 @@ public final class Cpf implements Documento {
 
 	public Cpf(final String numero) {
 		this.numero = new Mod11<String>(
-				new NotEmpty<>(new NotNull<>())).valid(numero);
+			new NotEmpty<>(
+				new NotNull<>()
+			)
+		).valid(numero);
 	}
 
 	@Override
@@ -30,7 +33,7 @@ public final class Cpf implements Documento {
 	}
 
 	@Override
-	public Media print(Media media) {
+	public Media print(final Media media) {
 		return media.with("cpf", numero);
 	}
 }

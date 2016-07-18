@@ -38,14 +38,13 @@ public enum Tratamento implements Documento {
 		this.abreviatura = abreviatura;
 	}
 
-//	@Override
-//	public String toString() {
-//		return abreviatura;
-//	}
-//
 	@Override
-	public Media print(Media media) {
-//		return media.with("tratamento", abreviatura);
-		return media.with("tratamento", this.toString());
+	public String toString() {
+		return abreviatura;
+	}
+
+	@Override
+	public Media print(final Media media) {
+		return media.with("tratamento", abreviatura);
 	}	
 }

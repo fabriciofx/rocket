@@ -8,8 +8,12 @@ public final class Email implements Documento {
 	private final transient String endereco;
 
 	public Email(final String endereco) {
-		this.endereco = new com.github.fabriciofx.rocket.constraint.Email<String>(
-				new NotEmpty<>(new NotNull<>())).valid(endereco);
+		this.endereco = new com.github.fabriciofx.rocket.
+			constraint.Email<String>(
+				new NotEmpty<>(
+					new NotNull<>()
+				)
+			).valid(endereco);
 	}
 
 	@Override
@@ -29,7 +33,7 @@ public final class Email implements Documento {
 	}
 
 	@Override
-	public Media print(Media media) {
+	public Media print(final Media media) {
 		return media.with("email", endereco);
 	}
 }

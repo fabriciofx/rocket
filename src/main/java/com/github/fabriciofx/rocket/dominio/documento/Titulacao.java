@@ -22,7 +22,7 @@ public enum Titulacao implements Documento {
 	}
 
 	@Override
-	public Media print(Media media) {
+	public Media print(final Media media) {
 		return media.with("titulacao", abreviatura);
 	}
 }
