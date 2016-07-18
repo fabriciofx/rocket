@@ -1,6 +1,6 @@
 package com.github.fabriciofx.rocket.dominio.gerador;
 
-import com.github.fabriciofx.rocket.dominio.documento.Sexo;
+import com.github.fabriciofx.rocket.dominio.doc.Sexo;
 import com.github.fabriciofx.rocket.misc.Aleatorio;
 
 public final class GeradorSexo {

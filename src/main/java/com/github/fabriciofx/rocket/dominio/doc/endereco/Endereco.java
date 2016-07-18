@@ -1,11 +1,11 @@
-package com.github.fabriciofx.rocket.dominio.endereco;
+package com.github.fabriciofx.rocket.dominio.doc.endereco;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.github.fabriciofx.rocket.dominio.documento.Documento;
+import com.github.fabriciofx.rocket.dominio.doc.Documento;
 import com.github.fabriciofx.rocket.media.Media;
 import com.github.fabriciofx.rocket.media.Printer;
 

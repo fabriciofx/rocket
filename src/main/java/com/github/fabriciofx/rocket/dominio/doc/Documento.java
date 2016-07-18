@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.documento;
+package com.github.fabriciofx.rocket.dominio.doc;
 
 import java.io.IOException;
 

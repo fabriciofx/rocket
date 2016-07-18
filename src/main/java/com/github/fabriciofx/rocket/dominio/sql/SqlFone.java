@@ -7,8 +7,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import com.github.fabriciofx.rocket.dominio.documento.Documento;
-import com.github.fabriciofx.rocket.dominio.documento.Fone;
+import com.github.fabriciofx.rocket.dominio.doc.Documento;
+import com.github.fabriciofx.rocket.dominio.doc.Fone;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 import com.github.fabriciofx.rocket.media.InsertSqlMedia;
 import com.github.fabriciofx.rocket.media.Media;

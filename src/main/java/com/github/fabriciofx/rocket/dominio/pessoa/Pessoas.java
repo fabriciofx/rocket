@@ -2,13 +2,13 @@ package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import java.io.IOException;
 
-import com.github.fabriciofx.rocket.dominio.documento.Cpf;
-import com.github.fabriciofx.rocket.dominio.documento.Fone;
-import com.github.fabriciofx.rocket.dominio.documento.Nome;
-import com.github.fabriciofx.rocket.dominio.documento.Rg;
-import com.github.fabriciofx.rocket.dominio.documento.Sexo;
-import com.github.fabriciofx.rocket.dominio.documento.Tratamento;
-import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
+import com.github.fabriciofx.rocket.dominio.doc.Cpf;
+import com.github.fabriciofx.rocket.dominio.doc.Fone;
+import com.github.fabriciofx.rocket.dominio.doc.Nome;
+import com.github.fabriciofx.rocket.dominio.doc.Rg;
+import com.github.fabriciofx.rocket.dominio.doc.Sexo;
+import com.github.fabriciofx.rocket.dominio.doc.Tratamento;
+import com.github.fabriciofx.rocket.dominio.doc.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
 
 public interface Pessoas {

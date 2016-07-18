@@ -6,20 +6,20 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.documento.Cpf;
-import com.github.fabriciofx.rocket.dominio.documento.Fone;
-import com.github.fabriciofx.rocket.dominio.documento.Nome;
-import com.github.fabriciofx.rocket.dominio.documento.Rg;
-import com.github.fabriciofx.rocket.dominio.documento.Sexo;
-import com.github.fabriciofx.rocket.dominio.documento.Tratamento;
-import com.github.fabriciofx.rocket.dominio.endereco.Bairro;
-import com.github.fabriciofx.rocket.dominio.endereco.Cep;
-import com.github.fabriciofx.rocket.dominio.endereco.Cidade;
-import com.github.fabriciofx.rocket.dominio.endereco.Complemento;
-import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
-import com.github.fabriciofx.rocket.dominio.endereco.Estado;
-import com.github.fabriciofx.rocket.dominio.endereco.Logradouro;
-import com.github.fabriciofx.rocket.dominio.endereco.Numero;
+import com.github.fabriciofx.rocket.dominio.doc.Cpf;
+import com.github.fabriciofx.rocket.dominio.doc.Fone;
+import com.github.fabriciofx.rocket.dominio.doc.Nome;
+import com.github.fabriciofx.rocket.dominio.doc.Rg;
+import com.github.fabriciofx.rocket.dominio.doc.Sexo;
+import com.github.fabriciofx.rocket.dominio.doc.Tratamento;
+import com.github.fabriciofx.rocket.dominio.doc.endereco.Bairro;
+import com.github.fabriciofx.rocket.dominio.doc.endereco.Cep;
+import com.github.fabriciofx.rocket.dominio.doc.endereco.Cidade;
+import com.github.fabriciofx.rocket.dominio.doc.endereco.Complemento;
+import com.github.fabriciofx.rocket.dominio.doc.endereco.Endereco;
+import com.github.fabriciofx.rocket.dominio.doc.endereco.Estado;
+import com.github.fabriciofx.rocket.dominio.doc.endereco.Logradouro;
+import com.github.fabriciofx.rocket.dominio.doc.endereco.Numero;
 import com.github.fabriciofx.rocket.dominio.pessoa.Pessoa;
 
 public final class TesteInsertSqlMedia {

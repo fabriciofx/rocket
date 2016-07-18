@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.system;
 
 import java.io.IOException;
 
-import com.github.fabriciofx.rocket.dominio.documento.Email;
+import com.github.fabriciofx.rocket.dominio.doc.Email;
 import com.github.fabriciofx.rocket.security.Password;
 
 public interface User {

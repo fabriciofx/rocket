@@ -1,11 +1,11 @@
-package com.github.fabriciofx.rocket.dominio.documento;
+package com.github.fabriciofx.rocket.dominio.doc;
 
 import java.time.LocalDate;
 
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.constraint.Pattern;
-import com.github.fabriciofx.rocket.dominio.endereco.Estado;
+import com.github.fabriciofx.rocket.dominio.doc.endereco.Estado;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class Rg implements Documento {

@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.endereco;
+package com.github.fabriciofx.rocket.dominio.doc.endereco;
 
 public enum Estado {
 	AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PR, PB, PA, PE, PI, RJ,

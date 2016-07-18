@@ -1,6 +1,6 @@
 package com.github.fabriciofx.rocket.dominio.gerador;
 
-import com.github.fabriciofx.rocket.dominio.documento.Nome;
+import com.github.fabriciofx.rocket.dominio.doc.Nome;
 import com.github.fabriciofx.rocket.misc.Aleatorio;
 
 public final class GeradorNome {
