@@ -21,11 +21,12 @@ import com.github.fabriciofx.rocket.dominio.doc.endereco.Estado;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Numero;
 import com.github.fabriciofx.rocket.dominio.pessoa.Pessoa;
+import com.github.fabriciofx.rocket.dominio.pessoa.SimplesPessoa;
 
 public final class TesteInsertSqlMedia {
 	@Test
 	public void insert() throws IOException {
-		final Pessoa pessoa = new Pessoa(
+		final Pessoa pessoa = new SimplesPessoa(
 			new Nome("José de Alencar"),
 			Sexo.MASCULINO,
 			Tratamento.SENHOR,

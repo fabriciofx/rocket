@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.sql;
+package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -20,20 +20,15 @@ import com.github.fabriciofx.rocket.dominio.doc.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Estado;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Numero;
-import com.github.fabriciofx.rocket.dominio.pessoa.Pessoa;
 import com.github.fabriciofx.rocket.dominio.repositorio.Id;
-import com.github.fabriciofx.rocket.dominio.repositorio.Identificavel;
 import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
 import com.github.fabriciofx.rocket.media.InsertSqlMedia;
 import com.github.fabriciofx.rocket.media.Media;
-import com.github.fabriciofx.rocket.media.Printer;
-import com.github.fabriciofx.rocket.repository.Repository;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.SingleOutcome;
 
-public final class SqlPessoa
-		implements Identificavel<Id>, Repository<SqlPessoa>, Printer {
+public final class SqlPessoa implements Pessoa {
 	private final transient Pessoa origem;
 	private final transient Id id;
 
@@ -76,7 +71,7 @@ public final class SqlPessoa
 							public SqlPessoa map(final ResultSet rs)
 								throws SQLException {
 								return new SqlPessoa(
-									new Pessoa(
+									new SimplesPessoa(
 										new Nome(rs.getString(2)),
 										Sexo.valueOf(rs.getString(3)),
 										Tratamento.valueOf(rs.getString(4)),

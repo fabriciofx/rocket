@@ -28,7 +28,6 @@ import com.github.fabriciofx.rocket.dominio.doc.endereco.Estado;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Numero;
 import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
-import com.github.fabriciofx.rocket.dominio.sql.SqlPessoa;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.jcabi.jdbc.JdbcSession;
 import com.zaxxer.hikari.HikariConfig;
@@ -91,8 +90,8 @@ public final class TestePessoa {
 	@Test
 	public void xml() throws IOException {
 		final String LS = System.lineSeparator();
-		final SqlPessoa sqlPessoa = new SqlPessoa(
-			new Pessoa(
+		final Pessoa pessoa = new SqlPessoa(
+			new SimplesPessoa(
 				new Nome("José de Alencar"),
 				Sexo.MASCULINO,
 				Tratamento.SENHOR,
@@ -109,7 +108,7 @@ public final class TestePessoa {
 			),
 			new NumId(1L)
 		);
-		sqlPessoa.save(ds());
+		pessoa.save(ds());
 		final String xml = 
 			"<pessoa>" + LS
 			+ "<id>1</id>" + LS
@@ -126,7 +125,7 @@ public final class TestePessoa {
 			+ "<estado>SP</estado>" + LS
 			+ "<cep>48035120</cep>" + LS
 			+ "</pessoa>" + LS;
-		assertEquals(xml, sqlPessoa.find(ds(), new NumId(1L))
+		assertEquals(xml, pessoa.find(ds(), new NumId(1L))
 				.print(new XmlMedia("pessoa")).toString());
 	}
 }
