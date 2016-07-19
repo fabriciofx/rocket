@@ -13,8 +13,15 @@ public final class TextMedia implements Media {
 
 	@Override
 	public Media with(final String name, final String value) {
-		return new TextMedia(sb.append(name).append(": ").append(value)
-				.append(System.lineSeparator()));
+		return new TextMedia(
+			sb.append(name).append(": ")
+			.append(value).append(System.lineSeparator())
+		);
+	}
+	
+	@Override
+	public Media dup() {
+		return new TextMedia();
 	}
 
 	@Override

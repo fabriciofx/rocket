@@ -26,6 +26,11 @@ public final class InsertSqlMedia implements Media {
 		return new InsertSqlMedia(table, new ArrayList<>(fields),
 				new ArrayList<>(values));
 	}
+	
+	@Override
+	public Media dup() {
+		return new InsertSqlMedia(table);
+	}
 
 	@Override
 	public String toString() {
