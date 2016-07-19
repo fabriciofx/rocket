@@ -13,13 +13,19 @@ import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class SimplesPessoa implements Pessoa {
-	private final List<Documento> documentos; 
+	private final transient Id id;
+	private final transient List<Documento> documentos; 
 	
 	public SimplesPessoa(final Documento... documentos) {
-		this(Arrays.asList(documentos));
+		this(new NumId(0L), Arrays.asList(documentos));
+	}	
+	
+	public SimplesPessoa(final Id id, final Documento... documentos) {
+		this(id, Arrays.asList(documentos));
 	}
 
-	public SimplesPessoa(final List<Documento> documentos) {
+	public SimplesPessoa(final Id id, final List<Documento> documentos) {
+		this.id = id;
 		this.documentos = new ArrayList<>(documentos);
 	}
 	
@@ -34,7 +40,7 @@ public final class SimplesPessoa implements Pessoa {
 
 	@Override
 	public Id id() {
-		return new NumId(1L);
+		return id;
 	}
 
 	@Override

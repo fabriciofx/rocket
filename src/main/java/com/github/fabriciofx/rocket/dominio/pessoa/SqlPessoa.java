@@ -30,21 +30,19 @@ import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlPessoa implements Pessoa {
 	private final transient Pessoa origem;
-	private final transient Id id;
 
-	public SqlPessoa(final Pessoa origem, final Id id) {
+	public SqlPessoa(final Pessoa origem) {
 		this.origem = origem;
-		this.id = id;
 	}
 
 	@Override
 	public Id id() {
-		return id;
+		return origem.id();
 	}
 
 	@Override
 	public Media print(final Media media) throws IOException { 
-		return origem.print(media.with("id", id.toString()));
+		return origem.print(media.with("id", id().toString()));
 	}
 
 	@Override
@@ -72,6 +70,7 @@ public final class SqlPessoa implements Pessoa {
 								throws SQLException {
 								return new SqlPessoa(
 									new SimplesPessoa(
+										new NumId(rs.getLong(1)),
 										new Nome(rs.getString(2)),
 										Sexo.valueOf(rs.getString(3)),
 										Tratamento.valueOf(rs.getString(4)),
@@ -88,7 +87,7 @@ public final class SqlPessoa implements Pessoa {
 											),
 											new Cep(rs.getString(13))
 										)
-									), new NumId(rs.getLong(1))
+									)
 								);
 							}
 						}

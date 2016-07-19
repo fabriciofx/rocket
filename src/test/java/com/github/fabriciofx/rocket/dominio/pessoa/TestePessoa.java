@@ -80,6 +80,7 @@ public final class TestePessoa {
 		final String LS = System.lineSeparator();
 		final Pessoa pessoa = new SqlPessoa(
 			new SimplesPessoa(
+				new NumId(1L),					
 				new Nome("José de Alencar"),
 				Sexo.MASCULINO,
 				Tratamento.SENHOR,
@@ -93,8 +94,7 @@ public final class TestePessoa {
 					new Cidade("São Paulo", Estado.SP),
 					new Cep("48035120")
 				)			
-			),
-			new NumId(1L)
+			)
 		);
 		pessoa.save(ds);
 		final String xml = 
