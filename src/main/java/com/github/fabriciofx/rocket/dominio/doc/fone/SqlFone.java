@@ -17,21 +17,19 @@ import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlFone implements Fone {
 	private final transient Fone origem;
-	private final transient Id id;
 
-	public SqlFone(final Fone origem, final Id id) {
+	public SqlFone(final Fone origem) {
 		this.origem = origem;
-		this.id = id;
 	}
 
 	@Override
 	public Id id() {
-		return id;
+		return origem.id();
 	}
 
 	@Override
 	public Media print(final Media media) throws IOException { 
-		return origem.print(media.with("id", id.toString()));
+		return origem.print(media.with("id", id().toString()));
 	}
 	
 	@Override
@@ -40,7 +38,7 @@ public final class SqlFone implements Fone {
 		try {
 			new JdbcSession(ds)
 				.sql(sql)
-				.insert(new SingleOutcome<Long>(Long.class, true));
+				.insert(SingleOutcome.VOID);
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}		
@@ -59,11 +57,11 @@ public final class SqlFone implements Fone {
 							throws SQLException {
 								return new SqlFone(
 									new SimplesFone(
+										new NumId(rs.getLong(1)),
 										rs.getString(2),
 										Fone.Tipo.valueOf(rs.getString(3)),
 										Fone.Operadora.valueOf(rs.getString(4))
-									),
-									new NumId(rs.getLong(1))
+									)
 								);
 							}
 						}

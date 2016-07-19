@@ -9,12 +9,19 @@ import com.github.fabriciofx.rocket.dominio.repositorio.NumId;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class SimplesFone implements Fone {
+	private final transient Id id;
 	private final transient String numero;
 	private final transient Tipo tipo;
 	private final transient Operadora operadora;
 
 	public SimplesFone(final String numero, final Tipo tipo,
 			final Operadora operadora) {
+		this(new NumId(0L), numero, tipo, operadora);
+	}
+	
+	public SimplesFone(final Id id, final String numero, final Tipo tipo,
+			final Operadora operadora) {
+		this.id = id;
 		this.numero = numero;
 		this.tipo = tipo;
 		this.operadora = operadora;
@@ -29,7 +36,7 @@ public final class SimplesFone implements Fone {
 
 	@Override
 	public Id id() {
-		return new NumId(0L);
+		return id;
 	}
 
 	@Override
