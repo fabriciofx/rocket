@@ -18,14 +18,4 @@ public final class TextMedia implements Media {
 			.append(value).append(System.lineSeparator())
 		);
 	}
-	
-	@Override
-	public Media dup() {
-		return new TextMedia();
-	}
-
-	@Override
-	public String toString() {
-		return sb.toString();
-	}
 }

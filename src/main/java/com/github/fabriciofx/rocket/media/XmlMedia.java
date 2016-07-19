@@ -22,12 +22,7 @@ public final class XmlMedia implements Media {
 		return new XmlMedia(root,
 			directives.add(name.toLowerCase()).set(value).up());
 	}
-	
-	@Override
-	public Media dup() {
-		return new XmlMedia("erase-this-tag");
-	}
-	
+		
 	@Override
 	public String toString() {
 		try {
@@ -36,8 +31,7 @@ public final class XmlMedia implements Media {
 				.replaceAll("<\\?xml version.*\\?>[\r]*\n", "")
 				.replaceAll("&lt;", "<")
 				.replaceAll("&gt;", ">")
-				.replaceAll("&#13;", "")
-				.replaceAll("</*erase-this-tag>[\r]*\n", "");
+				.replaceAll("&#13;", "");
 		} catch (final ImpossibleModificationException e) {
 			throw new IllegalStateException(e);
 		}

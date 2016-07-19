@@ -27,16 +27,12 @@ public final class TesteFones {
 		final String ls = System.lineSeparator();
 		final String xml =
 		"<fones>" + ls +
-		"  <fone>" + ls +
-		"    <numero>81999452345</numero>" + ls +
-		"    <tipo>CELULAR</tipo>" + ls +
-		"    <operadora>TIM</operadora>" + ls +
-		"  </fone>" + ls +
-		"  <fone>" + ls +
-		"    <numero>83889452666</numero>" + ls +
-		"    <tipo>CELULAR</tipo>" + ls +
-		"    <operadora>OI</operadora>" + ls +
-		"  </fone>" + ls +
+		"  <numero>81999452345</numero>" + ls +
+		"  <tipo>CELULAR</tipo>" + ls +
+		"  <operadora>TIM</operadora>" + ls +
+		"  <numero>83889452666</numero>" + ls +
+		"  <tipo>CELULAR</tipo>" + ls +
+		"  <operadora>OI</operadora>" + ls +
 		"</fones>" + ls;
 		assertEquals(
 				xml,

@@ -28,11 +28,6 @@ public final class InsertSqlMedia implements Media {
 	}
 	
 	@Override
-	public Media dup() {
-		return new InsertSqlMedia(table);
-	}
-
-	@Override
 	public String toString() {
 		return String.format("INSERT INTO %s (%s) VALUES (%s)", table,
 				String.join(", ", fields), String.join(", ", values));

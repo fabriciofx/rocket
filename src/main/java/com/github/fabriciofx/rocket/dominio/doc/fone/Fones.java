@@ -23,7 +23,7 @@ public final class Fones implements Documento {
 	public Media print(final Media media) throws IOException {
 		Media m = media;
 		for (final Fone f : fones) {
-			m = m.with("fone", f.print(media.dup()).toString());
+			m = f.print(m);
 		}
 		return m;
  	}
