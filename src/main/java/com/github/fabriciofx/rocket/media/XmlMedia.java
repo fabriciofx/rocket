@@ -22,7 +22,7 @@ public final class XmlMedia implements Media {
 		return new XmlMedia(root,
 			directives.add(name.toLowerCase()).set(value).up());
 	}
-		
+			
 	@Override
 	public String toString() {
 		try {

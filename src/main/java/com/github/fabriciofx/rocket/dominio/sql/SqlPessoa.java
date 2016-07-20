@@ -37,7 +37,7 @@ public final class SqlPessoa implements Pessoa {
 				.sql("SELECT nome FROM pessoa WHERE id = ?")
 				.set(id)
 				.select(new SingleOutcome<String>(String.class));
-			return media.with("id", id + "").with("nome", nome);
+			return fones().print(media.with("id", id + "").with("nome", nome));
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}

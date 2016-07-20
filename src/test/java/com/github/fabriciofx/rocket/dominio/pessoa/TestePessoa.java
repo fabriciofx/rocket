@@ -15,6 +15,7 @@ import com.github.fabriciofx.rocket.dominio.Pessoa;
 import com.github.fabriciofx.rocket.dominio.Pessoas;
 import com.github.fabriciofx.rocket.dominio.sql.SqlPessoas;
 import com.github.fabriciofx.rocket.ds.TestDataSource;
+import com.github.fabriciofx.rocket.media.XmlFormat;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.jcabi.jdbc.JdbcSession;
 
@@ -61,8 +62,8 @@ public final class TestePessoa {
 				"81988144321"
 			)
 		);
+		System.out.println(new XmlFormat(pessoa.print(new XmlMedia("pessoa")).toString()));
 		final Fones fones = pessoa.fones();
-		System.out.println(pessoa.print(new XmlMedia("pessoa")).toString());
 		System.out.println(fones.print(new XmlMedia("fones")).toString());
 	}
 }
