@@ -55,8 +55,7 @@ public final class TestePessoa {
 	@Test
 	public void pessoa() throws IOException {
 		final Pessoas pessoas = new SqlPessoas(ds);
-		final Pessoa pessoa = pessoas.salva("Jason Bourne");
-		pessoa.fones().salva("83999231234");
+		final Pessoa pessoa = pessoas.salva("Jason Bourne", "83999231234");
 		final Fone fone = pessoa.fones().fone(pessoa.id());
 		System.out.println(pessoa.print(new XmlMedia("pessoa")).toString());
 		System.out.println(fone.print(new XmlMedia("fone")).toString());

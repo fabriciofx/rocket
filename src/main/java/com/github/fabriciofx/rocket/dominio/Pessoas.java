@@ -7,5 +7,5 @@ public interface Pessoas {
 	Pessoa pessoa(long id) throws IOException;
 	
 	// Salva uma pessoa
-	Pessoa salva(String nome) throws IOException;
+	Pessoa salva(String nome, String fone) throws IOException;
 }

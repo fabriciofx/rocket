@@ -23,12 +23,18 @@ public final class SqlPessoas implements Pessoas {
 	}
 
 	@Override
-	public Pessoa salva(final String nome) throws IOException {
+	public Pessoa salva(final String nome, final String fone)
+			throws IOException {
 		try {
-			final long id = new JdbcSession(ds)
-				.sql("INSERT INTO pessoa (nome) VALUES (?)")
+			final JdbcSession session = new JdbcSession(ds).autocommit(false);
+			final long id = session.sql("INSERT INTO pessoa (nome) VALUES (?)")
 				.set(nome)
 				.insert(new SingleOutcome<Long>(Long.class));
+			session.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
+				.set(id)
+				.set(fone)
+				.insert(SingleOutcome.VOID);
+			session.commit();
 			return new SqlPessoa(ds, id);
 		} catch (final SQLException e) {
 			throw new IOException(e);
