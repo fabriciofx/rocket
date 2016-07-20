@@ -23,12 +23,13 @@ public final class SqlPessoas implements Pessoas {
 	}
 
 	@Override
-	public void salva(final String nome) throws IOException {
+	public Pessoa salva(final String nome) throws IOException {
 		try {
-			new JdbcSession(ds)
+			final long id = new JdbcSession(ds)
 				.sql("INSERT INTO pessoa (nome) VALUES (?)")
 				.set(nome)
-				.insert(SingleOutcome.VOID);
+				.insert(new SingleOutcome<Long>(Long.class));
+			return new SqlPessoa(ds, id);
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}

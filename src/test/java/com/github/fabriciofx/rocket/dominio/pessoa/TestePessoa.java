@@ -55,8 +55,7 @@ public final class TestePessoa {
 	@Test
 	public void pessoa() throws IOException {
 		final Pessoas pessoas = new SqlPessoas(ds);
-		pessoas.salva("Jason Bourne");
-		final Pessoa pessoa = pessoas.pessoa(1L);
+		final Pessoa pessoa = pessoas.salva("Jason Bourne");
 		final Fones fones = pessoa.fones();
 		fones.salva("83999231234");
 		final Fone fone = fones.fone(1L);
