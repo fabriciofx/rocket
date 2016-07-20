@@ -2,6 +2,7 @@ package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.sql.DataSource;
 
@@ -9,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.Fone;
 import com.github.fabriciofx.rocket.dominio.Fones;
 import com.github.fabriciofx.rocket.dominio.Pessoa;
 import com.github.fabriciofx.rocket.dominio.Pessoas;
@@ -55,9 +55,14 @@ public final class TestePessoa {
 	@Test
 	public void pessoa() throws IOException {
 		final Pessoas pessoas = new SqlPessoas(ds);
-		final Pessoa pessoa = pessoas.salva("Jason Bourne", "83999231234");
-		final Fone fone = pessoa.fones().fone(pessoa.id());
+		final Pessoa pessoa = pessoas.salva("Jason Bourne",
+			Arrays.asList(
+				"83999231234",
+				"81988144321"
+			)
+		);
+		final Fones fones = pessoa.fones();
 		System.out.println(pessoa.print(new XmlMedia("pessoa")).toString());
-		System.out.println(fone.print(new XmlMedia("fone")).toString());
+		System.out.println(fones.print(new XmlMedia("fones")).toString());
 	}
 }

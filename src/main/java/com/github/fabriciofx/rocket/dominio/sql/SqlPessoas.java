@@ -2,6 +2,7 @@ package com.github.fabriciofx.rocket.dominio.sql;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -23,17 +24,19 @@ public final class SqlPessoas implements Pessoas {
 	}
 
 	@Override
-	public Pessoa salva(final String nome, final String fone)
+	public Pessoa salva(final String nome, final List<String> fones)
 			throws IOException {
 		try {
 			final JdbcSession session = new JdbcSession(ds).autocommit(false);
 			final long id = session.sql("INSERT INTO pessoa (nome) VALUES (?)")
 				.set(nome)
 				.insert(new SingleOutcome<Long>(Long.class));
-			session.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
-				.set(id)
-				.set(fone)
-				.insert(SingleOutcome.VOID);
+			for (final String f : fones) {
+				session.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
+					.set(id)
+					.set(f)
+					.insert(SingleOutcome.VOID);
+			}
 			session.commit();
 			return new SqlPessoa(ds, id);
 		} catch (final SQLException e) {

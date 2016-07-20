@@ -2,7 +2,9 @@ package com.github.fabriciofx.rocket.dominio;
 
 import java.io.IOException;
 
-public interface Fones {
+import com.github.fabriciofx.rocket.media.Printer;
+
+public interface Fones extends Printer {
 	Fone fone(long pessoaId) throws IOException;
 
 	// Salva um número de telefone
