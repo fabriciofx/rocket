@@ -21,6 +21,11 @@ public final class SqlPessoa implements Pessoa {
 	}
 	
 	@Override
+	public long id() {
+		return id;
+	}
+	
+	@Override
 	public Fones fones() {
 		return new SqlFones(ds, id);
 	}

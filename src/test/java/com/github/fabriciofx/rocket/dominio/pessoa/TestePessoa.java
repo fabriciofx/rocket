@@ -58,7 +58,7 @@ public final class TestePessoa {
 		final Pessoa pessoa = pessoas.salva("Jason Bourne");
 		final Fones fones = pessoa.fones();
 		fones.salva("83999231234");
-		final Fone fone = fones.fone(1L);
+		final Fone fone = fones.fone(pessoa.id());
 		System.out.println(pessoa.print(new XmlMedia("pessoa")).toString());
 		System.out.println(fone.print(new XmlMedia("fone")).toString());
 	}
