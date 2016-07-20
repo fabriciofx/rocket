@@ -12,8 +12,8 @@ import com.zaxxer.hikari.HikariDataSource;
 public final class TestDataSource {
 	private final transient String database;
 
-	public TestDataSource(final String table) {
-		this.database = table;
+	public TestDataSource(final String database) {
+		this.database = database;
 	}
 
 	public DataSource dataSource() {
