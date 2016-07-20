@@ -9,42 +9,27 @@ import javax.sql.DataSource;
 import com.jcabi.jdbc.JdbcSession;
 
 public final class Transaction {
-	private final transient JdbcSession session;
+	private final transient DataSource ds;
 
 	public Transaction(final DataSource ds) {
-		this.session = new JdbcSession(ds);
+		this.ds = ds;
 	}
 
-	public <T> T execute(final Callable<T> callable) throws IOException {
+	public <T> T call(final Callable<T> callable) throws IOException {
+		final JdbcSession session = new JdbcSession(ds);
 		try {
-			start();
+			session.autocommit(false);
+			session.sql("BEGIN TRANSACTION").execute();
 			T result = callable.call();
-			commit();
+			session.commit();
 			return result;
 		} catch (final Exception e) {
 			try {
-				rollback();
+				session.sql("ROLLBACK").execute();
 			} catch (final SQLException sqle) {
 				throw new IOException(sqle);
 			}
 			throw new IOException(e);
 		}
-	}
-
-	public JdbcSession session() {
-		return session;
-	}
-	
-	private void start() throws SQLException {
-		session.autocommit(false);
-		session.sql("BEGIN TRANSACTION").execute();
-	}
-
-	private void commit() throws SQLException {
-		session.commit();
-	}
-
-	private void rollback() throws SQLException {
-		session.sql("ROLLBACK").execute();
 	}
 }
