@@ -1,13 +1,13 @@
 package com.github.fabriciofx.rocket.dominio.gerador;
 
 import com.github.fabriciofx.rocket.dominio.doc.Sexo;
-import com.github.fabriciofx.rocket.misc.Random;
+import com.github.fabriciofx.rocket.misc.Rand;
 
 public final class GeradorSexo {
-	private final Random aleatorio;
+	private final Rand aleatorio;
 	
 	public GeradorSexo() {
-		aleatorio = new Random();
+		aleatorio = new Rand();
 	}
 
 	public Sexo get() {

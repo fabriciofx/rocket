@@ -2,8 +2,7 @@ package com.github.fabriciofx.rocket.id;
 
 import java.time.LocalDateTime;
 
-import com.github.fabriciofx.rocket.constraint.NotNull;
-import com.github.fabriciofx.rocket.misc.Random;
+import com.github.fabriciofx.rocket.misc.Rand;
 
 public final class TimeId implements Id, Comparable<TimeId> {
 	private final transient long milliseconds;
@@ -13,7 +12,7 @@ public final class TimeId implements Id, Comparable<TimeId> {
 	}
 
 	public TimeId(final LocalDateTime dateTime) {
-		this(dateTime, new Random().num(10, 99));
+		this(dateTime, new Rand().num(10, 99));
 	}
 
 	public TimeId(final LocalDateTime dateTime, final int sequential) {
@@ -75,14 +74,12 @@ public final class TimeId implements Id, Comparable<TimeId> {
 	}
 
 	private static long localDateTimeToLong(final LocalDateTime dateTime) {
-		final LocalDateTime dh = new NotNull<LocalDateTime>()
-				.valid(dateTime);
-		return dh.getYear() * 1000000000000000L
-				+ dh.getMonthValue() * 10000000000000L
-				+ dh.getDayOfMonth() * 100000000000L
-				+ dh.getHour() * 1000000000L
-				+ dh.getMinute() * 10000000L
-				+ dh.getSecond() * 100000L
-				+ (dh.getNano() / 10000L);
+		return dateTime.getYear() * 1000000000000000L
+				+ dateTime.getMonthValue() * 10000000000000L
+				+ dateTime.getDayOfMonth() * 100000000000L
+				+ dateTime.getHour() * 1000000000L
+				+ dateTime.getMinute() * 10000000L
+				+ dateTime.getSecond() * 100000L
+				+ (dateTime.getNano() / 10000L);
 	}
 }

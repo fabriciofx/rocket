@@ -4,18 +4,18 @@ import java.time.LocalDate;
 
 import com.github.fabriciofx.rocket.dominio.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Estado;
-import com.github.fabriciofx.rocket.misc.Random;
+import com.github.fabriciofx.rocket.misc.Rand;
 
 public final class GeradorRG {
-	private final Random aleatorio;
+	private final Rand aleatorio;
 
 	public GeradorRG() {
-		aleatorio = new Random();
+		aleatorio = new Rand();
 	}
 
 	public Rg get() {
 		final String numero = String
-				.valueOf(aleatorio.numero(100000000L, 999999999L));
+				.valueOf(aleatorio.num(100000000L, 999999999L));
 		final Rg.Emissor[] emissores = Rg.Emissor.values();
 		final Rg.Emissor emissor = emissores[aleatorio.num(0,
 				emissores.length - 1)];

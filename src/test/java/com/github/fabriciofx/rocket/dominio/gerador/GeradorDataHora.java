@@ -4,13 +4,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.github.fabriciofx.rocket.misc.Random;
+import com.github.fabriciofx.rocket.misc.Rand;
 
 public final class GeradorDataHora {
-	private final Random aleatorio;
+	private final Rand aleatorio;
 
 	public GeradorDataHora() {
-		aleatorio = new Random();
+		aleatorio = new Rand();
 	}
 
 	private Date deStringParaDate(final String data) {
@@ -40,7 +40,7 @@ public final class GeradorDataHora {
 		final Date dataMin = deStringParaDate(min);
 		final Date dataMax = deStringParaDate(max);
 
-		final long data = aleatorio.numero(dataMin.getTime(),
+		final long data = aleatorio.num(dataMin.getTime(),
 				dataMax.getTime());
 
 		return new Date(data);

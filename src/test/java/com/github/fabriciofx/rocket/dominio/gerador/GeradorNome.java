@@ -1,7 +1,7 @@
 package com.github.fabriciofx.rocket.dominio.gerador;
 
 import com.github.fabriciofx.rocket.dominio.doc.Nome;
-import com.github.fabriciofx.rocket.misc.Random;
+import com.github.fabriciofx.rocket.misc.Rand;
 
 public final class GeradorNome {
 	private static final int MIN_SOBRENOMES = 2;
@@ -131,10 +131,10 @@ public final class GeradorNome {
 			"Viana", "Viegas", "Vieira", "Willem", "Xavier", "Ximenes",
 			"Zarco" };
 
-	private final Random aleatorio;
+	private final Rand aleatorio;
 
 	public GeradorNome() {
-		aleatorio = new Random();
+		aleatorio = new Rand();
 	}
 
 	public Nome get() {
@@ -142,11 +142,11 @@ public final class GeradorNome {
 	}
 
 	public String getStringNome() {
-		return NOMES[aleatorio.numero(NOMES.length)];
+		return NOMES[aleatorio.num(NOMES.length)];
 	}
 
 	public String getStringSobrenome() {
-		return SOBRENOMES[aleatorio.numero(SOBRENOMES.length)];
+		return SOBRENOMES[aleatorio.num(SOBRENOMES.length)];
 	}
 
 	public String com(final int minSobrenomes, final int maxSobrenomes) {
