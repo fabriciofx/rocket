@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.id.DataId;
+import com.github.fabriciofx.rocket.id.Id;
+
 public final class TesteDataId {
 	@Test
 	public void comUmNumero() {

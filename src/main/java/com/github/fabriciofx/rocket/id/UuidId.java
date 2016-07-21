@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.repositorio;
+package com.github.fabriciofx.rocket.id;
 
 import java.util.UUID;
 

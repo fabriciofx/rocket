@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.repositorio;
+package com.github.fabriciofx.rocket.id;
 
 public final class NumId implements Id, Comparable<NumId> {
 	private final transient long numero;

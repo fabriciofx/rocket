@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.repositorio;
+package com.github.fabriciofx.rocket.id;
 
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;

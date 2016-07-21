@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.id.HashId;
+
 public final class TesteHashId {
 	@Test
 	public void md5() throws Exception {

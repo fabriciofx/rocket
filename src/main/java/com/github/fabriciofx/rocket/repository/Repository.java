@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.sql.DataSource;
 
-import com.github.fabriciofx.rocket.dominio.repositorio.Id;
+import com.github.fabriciofx.rocket.id.Id;
 
 public interface Repository<T> {
 	void save(DataSource ds) throws IOException;
