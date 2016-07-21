@@ -8,11 +8,11 @@ import java.time.format.FormatStyle;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class DatetimeRange implements Range<ChronoLocalDateTime<?>> {
+public final class DateTimeRange implements Range<ChronoLocalDateTime<?>> {
 	private final transient LocalDateTime begin;
 	private final transient LocalDateTime end;
 
-	public DatetimeRange(final LocalDateTime begin, final LocalDateTime end) {
+	public DateTimeRange(final LocalDateTime begin, final LocalDateTime end) {
 		this.begin = new NotNull<LocalDateTime>().valid(begin);
 		this.end = new NotNull<LocalDateTime>().valid(end);
 		if (this.begin.isAfter(this.end)) {

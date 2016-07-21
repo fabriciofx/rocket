@@ -10,14 +10,14 @@ import java.time.LocalDateTime;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.range.DateRange;
-import com.github.fabriciofx.rocket.range.DatetimeRange;
+import com.github.fabriciofx.rocket.range.DateTimeRange;
 import com.github.fabriciofx.rocket.transform.StringDate;
 import com.github.fabriciofx.rocket.transform.StringDatetime;
 
 public final class TesteDateRange {
 	@Test
 	public void contemDataHora() {
-		final DatetimeRange range = new DatetimeRange(
+		final DateTimeRange range = new DateTimeRange(
 				LocalDateTime.of(2015, 1, 1, 8, 0, 0),
 				LocalDateTime.of(2015, 1, 31, 8, 0, 0)
 		);
@@ -42,7 +42,7 @@ public final class TesteDateRange {
 
 	@Test
 	public void contemDataHoraComoString() {
-		final DatetimeRange periodo = new DatetimeRange(
+		final DateTimeRange periodo = new DateTimeRange(
 			new StringDatetime("10/10/2015 08:00").transform(),
 			new StringDatetime("20/10/2015 15:00").transform()
 		);
