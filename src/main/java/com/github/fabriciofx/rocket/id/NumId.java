@@ -1,35 +1,35 @@
 package com.github.fabriciofx.rocket.id;
 
 public final class NumId implements Id, Comparable<NumId> {
-	private final transient long numero;
+	private final transient long num;
 
-	public NumId(final long numero) {
-		this.numero = numero;
+	public NumId(final long num) {
+		this.num = num;
 	}
 
 	@Override
 	public int compareTo(final NumId numId) {
-		return (int) (numero - numId.numero);
+		return (int) (num - numId.num);
 	}
 
 	@Override
 	public int hashCode() {
-		return (int) (31 * numero);
+		return (int) (31 * num);
 	}
 
 	@Override
 	public boolean equals(final Object o) {
 		return o != null && o instanceof NumId
-				&& numero == NumId.class.cast(o).numero;
+				&& num == NumId.class.cast(o).num;
 	}
 
 	@Override
 	public long toLong() {
-		return numero;
+		return num;
 	}
 	
 	@Override
 	public String toString() {
-		return Long.toString(numero);
+		return Long.toString(num);
 	}
 }
