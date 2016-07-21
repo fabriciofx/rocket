@@ -2,10 +2,10 @@ package com.github.fabriciofx.rocket.misc;
 
 import java.util.Random;
 
-public final class Aleatorio {
+public final class Random {
 	private final transient Random random;
 
-	public Aleatorio() {
+	public Random() {
 		random = new Random();
 	}
 
@@ -13,7 +13,7 @@ public final class Aleatorio {
 		return random.nextInt(limite);
 	}
 
-	public int numero(final int min, final int max) {
+	public int num(final int min, final int max) {
 		return random.nextInt((max + 1) - min) + min;
 	}
 
@@ -43,7 +43,7 @@ public final class Aleatorio {
 	}
 
 	public char caractere() {
-		return (char) numero(65, 90);
+		return (char) num(65, 90);
 	}
 
 	private long nextLong(final long n) {
