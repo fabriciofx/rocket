@@ -13,7 +13,6 @@ import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
-import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlFones implements Fones {
 	private final transient DataSource ds;
@@ -27,19 +26,6 @@ public final class SqlFones implements Fones {
 	@Override
 	public Fone fone(final String numero) throws IOException {
 		return new SqlFone(ds, id, numero);
-	}
-	
-	@Override
-	public void adiciona(final String numero) throws IOException {
-		try {
-			new JdbcSession(ds)
-				.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
-				.set(id)
-				.set(numero)
-				.insert(SingleOutcome.VOID);
-		} catch (final SQLException e) {
-			throw new IOException(e);
-		}
 	}
 
 	@Override
@@ -55,7 +41,7 @@ public final class SqlFones implements Fones {
 		try {
 			return new JdbcSession(ds)
 				.sql("SELECT numero FROM fone WHERE pessoa = ?")
-				.set(id.toLong())
+				.set(id)
 				.select(
 					new ListOutcome<String>(
 						new ListOutcome.Mapping<String>() {

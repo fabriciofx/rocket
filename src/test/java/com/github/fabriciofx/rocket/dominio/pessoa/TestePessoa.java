@@ -14,8 +14,10 @@ import org.junit.Test;
 
 import com.github.fabriciofx.rocket.dominio.Pessoa;
 import com.github.fabriciofx.rocket.dominio.Pessoas;
+import com.github.fabriciofx.rocket.dominio.sql.SqlPessoa;
 import com.github.fabriciofx.rocket.dominio.sql.SqlPessoas;
 import com.github.fabriciofx.rocket.ds.TestDataSource;
+import com.github.fabriciofx.rocket.id.UuidId;
 import com.github.fabriciofx.rocket.media.XmlFormat;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.jcabi.jdbc.JdbcSession;
@@ -28,12 +30,12 @@ public final class TestePessoa {
 		try {
 			final JdbcSession session = new JdbcSession(ds);
 			session.sql("CREATE TABLE IF NOT EXISTS pessoa ("
-				+ "id BIGINT PRIMARY KEY AUTO_INCREMENT,"
+				+ "id VARCHAR(36) PRIMARY KEY,"
 				+ "nome VARCHAR(100) NOT NULL)"
 			).execute();
 			session.sql(
 				"CREATE TABLE IF NOT EXISTS fone ("
-				+ "pessoa BIGINT NOT NULL,"
+				+ "pessoa VARCHAR(36) NOT NULL,"
 				+ "numero VARCHAR(20) NOT NULL,"
 				+ "FOREIGN KEY(pessoa) REFERENCES pessoa(id),"
 				+ "PRIMARY KEY(pessoa, numero))"
@@ -56,8 +58,10 @@ public final class TestePessoa {
 
 	@Test
 	public void pessoa() throws IOException {
-		final Pessoas pessoas = new SqlPessoas(ds);
-		final Pessoa pessoa = pessoas.salva("Jason Bourne",
+		final Pessoa pessoa = new SqlPessoa(
+			ds,
+			new UuidId("09F22AF7-727A-4FEE-9138-BABAC0E48ED3")
+		).salva("Jason Bourne",
 			Arrays.asList(
 				"83999231234",
 				"81988144321"
@@ -66,7 +70,7 @@ public final class TestePessoa {
 		final String ls = System.lineSeparator();
 		final String xml =
 			"<pessoa>" + ls +
-			"  <id>1</id>" + ls +
+			"  <id>09F22AF7-727A-4FEE-9138-BABAC0E48ED3</id>" + ls +
 			"  <nome>Jason Bourne</nome>" + ls +
 			"  <fone>81988144321</fone>" + ls +
 			"  <fone>83999231234</fone>" + ls +
@@ -80,8 +84,10 @@ public final class TestePessoa {
 	
 	@Test
 	public void deletaFone() throws IOException {
-		final Pessoas pessoas = new SqlPessoas(ds);
-		final Pessoa pessoa = pessoas.salva("Jason Bourne",
+		final Pessoa pessoa = new SqlPessoa(
+			ds,
+			new UuidId("09F22AF7-727A-4FEE-9138-BABAC0E48ED3")
+		).salva("Jason Bourne",
 			Arrays.asList(
 				"83999231234",
 				"81988144321"
@@ -91,7 +97,7 @@ public final class TestePessoa {
 		final String ls = System.lineSeparator();
 		final String xml =
 			"<pessoa>" + ls +
-			"  <id>1</id>" + ls +
+			"  <id>09F22AF7-727A-4FEE-9138-BABAC0E48ED3</id>" + ls +
 			"  <nome>Jason Bourne</nome>" + ls +
 			"  <fone>83999231234</fone>" + ls +
 			"</pessoa>" + ls;
@@ -105,13 +111,19 @@ public final class TestePessoa {
 	@Test
 	public void pessoas() throws IOException {
 		final Pessoas pessoas = new SqlPessoas(ds);
-		pessoas.salva("Jason Bourne",
+		new SqlPessoa(
+			ds,
+			new UuidId("09F22AF7-727A-4FEE-9138-BABAC0E48ED3")
+		).salva("Jason Bourne",
 			Arrays.asList(
 				"83999231234",
 				"81988144321"
 			)
-		);
-		pessoas.salva("Ana Jetson",
+		);		
+		new SqlPessoa(
+			ds,
+			new UuidId("09F22AF7-727A-4FEE-9138-BABAC0E48ED4")
+		).salva("Ana Jetson",
 			Arrays.asList(
 				"21955236789",
 				"11974562345"
@@ -123,5 +135,4 @@ public final class TestePessoa {
 			);
 		}
 	}
-
 }

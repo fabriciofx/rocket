@@ -26,13 +26,26 @@ public class SqlFone implements Fone {
 	public Media print(final Media media) throws IOException {
 		return media.with("pessoa", id.toString()).with("numero", numero());
 	}
+	
+	@Override
+	public void salva() throws IOException {
+		try {
+			new JdbcSession(ds)
+				.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
+				.set(id)
+				.set(numero)
+				.insert(SingleOutcome.VOID);
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}
+	}
 
 	@Override
 	public void apaga() throws IOException {
 		try {
 			new JdbcSession(ds)
 				.sql("DELETE FROM fone WHERE pessoa = ? AND numero = ?")
-				.set(id.toLong())
+				.set(id)
 				.set(numero)
 				.execute();
 		} catch (final SQLException e) {
@@ -44,7 +57,7 @@ public class SqlFone implements Fone {
 		try {
 			return new JdbcSession(ds)
 				.sql("SELECT numero FROM fone WHERE pessoa = ?")
-				.set(id.toLong())
+				.set(id)
 				.select(new SingleOutcome<String>(String.class));
 		} catch (final SQLException e) {
 			throw new IOException(e);
