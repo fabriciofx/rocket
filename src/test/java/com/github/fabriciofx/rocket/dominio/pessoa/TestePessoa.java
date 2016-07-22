@@ -77,4 +77,29 @@ public final class TestePessoa {
 			).toString()
 		);
 	}
+	
+	@Test
+	public void deletaFone() throws IOException {
+		final Pessoas pessoas = new SqlPessoas(ds);
+		final Pessoa pessoa = pessoas.salva("Jason Bourne",
+			Arrays.asList(
+				"83999231234",
+				"81988144321"
+			)
+		);
+		pessoa.fones().fone("81988144321").apaga();
+		final String ls = System.lineSeparator();
+		final String xml =
+			"<pessoa>" + ls +
+			"  <id>1</id>" + ls +
+			"  <nome>Jason Bourne</nome>" + ls +
+			"  <fone>83999231234</fone>" + ls +
+			"</pessoa>" + ls;
+		assertEquals(xml, new XmlFormat(
+			pessoa.print(
+				new XmlMedia("pessoa")).toString()
+			).toString()
+		);
+	}
+
 }
