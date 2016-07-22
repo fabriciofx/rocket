@@ -37,7 +37,7 @@ public final class SqlPessoas implements Pessoas {
 			);
 			final Fones fs = new SqlFones(ds, id);
 			for (final String f : fones) {
-				fs.salva(f);
+				fs.adiciona(f);
 			}
 			return new SqlPessoa(ds, id);
 		} catch (final SQLException e) {

@@ -7,5 +7,5 @@ import com.github.fabriciofx.rocket.media.Printer;
 public interface Fones extends Printer {
 	Fone fone(String numero) throws IOException;
 	
-	void salva(String numero) throws IOException;
+	void adiciona(String numero) throws IOException;
 }

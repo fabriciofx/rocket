@@ -30,7 +30,7 @@ public final class SqlFones implements Fones {
 	}
 	
 	@Override
-	public void salva(final String numero) throws IOException {
+	public void adiciona(final String numero) throws IOException {
 		try {
 			new JdbcSession(ds)
 				.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
