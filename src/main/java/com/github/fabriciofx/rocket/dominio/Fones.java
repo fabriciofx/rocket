@@ -5,8 +5,7 @@ import java.io.IOException;
 import com.github.fabriciofx.rocket.media.Printer;
 
 public interface Fones extends Printer {
-	Fone fone(long pessoaId) throws IOException;
-
-	// Salva um número de telefone
+	Fone fone(String numero) throws IOException;
+	
 	void salva(String numero) throws IOException;
 }

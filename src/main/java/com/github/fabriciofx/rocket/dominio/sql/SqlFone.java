@@ -6,33 +6,48 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.dominio.Fone;
+import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
 public class SqlFone implements Fone {
 	private final transient DataSource ds;
-	private final transient long pessoaId;
+	private final transient Id id;
+	private final transient String numero;
 	
-	public SqlFone(final DataSource ds, final long pessoaId) {
+	public SqlFone(final DataSource ds, final Id id, final String numero) {
 		this.ds = ds;
-		this.pessoaId = pessoaId;
+		this.id = id;
+		this.numero = numero;
 	}
 
 	@Override
 	public Media print(final Media media) throws IOException {
-		try {
-			final String numero = new JdbcSession(ds)
-				.sql("SELECT numero FROM fone WHERE pessoa = ?")
-				.set(pessoaId)
-				.select(new SingleOutcome<String>(String.class));
-			return media.with("pessoa", pessoaId + "").with("numero", numero);
-		} catch (final SQLException e) {
-			throw new IOException(e);
-		}
+		return media.with("pessoa", id.toString()).with("numero", numero());
 	}
 
 	@Override
 	public void apaga() throws IOException {
+		try {
+			new JdbcSession(ds)
+				.sql("DELETE FROM fone WHERE pessoa = ? AND numero = ?")
+				.set(id.toLong())
+				.set(numero)
+				.execute();
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}
+	}
+	
+	private String numero() throws IOException {
+		try {
+			return new JdbcSession(ds)
+				.sql("SELECT numero FROM fone WHERE pessoa = ?")
+				.set(id.toLong())
+				.select(new SingleOutcome<String>(String.class));
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}
 	}
 }

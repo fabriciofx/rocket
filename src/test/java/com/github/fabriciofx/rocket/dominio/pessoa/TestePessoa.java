@@ -1,5 +1,7 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -10,7 +12,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.Fones;
 import com.github.fabriciofx.rocket.dominio.Pessoa;
 import com.github.fabriciofx.rocket.dominio.Pessoas;
 import com.github.fabriciofx.rocket.dominio.sql.SqlPessoas;
@@ -62,8 +63,18 @@ public final class TestePessoa {
 				"81988144321"
 			)
 		);
-		System.out.println(new XmlFormat(pessoa.print(new XmlMedia("pessoa")).toString()));
-		final Fones fones = pessoa.fones();
-		System.out.println(fones.print(new XmlMedia("fones")).toString());
+		final String ls = System.lineSeparator();
+		final String xml =
+			"<pessoa>" + ls +
+			"  <id>1</id>" + ls +
+			"  <nome>Jason Bourne</nome>" + ls +
+			"  <fone>81988144321</fone>" + ls +
+			"  <fone>83999231234</fone>" + ls +
+			"</pessoa>" + ls;
+		assertEquals(xml, new XmlFormat(
+			pessoa.print(
+				new XmlMedia("pessoa")).toString()
+			).toString()
+		);
 	}
 }

@@ -7,21 +7,22 @@ import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.dominio.Fones;
 import com.github.fabriciofx.rocket.dominio.Pessoa;
+import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlPessoa implements Pessoa {
 	private final transient DataSource ds;
-	private final transient long id;
+	private final transient Id id;
 	
-	public SqlPessoa(final DataSource ds, final long id) {
+	public SqlPessoa(final DataSource ds, final Id id) {
 		this.ds = ds;
 		this.id = id;
 	}
 	
 	@Override
-	public long id() {
+	public Id id() {
 		return id;
 	}
 	
@@ -32,14 +33,21 @@ public final class SqlPessoa implements Pessoa {
 
 	@Override
 	public Media print(final Media media) throws IOException {
+		return fones().print(
+			media
+			.with("id", id.toString())
+			.with("nome", nome())
+		);
+	}
+	
+	private String nome() throws IOException {
 		try {
-			final String nome = new JdbcSession(ds)
+			return new JdbcSession(ds)
 				.sql("SELECT nome FROM pessoa WHERE id = ?")
 				.set(id)
 				.select(new SingleOutcome<String>(String.class));
-			return fones().print(media.with("id", id + "").with("nome", nome));
 		} catch (final SQLException e) {
 			throw new IOException(e);
-		}
+		}		
 	}
 }

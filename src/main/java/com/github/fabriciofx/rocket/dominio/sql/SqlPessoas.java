@@ -6,8 +6,11 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.dominio.Fones;
 import com.github.fabriciofx.rocket.dominio.Pessoa;
 import com.github.fabriciofx.rocket.dominio.Pessoas;
+import com.github.fabriciofx.rocket.id.Id;
+import com.github.fabriciofx.rocket.id.NumId;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
@@ -19,7 +22,7 @@ public final class SqlPessoas implements Pessoas {
 	}
 
 	@Override
-	public Pessoa pessoa(final long id) throws IOException {
+	public Pessoa pessoa(final Id id) throws IOException {
 		return new SqlPessoa(ds, id);
 	}
 
@@ -27,17 +30,15 @@ public final class SqlPessoas implements Pessoas {
 	public Pessoa salva(final String nome, final List<String> fones)
 			throws IOException {
 		try {
-			final JdbcSession session = new JdbcSession(ds).autocommit(false);
-			final long id = session.sql("INSERT INTO pessoa (nome) VALUES (?)")
-				.set(nome)
-				.insert(new SingleOutcome<Long>(Long.class));
+			final Id id = new NumId(
+				new JdbcSession(ds).sql("INSERT INTO pessoa (nome) VALUES (?)")
+					.set(nome)
+					.insert(new SingleOutcome<Long>(Long.class))
+			);
+			final Fones fs = new SqlFones(ds, id);
 			for (final String f : fones) {
-				session.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
-					.set(id)
-					.set(f)
-					.insert(SingleOutcome.VOID);
+				fs.salva(f);
 			}
-			session.commit();
 			return new SqlPessoa(ds, id);
 		} catch (final SQLException e) {
 			throw new IOException(e);

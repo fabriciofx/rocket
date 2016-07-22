@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.dominio.Fone;
 import com.github.fabriciofx.rocket.dominio.Fones;
+import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
@@ -16,24 +17,24 @@ import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlFones implements Fones {
 	private final transient DataSource ds;
-	private final transient long pessoaId;
+	private final transient Id id;
 	
-	public SqlFones(final DataSource ds, final long pessoaId) {
+	public SqlFones(final DataSource ds, final Id id) {
 		this.ds = ds;
-		this.pessoaId = pessoaId;
+		this.id = id;
 	}
 
 	@Override
-	public Fone fone(final long pessoaId) throws IOException {
-		return new SqlFone(ds, pessoaId);
+	public Fone fone(final String numero) throws IOException {
+		return new SqlFone(ds, id, numero);
 	}
-
+	
 	@Override
 	public void salva(final String numero) throws IOException {
 		try {
 			new JdbcSession(ds)
 				.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
-				.set(pessoaId)
+				.set(id)
 				.set(numero)
 				.insert(SingleOutcome.VOID);
 		} catch (final SQLException e) {
@@ -43,28 +44,31 @@ public final class SqlFones implements Fones {
 
 	@Override
 	public Media print(final Media media) throws IOException {
+		Media m = media;
+		for (final String numero : numeros()) {
+			m = m.with("fone", numero);
+		}
+		return m;
+	}
+	
+	private List<String> numeros() throws IOException {
 		try {
-			final List<String> fones = new JdbcSession(ds)
-				.sql("SELECT * FROM fone WHERE pessoa = ?")
-				.set(pessoaId)
+			return new JdbcSession(ds)
+				.sql("SELECT numero FROM fone WHERE pessoa = ?")
+				.set(id.toLong())
 				.select(
 					new ListOutcome<String>(
 						new ListOutcome.Mapping<String>() {
 							@Override
 							public String map(final ResultSet rs)
 								throws SQLException {
-								return rs.getString(2);
+								return rs.getString(1);
 							}
 						}
-					)	
+					)
 				);
-			Media m = media;
-			for (final String f : fones) {
-				m = m.with("fone", f);
-			}
-			return m;
 		} catch (final SQLException e) {
 			throw new IOException(e);
-		}		
+		}				
 	}
 }

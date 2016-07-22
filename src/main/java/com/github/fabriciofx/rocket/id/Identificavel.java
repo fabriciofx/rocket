@@ -1,5 +1,5 @@
 package com.github.fabriciofx.rocket.id;
 
-public interface Identificavel<I extends Id> {
-	public I id();
+public interface Identificavel {
+	public Id id();
 }
