@@ -1,6 +1,7 @@
 package com.github.fabriciofx.rocket.dominio.sql;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import com.github.fabriciofx.rocket.dominio.Pessoas;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.id.NumId;
 import com.jcabi.jdbc.JdbcSession;
+import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlPessoas implements Pessoas {
@@ -43,5 +45,23 @@ public final class SqlPessoas implements Pessoas {
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}
+	}
+
+	@Override
+	public List<Pessoa> todas() throws IOException {
+		try {
+			return new JdbcSession(ds)
+				.sql("SELECT id FROM pessoa")
+				.select(new ListOutcome<Pessoa>(new PessoaMapping()));
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}				
+	}
+	
+	private class PessoaMapping implements ListOutcome.Mapping<Pessoa> {
+		@Override
+		public Pessoa map(final ResultSet rs) throws SQLException {
+			return new SqlPessoa(ds, new NumId(rs.getLong(1)));
+		}		
 	}
 }

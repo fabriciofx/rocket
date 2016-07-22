@@ -102,4 +102,26 @@ public final class TestePessoa {
 		);
 	}
 
+	@Test
+	public void pessoas() throws IOException {
+		final Pessoas pessoas = new SqlPessoas(ds);
+		pessoas.salva("Jason Bourne",
+			Arrays.asList(
+				"83999231234",
+				"81988144321"
+			)
+		);
+		pessoas.salva("Ana Jetson",
+			Arrays.asList(
+				"21955236789",
+				"11974562345"
+			)
+		);
+		for (final Pessoa p : pessoas.todas()) {
+			System.out.println(new XmlFormat(
+				p.print(new XmlMedia("pessoa")).toString()).toString()
+			);
+		}
+	}
+
 }

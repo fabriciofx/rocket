@@ -9,4 +9,6 @@ public interface Pessoas {
 	Pessoa pessoa(Id id) throws IOException;
 	
 	Pessoa salva(String nome, List<String> fones) throws IOException;
+	
+	List<Pessoa> todas() throws IOException;
 }
