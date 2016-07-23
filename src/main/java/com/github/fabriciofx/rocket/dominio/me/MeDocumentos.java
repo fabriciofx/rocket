@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.simples;
+package com.github.fabriciofx.rocket.dominio.me;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import com.github.fabriciofx.rocket.dominio.doc.Tratamento;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Endereco;
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class SimplesDocumentos implements Documentos {
+public final class MeDocumentos implements Documentos {
 	private final transient Cpf cpf;
 	private final transient Rg rg;
 	private final transient Sexo sexo;
@@ -19,7 +19,7 @@ public final class SimplesDocumentos implements Documentos {
 	private final transient Endereco endereco;
 	private final transient Fones fones;
 
-	public SimplesDocumentos(final Cpf cpf, final Rg rg, final Sexo sexo,
+	public MeDocumentos(final Cpf cpf, final Rg rg, final Sexo sexo,
 			final Tratamento tratamento, final Endereco endereco,
 			final Fones fones) {
 				this.cpf = cpf;

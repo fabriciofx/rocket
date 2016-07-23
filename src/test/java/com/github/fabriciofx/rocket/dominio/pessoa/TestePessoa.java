@@ -23,11 +23,11 @@ import com.github.fabriciofx.rocket.dominio.doc.endereco.Complemento;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Estado;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Logradouro;
 import com.github.fabriciofx.rocket.dominio.doc.endereco.Numero;
-import com.github.fabriciofx.rocket.dominio.simples.SimplesDocumentos;
-import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
-import com.github.fabriciofx.rocket.dominio.simples.SimplesFone;
-import com.github.fabriciofx.rocket.dominio.simples.SimplesFones;
-import com.github.fabriciofx.rocket.dominio.simples.SimplesPessoa;
+import com.github.fabriciofx.rocket.dominio.me.MeDocumentos;
+import com.github.fabriciofx.rocket.dominio.me.MeEndereco;
+import com.github.fabriciofx.rocket.dominio.me.MeFone;
+import com.github.fabriciofx.rocket.dominio.me.MeFones;
+import com.github.fabriciofx.rocket.dominio.me.MePessoa;
 import com.github.fabriciofx.rocket.ds.TestDataSource;
 import com.github.fabriciofx.rocket.id.UuidId;
 import com.github.fabriciofx.rocket.media.XmlFormat;
@@ -84,14 +84,14 @@ public final class TestePessoa {
 			ds,
 			new UuidId()
 		).salva(
-			new SimplesPessoa(
+			new MePessoa(
 				new Nome("Jason Bourne"),
-				new SimplesDocumentos(
+				new MeDocumentos(
 					new Cpf("57381117533"),
 					new Rg("62527362"),
 					Sexo.MASCULINO,
 					Tratamento.SENHOR,
-					new SimplesEndereco(
+					new MeEndereco(
 						new Logradouro("Av Gov Torquato Nepomuceno Neves"),
 						new Numero("123"),
 						new Complemento("AP 101"),
@@ -99,9 +99,9 @@ public final class TestePessoa {
 						new Cidade("São Paulo", Estado.SP),
 						new Cep("48035120")
 					),
-					new SimplesFones(
-						new SimplesFone("81988144321"),
-						new SimplesFone("83999231234")
+					new MeFones(
+						new MeFone("81988144321"),
+						new MeFone("83999231234")
 					)
 				)
 			)

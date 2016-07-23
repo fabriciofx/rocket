@@ -1,14 +1,14 @@
-package com.github.fabriciofx.rocket.dominio.simples;
+package com.github.fabriciofx.rocket.dominio.me;
 
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.dominio.Fone;
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class SimplesFone implements Fone {
+public final class MeFone implements Fone {
 	private final transient String numero;
 
-	public SimplesFone(final String numero) {
+	public MeFone(final String numero) {
 		this.numero = numero;
 	}
 

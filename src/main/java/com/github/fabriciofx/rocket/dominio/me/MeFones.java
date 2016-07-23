@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.simples;
+package com.github.fabriciofx.rocket.dominio.me;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,14 +10,14 @@ import com.github.fabriciofx.rocket.dominio.Fone;
 import com.github.fabriciofx.rocket.dominio.Fones;
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class SimplesFones implements Fones {
+public final class MeFones implements Fones {
 	private final transient List<Fone> fones;
 	
-	public SimplesFones(final Fone... fones) {
+	public MeFones(final Fone... fones) {
 		this(Arrays.asList(fones));
 	}
 	
-	public SimplesFones(final List<Fone> fones) {
+	public MeFones(final List<Fone> fones) {
 		this.fones = new ArrayList<>(fones);
 	}
 	
