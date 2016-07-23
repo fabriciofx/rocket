@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.sql;
+package com.github.fabriciofx.rocket.dominio.bd;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -14,16 +14,16 @@ import com.github.fabriciofx.rocket.id.UuidId;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 
-public final class SqlPessoas implements Pessoas {
+public final class BdPessoas implements Pessoas {
 	private final transient DataSource ds;
 
-	public SqlPessoas(final DataSource ds) {
+	public BdPessoas(final DataSource ds) {
 		this.ds = ds;
 	}
 
 	@Override
 	public Pessoa pessoa(final Id id) throws IOException {
-		return new SqlPessoa(ds, id);
+		return new BdPessoa(ds, id);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public final class SqlPessoas implements Pessoas {
 	private class PessoaMapping implements ListOutcome.Mapping<Pessoa> {
 		@Override
 		public Pessoa map(final ResultSet rs) throws SQLException {
-			return new SqlPessoa(ds, new UuidId(rs.getString(1)));
+			return new BdPessoa(ds, new UuidId(rs.getString(1)));
 		}		
 	}
 }

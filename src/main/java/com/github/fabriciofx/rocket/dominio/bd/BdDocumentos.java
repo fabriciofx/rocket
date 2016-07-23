@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.sql;
+package com.github.fabriciofx.rocket.dominio.bd;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,11 +17,11 @@ import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
-public final class SqlDocumentos implements Documentos {
+public final class BdDocumentos implements Documentos {
 	private final transient DataSource ds;
 	private final transient Id id;
 
-	public SqlDocumentos(final DataSource ds, final Id id) {
+	public BdDocumentos(final DataSource ds, final Id id) {
 		this.id = id;
 		this.ds = ds;
 	}
@@ -99,11 +99,11 @@ public final class SqlDocumentos implements Documentos {
 
 	@Override
 	public Endereco endereco() throws IOException {
-		return new SqlEndereco(ds, id);
+		return new BdEndereco(ds, id);
 	}
 
 	@Override
 	public Fones fones() throws IOException {
-		return new SqlFones(ds, id);
+		return new BdFones(ds, id);
 	}
 }

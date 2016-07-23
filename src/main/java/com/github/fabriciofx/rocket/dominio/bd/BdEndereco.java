@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.sql;
+package com.github.fabriciofx.rocket.dominio.bd;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,11 +17,11 @@ import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
-public final class SqlEndereco implements Endereco {
+public final class BdEndereco implements Endereco {
 	private final transient DataSource ds;
 	private final transient Id id;
 
-	public SqlEndereco(final DataSource ds, final Id id) {
+	public BdEndereco(final DataSource ds, final Id id) {
 		this.ds = ds;
 		this.id = id;
 	}

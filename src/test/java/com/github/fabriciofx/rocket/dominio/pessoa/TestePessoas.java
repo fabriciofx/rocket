@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import com.github.fabriciofx.rocket.dominio.Pessoa;
 import com.github.fabriciofx.rocket.dominio.Pessoas;
+import com.github.fabriciofx.rocket.dominio.bd.BdPessoa;
+import com.github.fabriciofx.rocket.dominio.bd.BdPessoas;
 import com.github.fabriciofx.rocket.dominio.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.doc.Nome;
 import com.github.fabriciofx.rocket.dominio.doc.Rg;
@@ -28,8 +30,6 @@ import com.github.fabriciofx.rocket.dominio.simples.SimplesEndereco;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesFone;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesFones;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesPessoa;
-import com.github.fabriciofx.rocket.dominio.sql.SqlPessoa;
-import com.github.fabriciofx.rocket.dominio.sql.SqlPessoas;
 import com.github.fabriciofx.rocket.ds.TestDataSource;
 import com.github.fabriciofx.rocket.id.UuidId;
 import com.github.fabriciofx.rocket.media.XmlFormat;
@@ -82,8 +82,8 @@ public final class TestePessoas {
 	
 	@Test
 	public void pessoas() throws IOException {
-		final Pessoas pessoas = new SqlPessoas(ds);
-		new SqlPessoa(
+		final Pessoas pessoas = new BdPessoas(ds);
+		new BdPessoa(
 			ds,
 			new UuidId()
 		).salva(

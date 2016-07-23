@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.sql;
+package com.github.fabriciofx.rocket.dominio.bd;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -16,18 +16,18 @@ import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.SingleOutcome;
 
-public final class SqlFones implements Fones {
+public final class BdFones implements Fones {
 	private final transient DataSource ds;
 	private final transient Id id;
 	
-	public SqlFones(final DataSource ds, final Id id) {
+	public BdFones(final DataSource ds, final Id id) {
 		this.ds = ds;
 		this.id = id;
 	}
 
 	@Override
 	public Fone fone(final String numero) throws IOException {
-		return new SqlFone(ds, id, numero);
+		return new BdFone(ds, id, numero);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public final class SqlFones implements Fones {
 	public List<Fone> todos() throws IOException {
 		final List<Fone> todos = new ArrayList<>();
 		for (final String numero : numeros()) {
-			todos.add(new SqlFone(ds, id, numero));
+			todos.add(new BdFone(ds, id, numero));
 		}
 		return todos;
 	}
