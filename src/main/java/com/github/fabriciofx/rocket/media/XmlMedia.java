@@ -18,11 +18,11 @@ public final class XmlMedia implements Media {
 	}
 
 	@Override
-	public Media with(final String name, final String value) {
+	public Media with(final String name, final Object value) {
 		return new XmlMedia(root,
-			directives.add(name.toLowerCase()).set(value).up());
+			directives.add(name.toLowerCase()).set(value.toString()).up());
 	}
-			
+	
 	@Override
 	public String toString() {
 		try {

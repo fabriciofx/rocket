@@ -24,7 +24,7 @@ public class SqlFone implements Fone {
 
 	@Override
 	public Media print(final Media media) throws IOException {
-		return media.with("pessoa", id.toString()).with("numero", numero());
+		return media.with("fone", numero());
 	}
 	
 	@Override
@@ -53,7 +53,8 @@ public class SqlFone implements Fone {
 		}
 	}
 	
-	private String numero() throws IOException {
+	@Override
+	public String numero() throws IOException {
 		try {
 			return new JdbcSession(ds)
 				.sql("SELECT numero FROM fone WHERE pessoa = ?")

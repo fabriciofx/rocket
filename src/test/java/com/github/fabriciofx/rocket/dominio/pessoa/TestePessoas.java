@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.dominio.Pessoa;
+import com.github.fabriciofx.rocket.dominio.Pessoas;
 import com.github.fabriciofx.rocket.dominio.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.doc.Nome;
 import com.github.fabriciofx.rocket.dominio.doc.Rg;
@@ -28,13 +29,14 @@ import com.github.fabriciofx.rocket.dominio.simples.SimplesFone;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesFones;
 import com.github.fabriciofx.rocket.dominio.simples.SimplesPessoa;
 import com.github.fabriciofx.rocket.dominio.sql.SqlPessoa;
+import com.github.fabriciofx.rocket.dominio.sql.SqlPessoas;
 import com.github.fabriciofx.rocket.ds.TestDataSource;
 import com.github.fabriciofx.rocket.id.UuidId;
 import com.github.fabriciofx.rocket.media.XmlFormat;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.jcabi.jdbc.JdbcSession;
 
-public final class TestePessoa {
+public final class TestePessoas {
 	final DataSource ds = new TestDataSource("testebd").dataSource();
 
 	@Before
@@ -77,10 +79,11 @@ public final class TestePessoa {
 			throw new IOException(e);
 		}
 	}
-
+	
 	@Test
-	public void pessoa() throws IOException {
-		final Pessoa pessoa = new SqlPessoa(
+	public void pessoas() throws IOException {
+		final Pessoas pessoas = new SqlPessoas(ds);
+		new SqlPessoa(
 			ds,
 			new UuidId()
 		).salva(
@@ -105,11 +108,13 @@ public final class TestePessoa {
 					)
 				)
 			)
-		);
-		System.out.println(new XmlFormat(
-			pessoa.print(
-				new XmlMedia("pessoa")).toString()
-			).toString()
-		);
+		);		
+		for (final Pessoa p : pessoas.todas()) {
+			System.out.println(new XmlFormat(
+				p.print(
+					new XmlMedia("pessoa")).toString()
+				).toString()
+			);			
+		}
 	}
 }

@@ -3,6 +3,7 @@ package com.github.fabriciofx.rocket.dominio.sql;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -13,6 +14,7 @@ import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
+import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlFones implements Fones {
 	private final transient DataSource ds;
@@ -36,6 +38,21 @@ public final class SqlFones implements Fones {
 		}
 		return m;
 	}
+
+	@Override
+	public void salva(final Fones origem) throws IOException {
+		final JdbcSession session = new JdbcSession(ds);
+		try {
+			for (final Fone f : origem.todos()) {
+				session.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
+					.set(id)
+					.set(f.numero())
+					.insert(SingleOutcome.VOID);
+			}
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}
+	}
 	
 	private List<String> numeros() throws IOException {
 		try {
@@ -56,5 +73,14 @@ public final class SqlFones implements Fones {
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}				
+	}
+
+	@Override
+	public List<Fone> todos() throws IOException {
+		final List<Fone> todos = new ArrayList<>();
+		for (final String numero : numeros()) {
+			todos.add(new SqlFone(ds, id, numero));
+		}
+		return todos;
 	}
 }

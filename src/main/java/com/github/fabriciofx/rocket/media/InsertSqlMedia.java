@@ -20,9 +20,9 @@ public final class InsertSqlMedia implements Media {
 	}
 
 	@Override
-	public Media with(final String name, final String value) {
+	public Media with(final String name, final Object value) {
 		fields.add(name);
-		values.add(String.format("\'%s\'", value));
+		values.add(String.format("\'%s\'", value.toString()));
 		return new InsertSqlMedia(table, new ArrayList<>(fields),
 				new ArrayList<>(values));
 	}
