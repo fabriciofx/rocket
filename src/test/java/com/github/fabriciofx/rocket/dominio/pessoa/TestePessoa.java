@@ -9,10 +9,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.Pessoa;
 import com.github.fabriciofx.rocket.dominio.bd.BdPessoa;
 import com.github.fabriciofx.rocket.dominio.doc.Cpf;
-import com.github.fabriciofx.rocket.dominio.doc.Nome;
 import com.github.fabriciofx.rocket.dominio.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.doc.Sexo;
 import com.github.fabriciofx.rocket.dominio.doc.Tratamento;

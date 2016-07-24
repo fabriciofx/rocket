@@ -2,7 +2,6 @@ package com.github.fabriciofx.rocket.dominio;
 
 import java.io.IOException;
 
-import com.github.fabriciofx.rocket.dominio.doc.Nome;
 import com.github.fabriciofx.rocket.id.Identificavel;
 import com.github.fabriciofx.rocket.media.Printer;
 

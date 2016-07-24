@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.dominio.Documentos;
+import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.Pessoa;
-import com.github.fabriciofx.rocket.dominio.doc.Nome;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;

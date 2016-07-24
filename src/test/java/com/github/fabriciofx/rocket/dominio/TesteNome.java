@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.doc.Nome;
 import com.github.fabriciofx.rocket.dominio.gerador.GeradorNome;
 
 public final class TesteNome {

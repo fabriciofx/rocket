@@ -1,11 +1,12 @@
-package com.github.fabriciofx.rocket.dominio.doc;
+package com.github.fabriciofx.rocket.dominio;
 
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.constraint.Pattern;
 import com.github.fabriciofx.rocket.media.Media;
+import com.github.fabriciofx.rocket.media.Printer;
 
-public final class Nome implements Documento {
+public final class Nome implements Printer {
 	private final transient String completo;
 
 	public Nome(final String completo) {

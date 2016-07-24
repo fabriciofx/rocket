@@ -3,8 +3,8 @@ package com.github.fabriciofx.rocket.dominio.me;
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.dominio.Documentos;
+import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.Pessoa;
-import com.github.fabriciofx.rocket.dominio.doc.Nome;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.id.UuidId;
 import com.github.fabriciofx.rocket.media.Media;
