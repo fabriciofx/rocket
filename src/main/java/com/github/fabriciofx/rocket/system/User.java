@@ -2,23 +2,36 @@ package com.github.fabriciofx.rocket.system;
 
 import java.io.IOException;
 
+import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.doc.Email;
 import com.github.fabriciofx.rocket.security.Password;
 
-public interface User {
-	Email email() throws IOException;
+public interface User<T> {
+	T name() throws IOException;
 
 	Password password() throws IOException;
-
-	User ANONYMOUS = new User() {
+	
+	User<Nome> NAMED_ANONYMOUS = new User<Nome>() {
 		@Override
-		public Email email() throws IOException {
+		public Nome name() throws IOException {
+			return new Nome("Anonymous");
+		}
+
+		@Override
+		public Password password() throws IOException {
+			return new Password("Anonymous");
+		}
+	};
+	
+	User<Email> EMAILED_ANONYMOUS = new User<Email>() {
+		@Override
+		public Email name() throws IOException {
 			return new Email("anonymous@anonymous.com");
 		}
 
 		@Override
 		public Password password() throws IOException {
-			return new Password("anonymous");
+			return new Password("Anonymous");
 		}
 	};
 }
