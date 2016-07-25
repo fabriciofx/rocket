@@ -1,14 +1,10 @@
 package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.db.H2Database;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.Pessoa;
 import com.github.fabriciofx.rocket.dominio.bd.BdPessoa;
@@ -28,60 +24,18 @@ import com.github.fabriciofx.rocket.dominio.me.MeEndereco;
 import com.github.fabriciofx.rocket.dominio.me.MeFone;
 import com.github.fabriciofx.rocket.dominio.me.MeFones;
 import com.github.fabriciofx.rocket.dominio.me.MePessoa;
-import com.github.fabriciofx.rocket.ds.TestDataSource;
 import com.github.fabriciofx.rocket.id.UuidId;
 import com.github.fabriciofx.rocket.media.XmlFormat;
 import com.github.fabriciofx.rocket.media.XmlMedia;
-import com.jcabi.jdbc.JdbcSession;
 
 public final class TestePessoa {
-	final DataSource ds = new TestDataSource("testebd").dataSource();
-
-	@Before
-	public void init() throws IOException {
-		try {
-			final JdbcSession session = new JdbcSession(ds);
-			session.sql("CREATE TABLE IF NOT EXISTS pessoa ("
-				+ "id VARCHAR(36) PRIMARY KEY,"
-				+ "nome VARCHAR(100) NOT NULL,"
-				+ "cpf VARCHAR(11) NOT NULL,"
-				+ "rg VARCHAR(20) NOT NULL,"
-				+ "sexo VARCHAR(9) NOT NULL,"
-				+ "tratamento VARCHAR(10) NOT NULL,"
-				+ "logradouro VARCHAR(100) NOT NULL,"
-				+ "numero VARCHAR(5) NOT NULL,"
-				+ "complemento VARCHAR(100) NOT NULL,"
-				+ "bairro VARCHAR(50) NOT NULL,"
-				+ "cidade VARCHAR(50) NOT NULL,"
-				+ "cep VARCHAR(8) NOT NULL)"
-			).execute();
-			session.sql(
-				"CREATE TABLE IF NOT EXISTS fone ("
-				+ "pessoa VARCHAR(36) NOT NULL,"
-				+ "numero VARCHAR(20) NOT NULL,"
-				+ "FOREIGN KEY(pessoa) REFERENCES pessoa(id),"
-				+ "PRIMARY KEY(pessoa, numero))"
-			).execute();						
-		} catch (final SQLException e) {
-			throw new IOException(e);
-		}
-	}
-
-	@After
-	public void finaliza() throws IOException {
-		try {
-			final JdbcSession session = new JdbcSession(ds);
-			session.sql("DROP TABLE IF EXISTS fone").execute();
-			session.sql("DROP TABLE IF EXISTS pessoa").execute();
-		} catch (final SQLException e) {
-			throw new IOException(e);
-		}
-	}
-
 	@Test
 	public void pessoa() throws IOException {
+		final TestePessoaDatabase bd = new TestePessoaDatabase(
+			new H2Database("testebd")
+		).init();
 		final Pessoa pessoa = new BdPessoa(
-			ds,
+			bd.dataSource(),
 			new UuidId()
 		).salva(
 			new MePessoa(
@@ -111,5 +65,6 @@ public final class TestePessoa {
 				new XmlMedia("pessoa")).toString()
 			).toString()
 		);
+		bd.finaliza();
 	}
 }

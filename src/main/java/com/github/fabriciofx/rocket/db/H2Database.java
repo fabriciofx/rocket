@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.security.Password;
+import com.github.fabriciofx.rocket.security.Plain;
 import com.github.fabriciofx.rocket.system.NamedUser;
 
 public final class H2Database implements Database {
@@ -21,7 +22,8 @@ public final class H2Database implements Database {
 
 	public H2Database(final String database, final H2Database.Mode mode)
 			throws IOException {
-		this(database, mode, new NamedUser(new Nome("sa"), new Password("")));
+		this(database, mode,
+				new NamedUser(new Nome("sa"), new Password(new Plain(), "")));
 	}
 
 	public H2Database(final String database, final H2Database.Mode mode,
