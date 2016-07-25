@@ -4,9 +4,8 @@ import java.io.IOException;
 
 public interface LoggedUser {
 	User<?> user() throws IOException;
-	
+
 	boolean logged() throws IOException;
 
-	LoggedUser DEFAULT = new DefaultLoggedUser(User.NAMED_ANONYMOUS,
-			false);
+	LoggedUser DEFAULT = new DefaultLoggedUser(NamedUser.ANONYMOUS, false);
 }

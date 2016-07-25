@@ -13,7 +13,7 @@ public final class LoggedUserTest {
 	@Test
 	public void loggedUser() throws IOException {
 		final LoggedUser loggedUser = new DefaultLoggedUser(
-			new EmailedUser(
+			new DefaultEmailedUser(
 				new Email("homer@fox.com"),
 				new Password("D'oh!")
 			)

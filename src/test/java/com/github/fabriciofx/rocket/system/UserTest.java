@@ -12,7 +12,7 @@ import com.github.fabriciofx.rocket.dominio.doc.Email;
 public final class UserTest {
 	@Test
 	public void named() throws IOException {
-		final User<Nome> user = new NamedUser(
+		final NamedUser user = new DefaultNamedUser(
 				new Nome("Homer Simpson"),
 				new Password("D'oh!")
 		);
@@ -25,7 +25,7 @@ public final class UserTest {
 
 	@Test
 	public void emailed() throws IOException {
-		final User<Email> user = new EmailedUser(
+		final EmailedUser user = new DefaultEmailedUser(
 				new Email("homer@fox.com"),
 				new Password("D'oh!")
 		);
