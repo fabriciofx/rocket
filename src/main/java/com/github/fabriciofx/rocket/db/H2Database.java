@@ -5,9 +5,9 @@ import java.io.IOException;
 import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.dominio.Nome;
-import com.github.fabriciofx.rocket.security.Password;
 import com.github.fabriciofx.rocket.security.Plain;
 import com.github.fabriciofx.rocket.system.NamedUser;
+import com.github.fabriciofx.rocket.system.Password;
 
 public final class H2Database implements Database {
 	public enum Mode {

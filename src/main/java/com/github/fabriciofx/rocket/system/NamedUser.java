@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.dominio.Nome;
-import com.github.fabriciofx.rocket.security.Password;
 
 public final class NamedUser implements User<Nome> {
 	private final transient Nome nome;

@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.dominio.doc.Email;
-import com.github.fabriciofx.rocket.security.Password;
 
 public final class EmailedUser implements User<Email> {
 	private final transient Email email;

@@ -5,8 +5,8 @@ import java.io.IOException;
 import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.dominio.Nome;
-import com.github.fabriciofx.rocket.security.Password;
 import com.github.fabriciofx.rocket.system.NamedUser;
+import com.github.fabriciofx.rocket.system.Password;
 
 public final class MysqlDatabase implements Database {
 	private final transient Base base;
