@@ -1,22 +1,20 @@
-package com.github.fabriciofx.rocket.repository;
+package com.github.fabriciofx.rocket.db;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.concurrent.Callable;
 
-import javax.sql.DataSource;
-
 import com.jcabi.jdbc.JdbcSession;
 
 public final class Transaction {
-	private final transient DataSource ds;
+	private final transient Database db;
 
-	public Transaction(final DataSource ds) {
-		this.ds = ds;
+	public Transaction(final Database db) {
+		this.db = db;
 	}
 
 	public <T> T call(final Callable<T> callable) throws IOException {
-		final JdbcSession session = new JdbcSession(ds);
+		final JdbcSession session = new JdbcSession(db.dataSource());
 		try {
 			session.autocommit(false);
 			session.sql("BEGIN TRANSACTION").execute();
