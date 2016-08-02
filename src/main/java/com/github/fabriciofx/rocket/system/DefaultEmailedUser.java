@@ -3,7 +3,7 @@ package com.github.fabriciofx.rocket.system;
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
-import com.github.fabriciofx.rocket.dominio.doc.Email;
+import com.github.fabriciofx.rocket.dominio.pessoa.doc.Email;
 
 public final class DefaultEmailedUser implements EmailedUser {
 	private final transient Email email;
