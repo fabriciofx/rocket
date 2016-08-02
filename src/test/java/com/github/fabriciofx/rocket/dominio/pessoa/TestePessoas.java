@@ -30,8 +30,8 @@ public final class TestePessoas {
 		final TestePessoaDatabase bd = new TestePessoaDatabase(
 				new H2Database("testebd")
 			).init();
-		final Pessoas pessoas = new BdPessoas(bd.dataSource());
-		new BdPessoa(
+		final Pessoas pessoas = new SqlPessoas(bd.dataSource());
+		new SqlPessoa(
 			bd.dataSource(),
 			new UuidId()
 		).salva(

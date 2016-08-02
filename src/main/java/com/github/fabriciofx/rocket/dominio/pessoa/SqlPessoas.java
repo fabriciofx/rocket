@@ -12,16 +12,16 @@ import com.github.fabriciofx.rocket.id.UuidId;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 
-public final class BdPessoas implements Pessoas {
+public final class SqlPessoas implements Pessoas {
 	private final transient DataSource ds;
 
-	public BdPessoas(final DataSource ds) {
+	public SqlPessoas(final DataSource ds) {
 		this.ds = ds;
 	}
 
 	@Override
 	public Pessoa pessoa(final Id id) throws IOException {
-		return new BdPessoa(ds, id);
+		return new SqlPessoa(ds, id);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public final class BdPessoas implements Pessoas {
 	private class PessoaMapping implements ListOutcome.Mapping<Pessoa> {
 		@Override
 		public Pessoa map(final ResultSet rs) throws SQLException {
-			return new BdPessoa(ds, new UuidId(rs.getString(1)));
+			return new SqlPessoa(ds, new UuidId(rs.getString(1)));
 		}		
 	}
 }

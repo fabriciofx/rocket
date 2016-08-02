@@ -5,9 +5,9 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import com.github.fabriciofx.rocket.dominio.endereco.BdEndereco;
+import com.github.fabriciofx.rocket.dominio.endereco.SqlEndereco;
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
-import com.github.fabriciofx.rocket.dominio.fone.BdFones;
+import com.github.fabriciofx.rocket.dominio.fone.SqlFones;
 import com.github.fabriciofx.rocket.dominio.fone.Fones;
 import com.github.fabriciofx.rocket.dominio.pessoa.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.doc.Rg;
@@ -18,11 +18,11 @@ import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
-public final class BdDocumentos implements Documentos {
+public final class SqlDocumentos implements Documentos {
 	private final transient DataSource ds;
 	private final transient Id id;
 
-	public BdDocumentos(final DataSource ds, final Id id) {
+	public SqlDocumentos(final DataSource ds, final Id id) {
 		this.id = id;
 		this.ds = ds;
 	}
@@ -100,11 +100,11 @@ public final class BdDocumentos implements Documentos {
 
 	@Override
 	public Endereco endereco() throws IOException {
-		return new BdEndereco(ds, id);
+		return new SqlEndereco(ds, id);
 	}
 
 	@Override
 	public Fones fones() throws IOException {
-		return new BdFones(ds, id);
+		return new SqlFones(ds, id);
 	}
 }

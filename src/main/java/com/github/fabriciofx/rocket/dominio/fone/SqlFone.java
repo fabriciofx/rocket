@@ -10,12 +10,12 @@ import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
-public class BdFone implements Fone {
+public class SqlFone implements Fone {
 	private final transient DataSource ds;
 	private final transient Id id;
 	private final transient String numero;
 	
-	public BdFone(final DataSource ds, final Id id, final String numero) {
+	public SqlFone(final DataSource ds, final Id id, final String numero) {
 		this.ds = ds;
 		this.id = id;
 		this.numero = numero;
