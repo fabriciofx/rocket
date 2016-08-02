@@ -8,14 +8,14 @@ import java.util.List;
 
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class MeFones implements Fones {
+public final class SimplesFones implements Fones {
 	private final transient List<Fone> fones;
 	
-	public MeFones(final Fone... fones) {
+	public SimplesFones(final Fone... fones) {
 		this(Arrays.asList(fones));
 	}
 	
-	public MeFones(final List<Fone> fones) {
+	public SimplesFones(final List<Fone> fones) {
 		this.fones = new ArrayList<>(fones);
 	}
 	

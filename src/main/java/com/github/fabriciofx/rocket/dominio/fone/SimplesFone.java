@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class MeFone implements Fone {
+public final class SimplesFone implements Fone {
 	private final transient String numero;
 
-	public MeFone(final String numero) {
+	public SimplesFone(final String numero) {
 		this.numero = numero;
 	}
 
