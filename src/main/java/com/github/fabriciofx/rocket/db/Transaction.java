@@ -18,7 +18,7 @@ public final class Transaction {
 		try {
 			session.autocommit(false);
 			session.sql("BEGIN TRANSACTION").execute();
-			T result = callable.call();
+			final T result = callable.call();
 			session.commit();
 			return result;
 		} catch (final Exception e) {
