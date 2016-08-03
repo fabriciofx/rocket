@@ -18,11 +18,11 @@ import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
 import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.dominio.fone.SimplesFone;
 import com.github.fabriciofx.rocket.dominio.fone.SimplesFones;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Cpf;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Rg;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Sexo;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.SimplesDocumentos;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Tratamento;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.SimplesDocumentos;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Tratamento;
 import com.github.fabriciofx.rocket.media.XmlFormat;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 

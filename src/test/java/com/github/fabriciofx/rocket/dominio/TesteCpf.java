@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.dominio;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Cpf;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 
 public final class TesteCpf {
 	@Test

@@ -18,9 +18,4 @@ public interface Fone extends Printer {
 	Tipo tipo() throws IOException;
 
 	Operadora operadora() throws IOException;
-
-	void atualiza(String numero, Tipo tipo, Operadora operadora)
-		throws IOException;
-
-	void apaga() throws IOException;
 }

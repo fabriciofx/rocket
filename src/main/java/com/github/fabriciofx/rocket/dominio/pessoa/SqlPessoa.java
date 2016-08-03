@@ -14,23 +14,21 @@ import com.github.fabriciofx.rocket.dominio.endereco.doc.Cidade;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Complemento;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Numero;
-import com.github.fabriciofx.rocket.dominio.fone.SimplesFone;
-import com.github.fabriciofx.rocket.dominio.fone.SimplesFones;
-import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
-import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Cpf;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Documentos;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Rg;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Sexo;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.SimplesDocumentos;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Tratamento;
+import com.github.fabriciofx.rocket.dominio.fone.SqlFones;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.Documentos;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.SimplesDocumentos;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Tratamento;
 import com.github.fabriciofx.rocket.id.Id;
+import com.github.fabriciofx.rocket.id.Identificavel;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.SingleOutcome;
 
-public final class SqlPessoa implements Pessoa {
+public final class SqlPessoa implements Pessoa, Identificavel {
 	private final transient DataSource ds;
 	private final transient Id id;
 
@@ -42,6 +40,15 @@ public final class SqlPessoa implements Pessoa {
 	@Override
 	public Id id() {
 		return id;
+	}
+		
+	@Override
+	public Media print(final Media media) throws IOException {
+		return documentos().print(
+				nome().print(
+					media.with("id", id)
+			)
+		);
 	}
 	
 	@Override
@@ -89,20 +96,34 @@ public final class SqlPessoa implements Pessoa {
 					new Cidade(rs.getString(9)),
 					new Cep(rs.getString(7))
 				),
-				new SimplesFones(
-					new SimplesFone("81988144321", Tipo.CELULAR, Operadora.OI),
-					new SimplesFone("83999231234", Tipo.CELULAR, Operadora.TIM)
-				)
+				new SqlFones(ds, id)
 			);
 		}		
 	}
-	
-	@Override
-	public Media print(final Media media) throws IOException {
-		return documentos().print(
-				nome().print(
-					media.with("id", id)
-			)
-		);
+
+	public void atualiza(final Nome nome, final Documentos documentos)
+			throws IOException {
+		try {
+			new JdbcSession(ds)
+				.sql("UPDATE pessoa SET nome = ?, cpf = ?, rg = ?, sexo = ?, "
+						+ "tratamento = ?, logradouro = ?, numero = ?, "
+						+ "complemento = ?, bairro = ?, cidade = ?, cep = ? "
+						+ "WHERE id = ?")
+				.set(nome)
+				.set(documentos().cpf())
+				.set(documentos().rg())
+				.set(documentos().sexo())
+				.set(documentos().tratamento())
+				.set(documentos().endereco().logradouro())
+				.set(documentos().endereco().numero())
+				.set(documentos().endereco().complemento())
+				.set(documentos().endereco().bairro())
+				.set(documentos().endereco().cidade())
+				.set(documentos().endereco().cep())
+				.set(id)
+				.execute();
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.pessoa.doc;
+package com.github.fabriciofx.rocket.dominio.pessoa.docs.doc;
 
 import com.github.fabriciofx.rocket.constraint.Mod13;
 import com.github.fabriciofx.rocket.constraint.NotEmpty;

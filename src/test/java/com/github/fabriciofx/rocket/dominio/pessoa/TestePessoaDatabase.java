@@ -52,10 +52,10 @@ public final class TestePessoaDatabase implements Database {
 			).execute();
 			session.sql(
 				"CREATE TABLE IF NOT EXISTS fone ("
-				+ "pessoa BIGINT NOT NULL,"
+				+ "id BIGINT NOT NULL,"
 				+ "numero VARCHAR(20) NOT NULL,"
-				+ "FOREIGN KEY(pessoa) REFERENCES pessoa(id),"
-				+ "PRIMARY KEY(pessoa, numero))"
+				+ "FOREIGN KEY(id) REFERENCES pessoa(id),"
+				+ "PRIMARY KEY(id, numero))"
 			).execute();						
 		} catch (final SQLException e) {
 			throw new IOException(e);

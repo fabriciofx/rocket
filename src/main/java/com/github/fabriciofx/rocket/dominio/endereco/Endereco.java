@@ -8,7 +8,7 @@ import com.github.fabriciofx.rocket.dominio.endereco.doc.Cidade;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Complemento;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Numero;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Documento;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Documento;
 
 public interface Endereco extends Documento {
 	Logradouro logradouro() throws IOException;

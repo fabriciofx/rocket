@@ -28,11 +28,12 @@ public final class SqlFone implements Fone {
 			.with("tipo", tipo())
 			.with("operadora", operadora());
 	}
+	
 	@Override
 	public String numero() throws IOException {
 		try {
 			return new JdbcSession(ds)
-				.sql("SELECT numero FROM fone WHERE pessoa = ?")
+				.sql("SELECT numero FROM fone WHERE id = ?")
 				.set(id)
 				.select(new SingleOutcome<String>(String.class));
 		} catch (final SQLException e) {
@@ -45,7 +46,7 @@ public final class SqlFone implements Fone {
 		try {
 			return Tipo.valueOf(
 				new JdbcSession(ds)
-					.sql("SELECT tipo FROM fone WHERE pessoa = ? "
+					.sql("SELECT tipo FROM fone WHERE id = ? "
 						+ "AND numero = ?")
 					.set(id)
 					.set(numero)
@@ -61,7 +62,7 @@ public final class SqlFone implements Fone {
 		try {
 			return Operadora.valueOf(
 				new JdbcSession(ds)
-					.sql("SELECT operadora FROM fone WHERE pessoa = ? "
+					.sql("SELECT operadora FROM fone WHERE id = ? "
 						+ "AND numero = ?")
 					.set(id)
 					.set(numero)
@@ -72,11 +73,10 @@ public final class SqlFone implements Fone {
 		}
 	}
 	
-	@Override
 	public void apaga() throws IOException {
 		try {
 			new JdbcSession(ds)
-				.sql("DELETE FROM fone WHERE pessoa = ? AND numero = ?")
+				.sql("DELETE FROM fone WHERE id = ? AND numero = ?")
 				.set(id)
 				.set(numero)
 				.execute();
@@ -85,13 +85,12 @@ public final class SqlFone implements Fone {
 		}
 	}
 	
-	@Override
 	public void atualiza(final String numero, final Tipo tipo,
 			final Operadora operadora) throws IOException {
 		try {
 			new JdbcSession(ds)
 				.sql("UPDATE fone SET numero = ?, tipo = ?, operadora = ? "
-					+ "WHERE pessoa = ?")
+					+ "WHERE id = ?")
 				.set(numero)
 				.set(tipo)
 				.set(operadora)

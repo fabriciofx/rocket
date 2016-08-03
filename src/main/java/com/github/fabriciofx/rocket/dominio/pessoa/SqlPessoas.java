@@ -8,7 +8,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.dominio.Nome;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Documentos;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.Documentos;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.id.NumId;
 import com.jcabi.jdbc.JdbcSession;

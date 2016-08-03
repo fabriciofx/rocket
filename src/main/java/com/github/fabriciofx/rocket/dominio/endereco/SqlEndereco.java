@@ -45,7 +45,7 @@ public final class SqlEndereco implements Endereco {
 		try {
 			return new Logradouro(
 				new JdbcSession(ds)
-					.sql("SELECT logradouro FROM pessoa WHERE id = ?")
+					.sql("SELECT logradouro FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
 			);
@@ -59,7 +59,7 @@ public final class SqlEndereco implements Endereco {
 		try {
 			return new Numero(
 				new JdbcSession(ds)
-					.sql("SELECT numero FROM pessoa WHERE id = ?")
+					.sql("SELECT numero FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
 			);
@@ -73,7 +73,7 @@ public final class SqlEndereco implements Endereco {
 		try {
 			return new Complemento(
 				new JdbcSession(ds)
-					.sql("SELECT complemento FROM pessoa WHERE id = ?")
+					.sql("SELECT complemento FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
 			);
@@ -87,7 +87,7 @@ public final class SqlEndereco implements Endereco {
 		try {
 			return new Bairro(
 				new JdbcSession(ds)
-					.sql("SELECT bairro FROM pessoa WHERE id = ?")
+					.sql("SELECT bairro FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
 			);
@@ -101,7 +101,7 @@ public final class SqlEndereco implements Endereco {
 		try {
 			return new Cidade(
 				new JdbcSession(ds)
-					.sql("SELECT cidade FROM pessoa WHERE id = ?")
+					.sql("SELECT cidade FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
 			);
@@ -115,12 +115,33 @@ public final class SqlEndereco implements Endereco {
 		try {
 			return new Cep(
 				new JdbcSession(ds)
-					.sql("SELECT cep FROM pessoa WHERE id = ?")
+					.sql("SELECT cep FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
 			);
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}		
+	}
+	
+	public void atualiza(final Logradouro logradouro, final Numero numero,
+			final Complemento complemento, final Bairro bairro,
+			final Cidade cidade, final Cep cep) throws IOException {
+		try {
+			new JdbcSession(ds)
+				.sql("UPDATE endereco SET logradouro = ?, numero = ?, "
+					+ "complemento = ?, bairro = ?, cidade = ?, cep = ? "
+					+ "WHERE id = ?")
+				.set(logradouro)
+				.set(numero)
+				.set(complemento)
+				.set(bairro)
+				.set(cidade)
+				.set(cep)
+				.set(id)
+				.execute();
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}
 	}
 }

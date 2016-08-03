@@ -1,9 +1,13 @@
-package com.github.fabriciofx.rocket.dominio.pessoa.doc;
+package com.github.fabriciofx.rocket.dominio.pessoa.docs;
 
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.fone.Fones;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Tratamento;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class SimplesDocumentos implements Documentos {

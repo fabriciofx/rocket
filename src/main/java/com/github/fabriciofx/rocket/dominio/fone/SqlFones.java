@@ -37,7 +37,7 @@ public final class SqlFones implements Fones {
 	private List<String> numeros() throws IOException {
 		try {
 			return new JdbcSession(ds)
-				.sql("SELECT numero FROM fone WHERE pessoa = ?")
+				.sql("SELECT numero FROM fone WHERE id = ?")
 				.set(id)
 				.select(
 					new ListOutcome<String>(
@@ -69,7 +69,7 @@ public final class SqlFones implements Fones {
 			final Operadora operadora) throws IOException {
 		try {
 			new JdbcSession(ds)
-				.sql("INSERT INTO fone (pessoa, numero, tipo, operadora) "
+				.sql("INSERT INTO fone (id, numero, tipo, operadora) "
 					+ "VALUES (?, ?, ?, ?)")
 				.set(id)
 				.set(numero)

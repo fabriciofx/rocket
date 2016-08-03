@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.pessoa.doc;
+package com.github.fabriciofx.rocket.dominio.pessoa.docs.doc;
 
 import java.time.LocalDate;
 

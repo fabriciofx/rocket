@@ -18,7 +18,10 @@ public final class SimplesFone implements Fone {
 
 	@Override
 	public Media print(final Media media) throws IOException {
-		return media.with("fone", numero);
+		return media
+				.with("numero", numero)
+				.with("tipo", tipo)
+				.with("operadora", operadora);
 	}
 
 	@Override
@@ -34,14 +37,5 @@ public final class SimplesFone implements Fone {
 	@Override
 	public Operadora operadora() throws IOException {
 		return operadora;
-	}
-
-	@Override
-	public void atualiza(String numero, Tipo tipo, Operadora operadora)
-			throws IOException {
-	}
-
-	@Override
-	public void apaga() throws IOException {
 	}
 }
