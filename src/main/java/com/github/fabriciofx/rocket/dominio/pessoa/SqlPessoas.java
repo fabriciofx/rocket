@@ -8,6 +8,9 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.dominio.Nome;
+import com.github.fabriciofx.rocket.dominio.fone.Fone;
+import com.github.fabriciofx.rocket.dominio.fone.Fones;
+import com.github.fabriciofx.rocket.dominio.fone.SqlFones;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.Documentos;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.id.NumId;
@@ -26,23 +29,29 @@ public final class SqlPessoas implements Pessoas {
 	public Pessoa pessoa(final Nome nome, final Documentos documentos)
 			throws IOException {
 		try {
-			final long id = new JdbcSession(ds)
-				.sql("INSERT INTO pessoa (nome, cpf, rg, sexo, tratamento, "
-					+ "logradouro, numero, complemento, bairro, cidade, cep) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
-				.set(nome)
-				.set(documentos.cpf())
-				.set(documentos.rg())
-				.set(documentos.sexo())
-				.set(documentos.tratamento())
-				.set(documentos.endereco().logradouro())
-				.set(documentos.endereco().numero())
-				.set(documentos.endereco().complemento())
-				.set(documentos.endereco().bairro())
-				.set(documentos.endereco().cidade())
-				.set(documentos.endereco().cep())
-				.insert(SingleOutcome.LAST_INSERT_ID);
-			return new SqlPessoa(ds, new NumId(id));
+			final Id id = new NumId(
+				new JdbcSession(ds)
+					.sql("INSERT INTO pessoa (nome, cpf, rg, sexo, tratamento, "
+						+ "logradouro, numero, complemento, bairro, cidade, "
+						+ "cep) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+					.set(nome)
+					.set(documentos.cpf())
+					.set(documentos.rg())
+					.set(documentos.sexo())
+					.set(documentos.tratamento())
+					.set(documentos.endereco().logradouro())
+					.set(documentos.endereco().numero())
+					.set(documentos.endereco().complemento())
+					.set(documentos.endereco().bairro())
+					.set(documentos.endereco().cidade())
+					.set(documentos.endereco().cep())
+					.insert(SingleOutcome.LAST_INSERT_ID)
+				);
+			final Fones fones = new SqlFones(ds, id);
+			for (final Fone f : documentos.fones().todos()) {
+				fones.salva(f.numero(), f.tipo(), f.operadora());	
+			}
+			return new SqlPessoa(ds, id);
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}

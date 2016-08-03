@@ -28,31 +28,10 @@ public final class SqlFones implements Fones {
 	@Override
 	public Media print(final Media media) throws IOException {
 		Media m = media;
-		for (final String numero : numeros()) {
-			m = m.with("fone", numero);
+		for (final Fone f : todos()) {
+			m = f.print(m);
 		}
 		return m;
-	}
-
-	private List<String> numeros() throws IOException {
-		try {
-			return new JdbcSession(ds)
-				.sql("SELECT numero FROM fone WHERE id = ?")
-				.set(id)
-				.select(
-					new ListOutcome<String>(
-						new ListOutcome.Mapping<String>() {
-							@Override
-							public String map(final ResultSet rs)
-								throws SQLException {
-								return rs.getString(1);
-							}
-						}
-					)
-				);
-		} catch (final SQLException e) {
-			throw new IOException(e);
-		}				
 	}
 
 	@Override
@@ -80,4 +59,25 @@ public final class SqlFones implements Fones {
 			throw new IOException(e);
 		}
 	}
+	
+	private List<String> numeros() throws IOException {
+		try {
+			return new JdbcSession(ds)
+				.sql("SELECT numero FROM fone WHERE id = ?")
+				.set(id)
+				.select(
+					new ListOutcome<String>(
+						new ListOutcome.Mapping<String>() {
+							@Override
+							public String map(final ResultSet rs)
+								throws SQLException {
+								return rs.getString(1);
+							}
+						}
+					)
+				);
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}				
+	}	
 }

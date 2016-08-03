@@ -54,6 +54,8 @@ public final class TestePessoaDatabase implements Database {
 				"CREATE TABLE IF NOT EXISTS fone ("
 				+ "id BIGINT NOT NULL,"
 				+ "numero VARCHAR(20) NOT NULL,"
+				+ "tipo VARCHAR(20) NOT NULL,"
+				+ "operadora VARCHAR(20) NOT NULL,"
 				+ "FOREIGN KEY(id) REFERENCES pessoa(id),"
 				+ "PRIMARY KEY(id, numero))"
 			).execute();						
