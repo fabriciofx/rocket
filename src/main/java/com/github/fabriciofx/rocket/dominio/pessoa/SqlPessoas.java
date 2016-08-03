@@ -18,7 +18,7 @@ import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.SingleOutcome;
 
-public final class SqlPessoas implements Pessoas {
+public final class SqlPessoas implements Pessoas<SqlPessoa> {
 	private final transient DataSource ds;
 
 	public SqlPessoas(final DataSource ds) {
@@ -26,7 +26,7 @@ public final class SqlPessoas implements Pessoas {
 	}
 
 	@Override
-	public Pessoa pessoa(final Nome nome, final Documentos documentos)
+	public SqlPessoa pessoa(final Nome nome, final Documentos documentos)
 			throws IOException {
 		try {
 			final Id id = new NumId(
@@ -58,24 +58,24 @@ public final class SqlPessoas implements Pessoas {
 	}
 
 	@Override
-	public Pessoa pessoa(final Id id) throws IOException {
+	public SqlPessoa pessoa(final Id id) throws IOException {
 		return new SqlPessoa(ds, id);
 	}
 
 	@Override
-	public List<Pessoa> todas() throws IOException {
+	public List<SqlPessoa> todas() throws IOException {
 		try {
 			return new JdbcSession(ds)
 				.sql("SELECT id FROM pessoa")
-				.select(new ListOutcome<Pessoa>(new PessoaMapping()));
+				.select(new ListOutcome<SqlPessoa>(new PessoaMapping()));
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}				
 	}
 	
-	private class PessoaMapping implements ListOutcome.Mapping<Pessoa> {
+	private class PessoaMapping implements ListOutcome.Mapping<SqlPessoa> {
 		@Override
-		public Pessoa map(final ResultSet rs) throws SQLException {
+		public SqlPessoa map(final ResultSet rs) throws SQLException {
 			return new SqlPessoa(ds, new NumId(rs.getLong(1)));
 		}		
 	}

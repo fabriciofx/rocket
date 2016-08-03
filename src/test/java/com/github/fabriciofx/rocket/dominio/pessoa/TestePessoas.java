@@ -32,7 +32,7 @@ public final class TestePessoas {
 		final TestePessoaDatabase bd = new TestePessoaDatabase(
 			new H2Database("testebd")
 		).init();
-		final Pessoas pessoas = new SqlPessoas(bd.dataSource());
+		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(bd.dataSource());
 		pessoas.pessoa(
 			new Nome("Jason Bourne"),
 			new SimplesDocumentos(
@@ -61,6 +61,47 @@ public final class TestePessoas {
 				).toString()
 			);			
 		}
+		bd.finaliza();
+	}
+	
+	@Test
+	public void alteraNome() throws IOException {
+		final TestePessoaDatabase bd = new TestePessoaDatabase(
+			new H2Database("testebd")
+		).init();
+		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(bd.dataSource());
+		final SqlPessoa jason = pessoas.pessoa(
+			new Nome("Jason Bourne"),
+			new SimplesDocumentos(
+				new Cpf("57381117533"),
+				new Rg("62527362"),
+				Sexo.MASCULINO,
+				Tratamento.SENHOR,
+				new SimplesEndereco(
+					new Logradouro("Av Gov Torquato Nepomuceno Neves"),
+					new Numero("123"),
+					new Complemento("AP 101"),
+					new Bairro("Vila Madalena"),
+					new Cidade("São Paulo", Estado.SP),
+					new Cep("48035120")
+				),
+				new SimplesFones(
+					new SimplesFone("81988144321", Tipo.CELULAR, Operadora.OI),
+					new SimplesFone("83999231234", Tipo.CELULAR, Operadora.TIM)
+				)
+			)
+		);
+		System.out.println(new XmlFormat(
+				jason.print(
+					new XmlMedia("pessoa")).toString()
+				).toString()
+			);			
+		jason.atualiza(new Nome("Jason M. Bourne"), jason.documentos());
+		System.out.println(new XmlFormat(
+				jason.print(
+					new XmlMedia("pessoa")).toString()
+				).toString()
+			);			
 		bd.finaliza();
 	}
 }

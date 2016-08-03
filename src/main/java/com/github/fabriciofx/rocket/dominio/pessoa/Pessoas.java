@@ -7,10 +7,10 @@ import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.Documentos;
 import com.github.fabriciofx.rocket.id.Id;
 
-public interface Pessoas {
-	Pessoa pessoa(Nome nome, Documentos documentos) throws IOException;
+public interface Pessoas<T> {
+	T pessoa(Nome nome, Documentos documentos) throws IOException;
 	
-	Pessoa pessoa(Id id) throws IOException;
+	T pessoa(Id id) throws IOException;
 	
-	List<Pessoa> todas() throws IOException;
+	List<T> todas() throws IOException;
 }
