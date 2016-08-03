@@ -37,7 +37,7 @@ public final class TestePessoaDatabase implements Database {
 			final JdbcSession session = new JdbcSession(db.dataSource());
 			session.sql(
 				"CREATE TABLE IF NOT EXISTS pessoa ("
-				+ "id VARCHAR(36) PRIMARY KEY,"
+				+ "id BIGINT AUTO_INCREMENT PRIMARY KEY,"
 				+ "nome VARCHAR(100) NOT NULL,"
 				+ "cpf VARCHAR(11) NOT NULL,"
 				+ "rg VARCHAR(20) NOT NULL,"
@@ -52,7 +52,7 @@ public final class TestePessoaDatabase implements Database {
 			).execute();
 			session.sql(
 				"CREATE TABLE IF NOT EXISTS fone ("
-				+ "pessoa VARCHAR(36) NOT NULL,"
+				+ "pessoa BIGINT NOT NULL,"
 				+ "numero VARCHAR(20) NOT NULL,"
 				+ "FOREIGN KEY(pessoa) REFERENCES pessoa(id),"
 				+ "PRIMARY KEY(pessoa, numero))"

@@ -10,7 +10,7 @@ import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
-public class SqlFone implements Fone {
+public final class SqlFone implements Fone {
 	private final transient DataSource ds;
 	private final transient Id id;
 	private final transient String numero;
@@ -23,22 +23,55 @@ public class SqlFone implements Fone {
 
 	@Override
 	public Media print(final Media media) throws IOException {
-		return media.with("fone", numero());
+		return media
+			.with("numero", numero())
+			.with("tipo", tipo())
+			.with("operadora", operadora());
 	}
-	
 	@Override
-	public void salva() throws IOException {
+	public String numero() throws IOException {
 		try {
-			new JdbcSession(ds)
-				.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
+			return new JdbcSession(ds)
+				.sql("SELECT numero FROM fone WHERE pessoa = ?")
 				.set(id)
-				.set(numero)
-				.insert(SingleOutcome.VOID);
+				.select(new SingleOutcome<String>(String.class));
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}
 	}
 
+	@Override
+	public Tipo tipo() throws IOException {
+		try {
+			return Tipo.valueOf(
+				new JdbcSession(ds)
+					.sql("SELECT tipo FROM fone WHERE pessoa = ? "
+						+ "AND numero = ?")
+					.set(id)
+					.set(numero)
+					.select(new SingleOutcome<String>(String.class))
+			);
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}
+	}
+
+	@Override
+	public Operadora operadora() throws IOException {
+		try {
+			return Operadora.valueOf(
+				new JdbcSession(ds)
+					.sql("SELECT operadora FROM fone WHERE pessoa = ? "
+						+ "AND numero = ?")
+					.set(id)
+					.set(numero)
+					.select(new SingleOutcome<String>(String.class))
+			);
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}
+	}
+	
 	@Override
 	public void apaga() throws IOException {
 		try {
@@ -53,12 +86,17 @@ public class SqlFone implements Fone {
 	}
 	
 	@Override
-	public String numero() throws IOException {
+	public void atualiza(final String numero, final Tipo tipo,
+			final Operadora operadora) throws IOException {
 		try {
-			return new JdbcSession(ds)
-				.sql("SELECT numero FROM fone WHERE pessoa = ?")
+			new JdbcSession(ds)
+				.sql("UPDATE fone SET numero = ?, tipo = ?, operadora = ? "
+					+ "WHERE pessoa = ?")
+				.set(numero)
+				.set(tipo)
+				.set(operadora)
 				.set(id)
-				.select(new SingleOutcome<String>(String.class));
+				.execute();
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}

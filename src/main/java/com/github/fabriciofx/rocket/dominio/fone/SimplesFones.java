@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
+import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class SimplesFones implements Fones {
@@ -29,23 +31,13 @@ public final class SimplesFones implements Fones {
 	}
 
 	@Override
-	public Fone fone(final String numero) throws IOException {
-		for (final Fone f : fones) {
-			if (f.numero().equals(numero)) {
-				return f;
-			}
-		}
-		throw new IOException(
-			String.format("número de telefone %s não encontrado", numero)
-		); 
-	}
-
-	@Override
 	public List<Fone> todos() throws IOException {
 		return Collections.unmodifiableList(fones);
 	}
 
 	@Override
-	public void salva(final Fones fones) throws IOException {
+	public void salva(final String numero, final Tipo tipo,
+			final Operadora operadora) throws IOException {
+		fones.add(new SimplesFone(numero, tipo, operadora));
 	}
 }

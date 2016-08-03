@@ -14,46 +14,43 @@ import com.github.fabriciofx.rocket.dominio.endereco.doc.Complemento;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Estado;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Numero;
+import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
+import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.dominio.fone.SimplesFone;
 import com.github.fabriciofx.rocket.dominio.fone.SimplesFones;
 import com.github.fabriciofx.rocket.dominio.pessoa.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.doc.Sexo;
+import com.github.fabriciofx.rocket.dominio.pessoa.doc.SimplesDocumentos;
 import com.github.fabriciofx.rocket.dominio.pessoa.doc.Tratamento;
-import com.github.fabriciofx.rocket.id.UuidId;
 import com.github.fabriciofx.rocket.media.XmlFormat;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 
 public final class TestePessoas {
 	@Test
-	public void pessoas() throws IOException {
+	public void pessoa() throws IOException {
 		final TestePessoaDatabase bd = new TestePessoaDatabase(
-				new H2Database("testebd")
-			).init();
+			new H2Database("testebd")
+		).init();
 		final Pessoas pessoas = new SqlPessoas(bd.dataSource());
-		new SqlPessoa(
-			bd.dataSource(),
-			new UuidId()
-		).salva(
-			new SimplesPessoa(
-				new Nome("Jason Bourne"),
-				new SimplesDocumentos(
-					new Cpf("57381117533"),
-					new Rg("62527362"),
-					Sexo.MASCULINO,
-					Tratamento.SENHOR,
-					new SimplesEndereco(
-						new Logradouro("Av Gov Torquato Nepomuceno Neves"),
-						new Numero("123"),
-						new Complemento("AP 101"),
-						new Bairro("Vila Madalena"),
-						new Cidade("São Paulo", Estado.SP),
-						new Cep("48035120")
-					),
-					new SimplesFones(
-						new SimplesFone("81988144321"),
-						new SimplesFone("83999231234")
-					)
+		pessoas.pessoa(
+			new Nome("Jason Bourne"),
+			new SimplesDocumentos(
+				new Cpf("57381117533"),
+				new Rg("62527362"),
+				Sexo.MASCULINO,
+				Tratamento.SENHOR,
+				new SimplesEndereco(
+					new Logradouro("Av Gov Torquato Nepomuceno Neves"),
+					new Numero("123"),
+					new Complemento("AP 101"),
+					new Bairro("Vila Madalena"),
+					new Cidade("São Paulo", Estado.SP),
+					new Cep("48035120")
+				),
+				new SimplesFones(
+					new SimplesFone("81988144321", Tipo.CELULAR, Operadora.OI),
+					new SimplesFone("83999231234", Tipo.CELULAR, Operadora.TIM)
 				)
 			)
 		);		
@@ -64,5 +61,6 @@ public final class TestePessoas {
 				).toString()
 			);			
 		}
+		bd.finaliza();
 	}
 }

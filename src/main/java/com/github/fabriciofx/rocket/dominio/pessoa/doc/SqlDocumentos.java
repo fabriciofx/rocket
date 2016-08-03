@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.pessoa;
+package com.github.fabriciofx.rocket.dominio.pessoa.doc;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,10 +9,6 @@ import com.github.fabriciofx.rocket.dominio.endereco.SqlEndereco;
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.fone.SqlFones;
 import com.github.fabriciofx.rocket.dominio.fone.Fones;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Cpf;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Rg;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Sexo;
-import com.github.fabriciofx.rocket.dominio.pessoa.doc.Tratamento;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;

@@ -3,6 +3,7 @@ package com.github.fabriciofx.rocket.dominio.pessoa;
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.dominio.Nome;
+import com.github.fabriciofx.rocket.dominio.pessoa.doc.Documentos;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.id.UuidId;
 import com.github.fabriciofx.rocket.media.Media;
@@ -43,10 +44,5 @@ public final class SimplesPessoa implements Pessoa {
 	@Override
 	public Documentos documentos() throws IOException {
 		return documentos;
-	}
-
-	@Override
-	public Pessoa salva(Pessoa origem) throws IOException {
-		return origem;
 	}
 }

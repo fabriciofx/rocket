@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
+import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
@@ -24,11 +26,6 @@ public final class SqlFones implements Fones {
 	}
 
 	@Override
-	public Fone fone(final String numero) throws IOException {
-		return new SqlFone(ds, id, numero);
-	}
-
-	@Override
 	public Media print(final Media media) throws IOException {
 		Media m = media;
 		for (final String numero : numeros()) {
@@ -37,21 +34,6 @@ public final class SqlFones implements Fones {
 		return m;
 	}
 
-	@Override
-	public void salva(final Fones origem) throws IOException {
-		final JdbcSession session = new JdbcSession(ds);
-		try {
-			for (final Fone f : origem.todos()) {
-				session.sql("INSERT INTO fone (pessoa, numero) VALUES (?, ?)")
-					.set(id)
-					.set(f.numero())
-					.insert(SingleOutcome.VOID);
-			}
-		} catch (final SQLException e) {
-			throw new IOException(e);
-		}
-	}
-	
 	private List<String> numeros() throws IOException {
 		try {
 			return new JdbcSession(ds)
@@ -80,5 +62,22 @@ public final class SqlFones implements Fones {
 			todos.add(new SqlFone(ds, id, numero));
 		}
 		return todos;
+	}
+	
+	@Override
+	public void salva(final String numero, final Tipo tipo,
+			final Operadora operadora) throws IOException {
+		try {
+			new JdbcSession(ds)
+				.sql("INSERT INTO fone (pessoa, numero, tipo, operadora) "
+					+ "VALUES (?, ?, ?, ?)")
+				.set(id)
+				.set(numero)
+				.set(tipo)
+				.set(operadora)
+				.insert(SingleOutcome.VOID);
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}
 	}
 }
