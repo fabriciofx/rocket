@@ -52,4 +52,12 @@ public final class MysqlDatabase implements Database {
 	public DataSource dataSource() throws IOException {
 		return base.dataSource();
 	}
+
+	@Override
+	public void init() throws IOException {
+	}
+
+	@Override
+	public void destroy() throws IOException {
+	}
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.H2Database;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.endereco.SimplesEndereco;
@@ -29,10 +30,11 @@ import com.github.fabriciofx.rocket.media.XmlMedia;
 public final class TestePessoas {
 	@Test
 	public void pessoa() throws IOException {
-		final TestePessoaDatabase bd = new TestePessoaDatabase(
+		final Database testebd = new TestePessoaDatabase(
 			new H2Database("testebd")
-		).init();
-		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(bd.dataSource());
+		);
+		testebd.init();
+		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd.dataSource());
 		pessoas.pessoa(
 			new Nome("Jason Bourne"),
 			new SimplesDocumentos(
@@ -61,15 +63,16 @@ public final class TestePessoas {
 				).toString()
 			);			
 		}
-		bd.finaliza();
+		testebd.destroy();
 	}
 	
 	@Test
 	public void alteraNome() throws IOException {
-		final TestePessoaDatabase bd = new TestePessoaDatabase(
-			new H2Database("testebd")
-		).init();
-		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(bd.dataSource());
+		final Database testebd = new TestePessoaDatabase(
+				new H2Database("testebd")
+			);
+		testebd.init();
+		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd.dataSource());
 		final SqlPessoa jason = pessoas.pessoa(
 			new Nome("Jason Bourne"),
 			new SimplesDocumentos(
@@ -102,6 +105,6 @@ public final class TestePessoas {
 					new XmlMedia("pessoa")).toString()
 				).toString()
 			);			
-		bd.finaliza();
+		testebd.destroy();
 	}
 }
