@@ -32,7 +32,6 @@ import java.io.FileReader;
 
 import java.io.IOException;
 import java.io.LineNumberReader;
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -41,6 +40,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.jcabi.log.Logger;
 
 /**
  * Tool to run database scripts. This version of the script can be found at
@@ -54,9 +55,6 @@ public final class SqlScript implements Script {
 	private transient final Database db;
 	private transient final boolean stopOnError;
 	private transient final boolean autoCommit;
-	private transient final PrintWriter logWriter = new PrintWriter(System.out);
-	private transient final PrintWriter errorLogWriter = new PrintWriter(
-			System.err);
 	private transient String delimiter = DEFAULT_DELIMITER;
 	private transient boolean fullLineDelimiter = false;
 
@@ -70,11 +68,6 @@ public final class SqlScript implements Script {
 		this.db = db;
 		this.autoCommit = autoCommit;
 		this.stopOnError = stopOnError;
-		this.delimiter = delimiter;
-		this.fullLineDelimiter = fullLineDelimiter;
-	}
-
-	public void setDelimiter(String delimiter, boolean fullLineDelimiter) {
 		this.delimiter = delimiter;
 		this.fullLineDelimiter = fullLineDelimiter;
 	}
@@ -96,6 +89,12 @@ public final class SqlScript implements Script {
 			throw new IOException("Error running script.  Cause: " + e, e);
 		}
 	}
+	
+	private void setDelimiter(final String delimiter,
+			final boolean fullLineDelimiter) {
+		this.delimiter = delimiter;
+		this.fullLineDelimiter = fullLineDelimiter;
+	}	
 
 	/**
 	 * Runs an SQL script (read in using the Reader parameter) using the
@@ -114,7 +113,7 @@ public final class SqlScript implements Script {
 			throws IOException {
 		StringBuffer command = null;
 		try {
-			LineNumberReader lineReader = new LineNumberReader(reader);
+			final LineNumberReader lineReader = new LineNumberReader(reader);
 			String line = null;
 			while ((line = lineReader.readLine()) != null) {
 				if (command == null) {
@@ -122,7 +121,7 @@ public final class SqlScript implements Script {
 				}
 				String trimmedLine = line.trim();
 				if (trimmedLine.startsWith("--")) {
-					println(trimmedLine);
+					Logger.debug(this, trimmedLine);
 				} else if (trimmedLine.length() < 1
 						|| trimmedLine.startsWith("//")) {
 					// Do nothing
@@ -130,11 +129,12 @@ public final class SqlScript implements Script {
 						|| trimmedLine.startsWith("--")) {
 					// Do nothing
 				} else if (!fullLineDelimiter
-						&& trimmedLine.endsWith(getDelimiter())
+						&& trimmedLine.endsWith(delimiter)
 						|| fullLineDelimiter
-								&& trimmedLine.equals(getDelimiter())) {
-					Pattern pattern = Pattern.compile(DELIMITER_LINE_REGEX);
-					Matcher matcher = pattern.matcher(trimmedLine);
+								&& trimmedLine.equals(delimiter)) {
+					final Pattern pattern = Pattern
+							.compile(DELIMITER_LINE_REGEX);
+					final Matcher matcher = pattern.matcher(trimmedLine);
 					if (matcher.matches()) {
 						setDelimiter(
 								trimmedLine.split(DELIMITER_LINE_SPLIT_REGEX)[1]
@@ -146,73 +146,71 @@ public final class SqlScript implements Script {
 						}
 						trimmedLine = line.trim();
 					}
-
-					command.append(line.substring(0,
-							line.lastIndexOf(getDelimiter())));
-					command.append(" ");
-					Statement statement = conn.createStatement();
-
-					println(command);
-
+					command.append(
+						line.substring(
+							0,
+							line.lastIndexOf(delimiter)
+						)
+					).append(" ");
+					final Statement statement = conn.createStatement();
+					Logger.debug(this, command.toString());
 					boolean hasResults = false;
 					if (stopOnError) {
 						hasResults = statement.execute(command.toString());
 					} else {
 						try {
 							statement.execute(command.toString());
-						} catch (SQLException e) {
-							e.fillInStackTrace();
-							printlnError("Error executing: " + command);
-							printlnError(e);
+						} catch (final SQLException e) {
+							Logger.debug(this, "Error executing: " + command);
+							throw new IOException(e);
 						}
 					}
-
 					if (autoCommit && !conn.getAutoCommit()) {
 						conn.commit();
 					}
-
-					ResultSet rs = statement.getResultSet();
+					final ResultSet rs = statement.getResultSet();
 					if (hasResults && rs != null) {
-						ResultSetMetaData md = rs.getMetaData();
-						int cols = md.getColumnCount();
+						final ResultSetMetaData md = rs.getMetaData();
+						final int cols = md.getColumnCount();
+						final StringBuilder names = new StringBuilder();
 						for (int i = 0; i < cols; i++) {
-							String name = md.getColumnLabel(i);
-							print(name + "\t");
+							names.append(md.getColumnLabel(i)).append("\t");
 						}
-						println("");
+						Logger.debug(this, names.append("\n").toString());
+						final StringBuilder values = new StringBuilder();
 						while (rs.next()) {
 							for (int i = 1; i <= cols; i++) {
-								String value = rs.getString(i);
-								print(value + "\t");
+								values.append(rs.getString(i)).append("\t");
 							}
-							println("");
+							Logger.debug(this, values.append("\n").toString());
 						}
 					}
-
 					command = null;
 					try {
 						if (rs != null) {
 							rs.close();
 						}
-					} catch (Exception e) {
-						e.printStackTrace();
+					} catch (final Exception e) {
+						throw new IOException(e);
 					}
 					try {
 						if (statement != null) {
 							statement.close();
 						}
-					} catch (Exception e) {
-						e.printStackTrace();
+					} catch (final Exception e) {
+						throw new IOException(e);
 						// Ignore to workaround a bug in Jakarta DBCP
 					}
 				} else {
-					Pattern pattern = Pattern.compile(DELIMITER_LINE_REGEX);
-					Matcher matcher = pattern.matcher(trimmedLine);
+					final Pattern pattern = Pattern.compile(
+						DELIMITER_LINE_REGEX
+					);
+					final Matcher matcher = pattern.matcher(trimmedLine);
 					if (matcher.matches()) {
 						setDelimiter(
-								trimmedLine.split(DELIMITER_LINE_SPLIT_REGEX)[1]
-										.trim(),
-								fullLineDelimiter);
+							trimmedLine.split(DELIMITER_LINE_SPLIT_REGEX)[1]
+									.trim(),
+							fullLineDelimiter);
 						line = lineReader.readLine();
 						if (line == null) {
 							break;
@@ -226,50 +224,12 @@ public final class SqlScript implements Script {
 			if (!autoCommit) {
 				conn.commit();
 			}
-		} catch (SQLException e) {
-			e.fillInStackTrace();
-			printlnError("Error executing: " + command);
-			printlnError(e);
-			//throw e;
-		} catch (IOException e) {
-			e.fillInStackTrace();
-			printlnError("Error executing: " + command);
-			printlnError(e);
-			throw e;
-		} finally {
-			//conn.rollback();
-			flush();
-		}
-	}
-
-	private String getDelimiter() {
-		return delimiter;
-	}
-
-	private void print(Object o) {
-		if (logWriter != null) {
-			logWriter.print(o);
-		}
-	}
-
-	private void println(Object o) {
-		if (logWriter != null) {
-			logWriter.println(o);
-		}
-	}
-
-	private void printlnError(Object o) {
-		if (errorLogWriter != null) {
-			errorLogWriter.println(o);
-		}
-	}
-
-	private void flush() {
-		if (logWriter != null) {
-			logWriter.flush();
-		}
-		if (errorLogWriter != null) {
-			errorLogWriter.flush();
+		} catch (final SQLException e) {
+			Logger.error(this, "Error executing: " + command);
+			throw new IOException(e);
+		} catch (final IOException e) {
+			Logger.error(this, "Error executing: " + command);
+			throw new IOException(e);
 		}
 	}
 }
