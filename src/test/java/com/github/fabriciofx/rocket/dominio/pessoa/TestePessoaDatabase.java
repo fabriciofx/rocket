@@ -36,7 +36,7 @@ public final class TestePessoaDatabase implements Database {
 
 	@Override
 	public void init() throws IOException {
-		final URL initUrl = TestePessoaDatabase.class
+		final URL url = TestePessoaDatabase.class
 				.getClassLoader()
 				.getResource(
 					String.format(
@@ -47,7 +47,7 @@ public final class TestePessoaDatabase implements Database {
 					)
 				);
 		try {
-			new SqlScript(db).exec(new File(initUrl.toURI()));
+			new SqlScript(db).exec(new File(url.toURI()));
 		} catch (final URISyntaxException e) {
 			throw new IOException(e);
 		}
@@ -55,7 +55,7 @@ public final class TestePessoaDatabase implements Database {
 
 	@Override
 	public void destroy() throws IOException {
-		final URL destroyUrl = TestePessoaDatabase.class
+		final URL url = TestePessoaDatabase.class
 				.getClassLoader()
 				.getResource(
 					String.format(
@@ -66,7 +66,7 @@ public final class TestePessoaDatabase implements Database {
 					)
 				);
 		try {
-			new SqlScript(db).exec(new File(destroyUrl.toURI()));
+			new SqlScript(db).exec(new File(url.toURI()));
 		} catch (final URISyntaxException e) {
 			throw new IOException(e);
 		}
