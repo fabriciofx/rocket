@@ -86,7 +86,7 @@ public final class SqlScript implements Script {
 				connection.setAutoCommit(originalAutoCommit);
 			}
 		} catch (final Exception e) {
-			throw new IOException("Error running script.  Cause: " + e, e);
+			throw new IOException(e);
 		}
 	}
 	
@@ -156,7 +156,7 @@ public final class SqlScript implements Script {
 						try {
 							statement.execute(command.toString());
 						} catch (final SQLException e) {
-							Logger.debug(this, "Error executing: " + command);
+							Logger.debug(this, command.toString());
 							throw new IOException(e);
 						}
 					}
@@ -220,10 +220,10 @@ public final class SqlScript implements Script {
 				conn.commit();
 			}
 		} catch (final SQLException e) {
-			Logger.error(this, "Error executing: " + command);
+			Logger.error(this, command.toString());
 			throw new IOException(e);
 		} catch (final IOException e) {
-			Logger.error(this, "Error executing: " + command);
+			Logger.error(this, command.toString());
 			throw new IOException(e);
 		}
 	}
