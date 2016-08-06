@@ -123,9 +123,7 @@ public final class SqlScript implements Script {
 				if (trimmedLine.startsWith("--")) {
 					Logger.debug(this, trimmedLine);
 				} else if (trimmedLine.length() < 1
-						|| trimmedLine.startsWith("//")) {
-					// Do nothing
-				} else if (trimmedLine.length() < 1
+						|| trimmedLine.startsWith("//")
 						|| trimmedLine.startsWith("--")) {
 					// Do nothing
 				} else if (!fullLineDelimiter
