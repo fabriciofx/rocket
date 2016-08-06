@@ -111,14 +111,11 @@ public final class SqlScript implements Script {
 	 */
 	private void run(final Connection conn, final Reader reader)
 			throws IOException {
-		StringBuffer command = null;
+		final StringBuilder command = new StringBuilder();
 		try {
 			final LineNumberReader lineReader = new LineNumberReader(reader);
 			String line = null;
 			while ((line = lineReader.readLine()) != null) {
-				if (command == null) {
-					command = new StringBuffer();
-				}
 				String trimmedLine = line.trim();
 				if (trimmedLine.startsWith("--")) {
 					Logger.debug(this, trimmedLine);
@@ -183,7 +180,7 @@ public final class SqlScript implements Script {
 							Logger.debug(this, values.append("\n").toString());
 						}
 					}
-					command = null;
+					command.delete(0, command.length());
 					try {
 						if (rs != null) {
 							rs.close();
