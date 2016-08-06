@@ -45,7 +45,7 @@ import com.jcabi.log.Logger;
 
 /**
  * Tool to run database scripts. This version of the script can be found at
- * https://gist.github.com/gists/831762/
+ * https://gist.github.com/git-commit/8716469
  */
 public final class SqlScript implements Script {
 	private static final String DEFAULT_DELIMITER = ";";
