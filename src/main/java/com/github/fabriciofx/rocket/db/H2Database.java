@@ -62,6 +62,6 @@ public final class H2Database implements Database {
 	}
 
 	@Override
-	public void destroy() throws IOException {
+	public void fini() throws IOException {
 	}
 }

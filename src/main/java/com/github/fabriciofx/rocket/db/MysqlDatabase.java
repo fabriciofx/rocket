@@ -58,6 +58,6 @@ public final class MysqlDatabase implements Database {
 	}
 
 	@Override
-	public void destroy() throws IOException {
+	public void fini() throws IOException {
 	}
 }

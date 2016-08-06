@@ -54,7 +54,7 @@ public final class TestePessoaDatabase implements Database {
 	}
 
 	@Override
-	public void destroy() throws IOException {
+	public void fini() throws IOException {
 		final URL url = TestePessoaDatabase.class
 				.getClassLoader()
 				.getResource(

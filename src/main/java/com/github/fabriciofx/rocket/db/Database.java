@@ -15,5 +15,5 @@ public interface Database {
 	
 	void init() throws IOException;
 	
-	void destroy() throws IOException;
+	void fini() throws IOException;
 }

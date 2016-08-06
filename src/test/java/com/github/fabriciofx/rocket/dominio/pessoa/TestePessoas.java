@@ -63,7 +63,7 @@ public final class TestePessoas {
 				).toString()
 			);			
 		}
-		testebd.destroy();
+		testebd.fini();
 	}
 	
 	@Test
@@ -105,6 +105,6 @@ public final class TestePessoas {
 					new XmlMedia("pessoa")).toString()
 				).toString()
 			);			
-		testebd.destroy();
+		testebd.fini();
 	}
 }
