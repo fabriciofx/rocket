@@ -12,8 +12,4 @@ public interface Database {
 	Url url();
 
 	DataSource dataSource() throws IOException;
-	
-	void init() throws IOException;
-	
-	void fini() throws IOException;
 }

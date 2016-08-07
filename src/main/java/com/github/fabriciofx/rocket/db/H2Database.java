@@ -56,12 +56,4 @@ public final class H2Database implements Database {
 	public DataSource dataSource() throws IOException {
 		return base.dataSource();
 	}
-
-	@Override
-	public void init() throws IOException {
-	}
-
-	@Override
-	public void fini() throws IOException {
-	}
 }
