@@ -1,8 +1,7 @@
 package com.github.fabriciofx.rocket.db;
 
-import java.io.File;
 import java.io.IOException;
 
-public interface Script {
-	void exec(final File file) throws IOException;
+public interface Script<Context> {
+	void exec(Context context) throws IOException;
 }

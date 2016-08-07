@@ -47,33 +47,34 @@ import com.jcabi.log.Logger;
  * Tool to run database scripts. This version of the script can be found at
  * https://gist.github.com/git-commit/8716469
  */
-public final class SqlScript implements Script {
+public final class SqlScript implements Script<Database> {
 	private static final String DEFAULT_DELIMITER = ";";
 	private static final String DELIMITER_LINE_REGEX = "(?i)DELIMITER.+";
 	private static final String DELIMITER_LINE_SPLIT_REGEX = "(?i)DELIMITER";
 
-	private transient final Database db;
+	private transient final String filename;
 	private transient final boolean stopOnError;
 	private transient final boolean autoCommit;
 	private transient String delimiter = DEFAULT_DELIMITER;
 	private transient boolean fullLineDelimiter = false;
 
-	public SqlScript(final Database db) {
-		this(db, false, true, DEFAULT_DELIMITER, false);
+	public SqlScript(final String filename) {
+		this(filename, false, true, DEFAULT_DELIMITER, false);
 	}
 	
-	public SqlScript(final Database db, final boolean autoCommit,
+	public SqlScript(final String filename, final boolean autoCommit,
 			final boolean stopOnError, final String delimiter,
 			final boolean fullLineDelimiter) {
-		this.db = db;
+		this.filename = filename;
 		this.autoCommit = autoCommit;
 		this.stopOnError = stopOnError;
 		this.delimiter = delimiter;
 		this.fullLineDelimiter = fullLineDelimiter;
 	}
 
+
 	@Override
-	public void exec(final File file) throws IOException {
+	public void exec(final Database db) throws IOException {
 		try {
 			final Connection connection = db.dataSource().getConnection();
 			final boolean originalAutoCommit = connection.getAutoCommit();
@@ -81,7 +82,7 @@ public final class SqlScript implements Script {
 				if (originalAutoCommit != autoCommit) {
 					connection.setAutoCommit(autoCommit);
 				}
-				run(connection, new FileReader(file));
+				run(connection, new FileReader(new File(filename)));
 			} finally {
 				connection.setAutoCommit(originalAutoCommit);
 			}
