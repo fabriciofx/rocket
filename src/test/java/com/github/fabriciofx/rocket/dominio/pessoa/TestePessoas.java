@@ -2,6 +2,7 @@ package com.github.fabriciofx.rocket.dominio.pessoa;
 
 import java.io.IOException;
 
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.db.Database;
@@ -26,9 +27,9 @@ import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Tratamento;
-import com.github.fabriciofx.rocket.media.XmlFormat;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.github.fabriciofx.rocket.misc.ResourcePath;
+import com.jcabi.matchers.XhtmlMatchers;
 
 public final class TestePessoas {
 	@Test
@@ -45,7 +46,7 @@ public final class TestePessoas {
 			)
 		);
 		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd.dataSource());
-		pessoas.pessoa(
+		final Pessoa pessoa = pessoas.pessoa(
 			new Nome("Jason Bourne"),
 			new SimplesDocumentos(
 				new Cpf("57381117533"),
@@ -65,14 +66,32 @@ public final class TestePessoas {
 					new SimplesFone("83999231234", Tipo.CELULAR, Operadora.TIM)
 				)
 			)
-		);		
-		for (final Pessoa p : pessoas.todas()) {
-			System.out.println(new XmlFormat(
-				p.print(
-					new XmlMedia("pessoa")).toString()
-				).toString()
-			);			
-		}
+		);
+		MatcherAssert.assertThat(
+			XhtmlMatchers.xhtml(
+				pessoa.print(new XmlMedia("pessoa")).toString()
+			),
+			XhtmlMatchers.hasXPaths(
+				"/pessoa/id[text()='1']",
+				"/pessoa/nome[text()='Jason Bourne']",
+				"/pessoa/cpf[text()='57381117533']",
+				"/pessoa/rg[text()='62527362 SSP-PB']",
+				"/pessoa/sexo[text()='MASCULINO']",
+				"/pessoa/tratamento[text()='SENHOR']",
+				"/pessoa/logradouro[text()='Av Gov Torquato Nepomuceno Neves']",
+				"/pessoa/numero[text()='123']",
+				"/pessoa/complemento[text()='AP 101']",
+				"/pessoa/bairro[text()='Vila Madalena']",
+				"/pessoa/cidade[text()='São Paulo-SP']",
+				"/pessoa/cep[text()='48035120']",
+				"/pessoa/fone[text()='81988144321']",
+				"/pessoa/tipo[text()='CELULAR']",
+				"/pessoa/operadora[text()='OI']",
+				"/pessoa/fone[text()='81988144321']",
+				"/pessoa/tipo[text()='CELULAR']",
+				"/pessoa/operadora[text()='TIM']"
+			)
+		);
 		testebd.exec(
 			new SqlScript(
 				new ResourcePath(
@@ -98,7 +117,7 @@ public final class TestePessoas {
 			)
 		);
 		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd.dataSource());
-		final SqlPessoa jason = pessoas.pessoa(
+		final SqlPessoa pessoa = pessoas.pessoa(
 			new Nome("Jason Bourne"),
 			new SimplesDocumentos(
 				new Cpf("57381117533"),
@@ -119,17 +138,32 @@ public final class TestePessoas {
 				)
 			)
 		);
-		System.out.println(new XmlFormat(
-				jason.print(
-					new XmlMedia("pessoa")).toString()
-				).toString()
-			);			
-		jason.atualiza(new Nome("Jason M. Bourne"), jason.documentos());
-		System.out.println(new XmlFormat(
-				jason.print(
-					new XmlMedia("pessoa")).toString()
-				).toString()
-			);			
+		pessoa.atualiza(new Nome("Jason M. Bourne"), pessoa.documentos());		
+		MatcherAssert.assertThat(
+			XhtmlMatchers.xhtml(
+				pessoa.print(new XmlMedia("pessoa")).toString()
+			),
+			XhtmlMatchers.hasXPaths(
+				"/pessoa/id[text()='1']",
+				"/pessoa/nome[text()='Jason M. Bourne']",
+				"/pessoa/cpf[text()='57381117533']",
+				"/pessoa/rg[text()='62527362 SSP-PB']",
+				"/pessoa/sexo[text()='MASCULINO']",
+				"/pessoa/tratamento[text()='SENHOR']",
+				"/pessoa/logradouro[text()='Av Gov Torquato Nepomuceno Neves']",
+				"/pessoa/numero[text()='123']",
+				"/pessoa/complemento[text()='AP 101']",
+				"/pessoa/bairro[text()='Vila Madalena']",
+				"/pessoa/cidade[text()='São Paulo-SP']",
+				"/pessoa/cep[text()='48035120']",
+				"/pessoa/fone[text()='81988144321']",
+				"/pessoa/tipo[text()='CELULAR']",
+				"/pessoa/operadora[text()='OI']",
+				"/pessoa/fone[text()='81988144321']",
+				"/pessoa/tipo[text()='CELULAR']",
+				"/pessoa/operadora[text()='TIM']"
+			)
+		);		
 		testebd.exec(
 			new SqlScript(
 				new ResourcePath(
