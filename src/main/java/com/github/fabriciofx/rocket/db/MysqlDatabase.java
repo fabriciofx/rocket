@@ -28,7 +28,7 @@ public final class MysqlDatabase implements Database {
 			throws IOException {
 		this(
 			new Base(
-				new H2Url(database),
+				new MysqlUrl(database),
 				user
 			)
 		);
