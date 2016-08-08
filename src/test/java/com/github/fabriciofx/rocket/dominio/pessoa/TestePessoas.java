@@ -87,7 +87,7 @@ public final class TestePessoas {
 				"/pessoa/fone[text()='81988144321']",
 				"/pessoa/tipo[text()='CELULAR']",
 				"/pessoa/operadora[text()='OI']",
-				"/pessoa/fone[text()='81988144321']",
+				"/pessoa/fone[text()='83999231234']",
 				"/pessoa/tipo[text()='CELULAR']",
 				"/pessoa/operadora[text()='TIM']"
 			)
@@ -159,7 +159,7 @@ public final class TestePessoas {
 				"/pessoa/fone[text()='81988144321']",
 				"/pessoa/tipo[text()='CELULAR']",
 				"/pessoa/operadora[text()='OI']",
-				"/pessoa/fone[text()='81988144321']",
+				"/pessoa/fone[text()='83999231234']",
 				"/pessoa/tipo[text()='CELULAR']",
 				"/pessoa/operadora[text()='TIM']"
 			)
