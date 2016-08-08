@@ -94,7 +94,7 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 					new Complemento(rs.getString(7)),
 					new Bairro(rs.getString(8)),
 					new Cidade(rs.getString(9)),
-					new Cep(rs.getString(7))
+					new Cep(rs.getString(10))
 				),
 				new SqlFones(ds, id)
 			);
