@@ -33,6 +33,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Reader;
+import java.net.URI;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -41,6 +42,7 @@ import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.github.fabriciofx.rocket.misc.ResourcePath;
 import com.jcabi.log.Logger;
 
 /**
@@ -52,20 +54,24 @@ public final class SqlScript implements Script<Database> {
 	private static final String DELIMITER_LINE_REGEX = "(?i)DELIMITER.+";
 	private static final String DELIMITER_LINE_SPLIT_REGEX = "(?i)DELIMITER";
 
-	private transient final String filename;
+	private transient final URI uri;
 	private transient final boolean stopOnError;
 	private transient final boolean autoCommit;
 	private transient String delimiter = DEFAULT_DELIMITER;
 	private transient boolean fullLineDelimiter = false;
 
-	public SqlScript(final String filename) {
-		this(filename, false, true, DEFAULT_DELIMITER, false);
+	public SqlScript(final ResourcePath path) {
+		this(path.uri());
 	}
 	
-	public SqlScript(final String filename, final boolean autoCommit,
+	public SqlScript(final URI uri) {
+		this(uri, false, true, DEFAULT_DELIMITER, false);
+	}
+	
+	public SqlScript(final URI uri, final boolean autoCommit,
 			final boolean stopOnError, final String delimiter,
 			final boolean fullLineDelimiter) {
-		this.filename = filename;
+		this.uri = uri;
 		this.autoCommit = autoCommit;
 		this.stopOnError = stopOnError;
 		this.delimiter = delimiter;
@@ -82,7 +88,7 @@ public final class SqlScript implements Script<Database> {
 				if (originalAutoCommit != autoCommit) {
 					connection.setAutoCommit(autoCommit);
 				}
-				run(connection, new FileReader(new File(filename)));
+				run(connection, new FileReader(new File(uri)));
 			} finally {
 				connection.setAutoCommit(originalAutoCommit);
 			}
