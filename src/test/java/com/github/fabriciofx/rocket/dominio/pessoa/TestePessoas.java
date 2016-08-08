@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.H2Database;
+import com.github.fabriciofx.rocket.db.SqlScript;
+import com.github.fabriciofx.rocket.db.TestDatabase;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.endereco.SimplesEndereco;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Bairro;
@@ -26,14 +28,22 @@ import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Tratamento;
 import com.github.fabriciofx.rocket.media.XmlFormat;
 import com.github.fabriciofx.rocket.media.XmlMedia;
+import com.github.fabriciofx.rocket.misc.ResourcePath;
 
 public final class TestePessoas {
 	@Test
 	public void pessoa() throws IOException {
-		final Database testebd = new TestePessoaDatabase(
+		final Database testebd = new TestDatabase(
 			new H2Database("testebd")
 		);
-		testebd.init();
+		testebd.exec(
+			new SqlScript(
+				new ResourcePath(
+					"db",
+					"teste-pessoa-db-init.sql"
+				)
+			)
+		);
 		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd.dataSource());
 		pessoas.pessoa(
 			new Nome("Jason Bourne"),
@@ -63,15 +73,30 @@ public final class TestePessoas {
 				).toString()
 			);			
 		}
-		testebd.fini();
+		testebd.exec(
+			new SqlScript(
+				new ResourcePath(
+					TestePessoas.class,
+					"db",
+					"teste-pessoa-db-destroy.sql"
+				)
+			)
+		);
 	}
 	
 	@Test
 	public void alteraNome() throws IOException {
-		final Database testebd = new TestePessoaDatabase(
+		final Database testebd = new TestDatabase(
 				new H2Database("testebd")
-			);
-		testebd.init();
+		);
+		testebd.exec(
+			new SqlScript(
+				new ResourcePath(
+					"db",
+					"teste-pessoa-db-init.sql"
+				)
+			)
+		);
 		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd.dataSource());
 		final SqlPessoa jason = pessoas.pessoa(
 			new Nome("Jason Bourne"),
@@ -105,6 +130,14 @@ public final class TestePessoas {
 					new XmlMedia("pessoa")).toString()
 				).toString()
 			);			
-		testebd.fini();
+		testebd.exec(
+			new SqlScript(
+				new ResourcePath(
+					TestePessoas.class,
+					"db",
+					"teste-pessoa-db-destroy.sql"
+				)
+			)
+		);
 	}
 }
