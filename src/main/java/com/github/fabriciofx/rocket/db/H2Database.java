@@ -56,4 +56,9 @@ public final class H2Database implements Database {
 	public DataSource dataSource() throws IOException {
 		return base.dataSource();
 	}
+
+	@Override
+	public void exec(final SqlScript script) throws IOException {
+		script.exec(this);
+	}
 }

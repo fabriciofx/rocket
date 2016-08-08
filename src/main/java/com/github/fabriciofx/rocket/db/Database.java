@@ -12,4 +12,6 @@ public interface Database {
 	Url url();
 
 	DataSource dataSource() throws IOException;
+	
+	void exec(SqlScript script) throws IOException;
 }
