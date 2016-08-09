@@ -17,14 +17,14 @@ public final class H2Database implements Database {
 	
 	private final transient Base base;
 
-	public H2Database(final String database) throws IOException {
-		this(database, H2Database.Mode.EMBEDDED);
+	public H2Database(final String dbname) throws IOException {
+		this(dbname, H2Database.Mode.EMBEDDED);
 	}
 
-	public H2Database(final String database, final H2Database.Mode mode)
+	public H2Database(final String dbname, final H2Database.Mode mode)
 			throws IOException {
 		this(
-			database,
+			dbname,
 			mode,
 			new DefaultNamedUser(
 				new Nome("sa"),
@@ -33,9 +33,9 @@ public final class H2Database implements Database {
 		);
 	}
 
-	public H2Database(final String database, final H2Database.Mode mode,
+	public H2Database(final String dbname, final H2Database.Mode mode,
 			final NamedUser user) throws IOException {
-		this(new Base(new H2Url(database, mode), user));
+		this(new Base(new H2Url(dbname, mode), user));
 	}
 
 	public H2Database(final Base base) {

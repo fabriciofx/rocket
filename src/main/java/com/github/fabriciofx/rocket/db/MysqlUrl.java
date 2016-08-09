@@ -10,20 +10,20 @@ public final class MysqlUrl implements Url {
 
 	private final transient String host;
 	private final transient int port;
-	private final transient String database;
+	private final transient String dbname;
 
-	public MysqlUrl(final String database) {
-		this(DEFAULT_HOST, database);
+	public MysqlUrl(final String dbname) {
+		this(DEFAULT_HOST, dbname);
 	}
 
-	public MysqlUrl(final String host, final String database) {
-		this(host, DEFAULT_PORT, database);
+	public MysqlUrl(final String host, final String dbname) {
+		this(host, DEFAULT_PORT, dbname);
 	}
 
-	public MysqlUrl(final String host, final int port, final String database) {
+	public MysqlUrl(final String host, final int port, final String dbname) {
 		this.host = host;
 		this.port = port;
-		this.database = database;
+		this.dbname = dbname;
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public final class MysqlUrl implements Url {
 		return String.format("jdbc:mysql://%s:%d/%s",
 			new NotEmpty<String>(new NotNull<>()).valid(host),
 			new Positive<Integer>(new NotNull<>()).valid(port),
-			new NotNull<String>().valid(database)
+			new NotNull<String>().valid(dbname)
 		);
 	}
 }

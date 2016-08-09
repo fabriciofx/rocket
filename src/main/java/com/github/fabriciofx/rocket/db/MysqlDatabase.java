@@ -12,10 +12,10 @@ import com.github.fabriciofx.rocket.system.Password;
 public final class MysqlDatabase implements Database {
 	private final transient Base base;
 
-	public MysqlDatabase(final String database) throws IOException {
+	public MysqlDatabase(final String dbname) throws IOException {
 		this(
 			new Base(
-				new MysqlUrl(database),
+				new MysqlUrl(dbname),
 					new DefaultNamedUser(
 						new Nome("root"),
 						new Password("")
@@ -24,11 +24,11 @@ public final class MysqlDatabase implements Database {
 		);
 	}
 
-	public MysqlDatabase(final String database, final NamedUser user)
+	public MysqlDatabase(final String dbname, final NamedUser user)
 			throws IOException {
 		this(
 			new Base(
-				new MysqlUrl(database),
+				new MysqlUrl(dbname),
 				user
 			)
 		);
