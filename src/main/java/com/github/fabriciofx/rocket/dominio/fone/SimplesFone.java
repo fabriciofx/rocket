@@ -19,7 +19,7 @@ public final class SimplesFone implements Fone {
 	@Override
 	public Media print(final Media media) throws IOException {
 		return media
-				.with("fone", numero)
+				.with("numero", numero)
 				.with("tipo", tipo)
 				.with("operadora", operadora);
 	}
