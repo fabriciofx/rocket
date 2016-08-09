@@ -3,8 +3,6 @@ package com.github.fabriciofx.rocket.dominio.fone;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
@@ -12,17 +10,13 @@ import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlFone implements Fone {
-	private final transient DataSource ds;
+	private final transient Database db;
 	private final transient Id id;
 	private final transient String numero;
 
 	public SqlFone(final Database db, final Id id, final String numero)
 			throws IOException {
-		this(db.source(), id, numero);
-	}
-
-	public SqlFone(final DataSource ds, final Id id, final String numero) {
-		this.ds = ds;
+		this.db = db;
 		this.id = id;
 		this.numero = numero;
 	}
@@ -44,7 +38,7 @@ public final class SqlFone implements Fone {
 	public Tipo tipo() throws IOException {
 		try {
 			return Tipo.valueOf(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT tipo FROM fone WHERE id = ? "
 						+ "AND numero = ?")
 					.set(id)
@@ -60,7 +54,7 @@ public final class SqlFone implements Fone {
 	public Operadora operadora() throws IOException {
 		try {
 			return Operadora.valueOf(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT operadora FROM fone WHERE id = ? "
 						+ "AND numero = ?")
 					.set(id)
@@ -74,7 +68,7 @@ public final class SqlFone implements Fone {
 	
 	public void apaga() throws IOException {
 		try {
-			new JdbcSession(ds)
+			new JdbcSession(db.source())
 				.sql("DELETE FROM fone WHERE id = ? AND numero = ?")
 				.set(id)
 				.set(numero)
@@ -87,7 +81,7 @@ public final class SqlFone implements Fone {
 	public void atualiza(final String numero, final Tipo tipo,
 			final Operadora operadora) throws IOException {
 		try {
-			new JdbcSession(ds)
+			new JdbcSession(db.source())
 				.sql("UPDATE fone SET numero = ?, tipo = ?, operadora = ? "
 					+ "WHERE id = ?")
 				.set(numero)

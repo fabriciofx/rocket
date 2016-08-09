@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.endereco.ConstEndereco;
@@ -16,8 +14,8 @@ import com.github.fabriciofx.rocket.dominio.endereco.doc.Complemento;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Numero;
 import com.github.fabriciofx.rocket.dominio.fone.SqlFones;
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.Documentos;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.ConstDocumentos;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.Documentos;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
@@ -30,18 +28,14 @@ import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlPessoa implements Pessoa, Identificavel {
-	private final transient DataSource ds;
+	private final transient Database db;
 	private final transient Id id;
 
-	public SqlPessoa(final Database db, final Id id) throws IOException {
-		this(db.source(), id);
-	}
-	
-	public SqlPessoa(final DataSource ds, final Id id) {
-		this.ds = ds;
+	public SqlPessoa(final Database db, final Id id) {
+		this.db = db;
 		this.id = id;
 	}
-	
+		
 	@Override
 	public Id id() {
 		return id;
@@ -60,7 +54,7 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 	public Nome nome() throws IOException {
 		try {
 			return new Nome(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT nome FROM pessoa WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -73,7 +67,7 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 	@Override
 	public Documentos documentos() throws IOException {
 		try {
-			return new JdbcSession(ds)
+			return new JdbcSession(db.source())
 				.sql("SELECT cpf, rg, sexo, tratamento, logradouro, numero, "
 					+ "complemento, bairro, cidade, cep FROM pessoa "
 					+ "WHERE id = ?")
@@ -101,7 +95,7 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 					new Cidade(rs.getString(9)),
 					new Cep(rs.getString(10))
 				),
-				new SqlFones(ds, id)
+				new SqlFones(db, id)
 			);
 		}		
 	}
@@ -109,7 +103,7 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 	public void atualiza(final Nome nome, final Documentos documentos)
 			throws IOException {
 		try {
-			new JdbcSession(ds)
+			new JdbcSession(db.source())
 				.sql("UPDATE pessoa SET nome = ?, cpf = ?, rg = ?, sexo = ?, "
 						+ "tratamento = ?, logradouro = ?, numero = ?, "
 						+ "complemento = ?, bairro = ?, cidade = ?, cep = ? "

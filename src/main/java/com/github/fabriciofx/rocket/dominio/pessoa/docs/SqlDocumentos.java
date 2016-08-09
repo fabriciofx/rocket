@@ -3,8 +3,6 @@ package com.github.fabriciofx.rocket.dominio.pessoa.docs;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.endereco.SqlEndereco;
@@ -20,16 +18,12 @@ import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlDocumentos implements Documentos {
-	private final transient DataSource ds;
+	private final transient Database db;
 	private final transient Id id;
 
-	public SqlDocumentos(final Database db, final Id id) throws IOException {
-		this(db.source(), id);
-	}
-	
-	public SqlDocumentos(final DataSource ds, final Id id) {
+	public SqlDocumentos(final Database db, final Id id) {
+		this.db = db;
 		this.id = id;
-		this.ds = ds;
 	}
 
 	@Override
@@ -51,7 +45,7 @@ public final class SqlDocumentos implements Documentos {
 	public Cpf cpf() throws IOException {
 		try {
 			return new Cpf(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT cpf FROM pessoa WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -65,7 +59,7 @@ public final class SqlDocumentos implements Documentos {
 	public Rg rg() throws IOException {
 		try {
 			return new Rg(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT rg FROM pessoa WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -79,7 +73,7 @@ public final class SqlDocumentos implements Documentos {
 	public Sexo sexo() throws IOException {
 		try {
 			return Sexo.valueOf(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT sexo FROM pessoa WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -93,7 +87,7 @@ public final class SqlDocumentos implements Documentos {
 	public Tratamento tratamento() throws IOException {
 		try {
 			return Tratamento.valueOf(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT tratamento FROM pessoa WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -105,11 +99,11 @@ public final class SqlDocumentos implements Documentos {
 
 	@Override
 	public Endereco endereco() throws IOException {
-		return new SqlEndereco(ds, id);
+		return new SqlEndereco(db, id);
 	}
 
 	@Override
 	public Fones fones() throws IOException {
-		return new SqlFones(ds, id);
+		return new SqlFones(db, id);
 	}
 }

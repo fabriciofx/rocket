@@ -3,8 +3,6 @@ package com.github.fabriciofx.rocket.dominio.endereco;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Cep;
@@ -19,18 +17,14 @@ import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 
 public final class SqlEndereco implements Endereco, Identificavel {
-	private final transient DataSource ds;
+	private final transient Database db;
 	private final transient Id id;
 
-	public SqlEndereco(final Database db, final Id id) throws IOException {
-		this(db.source(), id);
-	}
-	
-	public SqlEndereco(final DataSource ds, final Id id) {
-		this.ds = ds;
+	public SqlEndereco(final Database db, final Id id) {
+		this.db = db;
 		this.id = id;
 	}
-	
+
 	@Override
 	public Id id() {
 		return id;
@@ -55,7 +49,7 @@ public final class SqlEndereco implements Endereco, Identificavel {
 	public Logradouro logradouro() throws IOException {
 		try {
 			return new Logradouro(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT logradouro FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -69,7 +63,7 @@ public final class SqlEndereco implements Endereco, Identificavel {
 	public Numero numero() throws IOException {
 		try {
 			return new Numero(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT numero FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -83,7 +77,7 @@ public final class SqlEndereco implements Endereco, Identificavel {
 	public Complemento complemento() throws IOException {
 		try {
 			return new Complemento(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT complemento FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -97,7 +91,7 @@ public final class SqlEndereco implements Endereco, Identificavel {
 	public Bairro bairro() throws IOException {
 		try {
 			return new Bairro(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT bairro FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -111,7 +105,7 @@ public final class SqlEndereco implements Endereco, Identificavel {
 	public Cidade cidade() throws IOException {
 		try {
 			return new Cidade(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT cidade FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -125,7 +119,7 @@ public final class SqlEndereco implements Endereco, Identificavel {
 	public Cep cep() throws IOException {
 		try {
 			return new Cep(
-				new JdbcSession(ds)
+				new JdbcSession(db.source())
 					.sql("SELECT cep FROM endereco WHERE id = ?")
 					.set(id)
 					.select(new SingleOutcome<String>(String.class))
@@ -139,7 +133,7 @@ public final class SqlEndereco implements Endereco, Identificavel {
 			final Complemento complemento, final Bairro bairro,
 			final Cidade cidade, final Cep cep) throws IOException {
 		try {
-			new JdbcSession(ds)
+			new JdbcSession(db.source())
 				.sql("UPDATE endereco SET logradouro = ?, numero = ?, "
 					+ "complemento = ?, bairro = ?, cidade = ?, cep = ? "
 					+ "WHERE id = ?")
