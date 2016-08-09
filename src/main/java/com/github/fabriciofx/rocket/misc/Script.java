@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.db;
+package com.github.fabriciofx.rocket.misc;
 
 import java.io.IOException;
 

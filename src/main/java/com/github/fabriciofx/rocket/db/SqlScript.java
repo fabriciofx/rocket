@@ -43,6 +43,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.github.fabriciofx.rocket.misc.ResourcePath;
+import com.github.fabriciofx.rocket.misc.Script;
 import com.jcabi.log.Logger;
 
 /**
