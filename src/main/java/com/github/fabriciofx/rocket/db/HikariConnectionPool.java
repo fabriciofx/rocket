@@ -22,7 +22,7 @@ public final class HikariConnectionPool implements ConnectionPool {
 	}
 
 	@Override
-	public DataSource dataSource() throws IOException {
+	public DataSource source() throws IOException {
 		return new HikariDataSource(config);
 	}
 

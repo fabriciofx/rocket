@@ -30,7 +30,7 @@ public final class Base {
 		return new NotNull<Url>().valid(url);
 	}
 
-	public DataSource dataSource() throws IOException {
-		return new NotNull<ConnectionPool>().valid(cp).dataSource();
+	public DataSource source() throws IOException {
+		return new NotNull<ConnectionPool>().valid(cp).source();
 	}
 }

@@ -24,8 +24,8 @@ public final class TestDatabase implements Database {
 	}
 
 	@Override
-	public DataSource dataSource() throws IOException {
-		return db.dataSource();
+	public DataSource source() throws IOException {
+		return db.source();
 	}
 
 	@Override

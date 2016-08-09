@@ -14,7 +14,7 @@ public final class Transaction {
 	}
 
 	public <T> T call(final Callable<T> callable) throws IOException {
-		final JdbcSession session = new JdbcSession(db.dataSource());
+		final JdbcSession session = new JdbcSession(db.source());
 		try {
 			session.autocommit(false);
 			session.sql("BEGIN TRANSACTION").execute();

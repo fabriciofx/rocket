@@ -49,8 +49,8 @@ public final class MysqlDatabase implements Database {
 	}
 
 	@Override
-	public DataSource dataSource() throws IOException {
-		return base.dataSource();
+	public DataSource source() throws IOException {
+		return base.source();
 	}
 
 	@Override

@@ -82,7 +82,7 @@ public final class SqlScript implements Script<Database> {
 	@Override
 	public void exec(final Database db) throws IOException {
 		try {
-			final Connection connection = db.dataSource().getConnection();
+			final Connection connection = db.source().getConnection();
 			final boolean originalAutoCommit = connection.getAutoCommit();
 			try {
 				if (originalAutoCommit != autoCommit) {
