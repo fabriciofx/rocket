@@ -50,7 +50,7 @@ public final class H2Url implements Url {
 					File.separator, new NotNull<String>().valid(database));
 			break;
 		case MEMORY:
-			url = String.format("jdbc:h2:mem:",
+			url = String.format("jdbc:h2:mem:DB_CLOSE_DELAY=-1",
 					new NotNull<String>().valid(database));
 			break;
 		case TCP:
