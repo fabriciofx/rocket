@@ -48,7 +48,7 @@ public final class SqlPessoas implements Pessoas<SqlPessoa> {
 				);
 			final Fones fones = new SqlFones(db, id);
 			for (final Fone f : documentos.fones().todos()) {
-				fones.salva(f.numero(), f.tipo(), f.operadora());	
+				fones.adiciona(f.numero(), f.tipo(), f.operadora());	
 			}
 			return new SqlPessoa(db, id);
 		} catch (final SQLException e) {

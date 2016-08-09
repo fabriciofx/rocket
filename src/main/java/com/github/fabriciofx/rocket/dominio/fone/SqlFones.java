@@ -43,7 +43,7 @@ public final class SqlFones implements Fones {
 	}
 	
 	@Override
-	public void salva(final String numero, final Tipo tipo,
+	public void adiciona(final String numero, final Tipo tipo,
 			final Operadora operadora) throws IOException {
 		try {
 			new JdbcSession(db.source())
