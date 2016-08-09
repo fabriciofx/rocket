@@ -27,7 +27,6 @@ import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Tratamento;
-import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.github.fabriciofx.rocket.misc.ResourcePath;
 import com.jcabi.matchers.XhtmlMatchers;
 
@@ -69,7 +68,7 @@ public final class TestePessoas {
 		);
 		MatcherAssert.assertThat(
 			XhtmlMatchers.xhtml(
-				pessoa.print(new XmlMedia("pessoa")).toString()
+				new XmlPessoa(pessoa)
 			),
 			XhtmlMatchers.hasXPaths(
 				"/pessoa/id[text()='1']",
@@ -141,7 +140,7 @@ public final class TestePessoas {
 		pessoa.atualiza(new Nome("Jason M. Bourne"), pessoa.documentos());		
 		MatcherAssert.assertThat(
 			XhtmlMatchers.xhtml(
-				pessoa.print(new XmlMedia("pessoa")).toString()
+				new XmlPessoa(pessoa)
 			),
 			XhtmlMatchers.hasXPaths(
 				"/pessoa/id[text()='1']",
