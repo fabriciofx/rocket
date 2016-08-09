@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.dominio.Nome;
-import com.github.fabriciofx.rocket.dominio.endereco.SimplesEndereco;
+import com.github.fabriciofx.rocket.dominio.endereco.ConstEndereco;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Cidade;
@@ -17,7 +17,7 @@ import com.github.fabriciofx.rocket.dominio.endereco.doc.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Numero;
 import com.github.fabriciofx.rocket.dominio.fone.SqlFones;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.Documentos;
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.SimplesDocumentos;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.ConstDocumentos;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
@@ -88,12 +88,12 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 	private class DocumentosMapping implements ListOutcome.Mapping<Documentos> {
 		@Override
 		public Documentos map(final ResultSet rs) throws SQLException {
-			return new SimplesDocumentos(
+			return new ConstDocumentos(
 				new Cpf(rs.getString(1)),
 				new Rg(rs.getString(2)),
 				Sexo.valueOf(rs.getString(3)),
 				Tratamento.valueOf(rs.getString(4)),
-				new SimplesEndereco(
+				new ConstEndereco(
 					new Logradouro(rs.getString(5)),
 					new Numero(rs.getString(6)),
 					new Complemento(rs.getString(7)),

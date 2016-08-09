@@ -9,7 +9,7 @@ import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.SqlScript;
 import com.github.fabriciofx.rocket.db.TestDatabase;
 import com.github.fabriciofx.rocket.dominio.Nome;
-import com.github.fabriciofx.rocket.dominio.endereco.SimplesEndereco;
+import com.github.fabriciofx.rocket.dominio.endereco.ConstEndereco;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Cidade;
@@ -19,9 +19,9 @@ import com.github.fabriciofx.rocket.dominio.endereco.doc.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Numero;
 import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
 import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
-import com.github.fabriciofx.rocket.dominio.fone.SimplesFone;
-import com.github.fabriciofx.rocket.dominio.fone.SimplesFones;
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.SimplesDocumentos;
+import com.github.fabriciofx.rocket.dominio.fone.ConstFone;
+import com.github.fabriciofx.rocket.dominio.fone.ConstFones;
+import com.github.fabriciofx.rocket.dominio.pessoa.docs.ConstDocumentos;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
@@ -44,12 +44,12 @@ public final class TestePessoas {
 		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd);
 		final Pessoa pessoa = pessoas.pessoa(
 			new Nome("Jason Bourne"),
-			new SimplesDocumentos(
+			new ConstDocumentos(
 				new Cpf("57381117533"),
 				new Rg("62527362"),
 				Sexo.MASCULINO,
 				Tratamento.SENHOR,
-				new SimplesEndereco(
+				new ConstEndereco(
 					new Logradouro("Av Gov Torquato Nepomuceno Neves"),
 					new Numero("123"),
 					new Complemento("AP 101"),
@@ -57,9 +57,9 @@ public final class TestePessoas {
 					new Cidade("São Paulo", Estado.SP),
 					new Cep("48035120")
 				),
-				new SimplesFones(
-					new SimplesFone("81988144321", Tipo.CELULAR, Operadora.OI),
-					new SimplesFone("83999231234", Tipo.CELULAR, Operadora.TIM)
+				new ConstFones(
+					new ConstFone("81988144321", Tipo.CELULAR, Operadora.OI),
+					new ConstFone("83999231234", Tipo.CELULAR, Operadora.TIM)
 				)
 			)
 		);
@@ -104,12 +104,12 @@ public final class TestePessoas {
 		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd);
 		final SqlPessoa pessoa = pessoas.pessoa(
 			new Nome("Jason Bourne"),
-			new SimplesDocumentos(
+			new ConstDocumentos(
 				new Cpf("57381117533"),
 				new Rg("62527362"),
 				Sexo.MASCULINO,
 				Tratamento.SENHOR,
-				new SimplesEndereco(
+				new ConstEndereco(
 					new Logradouro("Av Gov Torquato Nepomuceno Neves"),
 					new Numero("123"),
 					new Complemento("AP 101"),
@@ -117,9 +117,9 @@ public final class TestePessoas {
 					new Cidade("São Paulo", Estado.SP),
 					new Cep("48035120")
 				),
-				new SimplesFones(
-					new SimplesFone("81988144321", Tipo.CELULAR, Operadora.OI),
-					new SimplesFone("83999231234", Tipo.CELULAR, Operadora.TIM)
+				new ConstFones(
+					new ConstFone("81988144321", Tipo.CELULAR, Operadora.OI),
+					new ConstFone("83999231234", Tipo.CELULAR, Operadora.TIM)
 				)
 			)
 		);

@@ -10,7 +10,7 @@ import com.github.fabriciofx.rocket.dominio.endereco.doc.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Numero;
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class SimplesEndereco implements Endereco {
+public final class ConstEndereco implements Endereco {
 	private final transient Logradouro logradouro;
 	private final transient Numero numero;
 	private final transient Complemento complemento;
@@ -18,7 +18,7 @@ public final class SimplesEndereco implements Endereco {
 	private final transient Cidade cidade;
 	private final transient Cep cep;
 
-	public SimplesEndereco(final Logradouro logradouro, final Numero numero,
+	public ConstEndereco(final Logradouro logradouro, final Numero numero,
 			final Complemento complemento, final Bairro bairro,
 			final Cidade cidade, final Cep cep) {
 		this.logradouro = logradouro;

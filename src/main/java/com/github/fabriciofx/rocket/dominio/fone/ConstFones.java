@@ -10,14 +10,14 @@ import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
 import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class SimplesFones implements Fones {
+public final class ConstFones implements Fones {
 	private final transient List<Fone> fones;
 	
-	public SimplesFones(final Fone... fones) {
+	public ConstFones(final Fone... fones) {
 		this(Arrays.asList(fones));
 	}
 	
-	public SimplesFones(final List<Fone> fones) {
+	public ConstFones(final List<Fone> fones) {
 		this.fones = new ArrayList<>(fones);
 	}
 	
@@ -38,6 +38,6 @@ public final class SimplesFones implements Fones {
 	@Override
 	public void salva(final String numero, final Tipo tipo,
 			final Operadora operadora) throws IOException {
-		fones.add(new SimplesFone(numero, tipo, operadora));
+		fones.add(new ConstFone(numero, tipo, operadora));
 	}
 }

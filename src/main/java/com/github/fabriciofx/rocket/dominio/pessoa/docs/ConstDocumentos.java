@@ -10,7 +10,7 @@ import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Tratamento;
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class SimplesDocumentos implements Documentos {
+public final class ConstDocumentos implements Documentos {
 	private final transient Cpf cpf;
 	private final transient Rg rg;
 	private final transient Sexo sexo;
@@ -18,7 +18,7 @@ public final class SimplesDocumentos implements Documentos {
 	private final transient Endereco endereco;
 	private final transient Fones fones;
 
-	public SimplesDocumentos(final Cpf cpf, final Rg rg, final Sexo sexo,
+	public ConstDocumentos(final Cpf cpf, final Rg rg, final Sexo sexo,
 			final Tratamento tratamento, final Endereco endereco,
 			final Fones fones) {
 				this.cpf = cpf;
