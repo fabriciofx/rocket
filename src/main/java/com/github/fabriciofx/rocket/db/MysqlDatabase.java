@@ -10,11 +10,11 @@ import com.github.fabriciofx.rocket.system.NamedUser;
 import com.github.fabriciofx.rocket.system.Password;
 
 public final class MysqlDatabase implements Database {
-	private final transient Base base;
+	private final transient Config config;
 
 	public MysqlDatabase(final String dbname) throws IOException {
 		this(
-			new Base(
+			new Config(
 				new MysqlUrl(dbname),
 					new DefaultNamedUser(
 						new Nome("root"),
@@ -27,30 +27,30 @@ public final class MysqlDatabase implements Database {
 	public MysqlDatabase(final String dbname, final NamedUser user)
 			throws IOException {
 		this(
-			new Base(
+			new Config(
 				new MysqlUrl(dbname),
 				user
 			)
 		);
 	}
 
-	public MysqlDatabase(final Base db) {
-		this.base = db;
+	public MysqlDatabase(final Config config) {
+		this.config = config;
 	}
 
 	@Override
 	public NamedUser user() {
-		return base.user();
+		return config.user();
 	}
 
 	@Override
 	public Url url() {
-		return base.url();
+		return config.url();
 	}
 
 	@Override
 	public DataSource source() throws IOException {
-		return base.source();
+		return config.source();
 	}
 
 	@Override

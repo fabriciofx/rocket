@@ -7,16 +7,16 @@ import javax.sql.DataSource;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.system.NamedUser;
 
-public final class Base {
+public final class Config {
 	private final transient ConnectionPool cp;
 	private final transient Url url;
 	private final transient NamedUser user;
 
-	public Base(final Url url, final NamedUser user) throws IOException {
+	public Config(final Url url, final NamedUser user) throws IOException {
 		this(new HikariConnectionPool(url, user), url, user);
 	}
 
-	public Base(final ConnectionPool cp, final Url url, final NamedUser user) {
+	public Config(final ConnectionPool cp, final Url url, final NamedUser user) {
 		this.cp = cp;
 		this.url = url;
 		this.user = user;

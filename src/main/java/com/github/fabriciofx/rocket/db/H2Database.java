@@ -15,7 +15,7 @@ public final class H2Database implements Database {
 		EMBEDDED, MEMORY, TCP;
 	}
 	
-	private final transient Base base;
+	private final transient Config config;
 
 	public H2Database(final String dbname) throws IOException {
 		this(dbname, H2Database.Mode.EMBEDDED);
@@ -35,26 +35,26 @@ public final class H2Database implements Database {
 
 	public H2Database(final String dbname, final H2Database.Mode mode,
 			final NamedUser user) throws IOException {
-		this(new Base(new H2Url(dbname, mode), user));
+		this(new Config(new H2Url(dbname, mode), user));
 	}
 
-	public H2Database(final Base base) {
-		this.base = base;
+	public H2Database(final Config config) {
+		this.config = config;
 	}
 
 	@Override
 	public NamedUser user() {
-		return base.user();
+		return config.user();
 	}
 
 	@Override
 	public Url url() {
-		return base.url();
+		return config.url();
 	}
 
 	@Override
 	public DataSource source() throws IOException {
-		return base.source();
+		return config.source();
 	}
 
 	@Override
