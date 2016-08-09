@@ -2,8 +2,6 @@ package com.github.fabriciofx.rocket.dominio.fone;
 
 import java.io.IOException;
 
-import com.github.fabriciofx.rocket.media.XmlFormat;
-
 public final class XmlFones {
 	private final transient Fones origem;
 	
@@ -20,7 +18,7 @@ public final class XmlFones {
 				sb.append(f.toString());
 			}
 			sb.append("</fones>");
-			return new XmlFormat(sb.toString()).toString();
+			return sb.toString();
 		} catch (final IOException e) {
 			throw new RuntimeException(e);
 		}

@@ -2,7 +2,6 @@ package com.github.fabriciofx.rocket.dominio.pessoa.docs;
 
 import java.io.IOException;
 
-import com.github.fabriciofx.rocket.media.XmlFormat;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 
 public final class XmlDocumentos {
@@ -15,11 +14,7 @@ public final class XmlDocumentos {
 	@Override
 	public String toString() {
 		try {
-			return new XmlFormat(
-				origem.print(
-					new XmlMedia("documentos")
-				).toString()
-			).toString();
+			return origem.print(new XmlMedia("documentos")).toString();
 		} catch (final IOException e) {
 			throw new RuntimeException(e);
 		}
