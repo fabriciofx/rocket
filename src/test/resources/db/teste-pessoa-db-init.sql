@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS pessoa (
 );
 -- Cria a tabela fone
 --
--- A relação entre as tabelas 'fone' e 'pessoa' é de N:1 (uma pessoa possui
+-- A relação entre as tabelas 'pessoa' e 'fone' é de 1:N (uma pessoa possui
 -- vários fones)
 CREATE TABLE IF NOT EXISTS fone (
 	id BIGINT NOT NULL,
