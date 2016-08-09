@@ -6,11 +6,12 @@ import com.github.fabriciofx.rocket.media.Printer;
 
 public interface Fone extends Printer {
 	enum Tipo {
-		CELULAR, FIXO, RADIO;
+		CELULAR, FIXO, RADIO, DESCONHECIDO;
 	}
 
 	enum Operadora {
-		CLARO, OI, TIM, VIVO;
+		TIM, OI, CLARO, AEIOU, GVT, EMBRATEL, TELEFONICA, NEXTEL, VIVO,
+		DESCONHECIDO;
 	}
 
 	String numero() throws IOException;
