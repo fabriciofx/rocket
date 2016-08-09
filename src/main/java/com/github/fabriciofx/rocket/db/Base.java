@@ -13,7 +13,7 @@ public final class Base {
 	private final transient NamedUser user;
 
 	public Base(final Url url, final NamedUser user) throws IOException {
-		this(new HikariConnectionPool(url.string(), user), url, user);
+		this(new HikariConnectionPool(url, user), url, user);
 	}
 
 	public Base(final ConnectionPool cp, final Url url, final NamedUser user) {
