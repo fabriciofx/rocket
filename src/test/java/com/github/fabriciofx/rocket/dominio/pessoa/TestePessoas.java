@@ -6,7 +6,6 @@ import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.db.Database;
-import com.github.fabriciofx.rocket.db.H2Database;
 import com.github.fabriciofx.rocket.db.SqlScript;
 import com.github.fabriciofx.rocket.db.TestDatabase;
 import com.github.fabriciofx.rocket.dominio.Nome;
@@ -33,9 +32,7 @@ import com.jcabi.matchers.XhtmlMatchers;
 public final class TestePessoas {
 	@Test
 	public void pessoa() throws IOException {
-		final Database testebd = new TestDatabase(
-			new H2Database("testebd")
-		);
+		final Database testebd = new TestDatabase("testebd");
 		testebd.exec(
 			new SqlScript(
 				new ResourcePath(
@@ -71,7 +68,7 @@ public final class TestePessoas {
 				new XmlPessoa(pessoa)
 			),
 			XhtmlMatchers.hasXPaths(
-				"/pessoa/id[text()='1']",
+				"/pessoa/id",
 				"/pessoa/nome[text()='Jason Bourne']",
 				"/pessoa/cpf[text()='57381117533']",
 				"/pessoa/rg[text()='62527362 SSP-PB']",
@@ -91,22 +88,11 @@ public final class TestePessoas {
 				"/pessoa/operadora[text()='TIM']"
 			)
 		);
-		testebd.exec(
-			new SqlScript(
-				new ResourcePath(
-					TestePessoas.class,
-					"db",
-					"teste-pessoa-db-destroy.sql"
-				)
-			)
-		);
 	}
 	
 	@Test
 	public void alteraNome() throws IOException {
-		final Database testebd = new TestDatabase(
-				new H2Database("testebd")
-		);
+		final Database testebd = new TestDatabase("testebd");
 		testebd.exec(
 			new SqlScript(
 				new ResourcePath(
@@ -143,7 +129,7 @@ public final class TestePessoas {
 				new XmlPessoa(pessoa)
 			),
 			XhtmlMatchers.hasXPaths(
-				"/pessoa/id[text()='1']",
+				"/pessoa/id",
 				"/pessoa/nome[text()='Jason M. Bourne']",
 				"/pessoa/cpf[text()='57381117533']",
 				"/pessoa/rg[text()='62527362 SSP-PB']",
@@ -163,14 +149,5 @@ public final class TestePessoas {
 				"/pessoa/operadora[text()='TIM']"
 			)
 		);		
-		testebd.exec(
-			new SqlScript(
-				new ResourcePath(
-					TestePessoas.class,
-					"db",
-					"teste-pessoa-db-destroy.sql"
-				)
-			)
-		);
 	}
 }
