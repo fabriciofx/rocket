@@ -38,6 +38,6 @@ public final class ConstFones implements Fones {
 	@Override
 	public void adiciona(final String numero, final Tipo tipo,
 			final Operadora operadora) throws IOException {
-		fones.add(new ConstFone(numero, tipo, operadora));
+		throw new UnsupportedOperationException("#adiciona()"); 
 	}
 }
