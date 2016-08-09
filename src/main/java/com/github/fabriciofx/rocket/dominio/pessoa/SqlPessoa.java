@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.endereco.SimplesEndereco;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Bairro;
@@ -32,6 +33,10 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 	private final transient DataSource ds;
 	private final transient Id id;
 
+	public SqlPessoa(final Database db, final Id id) throws IOException {
+		this(db.source(), id);
+	}
+	
 	public SqlPessoa(final DataSource ds, final Id id) {
 		this.ds = ds;
 		this.id = id;

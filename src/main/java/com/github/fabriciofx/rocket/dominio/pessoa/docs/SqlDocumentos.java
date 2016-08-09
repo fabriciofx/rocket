@@ -5,14 +5,15 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import com.github.fabriciofx.rocket.dominio.endereco.SqlEndereco;
+import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
+import com.github.fabriciofx.rocket.dominio.endereco.SqlEndereco;
+import com.github.fabriciofx.rocket.dominio.fone.Fones;
 import com.github.fabriciofx.rocket.dominio.fone.SqlFones;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Tratamento;
-import com.github.fabriciofx.rocket.dominio.fone.Fones;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
@@ -22,6 +23,10 @@ public final class SqlDocumentos implements Documentos {
 	private final transient DataSource ds;
 	private final transient Id id;
 
+	public SqlDocumentos(final Database db, final Id id) throws IOException {
+		this(db.source(), id);
+	}
+	
 	public SqlDocumentos(final DataSource ds, final Id id) {
 		this.id = id;
 		this.ds = ds;

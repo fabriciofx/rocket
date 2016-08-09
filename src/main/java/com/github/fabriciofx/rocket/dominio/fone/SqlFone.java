@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
@@ -14,7 +15,12 @@ public final class SqlFone implements Fone {
 	private final transient DataSource ds;
 	private final transient Id id;
 	private final transient String numero;
-	
+
+	public SqlFone(final Database db, final Id id, final String numero)
+			throws IOException {
+		this(db.source(), id, numero);
+	}
+
 	public SqlFone(final DataSource ds, final Id id, final String numero) {
 		this.ds = ds;
 		this.id = id;

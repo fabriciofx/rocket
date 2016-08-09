@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
 import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.id.Id;
@@ -19,6 +20,10 @@ import com.jcabi.jdbc.SingleOutcome;
 public final class SqlFones implements Fones {
 	private final transient DataSource ds;
 	private final transient Id id;
+	
+	public SqlFones(final Database db, final Id id) throws IOException {
+		this(db.source(), id);
+	}
 	
 	public SqlFones(final DataSource ds, final Id id) {
 		this.ds = ds;

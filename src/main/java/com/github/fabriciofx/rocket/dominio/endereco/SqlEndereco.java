@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Bairro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Cep;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Cidade;
@@ -21,6 +22,10 @@ public final class SqlEndereco implements Endereco, Identificavel {
 	private final transient DataSource ds;
 	private final transient Id id;
 
+	public SqlEndereco(final Database db, final Id id) throws IOException {
+		this(db.source(), id);
+	}
+	
 	public SqlEndereco(final DataSource ds, final Id id) {
 		this.ds = ds;
 		this.id = id;

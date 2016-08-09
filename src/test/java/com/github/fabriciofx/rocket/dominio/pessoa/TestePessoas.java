@@ -41,7 +41,7 @@ public final class TestePessoas {
 				)
 			)
 		);
-		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd.source());
+		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd);
 		final Pessoa pessoa = pessoas.pessoa(
 			new Nome("Jason Bourne"),
 			new SimplesDocumentos(
@@ -101,7 +101,7 @@ public final class TestePessoas {
 				)
 			)
 		);
-		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd.source());
+		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd);
 		final SqlPessoa pessoa = pessoas.pessoa(
 			new Nome("Jason Bourne"),
 			new SimplesDocumentos(

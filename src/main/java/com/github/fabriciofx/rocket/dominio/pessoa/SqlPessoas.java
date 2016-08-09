@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.fone.Fone;
 import com.github.fabriciofx.rocket.dominio.fone.Fones;
@@ -21,6 +22,10 @@ import com.jcabi.jdbc.SingleOutcome;
 public final class SqlPessoas implements Pessoas<SqlPessoa> {
 	private final transient DataSource ds;
 
+	public SqlPessoas(final Database db) throws IOException {
+		this(db.source());
+	}
+	
 	public SqlPessoas(final DataSource ds) {
 		this.ds = ds;
 	}
