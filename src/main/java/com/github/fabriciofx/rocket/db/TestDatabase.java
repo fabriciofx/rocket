@@ -41,7 +41,7 @@ public final class TestDatabase implements Database {
 		try {
 			return new H2Database(dbname, H2Database.Mode.MEMORY);
 		} catch (final IOException e) {
-			throw new IllegalArgumentException(dbname);
+			throw new IllegalArgumentException(e);
 		}
 	}
 }
