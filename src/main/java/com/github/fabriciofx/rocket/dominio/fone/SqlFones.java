@@ -42,7 +42,6 @@ public final class SqlFones implements Fones {
 		return todos;
 	}
 	
-	@Override
 	public void adiciona(final String numero, final Tipo tipo,
 			final Operadora operadora) throws IOException {
 		try {

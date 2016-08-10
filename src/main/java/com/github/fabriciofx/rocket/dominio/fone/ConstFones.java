@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
-import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class ConstFones implements Fones {
@@ -33,11 +31,5 @@ public final class ConstFones implements Fones {
 	@Override
 	public List<Fone> todos() throws IOException {
 		return Collections.unmodifiableList(fones);
-	}
-
-	@Override
-	public void adiciona(final String numero, final Tipo tipo,
-			final Operadora operadora) throws IOException {
-		throw new UnsupportedOperationException("#adiciona()"); 
 	}
 }

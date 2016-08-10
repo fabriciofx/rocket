@@ -46,9 +46,9 @@ public final class SqlPessoas implements Pessoas<SqlPessoa> {
 					.set(documentos.endereco().cep())
 					.insert(SingleOutcome.LAST_INSERT_ID)
 				);
-			final Fones fs = new SqlFones(db, id);
+			final SqlFones sqlFones = new SqlFones(db, id);
 			for (final Fone f : fones.todos()) {
-				fs.adiciona(f.numero(), f.tipo(), f.operadora());	
+				sqlFones.adiciona(f.numero(), f.tipo(), f.operadora());	
 			}
 			return new SqlPessoa(db, id);
 		} catch (final SQLException e) {
