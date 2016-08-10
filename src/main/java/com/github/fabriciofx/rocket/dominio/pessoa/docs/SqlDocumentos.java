@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.endereco.SqlEndereco;
-import com.github.fabriciofx.rocket.dominio.fone.Fones;
-import com.github.fabriciofx.rocket.dominio.fone.SqlFones;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
@@ -28,13 +26,11 @@ public final class SqlDocumentos implements Documentos {
 
 	@Override
 	public Media print(final Media media) throws IOException {
-		return fones().print(
-			endereco().print(
-				tratamento().print(
-					sexo().print(
-						rg().print(
-							cpf().print(media)
-						)
+		return endereco().print(
+			tratamento().print(
+				sexo().print(
+					rg().print(
+						cpf().print(media)
 					)
 				)
 			)
@@ -100,10 +96,5 @@ public final class SqlDocumentos implements Documentos {
 	@Override
 	public Endereco endereco() throws IOException {
 		return new SqlEndereco(db, id);
-	}
-
-	@Override
-	public Fones fones() throws IOException {
-		return new SqlFones(db, id);
 	}
 }

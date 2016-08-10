@@ -3,7 +3,6 @@ package com.github.fabriciofx.rocket.dominio.pessoa.docs;
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
-import com.github.fabriciofx.rocket.dominio.fone.Fones;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
@@ -20,6 +19,4 @@ public interface Documentos extends Printer {
 	Tratamento tratamento() throws IOException;
 	
 	Endereco endereco() throws IOException;
-	
-	Fones fones() throws IOException;
 }

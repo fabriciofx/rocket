@@ -25,8 +25,8 @@ public final class SqlPessoas implements Pessoas<SqlPessoa> {
 	}
 	
 	@Override
-	public SqlPessoa pessoa(final Nome nome, final Documentos documentos)
-			throws IOException {
+	public SqlPessoa pessoa(final Nome nome, final Documentos documentos,
+		final Fones fones) throws IOException {
 		try {
 			final Id id = new NumId(
 				new JdbcSession(db.source())
@@ -46,9 +46,9 @@ public final class SqlPessoas implements Pessoas<SqlPessoa> {
 					.set(documentos.endereco().cep())
 					.insert(SingleOutcome.LAST_INSERT_ID)
 				);
-			final Fones fones = new SqlFones(db, id);
-			for (final Fone f : documentos.fones().todos()) {
-				fones.adiciona(f.numero(), f.tipo(), f.operadora());	
+			final Fones fs = new SqlFones(db, id);
+			for (final Fone f : fones.todos()) {
+				fs.adiciona(f.numero(), f.tipo(), f.operadora());	
 			}
 			return new SqlPessoa(db, id);
 		} catch (final SQLException e) {

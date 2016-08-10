@@ -17,10 +17,10 @@ import com.github.fabriciofx.rocket.dominio.endereco.doc.Complemento;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Estado;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Numero;
-import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
-import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.dominio.fone.ConstFone;
 import com.github.fabriciofx.rocket.dominio.fone.ConstFones;
+import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
+import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.ConstDocumentos;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
@@ -56,11 +56,11 @@ public final class TestePessoas {
 					new Bairro("Vila Madalena"),
 					new Cidade("São Paulo", Estado.SP),
 					new Cep("48035120")
-				),
-				new ConstFones(
-					new ConstFone("81988144321", Tipo.CELULAR, Operadora.OI),
-					new ConstFone("83999231234", Tipo.CELULAR, Operadora.TIM)
 				)
+			),
+			new ConstFones(
+				new ConstFone("81988144321", Tipo.CELULAR, Operadora.OI),
+				new ConstFone("83999231234", Tipo.CELULAR, Operadora.TIM)
 			)
 		);
 		MatcherAssert.assertThat(
@@ -116,11 +116,11 @@ public final class TestePessoas {
 					new Bairro("Vila Madalena"),
 					new Cidade("São Paulo", Estado.SP),
 					new Cep("48035120")
-				),
-				new ConstFones(
-					new ConstFone("81988144321", Tipo.CELULAR, Operadora.OI),
-					new ConstFone("83999231234", Tipo.CELULAR, Operadora.TIM)
 				)
+			),
+			new ConstFones(
+				new ConstFone("81988144321", Tipo.CELULAR, Operadora.OI),
+				new ConstFone("83999231234", Tipo.CELULAR, Operadora.TIM)
 			)
 		);
 		pessoa.atualiza(new Nome("Jason M. Bourne"), pessoa.documentos());		

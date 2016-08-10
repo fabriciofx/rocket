@@ -3,7 +3,6 @@ package com.github.fabriciofx.rocket.dominio.pessoa.docs;
 import java.io.IOException;
 
 import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
-import com.github.fabriciofx.rocket.dominio.fone.Fones;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
@@ -16,28 +15,23 @@ public final class ConstDocumentos implements Documentos {
 	private final transient Sexo sexo;
 	private final transient Tratamento tratamento;
 	private final transient Endereco endereco;
-	private final transient Fones fones;
 
 	public ConstDocumentos(final Cpf cpf, final Rg rg, final Sexo sexo,
-			final Tratamento tratamento, final Endereco endereco,
-			final Fones fones) {
+			final Tratamento tratamento, final Endereco endereco) {
 				this.cpf = cpf;
 				this.rg = rg;
 				this.sexo = sexo;
 				this.tratamento = tratamento;
 				this.endereco = endereco;
-				this.fones = fones;
 	}
 	
 	@Override
 	public Media print(final Media media) throws IOException {
-		return fones.print(
-			endereco.print(
-				tratamento.print(
-					sexo.print(
-						rg.print(
-							cpf.print(media)
-						)
+		return endereco.print(
+			tratamento.print(
+				sexo.print(
+					rg.print(
+						cpf.print(media)
 					)
 				)
 			)
@@ -67,10 +61,5 @@ public final class ConstDocumentos implements Documentos {
 	@Override
 	public Endereco endereco() throws IOException {
 		return endereco;
-	}
-
-	@Override
-	public Fones fones() throws IOException {
-		return fones;
 	}
 }

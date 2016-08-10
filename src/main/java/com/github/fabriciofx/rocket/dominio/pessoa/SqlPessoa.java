@@ -13,6 +13,7 @@ import com.github.fabriciofx.rocket.dominio.endereco.doc.Cidade;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Complemento;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Logradouro;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Numero;
+import com.github.fabriciofx.rocket.dominio.fone.Fones;
 import com.github.fabriciofx.rocket.dominio.fone.SqlFones;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.ConstDocumentos;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.Documentos;
@@ -43,9 +44,11 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 		
 	@Override
 	public Media print(final Media media) throws IOException {
-		return documentos().print(
+		return fones().print(
+			documentos().print(
 				nome().print(
 					media.with("id", id)
+				)
 			)
 		);
 	}
@@ -94,8 +97,7 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 					new Bairro(rs.getString(8)),
 					new Cidade(rs.getString(9)),
 					new Cep(rs.getString(10))
-				),
-				new SqlFones(db, id)
+				)
 			);
 		}		
 	}
@@ -124,5 +126,10 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}
+	}
+
+	@Override
+	public Fones fones() throws IOException {
+		return new SqlFones(db, id);
 	}
 }
