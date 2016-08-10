@@ -42,6 +42,12 @@ public final class SqlFones implements Fones {
 		return todos;
 	}
 	
+	public void adiciona(final Fones fones) throws IOException {
+		for (final Fone f : fones.todos()) {
+			adiciona(f.numero(), f.tipo(), f.operadora());
+		}
+	}
+	
 	public void adiciona(final String numero, final Tipo tipo,
 			final Operadora operadora) throws IOException {
 		try {

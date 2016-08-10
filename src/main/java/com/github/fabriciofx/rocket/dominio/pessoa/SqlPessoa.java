@@ -23,6 +23,7 @@ import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Tratamento;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.id.Identificavel;
+import com.github.fabriciofx.rocket.id.NumId;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
@@ -81,27 +82,39 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 			throw new IOException(e);
 		}				
 	}
-	
-	private class DocumentosMapping implements ListOutcome.Mapping<Documentos> {
-		@Override
-		public Documentos map(final ResultSet rs) throws SQLException {
-			return new ConstDocumentos(
-				new Cpf(rs.getString(1)),
-				new Rg(rs.getString(2)),
-				Sexo.valueOf(rs.getString(3)),
-				Tratamento.valueOf(rs.getString(4)),
-				new ConstEndereco(
-					new Logradouro(rs.getString(5)),
-					new Numero(rs.getString(6)),
-					new Complemento(rs.getString(7)),
-					new Bairro(rs.getString(8)),
-					new Cidade(rs.getString(9)),
-					new Cep(rs.getString(10))
-				)
-			);
-		}		
-	}
 
+	@Override
+	public Fones fones() throws IOException {
+		return new SqlFones(db, id);
+	}
+		
+	public Id adiciona(final Nome nome, final Documentos documentos)
+			throws IOException {
+		try {
+			final Id id = new NumId(
+				new JdbcSession(db.source())
+					.sql("INSERT INTO pessoa (nome, cpf, rg, sexo, tratamento, "
+						+ "logradouro, numero, complemento, bairro, cidade, "
+						+ "cep) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+					.set(nome)
+					.set(documentos.cpf())
+					.set(documentos.rg())
+					.set(documentos.sexo())
+					.set(documentos.tratamento())
+					.set(documentos.endereco().logradouro())
+					.set(documentos.endereco().numero())
+					.set(documentos.endereco().complemento())
+					.set(documentos.endereco().bairro())
+					.set(documentos.endereco().cidade())
+					.set(documentos.endereco().cep())
+					.insert(SingleOutcome.LAST_INSERT_ID)
+				);
+			return id;
+		} catch (final SQLException e) {
+			throw new IOException(e);
+		}
+	}
+	
 	public void atualiza(final Nome nome, final Documentos documentos)
 			throws IOException {
 		try {
@@ -128,8 +141,23 @@ public final class SqlPessoa implements Pessoa, Identificavel {
 		}
 	}
 
-	@Override
-	public Fones fones() throws IOException {
-		return new SqlFones(db, id);
-	}
+	private class DocumentosMapping implements ListOutcome.Mapping<Documentos> {
+		@Override
+		public Documentos map(final ResultSet rs) throws SQLException {
+			return new ConstDocumentos(
+				new Cpf(rs.getString(1)),
+				new Rg(rs.getString(2)),
+				Sexo.valueOf(rs.getString(3)),
+				Tratamento.valueOf(rs.getString(4)),
+				new ConstEndereco(
+					new Logradouro(rs.getString(5)),
+					new Numero(rs.getString(6)),
+					new Complemento(rs.getString(7)),
+					new Bairro(rs.getString(8)),
+					new Cidade(rs.getString(9)),
+					new Cep(rs.getString(10))
+				)
+			);
+		}		
+	}	
 }
