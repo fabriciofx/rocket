@@ -80,10 +80,10 @@ public final class TestePessoas {
 				"/pessoa/bairro[text()='Vila Madalena']",
 				"/pessoa/cidade[text()='São Paulo-SP']",
 				"/pessoa/cep[text()='48035120']",
-				"/pessoa/fone[text()='81988144321']",
+				"/pessoa/numero[text()='81988144321']",
 				"/pessoa/tipo[text()='CELULAR']",
 				"/pessoa/operadora[text()='OI']",
-				"/pessoa/fone[text()='83999231234']",
+				"/pessoa/numero[text()='83999231234']",
 				"/pessoa/tipo[text()='CELULAR']",
 				"/pessoa/operadora[text()='TIM']"
 			)
@@ -141,10 +141,10 @@ public final class TestePessoas {
 				"/pessoa/bairro[text()='Vila Madalena']",
 				"/pessoa/cidade[text()='São Paulo-SP']",
 				"/pessoa/cep[text()='48035120']",
-				"/pessoa/fone[text()='81988144321']",
+				"/pessoa/numero[text()='81988144321']",
 				"/pessoa/tipo[text()='CELULAR']",
 				"/pessoa/operadora[text()='OI']",
-				"/pessoa/fone[text()='83999231234']",
+				"/pessoa/numero[text()='83999231234']",
 				"/pessoa/tipo[text()='CELULAR']",
 				"/pessoa/operadora[text()='TIM']"
 			)
