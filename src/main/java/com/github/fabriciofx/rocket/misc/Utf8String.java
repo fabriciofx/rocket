@@ -8,7 +8,7 @@ public final class Utf8String
 	private static final long serialVersionUID = 4708199753825765959L;
 
 	private static final String ENCODING = "UTF-8";
-	private final transient String origin;
+	private final String origin;
 
 	public Utf8String(final byte... bytes) {
 		this(new String(bytes, Charset.forName(Utf8String.ENCODING)));
