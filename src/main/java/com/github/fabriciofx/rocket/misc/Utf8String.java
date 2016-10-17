@@ -1,24 +1,23 @@
 package com.github.fabriciofx.rocket.misc;
 
+import java.io.Serializable;
 import java.nio.charset.Charset;
 
-import com.github.fabriciofx.rocket.constraint.NotEmpty;
-import com.github.fabriciofx.rocket.constraint.NotNull;
+public final class Utf8String
+		implements Serializable, Comparable<Utf8String>, CharSequence {
+	private static final long serialVersionUID = 4708199753825765959L;
 
-public final class Utf8String implements Comparable<Utf8String>, CharSequence {
 	private static final String ENCODING = "UTF-8";
 	private final transient String origin;
 
 	public Utf8String(final byte... bytes) {
 		this(new String(bytes, Charset.forName(Utf8String.ENCODING)));
 	}
-	
+
 	public Utf8String(final String string) {
-		this.origin = new NotEmpty<String>(
-			new NotNull<>()
-		).valid(string);
+		this.origin = string;
 	}
-	
+
 	public byte[] bytes() {
 		return origin.getBytes(Charset.forName(Utf8String.ENCODING));
 	}
@@ -26,14 +25,14 @@ public final class Utf8String implements Comparable<Utf8String>, CharSequence {
 	@Override
 	public boolean equals(final Object o) {
 		return o != null && o instanceof Utf8String
-			&& origin.equals(Utf8String.class.cast(o).origin);
+				&& origin.equals(Utf8String.class.cast(o).origin);
 	}
-	
+
 	@Override
 	public final int hashCode() {
 		return 31 + origin.hashCode();
-	}	
-	
+	}
+
 	@Override
 	public String toString() {
 		return origin.toString();
