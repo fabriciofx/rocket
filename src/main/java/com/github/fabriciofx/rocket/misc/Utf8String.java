@@ -3,6 +3,8 @@ package com.github.fabriciofx.rocket.misc;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 
+import com.github.fabriciofx.rocket.constraint.NotNull;
+
 public final class Utf8String
 		implements Serializable, Comparable<Utf8String>, CharSequence {
 	private static final long serialVersionUID = 4708199753825765959L;
@@ -55,6 +57,8 @@ public final class Utf8String
 
 	@Override
 	public int compareTo(final Utf8String o) {
-		return origin.compareTo(o.origin);
+		return origin.compareTo(
+			new NotNull<Utf8String>().valid(o).origin
+		);
 	}
 }

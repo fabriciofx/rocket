@@ -35,7 +35,9 @@ public final class SafeString
 
 	@Override
 	public int compareTo(final SafeString o) {
-		return origin.compareTo(o.origin);
+		return origin.compareTo(
+			new NotNull<SafeString>().valid(o).origin			
+		);
 	}
 	
 	@Override
