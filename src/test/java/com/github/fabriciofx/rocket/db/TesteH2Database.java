@@ -25,7 +25,10 @@ public final class TesteH2Database {
 	public void memory() throws IOException {
 		final String name = "testdb";
 		final Database h2 = new H2Database(name, H2Database.Mode.MEMORY);
-		assertEquals(String.format("jdbc:h2:mem:", name), h2.url().string());
+		assertEquals(
+			String.format("jdbc:h2:mem:%s:DB_CLOSE_DELAY=-1", name),
+			h2.url().string()
+		);
 	}
 
 	@Test
