@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.db.mysql.MysqlDatabase;
+
 public final class TesteMysqlDatabase {
 	@Test
 	public void url() throws IOException {

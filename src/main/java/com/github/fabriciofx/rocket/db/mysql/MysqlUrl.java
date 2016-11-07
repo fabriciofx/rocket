@@ -1,8 +1,9 @@
-package com.github.fabriciofx.rocket.db;
+package com.github.fabriciofx.rocket.db.mysql;
 
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.constraint.Positive;
+import com.github.fabriciofx.rocket.db.Url;
 
 public final class MysqlUrl implements Url {
 	private final static String DEFAULT_HOST = "localhost";

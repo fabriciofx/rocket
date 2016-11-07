@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.db;
+package com.github.fabriciofx.rocket.db.h2;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.constraint.Positive;
+import com.github.fabriciofx.rocket.db.Url;
 
 // H2 support concurrent transactions only in standalone mode, when you connect
 // through a TCP connection, but not in embedded mode.

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.SqlScript;
-import com.github.fabriciofx.rocket.db.TestDatabase;
+import com.github.fabriciofx.rocket.db.test.TestDatabase;
 import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.endereco.ConstEndereco;
 import com.github.fabriciofx.rocket.dominio.endereco.doc.Bairro;

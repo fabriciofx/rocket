@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.db.h2.H2Database;
+
 public final class TesteH2Database {
 	@Test
 	public void embedded() throws IOException {

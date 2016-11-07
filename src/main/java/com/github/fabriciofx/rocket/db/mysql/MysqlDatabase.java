@@ -1,44 +1,44 @@
-package com.github.fabriciofx.rocket.db;
+package com.github.fabriciofx.rocket.db.mysql;
 
 import java.io.IOException;
 
 import javax.sql.DataSource;
 
+import com.github.fabriciofx.rocket.db.Config;
+import com.github.fabriciofx.rocket.db.Database;
+import com.github.fabriciofx.rocket.db.SqlScript;
+import com.github.fabriciofx.rocket.db.Url;
 import com.github.fabriciofx.rocket.dominio.Nome;
-import com.github.fabriciofx.rocket.security.Plain;
 import com.github.fabriciofx.rocket.system.DefaultNamedUser;
 import com.github.fabriciofx.rocket.system.NamedUser;
 import com.github.fabriciofx.rocket.system.Password;
 
-public final class H2Database implements Database {
-	public enum Mode {
-		EMBEDDED, MEMORY, TCP;
-	}
-	
+public final class MysqlDatabase implements Database {
 	private final transient Config config;
 
-	public H2Database(final String dbname) throws IOException {
-		this(dbname, H2Database.Mode.EMBEDDED);
-	}
-
-	public H2Database(final String dbname, final H2Database.Mode mode)
-			throws IOException {
+	public MysqlDatabase(final String dbname) throws IOException {
 		this(
-			dbname,
-			mode,
-			new DefaultNamedUser(
-				new Nome("sa"),
-				new Password(new Plain(), "")
+			new Config(
+				new MysqlUrl(dbname),
+					new DefaultNamedUser(
+						new Nome("root"),
+						new Password("")
+				)
 			)
 		);
 	}
 
-	public H2Database(final String dbname, final H2Database.Mode mode,
-			final NamedUser user) throws IOException {
-		this(new Config(new H2Url(dbname, mode), user));
+	public MysqlDatabase(final String dbname, final NamedUser user)
+			throws IOException {
+		this(
+			new Config(
+				new MysqlUrl(dbname),
+				user
+			)
+		);
 	}
 
-	public H2Database(final Config config) {
+	public MysqlDatabase(final Config config) {
 		this.config = config;
 	}
 
