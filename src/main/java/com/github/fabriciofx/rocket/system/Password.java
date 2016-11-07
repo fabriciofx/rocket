@@ -8,22 +8,28 @@ import com.github.fabriciofx.rocket.security.Hex;
 import com.github.fabriciofx.rocket.security.Sha256;
 
 public final class Password {
-	private final transient String content;
+	private final Hash hash;
+	private final String content;
 
 	public Password(final String content) throws IOException {
 		this(new Sha256(), content);
 	}
 
 	public Password(final Hash hash, final String content) throws IOException {
-		this.content = new Hex(
-			new NotNull<Hash>().valid(hash).digest(
-				new NotNull<String>().valid(content).getBytes()
-			)
-		).toString();
+		this.hash = hash;
+		this.content = content;
 	}
 
 	@Override
 	public String toString() {
-		return content;
+		try {
+			return new Hex(
+				new NotNull<Hash>().valid(hash).digest(
+						new NotNull<String>().valid(content).getBytes()
+				)
+			).toString();
+		} catch (final IOException e) {
+			throw new IllegalArgumentException(e);
+		}
 	}
 }
