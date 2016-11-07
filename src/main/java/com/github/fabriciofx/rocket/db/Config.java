@@ -5,25 +5,25 @@ import java.io.IOException;
 import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
-import com.github.fabriciofx.rocket.system.NamedUser;
+import com.github.fabriciofx.rocket.system.User;
 
 public final class Config {
 	private final transient ConnectionPool cp;
 	private final transient Url url;
-	private final transient NamedUser user;
+	private final transient User user;
 
-	public Config(final Url url, final NamedUser user) throws IOException {
+	public Config(final Url url, final User user) throws IOException {
 		this(new HikariConnectionPool(url, user), url, user);
 	}
 
-	public Config(final ConnectionPool cp, final Url url, final NamedUser user) {
+	public Config(final ConnectionPool cp, final Url url, final User user) {
 		this.cp = cp;
 		this.url = url;
 		this.user = user;
 	}
 
-	public NamedUser user() {
-		return new NotNull<NamedUser>().valid(user);
+	public User user() {
+		return new NotNull<User>().valid(user);
 	}
 
 	public Url url() {

@@ -12,17 +12,17 @@ import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Email;
 public final class LoggedUserTest {
 	@Test
 	public void loggedUser() throws IOException {
-		final LoggedUser loggedUser = new DefaultLoggedUser(
-			new DefaultEmailedUser(
+		final LoggedUser loggedUser = new SmartLoggedUser(
+			new SmartUser(
 				new Email("homer@fox.com"),
 				new Password("D'oh!")
 			)
 		);
 		assertTrue(loggedUser.logged());
-		assertEquals("homer@fox.com", loggedUser.user().name().toString());
+		assertEquals("homer@fox.com", loggedUser.name());
 		assertEquals(
 			"a60eeddc811e87a946c3885062c3bad2fc100712cae3dadafdc33dca8ce3e7ed",
-			loggedUser.user().password().toString()
+			loggedUser.password()
 		);		
 	}
 }

@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import javax.sql.DataSource;
 
-import com.github.fabriciofx.rocket.system.NamedUser;
+import com.github.fabriciofx.rocket.system.User;
 
 public interface Database {
-	NamedUser user();
+	User user();
 
 	Url url();
 

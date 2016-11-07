@@ -8,10 +8,10 @@ import com.github.fabriciofx.rocket.db.Config;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.SqlScript;
 import com.github.fabriciofx.rocket.db.Url;
-import com.github.fabriciofx.rocket.dominio.Nome;
-import com.github.fabriciofx.rocket.system.DefaultNamedUser;
-import com.github.fabriciofx.rocket.system.NamedUser;
+import com.github.fabriciofx.rocket.security.Plain;
 import com.github.fabriciofx.rocket.system.Password;
+import com.github.fabriciofx.rocket.system.SmartUser;
+import com.github.fabriciofx.rocket.system.User;
 
 public final class MysqlDatabase implements Database {
 	private final transient Config config;
@@ -20,15 +20,15 @@ public final class MysqlDatabase implements Database {
 		this(
 			new Config(
 				new MysqlUrl(dbname),
-					new DefaultNamedUser(
-						new Nome("root"),
-						new Password("")
+					new SmartUser(
+						"root",
+						new Password(new Plain(), "")
 				)
 			)
 		);
 	}
 
-	public MysqlDatabase(final String dbname, final NamedUser user)
+	public MysqlDatabase(final String dbname, final User user)
 			throws IOException {
 		this(
 			new Config(
@@ -43,7 +43,7 @@ public final class MysqlDatabase implements Database {
 	}
 
 	@Override
-	public NamedUser user() {
+	public User user() {
 		return config.user();
 	}
 

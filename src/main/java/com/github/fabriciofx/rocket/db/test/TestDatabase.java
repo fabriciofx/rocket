@@ -8,7 +8,7 @@ import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.SqlScript;
 import com.github.fabriciofx.rocket.db.Url;
 import com.github.fabriciofx.rocket.db.h2.H2Database;
-import com.github.fabriciofx.rocket.system.NamedUser;
+import com.github.fabriciofx.rocket.system.User;
 
 public final class TestDatabase implements Database {
 	private final transient Database db;
@@ -22,7 +22,7 @@ public final class TestDatabase implements Database {
 	}
 
 	@Override
-	public NamedUser user() {
+	public User user() {
 		return db.user();
 	}
 

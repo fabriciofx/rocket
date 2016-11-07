@@ -8,11 +8,10 @@ import com.github.fabriciofx.rocket.db.Config;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.SqlScript;
 import com.github.fabriciofx.rocket.db.Url;
-import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.security.Plain;
-import com.github.fabriciofx.rocket.system.DefaultNamedUser;
-import com.github.fabriciofx.rocket.system.NamedUser;
 import com.github.fabriciofx.rocket.system.Password;
+import com.github.fabriciofx.rocket.system.SmartUser;
+import com.github.fabriciofx.rocket.system.User;
 
 public final class H2Database implements Database {
 	public enum Mode {
@@ -30,15 +29,15 @@ public final class H2Database implements Database {
 		this(
 			dbname,
 			mode,
-			new DefaultNamedUser(
-				new Nome("sa"),
+			new SmartUser(
+				"sa",
 				new Password(new Plain(), "")
 			)
 		);
 	}
 
 	public H2Database(final String dbname, final H2Database.Mode mode,
-			final NamedUser user) throws IOException {
+			final User user) throws IOException {
 		this(new Config(new H2Url(dbname, mode), user));
 	}
 
@@ -47,7 +46,7 @@ public final class H2Database implements Database {
 	}
 
 	@Override
-	public NamedUser user() {
+	public User user() {
 		return config.user();
 	}
 

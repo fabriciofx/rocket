@@ -6,33 +6,32 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.Nome;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Email;
 
 public final class UserTest {
 	@Test
-	public void named() throws IOException {
-		final NamedUser user = new DefaultNamedUser(
-				new Nome("Homer Simpson"),
+	public void user() throws IOException {
+		final User user = new SmartUser(
+				"Homer Simpson",
 				new Password("D'oh!")
 		);
-		assertEquals("Homer Simpson", user.name().toString());
+		assertEquals("Homer Simpson", user.name());
 		assertEquals(
 			"a60eeddc811e87a946c3885062c3bad2fc100712cae3dadafdc33dca8ce3e7ed",
-			user.password().toString()
+			user.password()
 		);
 	}
 
 	@Test
 	public void emailed() throws IOException {
-		final EmailedUser user = new DefaultEmailedUser(
+		final User user = new SmartUser(
 				new Email("homer@fox.com"),
 				new Password("D'oh!")
 		);
-		assertEquals("homer@fox.com", user.name().toString());
+		assertEquals("homer@fox.com", user.name());
 		assertEquals(
 			"a60eeddc811e87a946c3885062c3bad2fc100712cae3dadafdc33dca8ce3e7ed",
-			user.password().toString()
+			user.password()
 		);
 	}
 }

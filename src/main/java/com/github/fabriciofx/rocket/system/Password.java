@@ -11,11 +11,11 @@ public final class Password {
 	private final Hash hash;
 	private final String content;
 
-	public Password(final String content) throws IOException {
+	public Password(final String content) {
 		this(new Sha256(), content);
 	}
 
-	public Password(final Hash hash, final String content) throws IOException {
+	public Password(final Hash hash, final String content) {
 		this.hash = hash;
 		this.content = content;
 	}
@@ -25,7 +25,7 @@ public final class Password {
 		try {
 			return new Hex(
 				new NotNull<Hash>().valid(hash).digest(
-						new NotNull<String>().valid(content).getBytes()
+					new NotNull<String>().valid(content).getBytes()
 				)
 			).toString();
 		} catch (final IOException e) {
