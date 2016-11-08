@@ -1,12 +1,11 @@
-package com.github.fabriciofx.rocket.dominio.endereco;
+package com.github.fabriciofx.rocket.doc.endereco;
 
 import java.io.IOException;
 
-import com.github.fabriciofx.rocket.doc.endereco.Endereco;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 
 public final class XmlEndereco {
-	private final transient Endereco origem;
+	private final Endereco origem;
 
 	public XmlEndereco(final Endereco origem) {
 		this.origem = origem;

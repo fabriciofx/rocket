@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.financeiro;
+package com.github.fabriciofx.rocket.financeiro;
 
 import java.time.LocalDateTime;
 

@@ -1,7 +1,12 @@
 package com.github.fabriciofx.rocket.doc;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public enum Tratamento implements Documento {
 	// http://www.academia.org.br/nossa-lingua/reducoes
 	VOCE("V."),
@@ -36,6 +41,13 @@ public enum Tratamento implements Documento {
 
 	Tratamento(final String abreviatura) {
 		this.abreviatura = abreviatura;
+	}
+
+	@Override
+	public String toString() {
+		return new NotEmpty<String>(
+			new NotNull<>()
+		).valid(abreviatura);
 	}
 
 	@Override

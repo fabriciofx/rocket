@@ -1,9 +1,12 @@
 package com.github.fabriciofx.rocket.doc.endereco;
 
+import com.github.fabriciofx.rocket.doc.Documento;
 import com.github.fabriciofx.rocket.media.Media;
-import com.github.fabriciofx.rocket.media.Printer;
 
-public final class Cidade implements Printer {
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
+public final class Cidade implements Documento {
 	private final String nome;
 	private final Estado estado;
 

@@ -1,13 +1,14 @@
 package com.github.fabriciofx.rocket.doc;
 
-import java.time.LocalDate;
-
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.constraint.Pattern;
 import com.github.fabriciofx.rocket.doc.endereco.Estado;
 import com.github.fabriciofx.rocket.media.Media;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public final class Rg implements Documento {
 	public enum Emissor {
 		ABNC, CGPI, CGPMAF, CNIG, CNT, COREN, CORECON, CRA, CRAS, CRB, CRC, CRE,
@@ -22,38 +23,38 @@ public final class Rg implements Documento {
 	private final Emissor emissor;
 	private final Estado estado;
 	private final int via;
-	private final LocalDate expedicao;
 
 	public Rg(final String numero) {
-		this(numero.split(" ")[0], Emissor.SSP, Estado.PB, 1, LocalDate.now());
+		this(numero.split(" ")[0], Emissor.SSP, Estado.PB, 1);
 	}
 
 	public Rg(final String numero, final Emissor emissor, final Estado estado,
-			final int via, final LocalDate expedicao) {
-		this.numero = new Pattern<String>(
-				new NotEmpty<>(new NotNull<>()), "[0-9]+")
-						.valid(numero).toUpperCase();
-		this.emissor = new NotNull<Emissor>().valid(emissor);
-		this.estado = new NotNull<Estado>().valid(estado);
+		final int via) {
+		this.numero = numero;
+		this.emissor = emissor;
+		this.estado = estado;
 		this.via = via;
-		this.expedicao = new NotNull<LocalDate>().valid(expedicao);
 	}
 
 	@Override
 	public String toString() {
 		final String v = via > 1 ? " - " + via + "ª via" : "";
-		return String.format("%s %s-%s %s", numero, emissor, estado, v);
+		return String.format(
+			"%s %s-%s %s",
+			new Pattern<String>(
+				new NotEmpty<>(
+					new NotNull<>()
+				),
+				"[0-9]+"
+			).valid(numero).toUpperCase(),
+			new NotNull<Emissor>().valid(emissor),
+			new NotNull<Estado>().valid(estado),
+			v
+		).trim();
 	}
 
 	@Override
 	public Media print(final Media media) {
-		final String rg;
-		if (via == 1) {
-			rg = String.format("%s %s-%s", numero, emissor, estado);
-		} else {
-			rg = String.format("%s %s-%s %dª via", numero, emissor, estado,
-				via);
-		}
-		return media.with("rg", rg);
+		return media.with("rg", toString());
 	}
 }

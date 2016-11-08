@@ -8,24 +8,24 @@ import org.junit.Test;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.SqlScript;
 import com.github.fabriciofx.rocket.db.test.TestDatabase;
+import com.github.fabriciofx.rocket.doc.MemDocumentos;
 import com.github.fabriciofx.rocket.doc.Cpf;
 import com.github.fabriciofx.rocket.doc.Nome;
 import com.github.fabriciofx.rocket.doc.Rg;
 import com.github.fabriciofx.rocket.doc.Sexo;
 import com.github.fabriciofx.rocket.doc.Tratamento;
-import com.github.fabriciofx.rocket.doc.Fone.Operadora;
-import com.github.fabriciofx.rocket.doc.Fone.Tipo;
 import com.github.fabriciofx.rocket.doc.endereco.Bairro;
 import com.github.fabriciofx.rocket.doc.endereco.Cep;
 import com.github.fabriciofx.rocket.doc.endereco.Cidade;
 import com.github.fabriciofx.rocket.doc.endereco.Complemento;
+import com.github.fabriciofx.rocket.doc.endereco.MemEndereco;
 import com.github.fabriciofx.rocket.doc.endereco.Estado;
 import com.github.fabriciofx.rocket.doc.endereco.Logradouro;
 import com.github.fabriciofx.rocket.doc.endereco.Numero;
-import com.github.fabriciofx.rocket.dominio.endereco.ConstEndereco;
-import com.github.fabriciofx.rocket.dominio.fone.ConstFone;
-import com.github.fabriciofx.rocket.dominio.fone.ConstFones;
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.ConstDocumentos;
+import com.github.fabriciofx.rocket.doc.fone.MemFone;
+import com.github.fabriciofx.rocket.doc.fone.MemFones;
+import com.github.fabriciofx.rocket.doc.fone.Fone.Operadora;
+import com.github.fabriciofx.rocket.doc.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.misc.ResourcePath;
 import com.jcabi.matchers.XhtmlMatchers;
 
@@ -44,12 +44,12 @@ public final class TestePessoas {
 		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd);
 		final Pessoa pessoa = pessoas.pessoa(
 			new Nome("Jason Bourne"),
-			new ConstDocumentos(
+			new MemDocumentos(
 				new Cpf("57381117533"),
 				new Rg("62527362"),
 				Sexo.MASCULINO,
 				Tratamento.SENHOR,
-				new ConstEndereco(
+				new MemEndereco(
 					new Logradouro("Av Gov Torquato Nepomuceno Neves"),
 					new Numero("123"),
 					new Complemento("AP 101"),
@@ -58,9 +58,9 @@ public final class TestePessoas {
 					new Cep("48035120")
 				)
 			),
-			new ConstFones(
-				new ConstFone("81988144321", Tipo.CELULAR, Operadora.OI),
-				new ConstFone("83999231234", Tipo.CELULAR, Operadora.TIM)
+			new MemFones(
+				new MemFone("81988144321", Tipo.CELULAR, Operadora.OI),
+				new MemFone("83999231234", Tipo.CELULAR, Operadora.TIM)
 			)
 		);
 		MatcherAssert.assertThat(
@@ -104,12 +104,12 @@ public final class TestePessoas {
 		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd);
 		final SqlPessoa pessoa = pessoas.pessoa(
 			new Nome("Jason Bourne"),
-			new ConstDocumentos(
+			new MemDocumentos(
 				new Cpf("57381117533"),
 				new Rg("62527362"),
 				Sexo.MASCULINO,
 				Tratamento.SENHOR,
-				new ConstEndereco(
+				new MemEndereco(
 					new Logradouro("Av Gov Torquato Nepomuceno Neves"),
 					new Numero("123"),
 					new Complemento("AP 101"),
@@ -118,9 +118,9 @@ public final class TestePessoas {
 					new Cep("48035120")
 				)
 			),
-			new ConstFones(
-				new ConstFone("81988144321", Tipo.CELULAR, Operadora.OI),
-				new ConstFone("83999231234", Tipo.CELULAR, Operadora.TIM)
+			new MemFones(
+				new MemFone("81988144321", Tipo.CELULAR, Operadora.OI),
+				new MemFone("83999231234", Tipo.CELULAR, Operadora.TIM)
 			)
 		);
 		pessoa.atualiza(new Nome("Jason M. Bourne"), pessoa.documentos());		

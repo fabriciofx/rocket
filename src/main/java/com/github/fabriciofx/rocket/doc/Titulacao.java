@@ -1,7 +1,12 @@
 package com.github.fabriciofx.rocket.doc;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public enum Titulacao implements Documento {
 	MESTRE("M.e"),
 	MESTRA("M.a"),
@@ -18,11 +23,13 @@ public enum Titulacao implements Documento {
 
 	@Override
 	public String toString() {
-		return abreviatura;
+		return new NotEmpty<String>(
+			new NotNull<>()
+		).valid(abreviatura);
 	}
 
 	@Override
 	public Media print(final Media media) {
-		return media.with("titulacao", abreviatura);
+		return media.with("titulacao", toString());
 	}
 }

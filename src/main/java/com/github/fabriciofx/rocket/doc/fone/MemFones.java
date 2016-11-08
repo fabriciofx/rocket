@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.fone;
+package com.github.fabriciofx.rocket.doc.fone;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,17 +6,18 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.github.fabriciofx.rocket.doc.Fone;
+import com.github.fabriciofx.rocket.doc.fone.Fone.Operadora;
+import com.github.fabriciofx.rocket.doc.fone.Fone.Tipo;
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class ConstFones implements Fones {
-	private final transient List<Fone> fones;
+public final class MemFones implements Fones {
+	private final List<Fone> fones;
 	
-	public ConstFones(final Fone... fones) {
+	public MemFones(final Fone... fones) {
 		this(Arrays.asList(fones));
 	}
 	
-	public ConstFones(final List<Fone> fones) {
+	public MemFones(final List<Fone> fones) {
 		this.fones = new ArrayList<>(fones);
 	}
 	
@@ -27,6 +28,12 @@ public final class ConstFones implements Fones {
 			m = f.print(m);
 		}
 		return m;
+	}
+
+	@Override
+	public void adicione(final String numero, final Tipo tipo,
+		final Operadora operadora) throws IOException {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

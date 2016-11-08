@@ -1,37 +1,33 @@
 package com.github.fabriciofx.rocket.doc.endereco;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
+import com.github.fabriciofx.rocket.constraint.Pattern;
+import com.github.fabriciofx.rocket.doc.Documento;
 import com.github.fabriciofx.rocket.media.Media;
-import com.github.fabriciofx.rocket.media.Printer;
 
-public final class Cep implements Printer {
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
+public final class Cep implements Documento {
 	private final String numero;
 
 	public Cep(final String numero) {
 		this.numero = numero;
 	}
 
-	public String numero() {
-		return numero;
-	}
-
-	@Override
-	public int hashCode() {
-		return 31 + ((numero == null) ? 0 : numero.hashCode());
-	}
-
-	@Override
-	public boolean equals(final Object o) {
-		return o != null && o instanceof Cep
-				&& numero.equals(Cep.class.cast(o).numero());
-	}
-
 	@Override
 	public String toString() {
-		return numero;
+		return new Pattern<String>(
+			new NotEmpty<>(
+				new NotNull<>()
+			),
+			"[0-9]+"
+		).valid(numero);
 	}
 	
 	@Override
 	public Media print(final Media media) {
-		return media.with("cep", numero);
+		return media.with("cep", toString());
 	}	
 }

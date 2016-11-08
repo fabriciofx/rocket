@@ -9,6 +9,8 @@ import java.util.Locale;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.financeiro.Dinheiro;
+
 public final class TesteDinheiro {
 	@Test(expected = IllegalArgumentException.class)
 	public void invalido1() {

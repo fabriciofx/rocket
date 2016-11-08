@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 
 public final class XmlPessoa {
-	private final transient Pessoa origem;
+	private final Pessoa origem;
 
 	public XmlPessoa(final Pessoa origem) {
 		this.origem = origem;

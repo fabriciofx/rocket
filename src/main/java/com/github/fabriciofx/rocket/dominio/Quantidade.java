@@ -3,8 +3,8 @@ package com.github.fabriciofx.rocket.dominio;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 
 public final class Quantidade {
-	private final transient double valor;
-	private final transient Unidade unidade;
+	private final double valor;
+	private final Unidade unidade;
 
 	public Quantidade(final double valor, final Unidade unidade) {
 		this.valor = valor;

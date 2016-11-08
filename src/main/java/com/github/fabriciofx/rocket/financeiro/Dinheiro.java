@@ -1,19 +1,18 @@
-package com.github.fabriciofx.rocket.dominio.financeiro;
+package com.github.fabriciofx.rocket.financeiro;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Currency;
-import java.util.List;
 import java.util.Locale;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
-import com.github.fabriciofx.rocket.constraint.Positive;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public final class Dinheiro implements Comparable<Dinheiro> {
-	private final transient Currency moeda;
-	private final transient BigDecimal quantia;
+	private final Currency moeda;
+	private final BigDecimal quantia;
 
 	public Dinheiro() {
 		this("0");
@@ -36,29 +35,29 @@ public final class Dinheiro implements Comparable<Dinheiro> {
 	}
 
 	public Dinheiro(final BigDecimal quantia, final Currency moeda) {
-		this.quantia = new NotNull<BigDecimal>().valid(quantia);
-		this.moeda = new NotNull<Currency>().valid(moeda);
+		this.quantia = quantia;
+		this.moeda = moeda;
 	}
 
 	public Currency moeda() {
-		return moeda;
+		return new NotNull<Currency>().valid(moeda);
 	}
 
 	public BigDecimal quantia() {
-		return quantia;
+		return new NotNull<BigDecimal>().valid(quantia);
 	}
 
 	public Dinheiro negativo() {
 		return multiplica(-1);
 	}
 
-	public boolean estaNegativo() {
-		return quantia.signum() == -1;
+	public boolean negativado() {
+		return quantia().signum() == -1;
 	}
 
 	public Dinheiro soma(final Dinheiro dinheiro) {
 		verificaMoeda(dinheiro);
-		return new Dinheiro(quantia.add(dinheiro.quantia), moeda);
+		return new Dinheiro(quantia().add(dinheiro.quantia), moeda);
 	}
 
 	public Dinheiro subtraia(final Dinheiro dinheiro) {
@@ -68,37 +67,13 @@ public final class Dinheiro implements Comparable<Dinheiro> {
 
 	public Dinheiro multiplica(final Number numero) {
 		return new Dinheiro(
-			quantia.multiply(
+			quantia().multiply(
 				new BigDecimal(new NotNull<Number>().valid(numero).longValue())
 			),
-			moeda
+			moeda()
 		);
 	}
 
-	public List<Dinheiro> parcela(final Number numero) {
-		final long num = new Positive<Number>(
-			new NotNull<>()
-		).valid(numero).longValue();
-		final long centavos = deBigDecimalParaLong(quantia, moeda);
-		final long quociente = centavos / num;
-		final long resto = centavos % num;
-		final List<Dinheiro> parcelas = new ArrayList<>();
-		for (int i = 0; i < num - 1; i++) {
-			parcelas.add(
-				new Dinheiro(
-					deLongParaBigDecimal(quociente, moeda),
-					moeda
-				)
-			);
-		}
-		parcelas.add(
-			new Dinheiro(
-				deLongParaBigDecimal(quociente + resto, moeda),
-				moeda
-			)
-		);
-		return Collections.unmodifiableList(parcelas);
-	}
 
 	public String toString(final Locale localizacao) {
 		final NumberFormat formatoMoeda = NumberFormat.getInstance(
@@ -118,19 +93,6 @@ public final class Dinheiro implements Comparable<Dinheiro> {
 	}
 
 	@Override
-	public int hashCode() {
-		return 31 * (31 + ((moeda == null) ? 0 : moeda.hashCode()))
-				+ ((quantia == null) ? 0 : quantia.hashCode());
-	}
-
-	@Override
-	public boolean equals(final Object o) {
-		return o != null && o instanceof Dinheiro
-				&& Dinheiro.class.cast(o).moeda.equals(moeda)
-				&& Dinheiro.class.cast(o).quantia.equals(quantia);
-	}
-
-	@Override
 	public int compareTo(final Dinheiro dinheiro) {
 		return quantia.compareTo(verificaMoeda(dinheiro).quantia);
 	}
@@ -142,17 +104,5 @@ public final class Dinheiro implements Comparable<Dinheiro> {
 			);
 		}
 		return dinheiro;
-	}
-
-	private long deBigDecimalParaLong(final BigDecimal quantia,
-			final Currency moeda) {
-		return quantia.movePointRight(moeda.getDefaultFractionDigits())
-				.longValue();
-	}
-
-	private BigDecimal deLongParaBigDecimal(final long quantia,
-			final Currency moeda) {
-		return new BigDecimal(quantia)
-				.movePointLeft(moeda.getDefaultFractionDigits());
 	}
 }

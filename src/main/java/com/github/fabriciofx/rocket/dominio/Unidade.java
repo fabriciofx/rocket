@@ -16,7 +16,7 @@ public enum Unidade {
 	MILILITRO("ml"),
 	LITRO("l");
 
-	private final transient String simbolo;
+	private final String simbolo;
 
 	private Unidade(final String simbolo) {
 		this.simbolo = new NotEmpty<String>(new NotNull<>())
