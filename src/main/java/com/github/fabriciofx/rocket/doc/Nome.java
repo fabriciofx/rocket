@@ -7,7 +7,7 @@ import com.github.fabriciofx.rocket.media.Media;
 import com.github.fabriciofx.rocket.media.Printer;
 
 public final class Nome implements Printer {
-	private final transient String completo;
+	private final String completo;
 
 	public Nome(final String completo) {
 		this.completo = new Pattern<String>(

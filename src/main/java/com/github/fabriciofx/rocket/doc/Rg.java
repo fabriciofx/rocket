@@ -18,11 +18,11 @@ public final class Rg implements Documento {
 		SES, SESP, SJS, SJTC, SJTS, SNJ, SPTC, SSP, OUTRO;
 	}
 
-	private final transient String numero;
-	private final transient Emissor emissor;
-	private final transient Estado estado;
-	private final transient int via;
-	private final transient LocalDate expedicao;
+	private final String numero;
+	private final Emissor emissor;
+	private final Estado estado;
+	private final int via;
+	private final LocalDate expedicao;
 
 	public Rg(final String numero) {
 		this(numero.split(" ")[0], Emissor.SSP, Estado.PB, 1, LocalDate.now());

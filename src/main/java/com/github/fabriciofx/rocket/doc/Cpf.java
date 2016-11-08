@@ -6,7 +6,7 @@ import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class Cpf implements Documento {
-	private final transient String numero;
+	private final String numero;
 
 	public Cpf(final String numero) {
 		this.numero = new Mod11<String>(

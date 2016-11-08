@@ -5,7 +5,7 @@ import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.constraint.Pattern;
 
 public final class Placa {
-	private final transient String numero;
+	private final String numero;
 
 	public Placa(final String numero) {
 		this.numero = new Pattern<String>(

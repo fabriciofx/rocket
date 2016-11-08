@@ -5,7 +5,7 @@ import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class Email implements Documento {
-	private final transient String endereco;
+	private final String endereco;
 
 	public Email(final String endereco) {
 		this.endereco = new com.github.fabriciofx.rocket.

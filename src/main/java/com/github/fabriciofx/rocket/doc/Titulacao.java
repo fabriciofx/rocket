@@ -10,7 +10,7 @@ public enum Titulacao implements Documento {
 	DOUTORES("Drs."),
 	DOUTORAS("Dr.as");
 
-	private final transient String abreviatura;
+	private final String abreviatura;
 
 	Titulacao(final String abreviatura) {
 		this.abreviatura = abreviatura;

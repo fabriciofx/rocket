@@ -32,7 +32,7 @@ public enum Tratamento implements Documento {
 	MAJESTADES_IMPERIAIS("VV.MM.II."),
 	ONIPOTECIA("V.O.");
 
-	private final transient String abreviatura;
+	private final String abreviatura;
 
 	Tratamento(final String abreviatura) {
 		this.abreviatura = abreviatura;
