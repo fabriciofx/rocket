@@ -2,6 +2,8 @@ package com.github.fabriciofx.rocket.dominio.fone;
 
 import java.io.IOException;
 
+import com.github.fabriciofx.rocket.doc.Fone;
+
 public final class XmlFones {
 	private final transient Fones origem;
 	

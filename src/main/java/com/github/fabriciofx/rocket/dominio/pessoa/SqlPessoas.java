@@ -8,7 +8,7 @@ import java.util.concurrent.Callable;
 
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.Transaction;
-import com.github.fabriciofx.rocket.dominio.Nome;
+import com.github.fabriciofx.rocket.doc.Nome;
 import com.github.fabriciofx.rocket.dominio.fone.Fones;
 import com.github.fabriciofx.rocket.dominio.fone.SqlFones;
 import com.github.fabriciofx.rocket.dominio.pessoa.docs.Documentos;

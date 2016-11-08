@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import com.github.fabriciofx.rocket.db.Database;
-import com.github.fabriciofx.rocket.dominio.endereco.Endereco;
+import com.github.fabriciofx.rocket.doc.Cpf;
+import com.github.fabriciofx.rocket.doc.Rg;
+import com.github.fabriciofx.rocket.doc.Sexo;
+import com.github.fabriciofx.rocket.doc.Tratamento;
+import com.github.fabriciofx.rocket.doc.endereco.Endereco;
 import com.github.fabriciofx.rocket.dominio.endereco.SqlEndereco;
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Rg;
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Sexo;
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Tratamento;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;

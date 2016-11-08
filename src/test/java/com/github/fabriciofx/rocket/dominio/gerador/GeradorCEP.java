@@ -1,6 +1,6 @@
 package com.github.fabriciofx.rocket.dominio.gerador;
 
-import com.github.fabriciofx.rocket.dominio.endereco.doc.Cep;
+import com.github.fabriciofx.rocket.doc.endereco.Cep;
 import com.github.fabriciofx.rocket.misc.Rand;
 
 public final class GeradorCEP {

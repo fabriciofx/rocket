@@ -2,6 +2,7 @@ package com.github.fabriciofx.rocket.dominio.fone;
 
 import java.io.IOException;
 
+import com.github.fabriciofx.rocket.doc.Fone;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class ConstFone implements Fone {

@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.endereco.doc;
+package com.github.fabriciofx.rocket.doc.endereco;
 
 import com.github.fabriciofx.rocket.media.Media;
 import com.github.fabriciofx.rocket.media.Printer;

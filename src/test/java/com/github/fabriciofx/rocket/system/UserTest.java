@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Email;
+import com.github.fabriciofx.rocket.doc.Email;
 
 public final class UserTest {
 	@Test

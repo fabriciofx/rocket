@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.fabriciofx.rocket.db.Database;
-import com.github.fabriciofx.rocket.dominio.fone.Fone.Operadora;
-import com.github.fabriciofx.rocket.dominio.fone.Fone.Tipo;
+import com.github.fabriciofx.rocket.doc.Fone;
+import com.github.fabriciofx.rocket.doc.Fone.Operadora;
+import com.github.fabriciofx.rocket.doc.Fone.Tipo;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;

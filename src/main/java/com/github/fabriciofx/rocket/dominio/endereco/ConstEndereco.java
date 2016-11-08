@@ -2,12 +2,13 @@ package com.github.fabriciofx.rocket.dominio.endereco;
 
 import java.io.IOException;
 
-import com.github.fabriciofx.rocket.dominio.endereco.doc.Bairro;
-import com.github.fabriciofx.rocket.dominio.endereco.doc.Cep;
-import com.github.fabriciofx.rocket.dominio.endereco.doc.Cidade;
-import com.github.fabriciofx.rocket.dominio.endereco.doc.Complemento;
-import com.github.fabriciofx.rocket.dominio.endereco.doc.Logradouro;
-import com.github.fabriciofx.rocket.dominio.endereco.doc.Numero;
+import com.github.fabriciofx.rocket.doc.endereco.Bairro;
+import com.github.fabriciofx.rocket.doc.endereco.Cep;
+import com.github.fabriciofx.rocket.doc.endereco.Cidade;
+import com.github.fabriciofx.rocket.doc.endereco.Complemento;
+import com.github.fabriciofx.rocket.doc.endereco.Endereco;
+import com.github.fabriciofx.rocket.doc.endereco.Logradouro;
+import com.github.fabriciofx.rocket.doc.endereco.Numero;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class ConstEndereco implements Endereco {

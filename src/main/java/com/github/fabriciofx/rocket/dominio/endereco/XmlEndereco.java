@@ -2,6 +2,7 @@ package com.github.fabriciofx.rocket.dominio.endereco;
 
 import java.io.IOException;
 
+import com.github.fabriciofx.rocket.doc.endereco.Endereco;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 
 public final class XmlEndereco {

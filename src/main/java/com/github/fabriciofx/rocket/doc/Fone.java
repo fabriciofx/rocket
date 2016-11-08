@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.fone;
+package com.github.fabriciofx.rocket.doc;
 
 import java.io.IOException;
 
