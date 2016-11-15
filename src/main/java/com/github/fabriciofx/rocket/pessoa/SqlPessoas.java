@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import com.github.fabriciofx.rocket.db.Database;
+import com.github.fabriciofx.rocket.doc.Nome;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.id.NumId;
 import com.jcabi.jdbc.JdbcSession;
@@ -17,7 +18,7 @@ public final class SqlPessoas implements Pessoas {
 	}
 	
 	@Override
-	public Pessoa pessoa(final String nome, final String endereco,
+	public Pessoa pessoa(final Nome nome, final String endereco,
 		final String fone) throws IOException {
 		try {
 			final Id id = new NumId(

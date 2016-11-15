@@ -8,6 +8,8 @@ import org.junit.Test;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.SqlScript;
 import com.github.fabriciofx.rocket.db.test.TestDatabase;
+import com.github.fabriciofx.rocket.doc.Nome;
+import com.github.fabriciofx.rocket.media.XmlFormat;
 import com.github.fabriciofx.rocket.misc.ResourcePath;
 import com.jcabi.matchers.XhtmlMatchers;
 
@@ -29,13 +31,17 @@ public final class TestePessoaFisica {
 			"48035120";
 		final PessoasFisicas pessoasFisicas = new SqlPessoasFisicas(testebd);
 		final PessoaFisica pessoaFisica = pessoasFisicas.pessoaFisica(
-			"Jason Bourne",
+			new Nome("Jason Bourne"),
 			endereco,
 			"81 98814-4321",
 			"57381117533",
 			"62527362 SSP-PB"
 		);
-		System.out.println(new XmlPessoa(pessoaFisica).toString());
+		System.out.println(
+			new XmlFormat(
+				new XmlPessoa(pessoaFisica).toString()
+			)
+		);
 		MatcherAssert.assertThat(
 			XhtmlMatchers.xhtml(
 				new XmlPessoa(pessoaFisica)

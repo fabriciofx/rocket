@@ -5,6 +5,7 @@ import java.util.concurrent.Callable;
 
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.Transaction;
+import com.github.fabriciofx.rocket.doc.Nome;
 import com.github.fabriciofx.rocket.id.Id;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
@@ -17,7 +18,7 @@ public final class SqlPessoasFisicas implements PessoasFisicas {
 	}
 	
 	@Override
-	public PessoaFisica pessoaFisica(final String nome, final String endereco,
+	public PessoaFisica pessoaFisica(final Nome nome, final String endereco,
 		final String fone, final String cpf, final String rg)
 		throws IOException {
 		return new Transaction(db).call(
