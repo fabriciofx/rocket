@@ -10,39 +10,37 @@ import com.github.fabriciofx.rocket.media.Media;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 
-public final class SqlPessoa implements Pessoa {
-	private final Id id;
+public final class SqlPessoaFisica implements PessoaFisica {
+	private final Pessoa origem;
 	private final Database db;
 	
-	public SqlPessoa(final Id id, final Database db) {
-		this.id = id;
+	public SqlPessoaFisica(final Pessoa origem, final Database db) {
+		this.origem = origem;
 		this.db = db;
 	}
 
 	@Override
 	public Id id() {
-		return id;
-	}	
-	
+		return origem.id();
+	}
+
 	@Override
 	public Media about(final Media media) throws IOException {
 		try {
 			final Map<String, String> documentos = new JdbcSession(db.source())
-				.sql("SELECT * FROM pessoa WHERE id = ?")
-				.set(id)
+				.sql("SELECT cpf, rg FROM pessoa_fisica WHERE id = ?")
+				.set(origem.id())
 				.select(
 					new ListOutcome<Map<String, String>>(
 						new SqlTableMapping()
 					)
 				)
 				.get(0);
-			return media
-				.with("id", id)
-				.with("nome", documentos.get("nome"))
-				.with("endereco", documentos.get("endereco"))
-				.with("fone", documentos.get("fone"));
+			return origem.about(media)
+				.with("cpf", documentos.get("cpf"))
+				.with("rg", documentos.get("rg"));
 		} catch (final SQLException e) {
 			throw new IOException(e);
-		}
+		}		
 	}
 }

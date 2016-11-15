@@ -1,5 +1,7 @@
 package com.github.fabriciofx.rocket.doc.endereco;
 
+import com.github.fabriciofx.rocket.constraint.NotEmpty;
+import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.doc.Documento;
 import com.github.fabriciofx.rocket.media.Media;
 
@@ -12,11 +14,13 @@ public final class Complemento implements Documento {
 
 	@Override
 	public String toString() {
-		return texto;
+		return new NotEmpty<String>(
+			new NotNull<>()
+		).valid(texto);
 	}
 	
 	@Override
 	public Media print(final Media media) {
-		return media.with("complemento", texto);
+		return media.with("complemento", toString());
 	}	
 }
