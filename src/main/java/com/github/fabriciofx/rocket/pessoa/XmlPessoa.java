@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.pessoa;
+package com.github.fabriciofx.rocket.pessoa;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ public final class XmlPessoa {
 	@Override
 	public String toString() {
 		try {
-			return origem.print(new XmlMedia("pessoa")).toString();
+			return origem.about(new XmlMedia("pessoa")).toString();
 		} catch (final IOException e) {
 			throw new RuntimeException(e);
 		}

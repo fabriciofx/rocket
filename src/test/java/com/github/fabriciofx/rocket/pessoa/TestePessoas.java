@@ -1,6 +1,7 @@
-package com.github.fabriciofx.rocket.dominio.pessoa;
+package com.github.fabriciofx.rocket.pessoa;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -8,8 +9,8 @@ import org.junit.Test;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.SqlScript;
 import com.github.fabriciofx.rocket.db.test.TestDatabase;
-import com.github.fabriciofx.rocket.doc.MemDocumentos;
 import com.github.fabriciofx.rocket.doc.Cpf;
+import com.github.fabriciofx.rocket.doc.Documento;
 import com.github.fabriciofx.rocket.doc.Nome;
 import com.github.fabriciofx.rocket.doc.Rg;
 import com.github.fabriciofx.rocket.doc.Sexo;
@@ -18,15 +19,18 @@ import com.github.fabriciofx.rocket.doc.endereco.Bairro;
 import com.github.fabriciofx.rocket.doc.endereco.Cep;
 import com.github.fabriciofx.rocket.doc.endereco.Cidade;
 import com.github.fabriciofx.rocket.doc.endereco.Complemento;
-import com.github.fabriciofx.rocket.doc.endereco.MemEndereco;
 import com.github.fabriciofx.rocket.doc.endereco.Estado;
 import com.github.fabriciofx.rocket.doc.endereco.Logradouro;
 import com.github.fabriciofx.rocket.doc.endereco.Numero;
-import com.github.fabriciofx.rocket.doc.fone.MemFone;
-import com.github.fabriciofx.rocket.doc.fone.MemFones;
 import com.github.fabriciofx.rocket.doc.fone.Fone.Operadora;
 import com.github.fabriciofx.rocket.doc.fone.Fone.Tipo;
+import com.github.fabriciofx.rocket.doc.fone.MemFone;
+import com.github.fabriciofx.rocket.doc.fone.MemFones;
 import com.github.fabriciofx.rocket.misc.ResourcePath;
+import com.github.fabriciofx.rocket.pessoa.Pessoa;
+import com.github.fabriciofx.rocket.pessoa.Pessoas;
+import com.github.fabriciofx.rocket.pessoa.SqlPessoas;
+import com.github.fabriciofx.rocket.pessoa.XmlPessoa;
 import com.jcabi.matchers.XhtmlMatchers;
 
 public final class TestePessoas {
@@ -41,27 +45,27 @@ public final class TestePessoas {
 				)
 			)
 		);
-		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd);
+		final Pessoas pessoas = new SqlPessoas(testebd);
+		@SuppressWarnings("serial")
 		final Pessoa pessoa = pessoas.pessoa(
 			new Nome("Jason Bourne"),
-			new MemDocumentos(
-				new Cpf("57381117533"),
-				new Rg("62527362"),
-				Sexo.MASCULINO,
-				Tratamento.SENHOR,
-				new MemEndereco(
-					new Logradouro("Av Gov Torquato Nepomuceno Neves"),
-					new Numero("123"),
-					new Complemento("AP 101"),
-					new Bairro("Vila Madalena"),
-					new Cidade("São Paulo", Estado.SP),
-					new Cep("48035120")
-				)
-			),
 			new MemFones(
 				new MemFone("81988144321", Tipo.CELULAR, Operadora.OI),
 				new MemFone("83999231234", Tipo.CELULAR, Operadora.TIM)
-			)
+			),
+			new HashMap<String, Documento>() {{
+				put("cpf", new Cpf("57381117533"));
+				put("rg", new Rg("62527362"));
+				put("sexo", Sexo.MASCULINO);
+				put("tratamento", Tratamento.SENHOR);
+				put("logradouro",
+					new Logradouro("Av Gov Torquato Nepomuceno Neves"));
+				put("numero", new Numero("123"));
+				put("complemento", new Complemento("AP 101"));
+				put("bairro", new Bairro("Vila Madalena"));
+				put("cidade", new Cidade("São Paulo", Estado.SP));
+				put("cep", new Cep("48035120"));
+			}}
 		);
 		MatcherAssert.assertThat(
 			XhtmlMatchers.xhtml(
@@ -101,29 +105,29 @@ public final class TestePessoas {
 				)
 			)
 		);
-		final Pessoas<SqlPessoa> pessoas = new SqlPessoas(testebd);
-		final SqlPessoa pessoa = pessoas.pessoa(
+		final Pessoas pessoas = new SqlPessoas(testebd);
+		@SuppressWarnings("serial")
+		final Pessoa pessoa = pessoas.pessoa(
 			new Nome("Jason Bourne"),
-			new MemDocumentos(
-				new Cpf("57381117533"),
-				new Rg("62527362"),
-				Sexo.MASCULINO,
-				Tratamento.SENHOR,
-				new MemEndereco(
-					new Logradouro("Av Gov Torquato Nepomuceno Neves"),
-					new Numero("123"),
-					new Complemento("AP 101"),
-					new Bairro("Vila Madalena"),
-					new Cidade("São Paulo", Estado.SP),
-					new Cep("48035120")
-				)
-			),
 			new MemFones(
 				new MemFone("81988144321", Tipo.CELULAR, Operadora.OI),
 				new MemFone("83999231234", Tipo.CELULAR, Operadora.TIM)
-			)
+			),
+			new HashMap<String, Documento>() {{
+				put("cpf", new Cpf("57381117533"));
+				put("rg", new Rg("62527362"));
+				put("sexo", Sexo.MASCULINO);
+				put("tratamento", Tratamento.SENHOR);
+				put("logradouro",
+					new Logradouro("Av Gov Torquato Nepomuceno Neves"));
+				put("numero", new Numero("123"));
+				put("complemento", new Complemento("AP 101"));
+				put("bairro", new Bairro("Vila Madalena"));
+				put("cidade", new Cidade("São Paulo", Estado.SP));
+				put("cep", new Cep("48035120"));
+			}}
 		);
-		pessoa.atualiza(new Nome("Jason M. Bourne"), pessoa.documentos());		
+		pessoa.atualize(new Nome("Jason M. Bourne"), pessoa.documentos());		
 		MatcherAssert.assertThat(
 			XhtmlMatchers.xhtml(
 				new XmlPessoa(pessoa)

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import com.github.fabriciofx.rocket.misc.Rand;
 
 public final class TimeId implements Id, Comparable<TimeId> {
-	private final transient long milliseconds;
+	private final long milliseconds;
 
 	public TimeId() {
 		this(LocalDateTime.now());

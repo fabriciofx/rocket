@@ -5,18 +5,18 @@ import java.util.UUID;
 import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 
-public final class UuidId implements Id, Comparable<UuidId> {
-	private final transient UUID uuid;
+public final class UuId implements Id, Comparable<UuId> {
+	private final UUID uuid;
 
-	public UuidId() {
+	public UuId() {
 		this(UUID.randomUUID());
 	}
 
-	public UuidId(final String uuid) {
+	public UuId(final String uuid) {
 		this(UUID.fromString(uuid));
 	}
 
-	public UuidId(final UUID uuid) {
+	public UuId(final UUID uuid) {
 		this.uuid = new NotEmpty<UUID>(new NotNull<>()).valid(uuid);
 	}
 
@@ -31,7 +31,7 @@ public final class UuidId implements Id, Comparable<UuidId> {
 	}
 
 	@Override
-	public int compareTo(final UuidId uuid) {
+	public int compareTo(final UuId uuid) {
 		return this.uuid.compareTo(uuid.uuid);
 	}
 }

@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.dominio.regra;
+package com.github.fabriciofx.rocket.regra;
 
 
 public interface Regra<T, R> {

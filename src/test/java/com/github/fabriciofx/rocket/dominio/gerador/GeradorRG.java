@@ -23,7 +23,7 @@ public final class GeradorRG {
 		final Estado estado = estados[aleatorio.num(0, estados.length - 1)];
 		final int via = aleatorio.num(1, 2);
 
-		return new Rg(numero, emissor, estado, via, LocalDate.now());
+		return new Rg(numero, emissor, estado, via);
 	}
 
 	public String getString() {

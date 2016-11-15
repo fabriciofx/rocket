@@ -5,8 +5,8 @@ import org.xembly.ImpossibleModificationException;
 import org.xembly.Xembler;
 
 public final class XmlMedia implements Media {
-	private final transient String root;
-	private final transient Directives directives;
+	private final String root;
+	private final Directives directives;
 
 	public XmlMedia(final String root) {
 		this(root, new Directives().add(root));

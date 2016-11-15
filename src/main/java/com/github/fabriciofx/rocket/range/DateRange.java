@@ -36,7 +36,7 @@ public final class DateRange implements Range<ChronoLocalDate> {
 	}
 
 	@Override
-	public Media print(final Media media) {
+	public Media about(final Media media) {
 		final DateTimeFormatter format = DateTimeFormatter
 				.ofLocalizedDate(FormatStyle.SHORT);
 		return media.with("begin", begin.format(format)).with("end",

@@ -15,8 +15,8 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
 public final class XmlFormat {
-	private final transient String xml;
-	private final transient int indent;
+	private final String xml;
+	private final int indent;
 
 	public XmlFormat(final Media media) {
 		this(media.toString());

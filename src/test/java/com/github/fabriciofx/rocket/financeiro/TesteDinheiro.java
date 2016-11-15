@@ -1,15 +1,12 @@
-package com.github.fabriciofx.rocket.dominio.financeiro;
+package com.github.fabriciofx.rocket.financeiro;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
 import java.util.Locale;
 
 import org.junit.Test;
-
-import com.github.fabriciofx.rocket.financeiro.Dinheiro;
 
 public final class TesteDinheiro {
 	@Test(expected = IllegalArgumentException.class)
@@ -52,15 +49,6 @@ public final class TesteDinheiro {
 	}
 
 	@Test
-	public void distribuaDezReaisESetentaCentavosEm3Parcelas() {
-		final Dinheiro d1 = new Dinheiro("10.70");
-		final List<Dinheiro> parcelas = d1.parcela(3);
-		assertEquals("R$ 3,56", parcelas.get(0).toString());
-		assertEquals("R$ 3,56", parcelas.get(1).toString());
-		assertEquals("R$ 3,58", parcelas.get(2).toString());
-	}
-
-	@Test
 	public void zeroDolares() {
 		final Dinheiro zero = new Dinheiro("0.00", "USD");
 		assertEquals("$ 0.00", zero.toString(Locale.US));
@@ -82,15 +70,6 @@ public final class TesteDinheiro {
 	public void maisDeCentoEVinteTresMilhoesDeDolares() {
 		final Dinheiro d1 = new Dinheiro("123456789.10", "USD");
 		assertEquals("$ 123,456,789.10", d1.toString(Locale.US));
-	}
-
-	@Test
-	public void distribuaDezDolaresESetentaCentavosEm3Parcelas() {
-		final Dinheiro d1 = new Dinheiro("10.70", "USD");
-		final List<Dinheiro> parcelas = d1.parcela(3);
-		assertEquals("$ 3.56", parcelas.get(0).toString(Locale.US));
-		assertEquals("$ 3.56", parcelas.get(1).toString(Locale.US));
-		assertEquals("$ 3.58", parcelas.get(2).toString(Locale.US));
 	}
 
 	@Test
