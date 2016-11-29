@@ -58,7 +58,8 @@ public final class MysqlDatabase implements Database {
 	}
 
 	@Override
-	public void exec(final SqlScript script) throws IOException {
+	public Database exec(final SqlScript script) throws IOException {
 		script.exec(this);
+		return this;
 	}
 }

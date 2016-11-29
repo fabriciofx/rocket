@@ -13,5 +13,5 @@ public interface Database {
 
 	DataSource source() throws IOException;
 	
-	void exec(SqlScript script) throws IOException;
+	Database exec(SqlScript script) throws IOException;
 }

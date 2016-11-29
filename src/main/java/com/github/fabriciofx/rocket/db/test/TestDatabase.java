@@ -37,8 +37,9 @@ public final class TestDatabase implements Database {
 	}
 
 	@Override
-	public void exec(final SqlScript script) throws IOException {
+	public Database exec(final SqlScript script) throws IOException {
 		script.exec(db);
+		return db;
 	}
 	
 	private static Database memoryH2Database(final String dbname) {
