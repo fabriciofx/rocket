@@ -38,6 +38,7 @@ public final class ConfigFile implements Config {
 		final Properties prop = new Properties();
 		try {
 			prop.load(stream);
+			stream.close();
 		} catch (final IOException e) {
 			new IllegalArgumentException("invalid config file stream");
 		}
