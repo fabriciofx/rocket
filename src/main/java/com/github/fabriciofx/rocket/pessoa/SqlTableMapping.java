@@ -13,10 +13,13 @@ public final class SqlTableMapping
 	@Override
 	public Map<String, String> map(final ResultSet rs) throws SQLException {
 		final ResultSetMetaData rsmd = rs.getMetaData();
-		final int colunas = rsmd.getColumnCount();
+		final int columns = rsmd.getColumnCount();
 		final Map<String, String> table = new HashMap<>();
-		for (int i = 1; i <= colunas; i++) {
-			table.put(rsmd.getColumnName(i).toLowerCase(), rs.getString(i));
+		for (int i = 1; i <= columns; i++) {
+			table.put(
+				rsmd.getColumnName(i).toLowerCase(),
+				rs.getString(i)
+			);
 		}
 		return table;
 	}
