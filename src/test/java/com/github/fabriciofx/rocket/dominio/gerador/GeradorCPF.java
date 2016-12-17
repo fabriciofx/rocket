@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.dominio.gerador;
 
 import java.util.Random;
 
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cpf;
+import com.github.fabriciofx.rocket.doc.Cpf;
 
 public final class GeradorCPF {
 	private GeradorCPF() {

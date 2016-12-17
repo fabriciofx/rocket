@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.dominio.endereco;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.endereco.doc.Cep;
+import com.github.fabriciofx.rocket.doc.endereco.Cep;
 
 public final class TesteCep {
 	@Test(expected = IllegalArgumentException.class)

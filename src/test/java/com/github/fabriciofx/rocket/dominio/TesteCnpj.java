@@ -2,7 +2,7 @@ package com.github.fabriciofx.rocket.dominio;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Cnpj;
+import com.github.fabriciofx.rocket.doc.Cnpj;
 
 public final class TesteCnpj {
 	@Test

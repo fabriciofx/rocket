@@ -1,7 +1,7 @@
 package com.github.fabriciofx.rocket.media;
 
 public final class TextMedia implements Media {
-	private final transient StringBuilder sb;
+	private final StringBuilder sb;
 
 	public TextMedia() {
 		this(new StringBuilder());

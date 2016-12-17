@@ -17,7 +17,7 @@ public final class DefaultRange<T extends Comparable<T>> implements Range<T> {
 	}
 
 	@Override
-	public Media print(final Media media) {
+	public Media about(final Media media) {
 		return media
 			.with("min", min.toString())
 			.with("max", max.toString());

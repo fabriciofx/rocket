@@ -13,6 +13,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import com.github.fabriciofx.rocket.doc.Placa;
+
 @Ignore
 @RunWith(Parameterized.class)
 public final class TestePlaca {

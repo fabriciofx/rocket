@@ -1,7 +1,7 @@
 package com.github.fabriciofx.rocket.id;
 
 public final class NumId implements Id, Comparable<NumId> {
-	private final transient long num;
+	private final long num;
 
 	public NumId(final long num) {
 		this.num = num;

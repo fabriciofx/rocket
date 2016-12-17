@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
-import com.github.fabriciofx.rocket.dominio.pessoa.docs.doc.Email;
+import com.github.fabriciofx.rocket.doc.Email;
 
 import lombok.EqualsAndHashCode;
 

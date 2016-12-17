@@ -4,7 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.dominio.gerador.GeradorNome;
+import com.github.fabriciofx.rocket.doc.Nome;
+import com.github.fabriciofx.rocket.media.TextMedia;
 
 public final class TesteNome {
 	@Test(expected = IllegalArgumentException.class)
@@ -25,29 +26,27 @@ public final class TesteNome {
 	@Test
 	public void validoSePossuirHifen() {
 		final Nome nome = new Nome("Catherine Zeta-Jones");
-		assertEquals("Catherine Zeta-Jones", nome.completo());
+		assertEquals(
+			"Catherine Zeta-Jones",
+			nome.print(new TextMedia()).toString()
+		);
 	}
 
 	@Test
 	public void validoSePossuirApostrofo() {
 		final Nome nome = new Nome("Richard O'Reilly");
-		assertEquals("Richard O'Reilly", nome.completo());
+		assertEquals(
+			"Richard O'Reilly",
+			nome.print(new TextMedia()).toString()
+		);
 	}
 
 	@Test
 	public void validoSePossuirAbraviacao() {
 		final Nome nome = new Nome("Armando B. C. Gomes");
-		assertEquals("Armando B. C. Gomes", nome.completo());
-	}
-
-	@Test
-	public void validoNomesAleatorios() {
-		final GeradorNome nomes = new GeradorNome();
-		
-		for (int i = 0; i < 1000; i++) {
-			final String nomeStr = nomes.com(2, 5);
-			final Nome nome = new Nome(nomeStr);
-			assertEquals(nomeStr, nome.completo());
-		}
+		assertEquals(
+			"Armando B. C. Gomes",
+			nome.print(new TextMedia()).toString()
+		);
 	}
 }
