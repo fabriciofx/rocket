@@ -13,11 +13,13 @@ import com.github.fabriciofx.rocket.db.test.TestDatabase;
 import com.github.fabriciofx.rocket.media.Media;
 import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.github.fabriciofx.rocket.misc.ResourcePath;
+import com.github.fabriciofx.rocket.pessoas.Pessoas;
+import com.github.fabriciofx.rocket.pessoas.PessoasSql;
 import com.jcabi.matchers.XhtmlMatchers;
 
-public final class TestePessoa {
+public final class TestePessoas {
 	@Test
-	public void pessoa() throws IOException {
+	public void fisica() throws IOException {
 		final Database testebd = new TestDatabase("testebd");
 		testebd.exec(
 			new SqlScript(
@@ -28,25 +30,25 @@ public final class TestePessoa {
 			)
 		);
 		final Pessoas pessoas = new PessoasSql(testebd);
-		final Pessoa pessoa = pessoas.pessoa(
+		final Pessoa pessoa = pessoas.fisica(
 			"Jason Bourne",
 			new HashMap<String, String>() {{
-				put("tratamento", "Sr.");
-				put("cpf", "11122233345");
-				put("rg", "1234567 SSP-PB");
-				put("sexo", "M");
+				put("email", "jason.bourne@cia.gov.us");
 				put("logradouro", "Av Gov Torquato Nepomuceno Neves");
 				put("numero", "123");
 				put("complemento", "AP-101");
 				put("bairro", "Vila Madalena");
 				put("cidade", "São Paulo-SP");
 				put("cep", "4803512");
-				put("email", "jason.bourne@cia.gov.us");
+				put("tratamento", "Sr.");
+				put("cpf", "11122233345");
+				put("rg", "1234567 SSP-PB");
+				put("sexo", "M");
 			}}
 		);
 		MatcherAssert.assertThat(
 			XhtmlMatchers.xhtml(
-				new PessoaXml(pessoa)
+				new PessoaFisicaXml(pessoa)
 			),
 			XhtmlMatchers.hasXPaths(
 				"/pessoa/id",
@@ -78,7 +80,7 @@ public final class TestePessoa {
 			)
 		);
 		final Pessoas pessoas = new PessoasSql(testebd);
-		final Pessoa pessoa = pessoas.pessoa(
+		final Pessoa pessoa = pessoas.fisica(
 			"Jason Bourne",
 			new HashMap<String, String>() {{
 				put("tratamento", "Sr.");
@@ -97,7 +99,7 @@ public final class TestePessoa {
 		pessoa.renomeia("David Webb");
 		MatcherAssert.assertThat(
 			XhtmlMatchers.xhtml(
-				new PessoaXml(pessoa)
+				new PessoaFisicaXml(pessoa)
 			),
 			XhtmlMatchers.hasXPaths(
 				"/pessoa/id",
@@ -129,7 +131,7 @@ public final class TestePessoa {
 			)
 		);
 		final Pessoas pessoas = new PessoasSql(testebd);
-		final Pessoa pessoa = new PessoaCached(pessoas.pessoa(
+		final Pessoa pessoa = new PessoaCached(pessoas.fisica(
 			"Jason Bourne",
 			new HashMap<String, String>() {{
 				put("tratamento", "Sr.");

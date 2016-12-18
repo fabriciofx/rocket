@@ -1,7 +1,12 @@
-pessoas.pessoa=INSERT INTO pessoa (nome, tratamento, cpf, rg, sexo, logradouro, numero, complemento, bairro, cidade, cep, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-pessoa.renomeia=UPDATE pessoa SET nome = ? WHERE id = ?
-pessoa.documentos=UPDATE pessoa SET tratamento = ?, cpf = ?, rg = ?, sexo = ?, logradouro = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, cep = ?, email = ? WHERE pessoa = ?
+pessoas.pessoa=INSERT INTO pessoa (nome, email, logradouro, numero, complemento, bairro, cidade, cep) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+pessoas.pessoa.fisica=INSERT INTO pessoa_fisica (pessoa, tratamento, cpf, rg, sexo) VALUES (?, ?, ?, ?, ?)
+pessoas.pessoa.juridica=INSERT INTO pessoa_juridica (pessoa, cnpj, inscricao_estadual, inscricao_municipal) VALUES (?, ?, ?, ?)
+
 pessoa.about=SELECT * FROM pessoa WHERE id = ?
+pessoa.renomeia=UPDATE pessoa SET nome = ? WHERE id = ?
+
+pessoa.fisica.about=SELECT * FROM pessoa_fisica WHERE pessoa = ?
+pessoa.fisica.documentos=UPDATE pessoa_fisica SET tratamento = ?, cpf = ?, rg = ?, sexo = ?, logradouro = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, cep = ?, email = ? WHERE pessoa = ?
 
 fones.fone=INSERT INTO fone (pessoa, numero, tipo, operadora) VALUES (?, ?, ?, ?)
 

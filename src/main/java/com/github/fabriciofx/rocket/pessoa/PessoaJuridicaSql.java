@@ -16,16 +16,17 @@ import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.SingleOutcome;
 
-public final class PessoaSql implements Pessoa {
+public final class PessoaJuridicaSql implements Pessoa {
 	private final Id id;
 	private final Database db;
 	private final Config queries;
 	
-	public PessoaSql(final Id id, final Database db) {
+	public PessoaJuridicaSql(final Id id, final Database db) {
 		this(id, db, new ConfigFile("rocket.queries"));
 	}
 	
-	public PessoaSql(final Id id, final Database db, final Config queries) {
+	public PessoaJuridicaSql(final Id id, final Database db,
+		final Config queries) {
 		this.id = id;
 		this.db = db;
 		this.queries = queries;
@@ -38,15 +39,7 @@ public final class PessoaSql implements Pessoa {
 
 	@Override
 	public void renomeia(final String nome) throws IOException {
-		try {
-			new JdbcSession(db.source())
-				.sql(queries.read(String.class, "pessoa.renomeia"))
-				.set(nome)
-				.set(id)
-				.update(SingleOutcome.VOID);
-		} catch (final SQLException e) {
-			throw new IOException(e);
-		}
+		new PessoaSql(id, db).renomeia(nome);
 	}
 
 	@Override
@@ -54,14 +47,10 @@ public final class PessoaSql implements Pessoa {
 		throws IOException {
 		try {
 			new JdbcSession(db.source())
-				.sql(queries.read(String.class, "pessoa.documentos"))
-				.set(documentos.get("email"))
-				.set(documentos.get("logradouro"))
-				.set(documentos.get("numero"))
-				.set(documentos.get("complemento"))
-				.set(documentos.get("bairro"))
-				.set(documentos.get("cidade"))
-				.set(documentos.get("cep"))
+				.sql(queries.read(String.class, "pessoa_juridica.documentos"))
+				.set(documentos.get("cnpj"))
+				.set(documentos.get("inscricao_estadual"))
+				.set(documentos.get("inscricao_municipal"))
 				.set(id)
 				.update(SingleOutcome.VOID);
 		} catch (final SQLException e) {
@@ -78,7 +67,7 @@ public final class PessoaSql implements Pessoa {
 	public Media about(final Media media) throws IOException {
 		try {
 			final Map<String, String> documentos = new JdbcSession(db.source())
-				.sql(queries.read(String.class, "pessoa.about"))
+				.sql(queries.read(String.class, "pessoa_juridica.about"))
 				.set(id)
 				.select(
 					new ListOutcome<Map<String, String>>(
@@ -86,16 +75,10 @@ public final class PessoaSql implements Pessoa {
 					)
 				)
 				.get(0);
-			return media
-				.with("id", id)
-				.with("nome", documentos.get("nome"))
-				.with("email", documentos.get("email"))
-				.with("logradouro", documentos.get("logradouro"))
-				.with("numero", documentos.get("numero"))
-				.with("complemento", documentos.get("complemento"))
-				.with("bairro", documentos.get("bairro"))
-				.with("cidade", documentos.get("cidade"))
-				.with("cep", documentos.get("cep"));
+			return new PessoaSql(id, db).about(media)
+				.with("cnpj", documentos.get("cnpj"))
+				.with("inscricao_estadual", documentos.get("inscricao_estadual"))
+				.with("inscricao_municipal", documentos.get("inscricao_municipal"));
 		} catch (final SQLException e) {
 			throw new IOException(e);
 		}
