@@ -1,0 +1,8 @@
+pessoas.pessoa=INSERT INTO pessoa (nome, tratamento, cpf, rg, sexo, logradouro, numero, complemento, bairro, cidade, cep, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+pessoa.renomeia=UPDATE pessoa SET nome = ? WHERE id = ?
+pessoa.documentos=UPDATE pessoa SET tratamento = ?, cpf = ?, rg = ?, sexo = ?, logradouro = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, cep = ?, email = ? WHERE pessoa = ?
+pessoa.about=SELECT * FROM pessoa WHERE id = ?
+
+fones.fone=INSERT INTO fone (pessoa, numero, tipo, operadora) VALUES (?, ?, ?, ?)
+
+fone.apaga=DELETE FROM fone WHERE pessoa = ? AND numero = ?

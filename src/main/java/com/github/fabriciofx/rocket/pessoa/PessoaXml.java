@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import com.github.fabriciofx.rocket.media.XmlMedia;
 
-public final class XmlPessoa {
+public final class PessoaXml {
 	private final Pessoa origem;
 	
-	public XmlPessoa(final Pessoa origem) {
+	public PessoaXml(final Pessoa origem) {
 		this.origem = origem;
 	}
 	

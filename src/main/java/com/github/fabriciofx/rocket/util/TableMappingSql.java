@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.pessoa;
+package com.github.fabriciofx.rocket.util;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.jcabi.jdbc.ListOutcome;
 
-public final class SqlTableMapping
+public final class TableMappingSql
 	implements ListOutcome.Mapping<Map<String, String>> {
 	@Override
 	public Map<String, String> map(final ResultSet rs) throws SQLException {
