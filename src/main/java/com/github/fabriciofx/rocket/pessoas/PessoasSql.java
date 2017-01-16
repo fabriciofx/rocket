@@ -40,7 +40,7 @@ public final class PessoasSql implements Pessoas {
 					try {
 						final Id id = new NumId(
 							new JdbcSession(db.source())
-							.sql(queries.read(String.class, "pessoas.pessoa"))
+							.sql(queries.value(String.class, "pessoas.pessoa"))
 							.set(nome)
 							.set(documentos.get("email"))
 							.set(documentos.get("logradouro"))
@@ -52,7 +52,7 @@ public final class PessoasSql implements Pessoas {
 							.insert(SingleOutcome.LAST_INSERT_ID)
 						);
 						new JdbcSession(db.source())
-							.sql(queries.read(String.class, "pessoas.pessoa.fisica"))
+							.sql(queries.value(String.class, "pessoas.pessoa.fisica"))
 							.set(id)
 							.set(documentos.get("tratamento"))
 							.set(documentos.get("cpf"))
@@ -78,7 +78,7 @@ public final class PessoasSql implements Pessoas {
 					try {
 						final Id id = new NumId(
 							new JdbcSession(db.source())
-							.sql(queries.read(String.class, "pessoas.pessoa"))
+							.sql(queries.value(String.class, "pessoas.pessoa"))
 							.set(nome)
 							.set(documentos.get("email"))
 							.set(documentos.get("logradouro"))
@@ -90,7 +90,7 @@ public final class PessoasSql implements Pessoas {
 							.insert(SingleOutcome.LAST_INSERT_ID)
 						);
 						new JdbcSession(db.source())
-							.sql(queries.read(String.class, "pessoas.pessoa.juridica"))
+							.sql(queries.value(String.class, "pessoas.pessoa.juridica"))
 							.set(id)
 							.set(documentos.get("cnpj"))
 							.set(documentos.get("inscricao_estadual"))

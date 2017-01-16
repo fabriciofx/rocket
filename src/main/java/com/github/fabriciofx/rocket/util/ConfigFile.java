@@ -23,8 +23,10 @@ public final class ConfigFile implements Config {
 	}
 
 	@Override
-	public <T> T read(final Class<T> type, final String key) throws IOException {
+	public <T> T value(final Class<T> type, final String key) throws IOException {
 		final Object property;
+		// We need this kind of crap code because the Java API is awful.
+		// A better approach could be: type.parse(String string)
 		try {
 			if (type.equals(Byte.class)) {
 				property = Byte.parseByte(properties.getProperty(key));
@@ -54,7 +56,7 @@ public final class ConfigFile implements Config {
 	}
 
 	@Override
-	public void write(final String key, final String value) throws IOException {
+	public void entry(final String key, final String value) throws IOException {
 		properties.setProperty(key, value);
 	}
 
@@ -63,6 +65,7 @@ public final class ConfigFile implements Config {
 		return properties.containsKey(key);
 	}
 	
+	// TODO: extract this method to an other class
 	private static Properties load(final InputStream stream) {
 		final Properties prop = new Properties();
 		try {

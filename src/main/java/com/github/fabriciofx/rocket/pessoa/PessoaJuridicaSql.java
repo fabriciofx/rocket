@@ -47,7 +47,7 @@ public final class PessoaJuridicaSql implements Pessoa {
 		throws IOException {
 		try {
 			new JdbcSession(db.source())
-				.sql(queries.read(String.class, "pessoa_juridica.documentos"))
+				.sql(queries.value(String.class, "pessoa_juridica.documentos"))
 				.set(documentos.get("cnpj"))
 				.set(documentos.get("inscricao_estadual"))
 				.set(documentos.get("inscricao_municipal"))
@@ -67,7 +67,7 @@ public final class PessoaJuridicaSql implements Pessoa {
 	public Media about(final Media media) throws IOException {
 		try {
 			final Map<String, String> documentos = new JdbcSession(db.source())
-				.sql(queries.read(String.class, "pessoa_juridica.about"))
+				.sql(queries.value(String.class, "pessoa_juridica.about"))
 				.set(id)
 				.select(
 					new ListOutcome<Map<String, String>>(

@@ -32,7 +32,7 @@ public final class FoneSql implements Fone {
 	public void apaga() throws IOException {
 		try {
 			new JdbcSession(db.source())
-				.sql(queries.read(String.class, "fone.apaga"))
+				.sql(queries.value(String.class, "fone.apaga"))
 				.set(id)
 				.set(numero)
 				.update(SingleOutcome.VOID);
