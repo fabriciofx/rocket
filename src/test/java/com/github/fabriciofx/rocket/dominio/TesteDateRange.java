@@ -43,8 +43,8 @@ public final class TesteDateRange {
 	@Test
 	public void contemDataHoraComoString() {
 		final DateTimeRange periodo = new DateTimeRange(
-			new StringDatetime("10/10/2015 08:00").transform(),
-			new StringDatetime("20/10/2015 15:00").transform()
+			new StringDatetime("10/10/2015 08:00").format(),
+			new StringDatetime("20/10/2015 15:00").format()
 		);
 		assertEquals("10/10/15 08:00 to 20/10/15 15:00", periodo.toString());
 	}
@@ -52,8 +52,8 @@ public final class TesteDateRange {
 	@Test
 	public void contemDataComoString() {
 		final DateRange periodo = new DateRange(
-			new StringDate("10/10/2015").transform(),
-			new StringDate("20/10/2015").transform()
+			new StringDate("10/10/2015").format(),
+			new StringDate("20/10/2015").format()
 		);
 		assertEquals("10/10/15 to 20/10/15", periodo.toString());
 	}

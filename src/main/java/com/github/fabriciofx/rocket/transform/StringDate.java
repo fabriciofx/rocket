@@ -3,9 +3,9 @@ package com.github.fabriciofx.rocket.transform;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public final class StringDate implements Transform<LocalDate> {
-	private final transient CharSequence date;
-	private final transient String pattern;
+public final class StringDate implements Format<LocalDate> {
+	private final CharSequence date;
+	private final String pattern;
 
 	public StringDate(final CharSequence date) {
 		this(date, "dd/MM/yyyy");
@@ -17,7 +17,7 @@ public final class StringDate implements Transform<LocalDate> {
 	}
 	
 	@Override
-	public LocalDate transform() {
+	public LocalDate format() {
 		return LocalDate.parse(date,
 			DateTimeFormatter.ofPattern(pattern)
 		);
