@@ -5,14 +5,14 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.range.DefaultRange;
+import com.github.fabriciofx.rocket.range.RangeDefault;
 import com.github.fabriciofx.rocket.range.Limit;
 import com.github.fabriciofx.rocket.range.Range;
 
 public final class TesteRange {
 	@Test
 	public void deNumerosReaisPositivos() {
-		final Range<Double> intervalo = new DefaultRange<>(
+		final Range<Double> intervalo = new RangeDefault<>(
 				new Limit<>(2.15), new Limit<>(7.34));
 
 		assertFalse(intervalo.contains(2.14));
@@ -26,7 +26,7 @@ public final class TesteRange {
 
 	@Test
 	public void deNumerosReaisNegativos() {
-		final Range<Double> intervalo = new DefaultRange<>(
+		final Range<Double> intervalo = new RangeDefault<>(
 				new Limit<>(-2.15), new Limit<>(0.0));
 
 		assertFalse(intervalo.contains(-2.16));

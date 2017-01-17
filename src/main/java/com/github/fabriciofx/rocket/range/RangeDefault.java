@@ -2,11 +2,11 @@ package com.github.fabriciofx.rocket.range;
 
 import com.github.fabriciofx.rocket.media.Media;
 
-public final class DefaultRange<T extends Comparable<T>> implements Range<T> {
+public final class RangeDefault<T extends Comparable<T>> implements Range<T> {
 	private final transient Limit<T> min;
 	private final transient Limit<T> max;
 
-	public DefaultRange(final Limit<T> min, final Limit<T> max) {
+	public RangeDefault(final Limit<T> min, final Limit<T> max) {
 		this.min = min;
 		this.max = max;
 	}

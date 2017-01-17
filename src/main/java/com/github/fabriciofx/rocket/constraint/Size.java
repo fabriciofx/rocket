@@ -5,15 +5,15 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Map;
 
-import com.github.fabriciofx.rocket.range.DefaultRange;
+import com.github.fabriciofx.rocket.range.RangeDefault;
 
 public final class Size<T> implements Constraint<T> {
 	private final transient NotEmpty<T> origin;
-	private final transient DefaultRange<Integer> range;
+	private final transient RangeDefault<Integer> range;
 
-	public Size(final NotEmpty<T> origin, final DefaultRange<Integer> range) {
+	public Size(final NotEmpty<T> origin, final RangeDefault<Integer> range) {
 		this.origin = origin;
-		this.range = new NotNull<DefaultRange<Integer>>().valid(range);
+		this.range = new NotNull<RangeDefault<Integer>>().valid(range);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -9,15 +9,15 @@ import java.time.LocalDateTime;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.range.DateRange;
-import com.github.fabriciofx.rocket.range.DateTimeRange;
+import com.github.fabriciofx.rocket.range.RangeDate;
+import com.github.fabriciofx.rocket.range.RangeDateTime;
 import com.github.fabriciofx.rocket.transform.StringDate;
 import com.github.fabriciofx.rocket.transform.StringDatetime;
 
 public final class TesteDateRange {
 	@Test
 	public void contemDataHora() {
-		final DateTimeRange range = new DateTimeRange(
+		final RangeDateTime range = new RangeDateTime(
 				LocalDateTime.of(2015, 1, 1, 8, 0, 0),
 				LocalDateTime.of(2015, 1, 31, 8, 0, 0)
 		);
@@ -30,7 +30,7 @@ public final class TesteDateRange {
 
 	@Test
 	public void contemData() {
-		final DateRange periodo = new DateRange(LocalDate.of(2015, 1, 1),
+		final RangeDate periodo = new RangeDate(LocalDate.of(2015, 1, 1),
 				LocalDate.of(2015, 1, 3));
 
 		assertFalse(periodo.contains(LocalDate.of(2014, 12, 31)));
@@ -42,7 +42,7 @@ public final class TesteDateRange {
 
 	@Test
 	public void contemDataHoraComoString() {
-		final DateTimeRange periodo = new DateTimeRange(
+		final RangeDateTime periodo = new RangeDateTime(
 			new StringDatetime("10/10/2015 08:00").format(),
 			new StringDatetime("20/10/2015 15:00").format()
 		);
@@ -51,7 +51,7 @@ public final class TesteDateRange {
 
 	@Test
 	public void contemDataComoString() {
-		final DateRange periodo = new DateRange(
+		final RangeDate periodo = new RangeDate(
 			new StringDate("10/10/2015").format(),
 			new StringDate("20/10/2015").format()
 		);
