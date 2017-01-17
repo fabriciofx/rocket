@@ -76,14 +76,14 @@ public final class Dinheiro implements Comparable<Dinheiro> {
 
 
 	public String toString(final Locale localizacao) {
-		final NumberFormat formatoMoeda = NumberFormat.getInstance(
+		final NumberFormat formato = NumberFormat.getInstance(
 			new NotNull<Locale>().valid(localizacao)
 		);
-		formatoMoeda.setMinimumFractionDigits(moeda.getDefaultFractionDigits());
+		formato.setMinimumFractionDigits(moeda.getDefaultFractionDigits());
 		return String.format(
 			"%s %s",
 			moeda.getSymbol(localizacao),
-			formatoMoeda.format(quantia)
+			formato.format(quantia)
 		);
 	}
 
