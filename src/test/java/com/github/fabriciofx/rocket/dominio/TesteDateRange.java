@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.format.StringDate;
+import com.github.fabriciofx.rocket.format.StringDatetime;
 import com.github.fabriciofx.rocket.range.RangeDate;
 import com.github.fabriciofx.rocket.range.RangeDateTime;
-import com.github.fabriciofx.rocket.transform.StringDate;
-import com.github.fabriciofx.rocket.transform.StringDatetime;
 
 public final class TesteDateRange {
 	@Test

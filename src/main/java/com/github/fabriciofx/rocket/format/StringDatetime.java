@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.transform;
+package com.github.fabriciofx.rocket.format;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
