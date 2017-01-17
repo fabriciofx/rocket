@@ -50,26 +50,26 @@ import com.jcabi.log.Logger;
  * Tool to run database scripts. This version of the script can be found at
  * https://gist.github.com/git-commit/8716469
  */
-public final class SqlScript implements Script<Database> {
+public final class ScriptSql implements Script<Database> {
 	private static final String DEFAULT_DELIMITER = ";";
 	private static final String DELIMITER_LINE_REGEX = "(?i)DELIMITER.+";
 	private static final String DELIMITER_LINE_SPLIT_REGEX = "(?i)DELIMITER";
 
-	private transient final URI uri;
-	private transient final boolean stopOnError;
-	private transient final boolean autoCommit;
-	private transient String delimiter = DEFAULT_DELIMITER;
-	private transient boolean fullLineDelimiter = false;
+	private final URI uri;
+	private final boolean stopOnError;
+	private final boolean autoCommit;
+	private String delimiter = DEFAULT_DELIMITER;
+	private boolean fullLineDelimiter = false;
 
-	public SqlScript(final ResourcePath path) {
+	public ScriptSql(final ResourcePath path) {
 		this(path.uri());
 	}
 	
-	public SqlScript(final URI uri) {
+	public ScriptSql(final URI uri) {
 		this(uri, false, true, DEFAULT_DELIMITER, false);
 	}
 	
-	public SqlScript(final URI uri, final boolean autoCommit,
+	public ScriptSql(final URI uri, final boolean autoCommit,
 			final boolean stopOnError, final String delimiter,
 			final boolean fullLineDelimiter) {
 		this.uri = uri;

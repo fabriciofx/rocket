@@ -5,19 +5,19 @@ import java.io.IOException;
 import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.db.Database;
-import com.github.fabriciofx.rocket.db.SqlScript;
+import com.github.fabriciofx.rocket.db.ScriptSql;
 import com.github.fabriciofx.rocket.db.Url;
-import com.github.fabriciofx.rocket.db.h2.H2Database;
+import com.github.fabriciofx.rocket.db.h2.DatabaseH2;
 import com.github.fabriciofx.rocket.system.User;
 
-public final class TestDatabase implements Database {
+public final class DatabaseTest implements Database {
 	private final transient Database db;
 
-	public TestDatabase(final String dbname) {
+	public DatabaseTest(final String dbname) {
 		this(memoryH2Database(dbname));
 	}
 	
-	public TestDatabase(final Database db) {
+	public DatabaseTest(final Database db) {
 		this.db = db;
 	}
 
@@ -37,14 +37,14 @@ public final class TestDatabase implements Database {
 	}
 
 	@Override
-	public Database exec(final SqlScript script) throws IOException {
+	public Database exec(final ScriptSql script) throws IOException {
 		script.exec(db);
 		return db;
 	}
 	
 	private static Database memoryH2Database(final String dbname) {
 		try {
-			return new H2Database(dbname, H2Database.Mode.MEMORY);
+			return new DatabaseH2(dbname, DatabaseH2.Mode.MEMORY);
 		} catch (final IOException e) {
 			throw new IllegalArgumentException(e);
 		}

@@ -6,25 +6,25 @@ import javax.sql.DataSource;
 
 import com.github.fabriciofx.rocket.db.Config;
 import com.github.fabriciofx.rocket.db.Database;
-import com.github.fabriciofx.rocket.db.SqlScript;
+import com.github.fabriciofx.rocket.db.ScriptSql;
 import com.github.fabriciofx.rocket.db.Url;
 import com.github.fabriciofx.rocket.security.Plain;
 import com.github.fabriciofx.rocket.system.Password;
 import com.github.fabriciofx.rocket.system.UserSmart;
 import com.github.fabriciofx.rocket.system.User;
 
-public final class H2Database implements Database {
+public final class DatabaseH2 implements Database {
 	public enum Mode {
 		EMBEDDED, MEMORY, TCP;
 	}
 	
-	private final transient Config config;
+	private final Config config;
 
-	public H2Database(final String dbname) throws IOException {
-		this(dbname, H2Database.Mode.EMBEDDED);
+	public DatabaseH2(final String dbname) throws IOException {
+		this(dbname, DatabaseH2.Mode.EMBEDDED);
 	}
 
-	public H2Database(final String dbname, final H2Database.Mode mode)
+	public DatabaseH2(final String dbname, final DatabaseH2.Mode mode)
 			throws IOException {
 		this(
 			dbname,
@@ -36,12 +36,12 @@ public final class H2Database implements Database {
 		);
 	}
 
-	public H2Database(final String dbname, final H2Database.Mode mode,
+	public DatabaseH2(final String dbname, final DatabaseH2.Mode mode,
 			final User user) throws IOException {
-		this(new Config(new H2Url(dbname, mode), user));
+		this(new Config(new UrlH2(dbname, mode), user));
 	}
 
-	public H2Database(final Config config) {
+	public DatabaseH2(final Config config) {
 		this.config = config;
 	}
 
@@ -61,7 +61,7 @@ public final class H2Database implements Database {
 	}
 
 	@Override
-	public Database exec(final SqlScript script) throws IOException {
+	public Database exec(final ScriptSql script) throws IOException {
 		script.exec(this);
 		return this;
 	}

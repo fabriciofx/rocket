@@ -8,16 +8,16 @@ import com.github.fabriciofx.rocket.system.User;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-public final class HikariConnectionPool implements ConnectionPool {
-	private final transient HikariConfig config;
+public final class ConnectionPoolHikari implements ConnectionPool {
+	private final HikariConfig config;
 
-	public HikariConnectionPool(final Url url, final User user)
+	public ConnectionPoolHikari(final Url url, final User user)
 			throws IOException {
 		this(url, user, config(url, user));
 	}
 
-	public HikariConnectionPool(final Url url, final User user,
-			final HikariConfig config) {
+	public ConnectionPoolHikari(final Url url, final User user,
+		final HikariConfig config) {
 		this.config = config;
 	}
 

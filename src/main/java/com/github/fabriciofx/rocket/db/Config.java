@@ -8,12 +8,12 @@ import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.system.User;
 
 public final class Config {
-	private final transient ConnectionPool cp;
-	private final transient Url url;
-	private final transient User user;
+	private final ConnectionPool cp;
+	private final Url url;
+	private final User user;
 
 	public Config(final Url url, final User user) throws IOException {
-		this(new HikariConnectionPool(url, user), url, user);
+		this(new ConnectionPoolHikari(url, user), url, user);
 	}
 
 	public Config(final ConnectionPool cp, final Url url, final User user) {
