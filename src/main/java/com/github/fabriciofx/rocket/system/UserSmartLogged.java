@@ -6,15 +6,15 @@ import java.util.Map;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
-public final class SmartLoggedUser implements LoggedUser {
+public final class UserSmartLogged implements UserLogged {
 	private final User origin;
 	private final boolean logged;
 	
-	public SmartLoggedUser(final User origin) {
+	public UserSmartLogged(final User origin) {
 		this(origin, true);
 	}
 	
-	public SmartLoggedUser(final User origin, final boolean logged) {
+	public UserSmartLogged(final User origin, final boolean logged) {
 		this.origin = origin;
 		this.logged = logged;
 	}

@@ -12,8 +12,8 @@ import com.github.fabriciofx.rocket.doc.Email;
 public final class LoggedUserTest {
 	@Test
 	public void loggedUser() throws IOException {
-		final LoggedUser loggedUser = new SmartLoggedUser(
-			new SmartUser(
+		final UserLogged loggedUser = new UserSmartLogged(
+			new UserSmart(
 				new Email("homer@fox.com"),
 				new Password("D'oh!")
 			)

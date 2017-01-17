@@ -9,25 +9,25 @@ import com.github.fabriciofx.rocket.doc.Email;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
-public final class SmartUser implements User {
+public final class UserSmart implements User {
 	private final String name;
 	private final Password password;
 	private final Map<String, String> properties;
 
-	public SmartUser(final Email email, final Password password) {
+	public UserSmart(final Email email, final Password password) {
 		this(email, password, Collections.emptyMap());
 	}
 
-	public SmartUser(final String name, final Password password) {
+	public UserSmart(final String name, final Password password) {
 		this(name, password, Collections.emptyMap());
 	}
 
-	public SmartUser(final Email email, final Password password,
+	public UserSmart(final Email email, final Password password,
 			final Map<String, String> properties) {
 		this(email.toString(), password, properties);
 	}
 
-	public SmartUser(final String name, final Password password,
+	public UserSmart(final String name, final Password password,
 			final Map<String, String> properties) {
 		this.name = name;
 		this.password = password;

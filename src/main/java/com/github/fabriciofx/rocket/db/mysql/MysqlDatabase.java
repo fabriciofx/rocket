@@ -10,7 +10,7 @@ import com.github.fabriciofx.rocket.db.SqlScript;
 import com.github.fabriciofx.rocket.db.Url;
 import com.github.fabriciofx.rocket.security.Plain;
 import com.github.fabriciofx.rocket.system.Password;
-import com.github.fabriciofx.rocket.system.SmartUser;
+import com.github.fabriciofx.rocket.system.UserSmart;
 import com.github.fabriciofx.rocket.system.User;
 
 public final class MysqlDatabase implements Database {
@@ -20,7 +20,7 @@ public final class MysqlDatabase implements Database {
 		this(
 			new Config(
 				new MysqlUrl(dbname),
-					new SmartUser(
+					new UserSmart(
 						"root",
 						new Password(new Plain(), "")
 				)

@@ -11,7 +11,7 @@ import com.github.fabriciofx.rocket.doc.Email;
 public final class UserTest {
 	@Test
 	public void user() throws IOException {
-		final User user = new SmartUser(
+		final User user = new UserSmart(
 				"Homer Simpson",
 				new Password("D'oh!")
 		);
@@ -24,7 +24,7 @@ public final class UserTest {
 
 	@Test
 	public void emailed() throws IOException {
-		final User user = new SmartUser(
+		final User user = new UserSmart(
 				new Email("homer@fox.com"),
 				new Password("D'oh!")
 		);
