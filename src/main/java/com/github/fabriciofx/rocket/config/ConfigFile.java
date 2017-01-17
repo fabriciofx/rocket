@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.util;
+package com.github.fabriciofx.rocket.config;
 
 import java.io.IOException;
 import java.io.InputStream;

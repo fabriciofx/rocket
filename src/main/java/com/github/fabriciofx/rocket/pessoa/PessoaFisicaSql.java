@@ -4,14 +4,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
 
+import com.github.fabriciofx.rocket.config.Config;
+import com.github.fabriciofx.rocket.config.ConfigFile;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.fone.Fones;
 import com.github.fabriciofx.rocket.fone.FonesSql;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
-import com.github.fabriciofx.rocket.util.Config;
-import com.github.fabriciofx.rocket.util.ConfigFile;
-import com.github.fabriciofx.rocket.util.TableMappingSql;
+import com.github.fabriciofx.rocket.sql.TableMappingSql;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
 import com.jcabi.jdbc.SingleOutcome;

@@ -11,6 +11,9 @@ import java.net.URL;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.config.Config;
+import com.github.fabriciofx.rocket.config.ConfigFile;
+
 public final class TestConfig {
 	@Test
 	public void readByte() throws IOException {

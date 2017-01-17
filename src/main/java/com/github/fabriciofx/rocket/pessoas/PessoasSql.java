@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import com.github.fabriciofx.rocket.config.Config;
+import com.github.fabriciofx.rocket.config.ConfigFile;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.Transaction;
 import com.github.fabriciofx.rocket.id.Id;
@@ -12,8 +14,6 @@ import com.github.fabriciofx.rocket.id.NumId;
 import com.github.fabriciofx.rocket.pessoa.Pessoa;
 import com.github.fabriciofx.rocket.pessoa.PessoaFisicaSql;
 import com.github.fabriciofx.rocket.pessoa.PessoaJuridicaSql;
-import com.github.fabriciofx.rocket.util.Config;
-import com.github.fabriciofx.rocket.util.ConfigFile;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 

@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
+import com.github.fabriciofx.rocket.config.Config;
+import com.github.fabriciofx.rocket.config.ConfigFile;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.id.Id;
-import com.github.fabriciofx.rocket.util.Config;
-import com.github.fabriciofx.rocket.util.ConfigFile;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.SingleOutcome;
 

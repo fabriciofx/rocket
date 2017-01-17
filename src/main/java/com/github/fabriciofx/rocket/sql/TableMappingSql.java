@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.util;
+package com.github.fabriciofx.rocket.sql;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
