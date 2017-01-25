@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.format.StringDate;
-import com.github.fabriciofx.rocket.format.StringDatetime;
+import com.github.fabriciofx.rocket.as.StringAsDate;
+import com.github.fabriciofx.rocket.as.StringAsDatetime;
 import com.github.fabriciofx.rocket.range.RangeDate;
 import com.github.fabriciofx.rocket.range.RangeDateTime;
 
@@ -43,8 +43,8 @@ public final class TesteDateRange {
 	@Test
 	public void contemDataHoraComoString() {
 		final RangeDateTime periodo = new RangeDateTime(
-			new StringDatetime("10/10/2015 08:00").format(),
-			new StringDatetime("20/10/2015 15:00").format()
+			new StringAsDatetime("10/10/2015 08:00"),
+			new StringAsDatetime("20/10/2015 15:00")
 		);
 		assertEquals("10/10/15 08:00 to 20/10/15 15:00", periodo.toString());
 	}
@@ -52,8 +52,8 @@ public final class TesteDateRange {
 	@Test
 	public void contemDataComoString() {
 		final RangeDate periodo = new RangeDate(
-			new StringDate("10/10/2015").format(),
-			new StringDate("20/10/2015").format()
+			new StringAsDate("10/10/2015"),
+			new StringAsDate("20/10/2015")
 		);
 		assertEquals("10/10/15 to 20/10/15", periodo.toString());
 	}

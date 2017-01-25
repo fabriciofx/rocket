@@ -5,6 +5,7 @@ import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import com.github.fabriciofx.rocket.as.StringAsDate;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
 
@@ -12,6 +13,10 @@ public final class RangeDate implements Range<ChronoLocalDate> {
 	private final LocalDate begin;
 	private final LocalDate end;
 
+	public RangeDate(final StringAsDate begin, final StringAsDate end) {
+		this(begin.date(), end.date());
+	}
+	
 	public RangeDate(final LocalDate begin, final LocalDate end) {
 		this.begin = begin;
 		this.end = end;

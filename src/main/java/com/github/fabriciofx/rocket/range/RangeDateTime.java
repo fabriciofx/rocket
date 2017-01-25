@@ -5,12 +5,18 @@ import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import com.github.fabriciofx.rocket.as.StringAsDatetime;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
 
 public final class RangeDateTime implements Range<ChronoLocalDateTime<?>> {
 	private final LocalDateTime begin;
 	private final LocalDateTime end;
+	
+	public RangeDateTime(final StringAsDatetime begin,
+		final StringAsDatetime end) {
+		this(begin.dateTime(), end.dateTime());
+	}
 
 	public RangeDateTime(final LocalDateTime begin, final LocalDateTime end) {
 		this.begin = begin;

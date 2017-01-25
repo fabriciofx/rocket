@@ -1,23 +1,22 @@
-package com.github.fabriciofx.rocket.format;
+package com.github.fabriciofx.rocket.as;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public final class StringDatetime implements Format<LocalDateTime> {
+public final class StringAsDatetime {
 	private final CharSequence datetime;
 	private final String pattern;
 	
-	public StringDatetime(final CharSequence datetime) {
+	public StringAsDatetime(final CharSequence datetime) {
 		this(datetime, "dd/MM/yyyy HH:mm");
 	}
 	
-	public StringDatetime(final CharSequence datetime, final String pattern) {
+	public StringAsDatetime(final CharSequence datetime, final String pattern) {
 		this.datetime = datetime;
 		this.pattern = pattern;
 	}
 	
-	@Override
-	public LocalDateTime format() {
+	public LocalDateTime dateTime() {
 		return LocalDateTime.parse(datetime,
 			DateTimeFormatter.ofPattern(pattern)
 		);
