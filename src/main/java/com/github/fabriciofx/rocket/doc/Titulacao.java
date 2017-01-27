@@ -4,9 +4,6 @@ import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
 
-import lombok.EqualsAndHashCode;
-
-@EqualsAndHashCode
 public enum Titulacao implements Documento {
 	MESTRE("M.e"),
 	MESTRA("M.a"),

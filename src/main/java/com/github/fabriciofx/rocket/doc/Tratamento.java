@@ -4,9 +4,6 @@ import com.github.fabriciofx.rocket.constraint.NotEmpty;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
 
-import lombok.EqualsAndHashCode;
-
-@EqualsAndHashCode
 public enum Tratamento implements Documento {
 	// http://www.academia.org.br/nossa-lingua/reducoes
 	VOCE("V."),
