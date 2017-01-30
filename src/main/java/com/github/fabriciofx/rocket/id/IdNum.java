@@ -1,14 +1,14 @@
 package com.github.fabriciofx.rocket.id;
 
-public final class NumId implements Id, Comparable<NumId> {
+public final class IdNum implements Id, Comparable<IdNum> {
 	private final long num;
 
-	public NumId(final long num) {
+	public IdNum(final long num) {
 		this.num = num;
 	}
 
 	@Override
-	public int compareTo(final NumId numId) {
+	public int compareTo(final IdNum numId) {
 		return (int) (num - numId.num);
 	}
 
@@ -19,8 +19,9 @@ public final class NumId implements Id, Comparable<NumId> {
 
 	@Override
 	public boolean equals(final Object o) {
-		return o != null && o instanceof NumId
-				&& num == NumId.class.cast(o).num;
+		return o != null &&
+			o instanceof IdNum &&
+			num == IdNum.class.cast(o).num;
 	}
 
 	@Override
