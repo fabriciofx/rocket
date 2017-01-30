@@ -5,9 +5,9 @@ import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
-import com.github.fabriciofx.rocket.as.StringAsDatetime;
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
+import com.github.fabriciofx.rocket.string.StringAsDatetime;
 
 public final class RangeDateTime implements Range<ChronoLocalDateTime<?>> {
 	private final LocalDateTime begin;

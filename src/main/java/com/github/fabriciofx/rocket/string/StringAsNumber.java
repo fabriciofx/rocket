@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.as;
+package com.github.fabriciofx.rocket.string;
 
 public final class StringAsNumber extends Number {
 	private static final long serialVersionUID = 356954227922735088L;
