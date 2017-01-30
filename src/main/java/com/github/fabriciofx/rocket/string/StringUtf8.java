@@ -1,33 +1,39 @@
-package com.github.fabriciofx.rocket.misc;
+package com.github.fabriciofx.rocket.string;
 
 import java.io.Serializable;
 import java.nio.charset.Charset;
 
-import com.github.fabriciofx.rocket.constraint.NotNull;
-
-public final class Utf8String
-		implements Serializable, Comparable<Utf8String>, CharSequence {
+public final class StringUtf8
+		implements Serializable, Comparable<StringUtf8>, CharSequence {
 	private static final long serialVersionUID = 4708199753825765959L;
 
 	private static final String ENCODING = "UTF-8";
 	private final String origin;
 
-	public Utf8String(final byte... bytes) {
-		this(new String(bytes, Charset.forName(Utf8String.ENCODING)));
+	public StringUtf8(final byte... bytes) {
+		this(
+			new String(
+				bytes,
+				Charset.forName(StringUtf8.ENCODING)
+			)
+		);
 	}
 
-	public Utf8String(final String string) {
+	public StringUtf8(final String string) {
 		this.origin = string;
 	}
 
 	public byte[] bytes() {
-		return origin.getBytes(Charset.forName(Utf8String.ENCODING));
+		return origin.getBytes(
+			Charset.forName(StringUtf8.ENCODING)
+		);
 	}
 
 	@Override
 	public boolean equals(final Object o) {
-		return o != null && o instanceof Utf8String
-				&& origin.equals(Utf8String.class.cast(o).origin);
+		return o != null &&
+			o instanceof StringUtf8 &&
+			origin.equals(StringUtf8.class.cast(o).origin);
 	}
 
 	@Override
@@ -56,9 +62,7 @@ public final class Utf8String
 	}
 
 	@Override
-	public int compareTo(final Utf8String o) {
-		return origin.compareTo(
-			new NotNull<Utf8String>().valid(o).origin
-		);
+	public int compareTo(final StringUtf8 o) {
+		return origin.compareTo(o.origin);
 	}
 }
