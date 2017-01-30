@@ -5,7 +5,7 @@ public final class NameEnglish implements Name {
 	
 	public NameEnglish(final String content) {
 		this(
-			new NameSmart(content)
+			new NameSimple(content)
 		);
 	}
 	

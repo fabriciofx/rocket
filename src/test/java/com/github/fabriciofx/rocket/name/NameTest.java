@@ -9,7 +9,7 @@ public class NameTest {
 	public void cleaned() {
 		final String content = "  Fabricio   Barros Cabral		";
 		final Name name = new NameCleaned(
-			new NameSmart(content)
+			new NameSimple(content)
 		);
 		assertEquals("Fabricio Barros Cabral", name.content());
 	}
@@ -20,7 +20,7 @@ public class NameTest {
 		final Name name = new NameAbbreviated(
 			new NameSplited(
 				new NameCleaned(
-					new NameSmart(content)
+					new NameSimple(content)
 				)
 			)
 		);
@@ -30,14 +30,14 @@ public class NameTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void notNull() {
 		new NameSafe(
-			new NameSmart(null)
+			new NameSimple(null)
 		).content();
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void noEmpty() {
 		new NameSafe(
-			new NameSmart("")
+			new NameSimple("")
 		).content();
 	}
 
@@ -48,7 +48,7 @@ public class NameTest {
 			new NameFirstLast(
 				new NameSplited(
 					new NameCleaned(
-						new NameSmart(content)
+						new NameSimple(content)
 					)
 				)
 			)
@@ -64,7 +64,7 @@ public class NameTest {
 				new NameFirstLast(
 					new NameSplited(
 						new NameCleaned(
-							new NameSmart(content)
+							new NameSimple(content)
 						)
 					)
 				)
