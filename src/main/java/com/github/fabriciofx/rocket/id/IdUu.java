@@ -2,22 +2,19 @@ package com.github.fabriciofx.rocket.id;
 
 import java.util.UUID;
 
-import com.github.fabriciofx.rocket.constraint.NotEmpty;
-import com.github.fabriciofx.rocket.constraint.NotNull;
-
-public final class UuId implements Id, Comparable<UuId> {
+public final class IdUu implements Id, Comparable<IdUu> {
 	private final UUID uuid;
 
-	public UuId() {
+	public IdUu() {
 		this(UUID.randomUUID());
 	}
 
-	public UuId(final String uuid) {
+	public IdUu(final String uuid) {
 		this(UUID.fromString(uuid));
 	}
 
-	public UuId(final UUID uuid) {
-		this.uuid = new NotEmpty<UUID>(new NotNull<>()).valid(uuid);
+	public IdUu(final UUID uuid) {
+		this.uuid = uuid;
 	}
 
 	@Override
@@ -31,7 +28,7 @@ public final class UuId implements Id, Comparable<UuId> {
 	}
 
 	@Override
-	public int compareTo(final UuId uuid) {
+	public int compareTo(final IdUu uuid) {
 		return this.uuid.compareTo(uuid.uuid);
 	}
 }

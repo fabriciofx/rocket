@@ -10,7 +10,7 @@ import com.github.fabriciofx.rocket.config.ConfigFile;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.Transaction;
 import com.github.fabriciofx.rocket.id.Id;
-import com.github.fabriciofx.rocket.id.NumId;
+import com.github.fabriciofx.rocket.id.IdNum;
 import com.github.fabriciofx.rocket.pessoa.Pessoa;
 import com.github.fabriciofx.rocket.pessoa.PessoaFisicaSql;
 import com.github.fabriciofx.rocket.pessoa.PessoaJuridicaSql;
@@ -38,7 +38,7 @@ public final class PessoasSql implements Pessoas {
 				@Override
 				public Pessoa call() throws Exception {
 					try {
-						final Id id = new NumId(
+						final Id id = new IdNum(
 							new JdbcSession(db.source())
 							.sql(queries.value(String.class, "pessoas.pessoa"))
 							.set(nome)
@@ -76,7 +76,7 @@ public final class PessoasSql implements Pessoas {
 				@Override
 				public Pessoa call() throws Exception {
 					try {
-						final Id id = new NumId(
+						final Id id = new IdNum(
 							new JdbcSession(db.source())
 							.sql(queries.value(String.class, "pessoas.pessoa"))
 							.set(nome)
