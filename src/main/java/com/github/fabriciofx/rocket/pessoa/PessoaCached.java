@@ -10,7 +10,7 @@ import com.github.fabriciofx.rocket.media.XmlMedia;
 
 public final class PessoaCached implements Pessoa {
 	private final Pessoa origem;
-	private final Media about;
+	private final Media media;
 
 	public PessoaCached(final Pessoa origem) throws IOException {
 		this(origem, new XmlMedia("pessoa"));
@@ -19,7 +19,7 @@ public final class PessoaCached implements Pessoa {
 	public PessoaCached(final Pessoa origem, final Media media)
 		throws IOException {
 		this.origem = origem;
-		this.about = origem.about(media);
+		this.media = media;
 	}
 	
 	@Override
@@ -28,8 +28,8 @@ public final class PessoaCached implements Pessoa {
 	}
 	
 	@Override
-	public Media about(final Media media) throws IOException {
-		return this.about;
+	public Media about() throws IOException {
+		return this.media;
 	}
 
 	@Override

@@ -7,19 +7,27 @@ import java.time.format.FormatStyle;
 
 import com.github.fabriciofx.rocket.constraint.NotNull;
 import com.github.fabriciofx.rocket.media.Media;
+import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.github.fabriciofx.rocket.string.StringAsDate;
 
 public final class RangeDate implements Range<ChronoLocalDate> {
 	private final LocalDate begin;
 	private final LocalDate end;
+	private final Media media;
 
 	public RangeDate(final StringAsDate begin, final StringAsDate end) {
 		this(begin.date(), end.date());
 	}
-	
+
 	public RangeDate(final LocalDate begin, final LocalDate end) {
+		this(begin, end, new XmlMedia("range-date"));
+	}
+
+	public RangeDate(final LocalDate begin, final LocalDate end,
+		final Media media) {
 		this.begin = begin;
 		this.end = end;
+		this.media = media;
 	}
 
 	@Override
@@ -46,7 +54,7 @@ public final class RangeDate implements Range<ChronoLocalDate> {
 	}
 
 	@Override
-	public Media about(final Media media) {
+	public Media about() {
 		final DateTimeFormatter format = DateTimeFormatter
 				.ofLocalizedDate(FormatStyle.SHORT);
 		return media

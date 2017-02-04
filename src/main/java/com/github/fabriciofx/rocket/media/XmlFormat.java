@@ -1,5 +1,6 @@
 package com.github.fabriciofx.rocket.media;
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -18,6 +19,10 @@ public final class XmlFormat {
 	private final String xml;
 	private final int indent;
 
+	public XmlFormat(final About o) throws IOException {
+		this(o.about());
+	}
+	
 	public XmlFormat(final Media media) {
 		this(media.toString());
 	}

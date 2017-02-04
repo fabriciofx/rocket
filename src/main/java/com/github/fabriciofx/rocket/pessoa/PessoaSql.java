@@ -11,6 +11,7 @@ import com.github.fabriciofx.rocket.fone.Fones;
 import com.github.fabriciofx.rocket.fone.FonesSql;
 import com.github.fabriciofx.rocket.id.Id;
 import com.github.fabriciofx.rocket.media.Media;
+import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.github.fabriciofx.rocket.sql.TableMappingSql;
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
@@ -19,15 +20,22 @@ import com.jcabi.jdbc.SingleOutcome;
 public final class PessoaSql implements Pessoa {
 	private final Id id;
 	private final Database db;
+	private final Media media;
 	private final Config queries;
 	
 	public PessoaSql(final Id id, final Database db) {
-		this(id, db, new ConfigFile("rocket.queries"));
+		this(id, db, new XmlMedia("pessoa"));
 	}
 	
-	public PessoaSql(final Id id, final Database db, final Config queries) {
+	public PessoaSql(final Id id, final Database db, final Media media) {
+		this(id, db, media, new ConfigFile("rocket.queries"));
+	}
+	
+	public PessoaSql(final Id id, final Database db, final Media media,
+		final Config queries) {
 		this.id = id;
 		this.db = db;
+		this.media = media;
 		this.queries = queries;
 	}
 
@@ -75,7 +83,7 @@ public final class PessoaSql implements Pessoa {
 	}
 	
 	@Override
-	public Media about(final Media media) throws IOException {
+	public Media about() throws IOException {
 		try {
 			final Map<String, String> documentos = new JdbcSession(db.source())
 				.sql(queries.value(String.class, "pessoa.about"))

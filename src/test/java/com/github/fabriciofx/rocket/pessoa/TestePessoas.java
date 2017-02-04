@@ -48,7 +48,7 @@ public final class TestePessoas {
 		);
 		MatcherAssert.assertThat(
 			XhtmlMatchers.xhtml(
-				new PessoaFisicaXml(pessoa)
+				pessoa.about()
 			),
 			XhtmlMatchers.hasXPaths(
 				"/pessoa/id",
@@ -99,7 +99,7 @@ public final class TestePessoas {
 		pessoa.renomeia("David Webb");
 		MatcherAssert.assertThat(
 			XhtmlMatchers.xhtml(
-				new PessoaFisicaXml(pessoa)
+				pessoa.about()
 			),
 			XhtmlMatchers.hasXPaths(
 				"/pessoa/id",
@@ -147,10 +147,9 @@ public final class TestePessoas {
 				put("email", "jason.bourne@cia.gov.us");
 			}}
 		));
-		final Media media = new XmlMedia("pessoa");
 		final long start = System.currentTimeMillis();
 		for (int i = 0; i < 1000; i++) {
-			pessoa.about(media);
+			pessoa.about();
 		}
 		final long end = System.currentTimeMillis();
 		System.out.println("Total time: " + (end - start) + " ms");
