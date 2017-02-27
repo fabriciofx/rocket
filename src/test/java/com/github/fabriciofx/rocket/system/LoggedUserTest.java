@@ -7,14 +7,14 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.doc.Email;
+import com.github.fabriciofx.rocket.email.EmailSimple;
 
 public final class LoggedUserTest {
 	@Test
 	public void loggedUser() throws IOException {
 		final UserLogged loggedUser = new UserSmartLogged(
 			new UserSmart(
-				new Email("homer@fox.com"),
+				new EmailSimple("homer@fox.com"),
 				new Password("D'oh!")
 			)
 		);

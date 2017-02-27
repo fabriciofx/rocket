@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
-import com.github.fabriciofx.rocket.doc.Email;
+import com.github.fabriciofx.rocket.email.Email;
 
 import lombok.EqualsAndHashCode;
 
@@ -24,7 +24,7 @@ public final class UserSmart implements User {
 
 	public UserSmart(final Email email, final Password password,
 			final Map<String, String> properties) {
-		this(email.toString(), password, properties);
+		this(email.address(), password, properties);
 	}
 
 	public UserSmart(final String name, final Password password,

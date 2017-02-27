@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.github.fabriciofx.rocket.doc.Email;
+import com.github.fabriciofx.rocket.email.EmailSimple;
 
 public final class UserTest {
 	@Test
@@ -25,7 +25,7 @@ public final class UserTest {
 	@Test
 	public void emailed() throws IOException {
 		final User user = new UserSmart(
-				new Email("homer@fox.com"),
+				new EmailSimple("homer@fox.com"),
 				new Password("D'oh!")
 		);
 		assertEquals("homer@fox.com", user.name());
