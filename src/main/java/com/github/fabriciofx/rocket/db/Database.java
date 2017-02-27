@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.sql.DataSource;
 
-import com.github.fabriciofx.rocket.system.User;
+import com.github.fabriciofx.rocket.user.User;
 
 public interface Database {
 	User user();

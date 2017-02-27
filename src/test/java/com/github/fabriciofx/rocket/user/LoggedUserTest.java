@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.system;
+package com.github.fabriciofx.rocket.user;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -8,6 +8,10 @@ import java.io.IOException;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.email.EmailSimple;
+import com.github.fabriciofx.rocket.password.Password;
+import com.github.fabriciofx.rocket.user.UserLogged;
+import com.github.fabriciofx.rocket.user.UserSmart;
+import com.github.fabriciofx.rocket.user.UserSmartLogged;
 
 public final class LoggedUserTest {
 	@Test

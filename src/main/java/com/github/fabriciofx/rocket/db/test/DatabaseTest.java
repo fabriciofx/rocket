@@ -8,7 +8,7 @@ import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.ScriptSql;
 import com.github.fabriciofx.rocket.db.Url;
 import com.github.fabriciofx.rocket.db.h2.DatabaseH2;
-import com.github.fabriciofx.rocket.system.User;
+import com.github.fabriciofx.rocket.user.User;
 
 public final class DatabaseTest implements Database {
 	private final transient Database db;

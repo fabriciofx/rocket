@@ -1,10 +1,11 @@
-package com.github.fabriciofx.rocket.system;
+package com.github.fabriciofx.rocket.user;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
 import com.github.fabriciofx.rocket.email.Email;
+import com.github.fabriciofx.rocket.password.Password;
 
 import lombok.EqualsAndHashCode;
 

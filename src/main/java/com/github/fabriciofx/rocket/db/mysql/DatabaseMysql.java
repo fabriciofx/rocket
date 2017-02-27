@@ -8,10 +8,10 @@ import com.github.fabriciofx.rocket.db.Config;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.ScriptSql;
 import com.github.fabriciofx.rocket.db.Url;
+import com.github.fabriciofx.rocket.password.Password;
 import com.github.fabriciofx.rocket.security.Plain;
-import com.github.fabriciofx.rocket.system.Password;
-import com.github.fabriciofx.rocket.system.UserSmart;
-import com.github.fabriciofx.rocket.system.User;
+import com.github.fabriciofx.rocket.user.User;
+import com.github.fabriciofx.rocket.user.UserSmart;
 
 public final class DatabaseMysql implements Database {
 	private final transient Config config;

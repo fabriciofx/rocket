@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.system;
+package com.github.fabriciofx.rocket.user;
 
 public final class UserPropertiesInvalidException extends
 	IllegalArgumentException {

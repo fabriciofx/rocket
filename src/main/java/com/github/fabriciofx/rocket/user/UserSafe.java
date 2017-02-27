@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.system;
+package com.github.fabriciofx.rocket.user;
 
 import java.io.IOException;
 import java.util.Map;

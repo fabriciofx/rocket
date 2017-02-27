@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.system;
+package com.github.fabriciofx.rocket.password;
 
 import java.io.IOException;
 
