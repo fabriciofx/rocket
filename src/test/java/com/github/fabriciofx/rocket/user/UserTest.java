@@ -7,16 +7,15 @@ import java.io.IOException;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.email.EmailSimple;
-import com.github.fabriciofx.rocket.password.Password;
-import com.github.fabriciofx.rocket.user.User;
-import com.github.fabriciofx.rocket.user.UserSmart;
+import com.github.fabriciofx.rocket.password.PasswordCrypted;
+import com.github.fabriciofx.rocket.password.PasswordPlain;
 
 public final class UserTest {
 	@Test
 	public void user() throws IOException {
 		final User user = new UserSmart(
 				"Homer Simpson",
-				new Password("D'oh!")
+				new PasswordCrypted(new PasswordPlain("D'oh!"))
 		);
 		assertEquals("Homer Simpson", user.name());
 		assertEquals(
@@ -29,7 +28,7 @@ public final class UserTest {
 	public void emailed() throws IOException {
 		final User user = new UserSmart(
 				new EmailSimple("homer@fox.com"),
-				new Password("D'oh!")
+				new PasswordCrypted(new PasswordPlain("D'oh!"))
 		);
 		assertEquals("homer@fox.com", user.name());
 		assertEquals(

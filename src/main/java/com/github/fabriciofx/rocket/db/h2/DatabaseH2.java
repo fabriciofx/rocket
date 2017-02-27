@@ -8,8 +8,7 @@ import com.github.fabriciofx.rocket.db.Config;
 import com.github.fabriciofx.rocket.db.Database;
 import com.github.fabriciofx.rocket.db.ScriptSql;
 import com.github.fabriciofx.rocket.db.Url;
-import com.github.fabriciofx.rocket.password.Password;
-import com.github.fabriciofx.rocket.security.Plain;
+import com.github.fabriciofx.rocket.password.PasswordPlain;
 import com.github.fabriciofx.rocket.user.User;
 import com.github.fabriciofx.rocket.user.UserSmart;
 
@@ -31,7 +30,7 @@ public final class DatabaseH2 implements Database {
 			mode,
 			new UserSmart(
 				"sa",
-				new Password(new Plain(), "")
+				new PasswordPlain("")
 			)
 		);
 	}

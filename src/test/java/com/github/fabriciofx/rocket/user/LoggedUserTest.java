@@ -8,10 +8,8 @@ import java.io.IOException;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.email.EmailSimple;
-import com.github.fabriciofx.rocket.password.Password;
-import com.github.fabriciofx.rocket.user.UserLogged;
-import com.github.fabriciofx.rocket.user.UserSmart;
-import com.github.fabriciofx.rocket.user.UserSmartLogged;
+import com.github.fabriciofx.rocket.password.PasswordCrypted;
+import com.github.fabriciofx.rocket.password.PasswordPlain;
 
 public final class LoggedUserTest {
 	@Test
@@ -19,7 +17,7 @@ public final class LoggedUserTest {
 		final UserLogged loggedUser = new UserSmartLogged(
 			new UserSmart(
 				new EmailSimple("homer@fox.com"),
-				new Password("D'oh!")
+				new PasswordCrypted(new PasswordPlain("D'oh!"))
 			)
 		);
 		assertTrue(loggedUser.logged());

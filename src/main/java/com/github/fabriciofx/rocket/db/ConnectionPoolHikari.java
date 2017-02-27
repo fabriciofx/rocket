@@ -31,8 +31,8 @@ public final class ConnectionPoolHikari implements ConnectionPool {
 		final HikariConfig config = new HikariConfig();
 		try {
 			config.setJdbcUrl(url.string());
-			config.setUsername(user.name().toString());
-			config.setPassword(user.password().toString());
+			config.setUsername(user.name());
+			config.setPassword(user.password());
 		} catch (final IOException e) {
 			throw new IllegalArgumentException(e);
 		}

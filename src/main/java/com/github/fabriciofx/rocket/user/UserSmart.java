@@ -42,7 +42,7 @@ public final class UserSmart implements User {
 
 	@Override
 	public String password() throws IOException {
-		return password.toString();
+		return password.content();
 	}
 
 	@Override
