@@ -9,6 +9,6 @@ public final class NameUpped implements Name {
 	
 	@Override
 	public String content() {
-		return origin.content().toUpperCase();
+		return this.origin.content().toUpperCase();
 	}
 }

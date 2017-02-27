@@ -9,7 +9,7 @@ public final class NameCleaned implements Name {
 	
 	@Override
 	public String content() {
-		return origin
+		return this.origin
 			.content()
 			.replaceAll(
 				"^\\s+|\\s+$|\\s*(" +

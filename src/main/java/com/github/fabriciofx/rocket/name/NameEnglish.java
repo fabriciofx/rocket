@@ -4,9 +4,7 @@ public final class NameEnglish implements Name {
 	private final NameFirstLast origin;
 	
 	public NameEnglish(final String content) {
-		this(
-			new NameSimple(content)
-		);
+		this(new NameSimple(content));
 	}
 	
 	public NameEnglish(final Name origin) {
@@ -29,8 +27,8 @@ public final class NameEnglish implements Name {
 	public String content() {
 		return String.format(
 			"%s %s",
-			origin.first(),
-			origin.last()
+			this.origin.first(),
+			this.origin.last()
 		);
 	}
 }

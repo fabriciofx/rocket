@@ -9,9 +9,10 @@ public final class NameSafe implements Name {
 	
 	@Override
 	public String content() {
-		if (origin.content() == null || origin.content().isEmpty()) {
-			throw new IllegalArgumentException("invalid name");
+		if (this.origin == null || this.origin.content() == null ||
+			this.origin.content().isEmpty()) {
+			throw new IllegalArgumentException("invalid name (null or empty)");
 		}
-		return origin.content();
+		return this.origin.content();
 	}
 }

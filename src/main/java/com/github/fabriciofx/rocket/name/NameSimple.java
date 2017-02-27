@@ -9,6 +9,6 @@ public final class NameSimple implements Name {
 
 	@Override
 	public String content() {
-		return content;
+		return this.content;
 	}
 }

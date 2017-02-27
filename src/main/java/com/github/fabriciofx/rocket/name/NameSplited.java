@@ -13,7 +13,7 @@ public final class NameSplited implements Name {
 	
 	@Override
 	public String content() {
-		return origin.content();
+		return this.origin.content();
 	}
 	
 	public List<String> parts() {

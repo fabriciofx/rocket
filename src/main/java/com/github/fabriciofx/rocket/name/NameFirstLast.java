@@ -9,14 +9,14 @@ public final class NameFirstLast implements Name {
 	
 	@Override
 	public String content() {
-		return origin.content();
+		return this.origin.content();
 	}
 	
 	public String first() {
-		return origin.parts().get(0);
+		return this.origin.parts().get(0);
 	}
 	
 	public String last() {
-		return origin.parts().get(origin.parts().size() - 1);
+		return this.origin.parts().get(this.origin.parts().size() - 1);
 	}
 }
