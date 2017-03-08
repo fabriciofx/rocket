@@ -25,7 +25,7 @@ public final class TextSplited implements Text {
 	public List<String> parts() {
 		return Collections.unmodifiableList(
 			Arrays.asList(
-				origin.content().split(regex)
+				this.origin.content().split(this.regex)
 			)
 		);		
 	}
