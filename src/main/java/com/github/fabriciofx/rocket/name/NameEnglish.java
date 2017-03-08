@@ -1,17 +1,21 @@
 package com.github.fabriciofx.rocket.name;
 
-public final class NameEnglish implements Name {
+import com.github.fabriciofx.rocket.text.Text;
+import com.github.fabriciofx.rocket.text.TextCleaned;
+import com.github.fabriciofx.rocket.text.TextSplited;
+
+public final class NameEnglish implements Text {
 	private final NameFirstLast origin;
 	
 	public NameEnglish(final String content) {
-		this(new NameSimple(content));
+		this(new Name(content));
 	}
 	
 	public NameEnglish(final Name origin) {
 		this(
 			new NameFirstLast(
-				new NameSplited(
-					new NameCleaned(
+				new TextSplited(
+					new TextCleaned(
 						origin
 					)
 				)
