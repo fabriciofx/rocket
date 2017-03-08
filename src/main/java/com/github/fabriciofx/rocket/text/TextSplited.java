@@ -6,9 +6,15 @@ import java.util.List;
 
 public final class TextSplited implements Text {
 	private final Text origin;
+	private final String regex;
 	
 	public TextSplited(final Text origin) {
+		this(origin, " ");
+	}
+	
+	public TextSplited(final Text origin, final String regex) {
 		this.origin = origin;
+		this.regex = regex;
 	}
 	
 	@Override
@@ -19,7 +25,7 @@ public final class TextSplited implements Text {
 	public List<String> parts() {
 		return Collections.unmodifiableList(
 			Arrays.asList(
-				origin.content().split(" ")
+				origin.content().split(regex)
 			)
 		);		
 	}
