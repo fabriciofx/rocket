@@ -9,6 +9,6 @@ public final class TextCached implements Text {
 	
 	@Override
 	public String content() {
-		return content;
+		return this.content;
 	}
 }
