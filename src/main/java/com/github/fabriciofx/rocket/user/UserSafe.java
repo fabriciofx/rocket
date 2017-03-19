@@ -12,20 +12,26 @@ public final class UserSafe implements User {
 	
 	@Override
 	public String name() throws IOException {
-		final String name = this.origin.name();
-		if (name == null || name.isEmpty()) {
-			throw new UserNameInvalidException(name);
+		if (this.origin == null ||
+			this.origin.name() == null ||
+			this.origin.name().isEmpty()) {
+			throw new UserNameInvalidException(
+				"the name of the user is invalid"
+			);
 		}
-		return name;
+		return this.origin.name();
 	}
 
 	@Override
 	public String password() throws IOException {
-		final String password = this.origin.password();
-		if (password == null || password.isEmpty()) {
-			throw new UserPasswordInvalidException(password);
+		if (this.origin == null ||
+			this.origin.password() == null ||
+			this.origin.password().isEmpty()) {
+			throw new UserPasswordInvalidException(
+				"the password of the user is invalid"
+			);
 		}
-		return password;
+		return this.origin.password();
 	}
 
 	@Override
