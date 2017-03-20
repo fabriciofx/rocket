@@ -48,7 +48,7 @@ public final class PessoaSql implements Pessoa {
 	public void renomeia(final String nome) throws IOException {
 		try {
 			new JdbcSession(db.source())
-				.sql(queries.value(String.class, "pessoa.renomeia"))
+				.sql(queries.value("pessoa.renomeia"))
 				.set(nome)
 				.set(id)
 				.update(SingleOutcome.VOID);
@@ -62,7 +62,7 @@ public final class PessoaSql implements Pessoa {
 		throws IOException {
 		try {
 			new JdbcSession(db.source())
-				.sql(queries.value(String.class, "pessoa.documentos"))
+				.sql(queries.value("pessoa.documentos"))
 				.set(documentos.get("email"))
 				.set(documentos.get("logradouro"))
 				.set(documentos.get("numero"))
@@ -86,7 +86,7 @@ public final class PessoaSql implements Pessoa {
 	public Media about() throws IOException {
 		try {
 			final Map<String, String> documentos = new JdbcSession(db.source())
-				.sql(queries.value(String.class, "pessoa.about"))
+				.sql(queries.value("pessoa.about"))
 				.set(id)
 				.select(
 					new ListOutcome<Map<String, String>>(

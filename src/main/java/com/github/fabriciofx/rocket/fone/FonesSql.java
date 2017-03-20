@@ -37,7 +37,7 @@ public class FonesSql implements Fones {
 		final String operadora) throws IOException {
 		try {
 			new JdbcSession(db.source())
-				.sql(queries.value(String.class, "fones.fone"))
+				.sql(queries.value("fones.fone"))
 				.set(id)
 				.set(numero)
 				.set(tipo)

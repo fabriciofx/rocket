@@ -3,7 +3,7 @@ package com.github.fabriciofx.rocket.config;
 import java.io.IOException;
 
 public interface Config {
-	<T> T value(Class<T> type, String key) throws IOException;
+	String value(String key) throws IOException;
 	
 	void entry(String key, String value) throws IOException; 
 	

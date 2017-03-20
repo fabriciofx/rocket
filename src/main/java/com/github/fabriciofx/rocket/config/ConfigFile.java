@@ -2,9 +2,6 @@ package com.github.fabriciofx.rocket.config;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.InetAddress;
-import java.net.URI;
-import java.net.URL;
 import java.util.Properties;
 
 public final class ConfigFile implements Config {
@@ -23,36 +20,8 @@ public final class ConfigFile implements Config {
 	}
 
 	@Override
-	public <T> T value(final Class<T> type, final String key) throws IOException {
-		final Object property;
-		// We need this kind of crap code because the Java API is awful.
-		// A better approach could be: type.parse(String string)
-		try {
-			if (type.equals(Byte.class)) {
-				property = Byte.parseByte(properties.getProperty(key));
-			} else if (type.equals(Short.class)) {
-				property = Short.parseShort(properties.getProperty(key));
-			} else if (type.equals(Integer.class)) {
-				property = Integer.parseInt(properties.getProperty(key));
-			} else if (type.equals(Long.class)) {
-				property = Long.parseLong(properties.getProperty(key));
-			} else if (type.equals(String.class)) {
-				property = properties.getProperty(key);
-			} else if (type.equals(InetAddress.class)) {
-				property = InetAddress.getByName(properties.getProperty(key));
-			} else if (type.equals(URL.class)) {
-				property = new URL(properties.getProperty(key));
-			} else if (type.equals(URI.class)) {
-				property = new URI(properties.getProperty(key));
-			} else {
-				throw new IllegalStateException(
-					String.format("type %s is not allowed", type.getName())
-				);
-			}
-		} catch (final Exception e) {
-			throw new IOException(e);
-		}
-		return type.cast(property);
+	public String value(final String key) throws IOException {
+		return properties.getProperty(key);
 	}
 
 	@Override
