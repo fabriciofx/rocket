@@ -4,12 +4,18 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.github.fabriciofx.rocket.text.Text;
+import com.github.fabriciofx.rocket.text.TextCleaned;
+import com.github.fabriciofx.rocket.text.TextSafe;
+import com.github.fabriciofx.rocket.text.TextSplited;
+import com.github.fabriciofx.rocket.text.TextUpped;
+
 public class NameTest {
 	@Test
 	public void cleaned() {
 		final String content = "  Fabricio   Barros Cabral		";
-		final Name name = new NameCleaned(
-			new NameSimple(content)
+		final Text name = new TextCleaned(
+			new Name(content)
 		);
 		assertEquals("Fabricio Barros Cabral", name.content());
 	}
@@ -17,10 +23,10 @@ public class NameTest {
 	@Test
 	public void abbreviated() {
 		final String content = "  Fabricio   Barros Cabral		";
-		final Name name = new NameAbbreviated(
-			new NameSplited(
-				new NameCleaned(
-					new NameSimple(content)
+		final Text name = new NameAbbreviated(
+			new TextSplited(
+				new TextCleaned(
+					new Name(content)
 				)
 			)
 		);
@@ -29,26 +35,26 @@ public class NameTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void notNull() {
-		new NameSafe(
-			new NameSimple(null)
+		new TextSafe(
+			new Name(null)
 		).content();
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void noEmpty() {
-		new NameSafe(
-			new NameSimple("")
+	public void notEmpty() {
+		new TextSafe(
+			new Name("")
 		).content();
 	}
 
 	@Test
 	public void english() {
 		final String content = "  Fabricio   Barros Cabral		";
-		final Name name = new NameEnglish(
+		final Text name = new NameEnglish(
 			new NameFirstLast(
-				new NameSplited(
-					new NameCleaned(
-						new NameSimple(content)
+				new TextSplited(
+					new TextCleaned(
+						new Name(content)
 					)
 				)
 			)
@@ -59,12 +65,12 @@ public class NameTest {
 	@Test
 	public void upped() {
 		final String content = "  Fabricio   Barros Cabral		";
-		final Name name = new NameUpped( 
+		final Text name = new TextUpped( 
 			new NameEnglish(
 				new NameFirstLast(
-					new NameSplited(
-						new NameCleaned(
-							new NameSimple(content)
+					new TextSplited(
+						new TextCleaned(
+							new Name(content)
 						)
 					)
 				)

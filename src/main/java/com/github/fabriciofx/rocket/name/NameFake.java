@@ -1,6 +1,8 @@
 package com.github.fabriciofx.rocket.name;
 
-public final class NameFake implements Name {
+import com.github.fabriciofx.rocket.text.Text;
+
+public final class NameFake implements Text {
 	@Override
 	public String content() {
 		return "Homer Jay Simpson";

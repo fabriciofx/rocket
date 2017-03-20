@@ -1,9 +1,12 @@
 package com.github.fabriciofx.rocket.name;
 
-public final class NameFirstLast implements Name {
-	private final NameSplited origin;
+import com.github.fabriciofx.rocket.text.Text;
+import com.github.fabriciofx.rocket.text.TextSplited;
+
+public final class NameFirstLast implements Text {
+	private final TextSplited origin;
 	
-	public NameFirstLast(final NameSplited origin) {
+	public NameFirstLast(final TextSplited origin) {
 		this.origin = origin;
 	}
 	

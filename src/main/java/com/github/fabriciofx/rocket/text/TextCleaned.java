@@ -1,9 +1,9 @@
-package com.github.fabriciofx.rocket.name;
+package com.github.fabriciofx.rocket.text;
 
-public final class NameCleaned implements Name {
-	private final Name origin;
+public final class TextCleaned implements Text {
+	private final Text origin;
 	
-	public NameCleaned(final Name origin) {
+	public TextCleaned(final Text origin) {
 		this.origin = origin;
 	}
 	
