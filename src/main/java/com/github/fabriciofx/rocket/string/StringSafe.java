@@ -2,9 +2,6 @@ package com.github.fabriciofx.rocket.string;
 
 import java.io.Serializable;
 
-import com.github.fabriciofx.rocket.constraint.NotEmpty;
-import com.github.fabriciofx.rocket.constraint.NotNull;
-
 public final class StringSafe
 		implements Serializable, Comparable<StringSafe>, CharSequence {
 	private static final long serialVersionUID = -6385663348627151869L;
@@ -16,46 +13,50 @@ public final class StringSafe
 	
 	@Override
 	public int length() {
-		return new NotEmpty<String>(
-			new NotNull<>()
-		).valid(origin).length();
+		if (this.origin == null) {
+			throw new NullPointerException("the origin string is null");
+		}
+		return this.origin.length();
 	}
 
 	@Override
 	public char charAt(final int index) {
-		return new NotEmpty<String>(
-			new NotNull<>()
-		).valid(origin).charAt(index);
+		if (this.origin == null) {
+			throw new NullPointerException("the origin string is null");
+		}
+		return this.origin.charAt(index);
 	}
 
 	@Override
 	public CharSequence subSequence(final int start, final int end) {
-		return new NotEmpty<String>(
-			new NotNull<>()
-		).valid(origin).subSequence(start, end);
+		if (this.origin == null) {
+			throw new NullPointerException("the origin string is null");
+		}
+		return this.origin.subSequence(start, end);
 	}
 
 	@Override
 	public int compareTo(final StringSafe o) {
-		return new NotEmpty<String>(
-			new NotNull<>()
-		).valid(origin).compareTo(o.origin);
+		if (this.origin == null) {
+			throw new NullPointerException("the origin string is null");
+		}
+		return this.origin.compareTo(o.origin);
 	}
 	
 	@Override
 	public boolean equals(final Object o) {
 		return o != null &&
 			o instanceof StringSafe &&
-			origin.equals(StringSafe.class.cast(o).origin);
+			this.origin.equals(StringSafe.class.cast(o).origin);
 	}
 
 	@Override
 	public final int hashCode() {
-		return 31 + origin.hashCode();
+		return 31 + this.origin.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return origin.toString();
+		return this.origin.toString();
 	}	
 }
