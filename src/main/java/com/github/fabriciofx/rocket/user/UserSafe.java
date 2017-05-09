@@ -3,6 +3,8 @@ package com.github.fabriciofx.rocket.user;
 import java.io.IOException;
 import java.util.Map;
 
+import com.github.fabriciofx.rocket.password.PasswordInvalidException;
+
 public final class UserSafe implements User {
 	private final User origin;
 	
@@ -15,9 +17,7 @@ public final class UserSafe implements User {
 		if (this.origin == null ||
 			this.origin.name() == null ||
 			this.origin.name().isEmpty()) {
-			throw new UserNameInvalidException(
-				"the name of the user is invalid"
-			);
+			throw new ExceptionInvalidUserName();
 		}
 		return this.origin.name();
 	}
@@ -27,9 +27,7 @@ public final class UserSafe implements User {
 		if (this.origin == null ||
 			this.origin.password() == null ||
 			this.origin.password().isEmpty()) {
-			throw new UserPasswordInvalidException(
-				"the password of the user is invalid"
-			);
+			throw new PasswordInvalidException();
 		}
 		return this.origin.password();
 	}
@@ -38,7 +36,7 @@ public final class UserSafe implements User {
 	public Map<String, String> properties() throws IOException {
 		final Map<String, String> properties = this.origin.properties();
 		if (properties == null) {
-			throw new UserPropertiesInvalidException(this.name());
+			throw new ExceptionInvalidUserProperties(this.name());
 		}
 		return properties;
 	}

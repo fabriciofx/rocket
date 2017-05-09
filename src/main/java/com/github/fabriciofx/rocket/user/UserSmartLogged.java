@@ -21,21 +21,21 @@ public final class UserSmartLogged implements UserLogged {
 	
 	@Override
 	public String name() throws IOException {
-		return origin.name();
+		return this.origin.name();
 	}
 
 	@Override
 	public String password() throws IOException {
-		return origin.password();
+		return this.origin.password();
 	}
 
 	@Override
 	public Map<String, String> properties() throws IOException {
-		return origin.properties();
+		return this.origin.properties();
 	}
 
 	@Override
 	public boolean logged() throws IOException {
-		return logged;
+		return this.logged;
 	}
 }

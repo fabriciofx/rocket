@@ -37,21 +37,21 @@ public final class UserSmart implements User {
 
 	@Override
 	public String name() throws IOException {
-		return name;
+		return this.name;
 	}
 
 	@Override
 	public String password() throws IOException {
-		return password.content();
+		return this.password.content();
 	}
 
 	@Override
 	public Map<String, String> properties() throws IOException {
-		return properties;
+		return this.properties;
 	}
 
 	@Override
 	public String toString() {
-		return name;
+		return this.name;
 	}
 }
