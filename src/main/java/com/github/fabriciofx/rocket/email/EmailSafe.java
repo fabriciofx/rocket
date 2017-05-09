@@ -24,7 +24,7 @@ public final class EmailSafe implements Email {
 			address.isEmpty() ||
 			!this.pattern.matcher(address).matches()
 		) {
-			throw new EmailInvalidException(address);
+			throw new ExceptionInvalidEmail(address);
 		}
 		return address;
 	}
