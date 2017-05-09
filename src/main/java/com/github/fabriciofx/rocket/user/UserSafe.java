@@ -3,7 +3,7 @@ package com.github.fabriciofx.rocket.user;
 import java.io.IOException;
 import java.util.Map;
 
-import com.github.fabriciofx.rocket.password.PasswordInvalidException;
+import com.github.fabriciofx.rocket.password.ExceptionInvalidPassword;
 
 public final class UserSafe implements User {
 	private final User origin;
@@ -27,7 +27,7 @@ public final class UserSafe implements User {
 		if (this.origin == null ||
 			this.origin.password() == null ||
 			this.origin.password().isEmpty()) {
-			throw new PasswordInvalidException();
+			throw new ExceptionInvalidPassword();
 		}
 		return this.origin.password();
 	}

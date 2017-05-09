@@ -11,7 +11,7 @@ public final class PasswordSafe implements Password {
 	public String content() {
 		if (this.origin == null || this.origin.content() == null ||
 			this.origin.content().isEmpty()) {
-			throw new PasswordInvalidException();
+			throw new ExceptionInvalidPassword();
 		}
 		return this.origin.content();
 	}
