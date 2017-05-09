@@ -7,11 +7,8 @@ import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 import com.github.fabriciofx.rocket.db.Database;
+import com.github.fabriciofx.rocket.db.DatabaseH2Mem;
 import com.github.fabriciofx.rocket.db.ScriptSql;
-import com.github.fabriciofx.rocket.db.h2.DatabaseH2;
-import com.github.fabriciofx.rocket.db.test.DatabaseTest;
-import com.github.fabriciofx.rocket.media.Media;
-import com.github.fabriciofx.rocket.media.XmlMedia;
 import com.github.fabriciofx.rocket.misc.ResourcePath;
 import com.github.fabriciofx.rocket.pessoas.Pessoas;
 import com.github.fabriciofx.rocket.pessoas.PessoasSql;
@@ -20,7 +17,7 @@ import com.jcabi.matchers.XhtmlMatchers;
 public final class TestePessoas {
 	@Test
 	public void fisica() throws IOException {
-		final Database testebd = new DatabaseTest("testebd");
+		final Database testebd = new DatabaseH2Mem("testebd");
 		testebd.exec(
 			new ScriptSql(
 				new ResourcePath(
@@ -70,7 +67,7 @@ public final class TestePessoas {
 	
 	@Test
 	public void renomeia() throws IOException {
-		final Database testebd = new DatabaseTest("testebd");
+		final Database testebd = new DatabaseH2Mem("testebd");
 		testebd.exec(
 			new ScriptSql(
 				new ResourcePath(
@@ -121,7 +118,7 @@ public final class TestePessoas {
 	
 	@Test
 	public void desempenho() throws IOException {
-		final Database testebd = new DatabaseH2("testebd");
+		final Database testebd = new DatabaseH2Mem("testebd");
 		testebd.exec(
 			new ScriptSql(
 				new ResourcePath(

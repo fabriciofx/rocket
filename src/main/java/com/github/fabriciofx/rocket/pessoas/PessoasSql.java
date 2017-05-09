@@ -38,8 +38,9 @@ public final class PessoasSql implements Pessoas {
 				@Override
 				public Pessoa call() throws Exception {
 					try {
+						final JdbcSession session = new JdbcSession(db.source());
 						final Id id = new IdNum(
-							new JdbcSession(db.source())
+							session
 							.sql(queries.value("pessoas.pessoa"))
 							.set(nome)
 							.set(documentos.get("email"))
@@ -51,7 +52,7 @@ public final class PessoasSql implements Pessoas {
 							.set(documentos.get("cep"))
 							.insert(SingleOutcome.LAST_INSERT_ID)
 						);
-						new JdbcSession(db.source())
+						session
 							.sql(queries.value("pessoas.pessoa.fisica"))
 							.set(id)
 							.set(documentos.get("tratamento"))

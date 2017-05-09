@@ -79,7 +79,6 @@ public final class ScriptSql implements Script<Database> {
 		this.fullLineDelimiter = fullLineDelimiter;
 	}
 
-
 	@Override
 	public void exec(final Database db) throws IOException {
 		try {
