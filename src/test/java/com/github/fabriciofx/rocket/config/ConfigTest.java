@@ -1,4 +1,4 @@
-package com.github.fabriciofx.rocket.util;
+package com.github.fabriciofx.rocket.config;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
