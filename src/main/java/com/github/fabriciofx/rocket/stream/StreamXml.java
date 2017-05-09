@@ -199,8 +199,7 @@ public final class StreamXml implements StreamData {
 	}
 
 	@Override
-	public long size() throws IOException {
-		// TODO Auto-generated method stub
+	public int size() throws IOException {
 		return 0;
 	}
 }

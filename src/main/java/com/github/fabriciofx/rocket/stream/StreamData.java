@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public interface StreamData {
-	long size() throws IOException;
+	int size() throws IOException;
 	
 	void read(InputStream stream) throws IOException;
 	
